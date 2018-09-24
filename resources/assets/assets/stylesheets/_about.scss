@@ -1,0 +1,116 @@
+.about-wrapper {
+    padding: 60px 0;
+    text-align: center;
+    .section-title {
+    	font-size: 24px;
+    	span {
+    		background: #f7fafb;
+    	}
+    	&:after {
+    		content: none;
+    	}
+    }
+}
+.about-wrapper_gray {
+	background: #f7fafb;
+}
+.about-item__pic-wrapper {
+	width: 200px;
+	height: 200px;
+	text-align: center;
+	line-height: 200px;
+	float: left;
+	border-radius: 10px;
+	border: 1px solid $grey;
+}
+.about-item {
+display: -ms-flexbox;
+	display: -webkit-flex;
+	display: flex;
+
+	-ms-flex-align: center;
+	-webkit-align-items: center;
+	-webkit-box-align: center;
+
+	align-items: center;
+	margin-bottom: 30px;
+}
+.about-item__img {
+	display: inline-block;
+	background: url("../images/about.png");
+	width: 108px;
+	height: 108px;
+	vertical-align: middle;
+	&.about-item__img_one {
+		background-position: 0 0;
+	}
+	&.about-item__img_two {
+		background-position: -113px 0;
+	}
+	&.about-item__img_three {
+		background-position: -226px 0;
+	}
+	&.about-item__img_four {
+		background-position: -338px 0;
+	}
+	&.about-item__img_five {
+		background-position: -452px 0;
+	}
+	&.about-item__img_six {
+		background-position: 0 -113px;
+	}
+	&.about-item__img_seven {
+		background-position: -113px -113px;
+	}
+	&.about-item__img_eight {
+		background-position: -226px -113px;
+	}
+	&.about-item__img_nine {
+		background-position: -338px -113px;
+	}
+	&.about-item__img_ten {
+		background-position: -452px -113px;
+	}
+}
+.about-item__text {
+	color: $dark-grey;
+	font-size: 14px;
+	text-align: left;
+	padding-left: 30px;
+	overflow: hidden;
+	line-height: 24px;
+	max-width: 50%;
+}
+.about-wrapper {
+	.cooperation-item {
+		height: 65px;
+	    display: -ms-flexbox;
+	    display: -webkit-flex;
+	    display: flex;
+	    -ms-flex-align: center;
+	    -webkit-align-items: center;
+	    -webkit-box-align: center;
+	    align-items: center;
+	    p {
+	    	margin-bottom: 0;
+	    }
+	}
+	.cooperation-text {
+		text-align: left;
+	}
+	.cooperation-num {
+		margin-top: 0;
+	}
+	.cooperation-mark{
+		&.blue {
+			background-color: $blue;
+		}
+		&:before{
+			content: none;
+		}
+		&:after{
+			content: none;
+		}
+	}
+
+}

@@ -1,0 +1,461 @@
+.order-wrapper{
+	padding: 25px 0 70px;
+	.container{
+		@include bp(xs){
+			padding: 0;
+		}
+	}
+}
+
+.order-page-inner{
+	width: 665px;
+	@include bp(lg){
+		margin: 0 auto;
+	}
+	@include bp(sm){
+		width: 100%;
+	}
+}
+
+.order-page__title-wrapper{
+	margin-top: 25px;
+	font-size: 30px;
+	display: flex;
+	@include bp(sm){
+		font-size: 24px;
+	}
+	@include bp(xs){
+		flex-direction: column;
+	}
+}
+
+.order-page__title{
+	font-family: $bold-font;
+	margin-right: 10px;
+}
+
+.order-page__count-items{
+	color: $blue;
+}
+
+.order-page__list{
+	margin-top: 45px;
+	padding-bottom: 10px;
+	border-bottom: 1px solid $grey;
+}
+
+.order-page__item{
+	display: flex;
+	align-items: center;
+	margin-bottom: 15px;
+	position: relative;
+	@include bp(sm){
+		flex-direction: column;
+		padding: 10px;
+		border: 1px solid $grey;
+		border-radius: 10px;
+	}
+}
+
+.order-page__pic-wrapper{
+	min-width: 85px;
+	width: 85px;
+	height: 85px;
+	border: 1px solid $grey;
+	border-radius: 10px;
+	overflow: hidden;
+	@include bp(sm){
+		margin-bottom: 15px;
+	}
+}
+
+.order-page__pic{
+	width: 100%;
+	height: 100%;
+	object-fit: contain;
+}
+
+.order-page__title-item{
+	padding: 0 15px;
+	min-width: 215px;
+	width: 215px;
+	font-size: 14px;
+	line-height: 20px;
+	color: #000;
+	@include bp(md){
+		padding: 0 15px;
+	}
+	@include bp(sm){
+		text-align: center;
+		margin-bottom: 10px;
+	}
+}
+
+.order-page__price{
+	font-size: 18px;
+	font-family: $bold-font;
+	color: $blue;
+	width: 135px;
+	text-align: right;
+	flex: 1 0 auto;
+	padding-right: 15px;
+	@include bp(md){
+		width: 150px;
+	}
+}
+
+.order-page__del{
+	width: 14px;
+	height: 14px;
+	min-width: 14px;
+	cursor: pointer;
+	position: relative;
+	z-index: 1;
+	background: url(../images/del-item.png) no-repeat;
+	@include bp(sm){
+		position: absolute;
+		top: 10px;
+		right: 10px;
+	}
+}
+
+.order-page__count-wrapper{
+	display: flex;
+	padding-right: 15px;
+	@include bp(md){
+		padding: 0 15px;
+	}
+	@include bp(sm){
+		margin-bottom: 10px;
+	}
+}
+
+.order-page__minus, .order-page__plus{
+	width: 44px;
+	height: 44px;
+	line-height: 40px;
+	background-color: #fff;
+	text-align: center;
+	border-radius: 100%;
+	border: 1px solid $grey;
+	box-shadow: 0 3px 5px rgba(0, 0, 0, 0.1);
+	font-size: 16px;
+	font-family: $bold-font;
+	cursor: pointer;
+	&:hover, &:focus{
+		background: $yellow-gradient;
+		border-color: transparent;
+	}
+}
+
+.order-page__count-field{
+	width: 92px;
+	height: 44px;
+	line-height: 42px;
+	background-color: #fff;
+	text-align: center;
+	border-radius: 25px;
+	margin: 0 10px;
+	border: 1px solid $grey;
+	box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.1);
+	font-size: 16px;
+	font-family: $bold-font;
+}
+
+.order-page__totals{
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 15px 0;
+	font-size: 18px;
+	@include bp(sm){
+		flex-direction: column-reverse;
+	}
+	@include bp(xs){
+		font-size: 14px;
+	}
+}
+
+.order-page__totals-title{
+	margin-right: 5px;
+}
+
+.order-page__sum{
+	font-family: $bold-font;
+}
+
+.order-page__back{
+	width: 194px;
+	display: block;
+	height: 44px;
+	line-height: 42px;
+	text-align: center;
+	background: transparent;
+	border: 1px solid $grey;
+	border-radius: 25px;
+	font-size: 11px;
+	font-family: $bold-font;
+	text-transform: uppercase;
+	margin-right: 30px;
+	@include bp(sm){
+		margin-right: 0;
+		margin-top: 20px;
+	}
+	@include bp(xs){
+		margin: 15px auto 0;
+	}
+	&:hover{
+		border-color: $yellow;
+		text-decoration: none;
+	}
+}
+
+.order-page__empty{
+	display: none;
+	font-size: 40px;
+	justify-content: center;
+	padding: 60px 0;
+}
+
+.order-page__forms-wrapper{
+	float: right;
+	margin-top: 30px;
+	width: 408px;
+	background-color: #f7fafb;
+	padding: 40px 30px 30px;
+	border-radius: 10px;
+	@include bp(lg){
+		margin: 30px auto 0;
+		float: none;
+		width: 665px;
+		padding: 40px 130px 30px;
+	}
+	@include bp(sm){
+		width: 100%;
+		padding: 40px 30px 30px;
+	}
+	@include bp(xs){
+		padding: 30px 15px 25px;
+	}
+}
+
+.order-page__forms-title{
+	font-size: 16px;
+	font-family: $extrabold-font;
+	text-transform: uppercase;
+	color: $blue;
+	display: block;
+	text-align: center;
+}
+
+.order-page__forms-tabs{
+	width: 100%;
+	margin-top: 15px;
+}
+
+.order-page__forms-tabs__list{
+	display: flex;
+	justify-content: center;
+	border-bottom: 1px solid $grey;
+}
+
+.order-page__forms-tabs__item{
+	margin: 0 9px;
+	line-height: 50px;
+	position: relative;
+	cursor: pointer;
+	font-size: 11px;
+	text-transform: uppercase;
+	color: #474747;
+	@include bp(xs){
+		font-size: 10px;
+		margin: 0 4px;
+		line-height: 42px;
+	}
+	&.active{
+		font-family: $bold-font;
+		&:after{
+			position: absolute;
+			content: '';
+			width: 100%;
+			height: 4px;
+			bottom: -1px;
+			left: 0;
+			background-color: $yellow;
+		}
+	}
+}
+
+.order-page__forms-tabs__content{
+	padding-top: 20px;
+	display: none;
+	&.active{
+		display: block;
+	}
+}
+
+.error-message__text{
+  text-align: center;
+  color: #f55e5e;
+  margin-top: 15px;
+}
+
+.order-page__form-check{
+	margin-top: 20px;
+}
+
+.order-page__form-input{
+	width: 100%;
+	border-radius: 25px;
+	border: 1px solid $grey;
+	background-color: #fff;
+	padding: 0 30px;
+	height: 44px;
+	line-height: 42px;
+	font-size: 11px;
+	text-transform: uppercase;
+	font-family: $semibold-font;
+	margin-bottom: 10px;
+}
+
+.order-page__form-checkbox-wrapper{
+    margin-left: 30px;
+    margin-bottom: 25px;
+    padding-top: 15px;
+    @include bp(md){
+        width: 100%;
+    }
+    @include bp(sm){
+       padding-top: 5px;
+       margin-bottom: 15px;
+    }
+}
+
+.order-page__form-checkbox{
+    display: none;
+    + label{
+        display: block;
+        line-height: 17px;
+        cursor: pointer;
+        position: relative;
+        padding-left: 26px;
+        color: #7a7a7a;
+        font-size: 12px;
+        line-height: 18px;
+        @include bp(sm){
+            margin-bottom: 10px;
+        }
+        &:after{
+            position: absolute;
+            content: '';
+            width: 17px;
+            height: 17px;
+            left: 0;
+            top: 2px;
+            background: url(../images/contacts/agree-chk.png) no-repeat;
+        }
+        &:hover{
+            &:after{
+                opacity: 0.8;
+            }
+        }
+    }
+    &:checked + label{
+         &:after{
+            background-position: 0 -17px;
+         }
+    }
+}
+
+.order-page__form-btn{
+	width: 100%;
+	display: block;
+	height: 44px;
+	line-height: 44px;
+	text-align: center;
+	background: $yellow-gradient;
+	border: none;
+	border-radius: 25px;
+	font-size: 11px;
+	font-family: $bold-font;
+	text-transform: uppercase;
+	box-shadow: 0 3px 5px rgba(0, 0, 0, 0.1);
+	@include bp(xs){
+		margin: 0 auto;
+	}
+	&:hover{
+		background: $green-gradient;
+		color: #fff;
+		text-decoration: none;
+	}
+}
+
+.order-page__form-select-wrapper{	
+	width: 100%;
+	height: 44px;
+	position: relative;
+	margin-bottom: 10px;
+	&:after{
+		position: absolute;
+		content: '';
+		background: url(../images/dropdown-arrow.png) no-repeat;
+		width: 7px;
+		height: 3px;
+		right: 25px;
+		top: 20px;
+	}
+}
+
+.order-page__form-input-wrapper{
+  width: 100%;
+  height: 44px;
+  position: relative;
+  margin-bottom: 10px;
+  input{
+    height: 100%;
+    width: 100%;
+    line-height: 40px;
+    padding: 0 25px;
+    border-radius: 25px;
+    border: 1px solid #e6e6e6;
+  }
+}
+
+.order-page__form-select{
+	width: 100%;
+	height: 100%;
+	line-height: 44px;
+	border: 1px solid #e6e6e6;
+	padding: 0 30px;
+	border-radius: 25px;
+	font-size: 12px;
+	font-family: $semibold-font;
+	color: #696969;
+	appearance: none;
+	-webkit-appearance: none;
+    -moz-appearance: none;
+    text-indent: 1px;
+    text-overflow: '';
+    option{
+    	&:disabled{
+    		background-color: #f5f5f5;
+    	}
+    }
+}
+
+.order-page__form-textarea{
+	width: 100%;
+	height: 120px;
+	border-radius: 25px;
+	border: 1px solid $grey;
+	padding: 15px 30px;
+	resize: none;
+	font-size: 11px;
+	line-height: 15px;
+	margin-bottom: 30px;
+	&::placeholder{
+		text-transform: none;
+		color: #a5a5a5;
+		font-family: $default-font;
+	}
+}

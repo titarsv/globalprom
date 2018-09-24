@@ -1,0 +1,19 @@
+.newsTabs {
+	text-align: center;
+	li {
+		display: inline-block;
+		padding: 0 10px;
+		&.newsTabs-active {
+			.btn {
+				border-color: $yellow;
+			}
+		}
+	}
+	.btn {
+		box-shadow: none;
+		border-width: 2px;
+	}
+}
+.newsTabs-content {
+	text-align: left;
+}

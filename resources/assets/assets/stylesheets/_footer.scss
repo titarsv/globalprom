@@ -1,0 +1,264 @@
+.main-footer{
+	background-color: $blue;
+	position: relative;
+	color: #fff;
+	&.active{
+		&:after{
+			content: '';
+			position: absolute;
+			left: 0;
+			right: 0;
+			top: 0;
+			bottom: 0;
+			background-color: rgba(67, 67, 67, 0.7);
+			transition: .2s ease-in-out;
+		}
+	}
+}
+
+.subscribe-footer{
+	padding: 38px 0 32px;
+	border-bottom: 1px solid #1698d1;
+}
+
+.subscribe-txt__wrapper{
+	@include bp(md){
+		text-align: center;
+	}
+}
+
+.subscribe-title{
+	font-size: 18px;
+	font-family: $bold-font;
+}
+
+.subscribe-txt{
+	font-size: 14px;
+	display: block;
+	margin-top: 12px;
+	@include bp(lg){
+		font-size: 12px;
+		margin-top: 14px;
+	}
+	@include bp(md){
+		font-size: 14px;
+		margin: 10px 0;
+	}
+}
+
+.subscribe-form__wrapper{
+	@include bp(xs){
+		padding: 0;
+	}	
+}
+
+.subscribe-form{
+	@include bp(xs){
+		width: 290px;
+		margin: 30px auto 0;
+	}	
+}
+
+.subscribe-form__composition{
+	display: flex;
+	justify-content: flex-end;
+	@include bp(md){
+		justify-content: center;
+	}
+	@include bp(xs){
+		flex-direction: column;
+	}
+}
+
+.subscribe-form__input{
+	width: 365px;
+	display: block;
+	height: 44px;
+	line-height: 44px;
+	border-radius: 25px;
+	font-size: 11px;
+	background-color: #1aa5e2;
+	border: 2px solid #1aa5e2;
+	padding: 0 30px;
+	@include bp(xs){
+		width: 100%;
+		margin-bottom: 15px;
+		text-align: center;
+	}
+	&:focus{
+		background-color: transparent;
+	}
+	&::placeholder{
+		color: #fff;
+	}
+}
+
+.subscribe-form__btn{
+	width: 190px;
+	margin-left: 10px;
+	display: block;
+	height: 44px;
+	line-height: 38px;
+	text-align: center;
+	border: none;
+	border-radius: 25px;
+	font-size: 11px;
+	font-family: $bold-font;
+	text-transform: uppercase;
+	border: 2px solid #1aa5e2;
+	background-color: transparent;
+	@include bp(xs){
+		width: 100%;
+		margin: 0;
+	}
+	&:hover{
+		background: $yellow;
+		border: 2px solid $yellow;
+	}
+}
+
+.links-footer{
+	padding: 30px 0;
+}
+
+.links-footer__wrapper{
+	display: flex;
+	justify-content: space-between;
+	padding: 0 15px;
+	@include bp(md){
+		flex-wrap: wrap;
+	}
+	@include bp(sm){
+		padding: 0;
+	}
+}
+
+.footer-menu{
+	@include bp(sm){
+		width: 48%;
+		margin-bottom: 25px;
+		padding: 0 15px;
+	}
+	@include bp(xs){
+		padding: 0 7px;
+	}
+}
+
+.footer-menu__title{
+	font-size: 14px;
+	display: block;
+	margin-bottom: 22px;
+	font-family: $bold-font;
+}
+
+.footer-menu__item{
+	font-size: 12px;
+	margin-bottom: 12px;
+	@include bp(sm){
+		margin-bottom: 4px;
+		line-height: 16px;
+	}
+	&:last-child{
+		margin-bottom: 0;
+	}
+}
+
+.footer-menu__link{
+	text-decoration: none;
+	color: #fff;
+	&:hover{
+		color: #fff;
+		text-decoration: none;
+    	border-bottom: 1px solid $yellow;
+	}
+}
+
+.links-footer__sep-line{
+	background-color: #1698d1;
+	width: 1px;
+	height: 126px;
+	&.last{
+		@include bp(md){
+			display: none;
+		}
+	}
+	&.mid{
+		@include bp(sm){
+			display: none;
+		}
+	}
+}
+
+.footer-socials{
+	width: 190px;
+	@include bp(md){
+		margin: 35px auto 0;
+	}
+}
+
+.footer-socials__list{
+	width: 100%;
+	display: flex;
+	justify-content: space-between;
+	flex-wrap: wrap;
+}
+
+.footer-socials__item{
+	width: 40px;
+	min-width: 40px;
+}
+
+.footer-socials__link{
+	width: 100%;
+	display: block;
+	height: 40px;
+	text-align: center;
+	line-height: 40px;
+	border-radius: 100%;
+	border: 2px solid #1aa4e1;
+	margin-bottom: 10px;
+	&.fb{
+		background: url(../images/socials/fb.png) no-repeat center;
+	}
+	&.vk{
+		background: url(../images/socials/vk.png) no-repeat center;
+	}
+	&.li{
+		background: url(../images/socials/in.png) no-repeat center;
+	}
+	&.gp{
+		background: url(../images/socials/gplus.png) no-repeat center;
+	}
+	&.ok{
+		background: url(../images/socials/ok.png) no-repeat center;
+	}
+	&.in{
+		background: url(../images/socials/inst.png) no-repeat center;
+	}
+	&.tw{
+		background: url(../images/socials/tw.png) no-repeat center;
+	}
+	&.yt{
+		background: url(../images/socials/yt.png) no-repeat center;
+	}
+	&:hover{
+		border: 2px solid $yellow;
+	}
+}
+
+.copyright-footer{
+	background-color: #107ab2;
+	color: #6fcef8;
+	font-size: 12px;
+	height: 58px;
+	line-height: 58px;
+}
+
+.copyright{
+	display: block;
+	text-align: center;
+	@include bp(xs){
+		line-height: 14px;
+		padding: 14px;
+	}
+}

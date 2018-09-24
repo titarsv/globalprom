@@ -1,0 +1,110 @@
+.section-9{
+	padding-top: 55px;
+	margin-top: 40px;
+	overflow: visible;
+	@include bp(md){
+		padding-top: 0;
+		margin-top: 0;
+	}
+}
+
+.consult-wrapper{
+	background-color: #f7f7f7;
+	padding: 50px 0;
+}
+
+.consult-pic__wrapper{
+	position: relative;
+	height: 230px;
+	@include bp(md){
+		display: none;
+	}
+}
+
+.consult-pic{
+	position: absolute;
+	bottom: -50px;
+	right: 15px;
+}
+
+.consult-title{
+	font-size: 18px;
+	line-height: 24px;
+	font-family: $bold-font;
+}
+
+.consult-text{
+	font-size: 14px;
+	line-height: 26px;
+	color: #696969;
+	margin-top: 20px;
+}
+
+.consult-form__wrapper{
+	@include bp(xs){
+		padding: 0;
+	}
+}
+
+.consult-form{
+	margin-top: 30px;
+	@include bp(xs){
+		width: 290px;
+		margin: 30px auto 0;
+	}
+}
+
+.consult-form__composition{
+	display: flex;
+	justify-content: space-between;
+	@include bp(sm){
+		justify-content: center;
+	}
+	@include bp(xs){
+		flex-direction: column;
+	}
+}
+
+.consult-form__input{
+	width: 365px;
+	display: block;
+	height: 44px;
+	line-height: 44px;
+	border-radius: 25px;
+	font-size: 11px;
+	background-color: #fff;
+	border: 1px solid $grey;
+	padding: 0 30px;
+	margin-right: 10px;
+	@include bp(sm){
+		width: 245px;
+	}
+	@include bp(xs){
+		width: 100%;
+		margin-bottom: 15px;
+		text-align: center;
+	}
+}
+
+.consult-form__btn{
+	width: 230px;
+	display: block;
+	height: 44px;
+	line-height: 44px;
+	text-align: center;
+	background: $yellow-gradient;
+	border: none;
+	border-radius: 25px;
+	font-size: 11px;
+	font-family: $bold-font;
+	text-transform: uppercase;
+	box-shadow: 0 3px 5px rgba(0, 0, 0, 0.1);
+	@include bp(xs){
+		width: 100%;
+	}
+	&:hover{
+		background: $green-gradient;
+		color: #fff;
+		text-decoration: none;
+	}
+}

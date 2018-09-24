@@ -1,0 +1,42 @@
+.benefitsList {
+	li {
+		clear: both;
+		font-size: 14px;
+	    color: #696969;
+	    line-height: 22px;
+		span {
+			display: block;
+			float: left;
+			background: $yellow;
+			width: 40px;
+			height: 40px;
+			border-radius: 50%;
+			text-align: center;
+			line-height: 40px;
+			color: #fff;
+			font-family: $bold-font;
+			font-size: 16px;
+			margin-bottom: 44px;
+			margin-right: 25px;
+			&:after {
+				content: '';
+				display: block;
+				background: $blue;
+				width: 6px;
+				height: 6px;
+				border-radius: 50%;
+				margin: 18px auto;
+			}
+		}
+		&:last-child {
+			@media screen and (min-width: 1024px) {
+				span {
+					margin-bottom: 0;
+					&:after {
+						content: none;
+					}
+				}
+			}
+		}
+	}
+}

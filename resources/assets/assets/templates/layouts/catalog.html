@@ -1,0 +1,972 @@
+{{! js_inject_point_text_ab !}}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Global Prom - Грузоподъемное и промышленное оборудование</title>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+</head>
+<body id='body' class="{{! js_inject_point_text_utm !}}">
+
+<header class="header">
+    <div class="main-header">
+        <div class="container main-header__container">
+            <div class="logo-wrapper col-sm-3">
+                <img class="header-logo" src="../../images/logo.jpg" alt="">
+            </div>
+            <div class="search-wrapper col-sm-4">
+                <form class="main-search">
+                    <div class="search-inner">
+                        <input class="search-field" type="text" name="search" placeholder="Поиск по сайту">
+                        <button class="search-field-btn">поиск</button>
+                    </div>
+                </form>
+            </div>
+            <div class="phones-wrapper col-sm-3">
+                <nav class="header-tabs">
+                    <ul class="header-tabs__list">
+                        <li class="header-tabs__item active">Украина</li>
+                        <li class="header-tabs__item">Грузия</li>
+                    </ul>
+                    <div class="header-tabs__content active">
+                        <ul class="header-phones__list">
+                            <li class="header-phone">
+                                <a class="header-phone__link" href="tel:+380577517059">+38 (057) 751-70-59</a>
+                            </li>
+                            <li class="header-phone">
+                                <a class="header-phone__link" href="tel:+380506972161">+38 (050) 697-21-61</a>
+                            </li>
+                            <li class="header-phone">
+                                <a class="header-phone__link" href="tel:+380973229908">+38 (097) 322-99-08</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="header-tabs__content">
+                        <ul class="header-phones__list">
+                            <li class="header-phone">
+                                <a class="header-phone__link" href="tel:+380577517059">+99 (557) 751-70-59</a>
+                            </li>
+                            <li class="header-phone">
+                                <a class="header-phone__link" href="tel:+380506972161">+99 (550) 697-21-61</a>
+                            </li>
+                            <li class="header-phone">
+                                <a class="header-phone__link" href="tel:+380973229908">+99 (597) 322-99-08</a>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+            <div class="login-wrapper col-sm-2">
+                <div class="login-inner">
+                    <span class="login-btn"></span>
+                    <span class="cart-wrapper active">
+                        <i>1</i>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <nav class="main-menu">
+        <div class="container">
+            <div class="main-menu__wrapper">
+                <ul class="main-menu__list">
+                    <li class="main-menu__item main-menu__btn">
+                        <i class="main-menu__btn-icon"><span></span></i>
+                        <span>Каталог</span>
+                    </li>
+                    <li class="main-menu__item">
+                        <a class="main-menu__link" href="">О компании</a>
+                    </li>
+                    <li class="main-menu__item">
+                        <a class="main-menu__link" href="">Оплата и доставка</a>
+                    </li>
+                    <li class="main-menu__item">
+                        <a class="main-menu__link" href="">Гарантии</a>
+                    </li>
+                    <li class="main-menu__item">
+                        <a class="main-menu__link" href="">Отзывы</a>
+                    </li>
+                    <li class="main-menu__item">
+                        <a class="main-menu__link" href="">Статьи</a>
+                    </li>
+                    <li class="main-menu__item">
+                        <a class="main-menu__link" href="">Отгрузки</a>
+                    </li>
+                    <li class="main-menu__item">
+                        <a class="main-menu__link" href="">Контакты</a>
+                    </li>
+                </ul>
+                <span class="menu-separate-line"></span>
+                <div class="catalog-btn">
+                    <i class="catalog-icon"></i>
+                    <span class="catalog-txt">Скачать прайс</span>
+                </div>
+            </div>
+        </div>
+        <div class="secondary-menu">
+            <div class="container">
+                <div class="secondary-menu__inner">
+                    <ul class="secondary-menu__list">
+                        <li class="secondary-menu__item active">
+                            <i class="secondary-menu__icon smi1"></i>
+                            <a href="" class="secondary-menu__link">Грузоподъемное <br>оборудование</a>
+                        </li>
+                        <li class="secondary-menu__item">
+                            <i class="secondary-menu__icon smi2"></i>
+                            <a href="" class="secondary-menu__link">Промышленное <br>оборудование</a>
+                        </li>
+                        <li class="secondary-menu__item">
+                            <i class="secondary-menu__icon smi3"></i>
+                            <a href="" class="secondary-menu__link">Весовое <br>оборудование</a>
+                        </li>
+                        <li class="secondary-menu__item">
+                            <i class="secondary-menu__icon smi4"></i>
+                            <a href="" class="secondary-menu__link">Насосное <br>оборудование</a>
+                        </li>
+                    </ul>
+                    <div class="secondary-menu__content active">
+                        <div class="secondary-menu__content-left">
+                            <ul class="secondary-menu__content-list">
+                                <span class="secondary-menu__content-title">
+                                    <a href="">Редукторы, мотор-редукторы, <br>электродвигатели</a>
+                                </span>
+                                <li class="secondary-menu__content-item">
+                                    <a href="">Редукторы</a>
+                                </li>
+                                <li class="secondary-menu__content-item">
+                                    <a href="">Мотор-редукторы</a>
+                                </li>
+                                <li class="secondary-menu__content-item">
+                                    <a href="">Электродвигатели промышленные</a>
+                                </li>
+                                <li class="secondary-menu__content-item">
+                                    <a href="">Запчасти и смазки для редукторов и мотор-редукторов</a>
+                                </li>
+                            </ul>
+                            <ul class="secondary-menu__content-list">
+                                <span class="secondary-menu__content-title">
+                                    <a href="">Вентиляторы промышленные</a>
+                                </span>
+                                <li class="secondary-menu__content-item">
+                                    <a href="">Вентиляторы высокого давления</a>
+                                </li>
+                                <li class="secondary-menu__content-item">
+                                    <a href="">Вентиляторы низкого давления</a>
+                                </li>
+                                <li class="secondary-menu__content-item">
+                                    <a href="">Вентиляторы среднего давления</a>
+                                </li>
+                                <li class="secondary-menu__content-item">
+                                    <a href="">Вентиляторы пылевые</a>
+                                </li>
+                                <li class="secondary-menu__content-item">
+                                    <a href="">Вентиляторы крышные (для крыш)</a>
+                                </li>
+                                <li class="secondary-menu__content-item">
+                                    <a href="">Вентиляторы местного проветривания ВОЭ</a>
+                                </li>
+                                <li class="secondary-menu__content-item">
+                                    <a href="">Вентиляторы осевые</a>
+                                </li>
+                                <li class="secondary-menu__content-item">
+                                    <a href="">Дымососы (вентиляторы дутьевые)</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="secondary-menu__content-right">
+                            <ul class="secondary-menu__content-list">
+                                <span class="secondary-menu__content-title">
+                                    <a href="">Домкраты гидравлические промышленные, <br>домкраты механические реечные</a>
+                                </span>
+                                <li class="secondary-menu__content-item">
+                                    <a href="">Домкраты механические реечно-зубчатые</a>
+                                </li>
+                                <li class="secondary-menu__content-item">
+                                    <a href="">Домкраты гидравлические бутылочные, автомобильные (от 15 до 50 тонн)</a>
+                                </li>
+                                <li class="secondary-menu__content-item">
+                                    <a href="">Домкраты грузовые промышленные общего назначения (от 5 до 500 тонн)</a>
+                                </li>
+                                <li class="secondary-menu__content-item">
+                                    <a href="">Домкраты монтажные низкие (от 5 до 200 тонн)</a>
+                                </li>
+                                <li class="secondary-menu__content-item">
+                                    <a href="">Домкраты с полым штоком для распрессовки и запрессовки (от 15 до 200 тонн)</a>
+                                </li>
+                                <li class="secondary-menu__content-item">
+                                    <a href="">Насосные станции с ручным и электроприводом</a>
+                                </li>
+                            </ul>
+                            <ul class="secondary-menu__content-list">
+                                <span class="secondary-menu__content-title">
+                                    <a href="">Насосы промышленные</a>
+                                </span>
+                                <li class="secondary-menu__content-item">
+                                    <a href="">Насосы для водного хозяйства и ЖКХ</a>
+                                </li>
+                                <li class="secondary-menu__content-item">
+                                    <a href="">Насосы для пищевой промышленности</a>
+                                </li>
+                                <li class="secondary-menu__content-item">
+                                    <a href="">Насосы для нефтегазовой отрасли</a>
+                                </li>
+                                <li class="secondary-menu__content-item">
+                                    <a href="">Насосы для химической промышленности</a>
+                                </li>
+                                <li class="secondary-menu__content-item">
+                                    <a href="">Насосы для атомной энергетики (для АЭС)</a>
+                                </li>
+                                <li class="secondary-menu__content-item">
+                                    <a href="">Насосы для теплоэнергетики</a>
+                                </li>
+                                <li class="secondary-menu__content-item">
+                                    <a href="">Насосы для пожаротушения</a>
+                                </li>
+                                <li class="secondary-menu__content-item">
+                                    <a href="">Насосы для судостроения</a>
+                                </li>
+                                <li class="secondary-menu__content-item">
+                                    <a href="">Насосы для судостроения</a>
+                                </li>
+                                <li class="secondary-menu__content-item">
+                                    <a href="">Насосы для металлургии и горнодобывающей промышленности</a>
+                                </li>
+                            </ul>
+                            <ul class="secondary-menu__content-list last">
+                                <span class="secondary-menu__content-title">
+                                    <a href="">Автоматика для насосов (станции управления, шкафы)</a>
+                                </span>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="secondary-menu__content">
+                        2
+                    </div>
+                    <div class="secondary-menu__content">
+                        3
+                    </div>
+                    <div class="secondary-menu__content">
+                        4
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <nav class="mobile-menu">
+        <div class="container">            
+            <i class="mobile-menu__btn-icon"><span></span></i>
+            <ul class="mobile-menu__list">
+                <li class="mobile-menu__item">
+                    <span class="mobile-menu__cat-btn">Каталог<i></i></span>
+                    <ul class="mobile-submenu__list">
+                        <li class="mobile-submenu__item">
+                            <span class="mobile-submenu__item__wrapper"><a href="" class="mobile-submenu__link">Грузоподъемное оборудование</a><i></i></span>
+                            <div class="mobile-submenu__secondary">
+                                <ul class="mobile-submenu__secondary-list">
+                                    <span class="mobile-submenu__secondary-title">
+                                        <a href="">Редукторы, мотор-редукторы, <br>электродвигатели</a>
+                                    </span>
+                                    <li class="mobile-submenu__secondary-item">
+                                        <a href="">Редукторы</a>
+                                    </li>
+                                    <li class="mobile-submenu__secondary-item">
+                                        <a href="">Мотор-редукторы</a>
+                                    </li>
+                                    <li class="mobile-submenu__secondary-item">
+                                        <a href="">Электродвигатели промышленные</a>
+                                    </li>
+                                    <li class="mobile-submenu__secondary-item">
+                                        <a href="">Запчасти и смазки для редукторов и мотор-редукторов</a>
+                                    </li>
+                                </ul>
+                                <ul class="mobile-submenu__secondary-list">
+                                    <span class="mobile-submenu__secondary-title">
+                                        <a href="">Вентиляторы промышленные</a>
+                                    </span>
+                                    <li class="mobile-submenu__secondary-item">
+                                        <a href="">Вентиляторы высокого давления</a>
+                                    </li>
+                                    <li class="mobile-submenu__secondary-item">
+                                        <a href="">Вентиляторы низкого давления</a>
+                                    </li>
+                                    <li class="mobile-submenu__secondary-item">
+                                        <a href="">Вентиляторы среднего давления</a>
+                                    </li>
+                                    <li class="mobile-submenu__secondary-item">
+                                        <a href="">Вентиляторы пылевые</a>
+                                    </li>
+                                    <li class="mobile-submenu__secondary-item">
+                                        <a href="">Вентиляторы крышные (для крыш)</a>
+                                    </li>
+                                    <li class="mobile-submenu__secondary-item">
+                                        <a href="">Вентиляторы местного проветривания ВОЭ</a>
+                                    </li>
+                                    <li class="mobile-submenu__secondary-item">
+                                        <a href="">Вентиляторы осевые</a>
+                                    </li>
+                                    <li class="mobile-submenu__secondary-item">
+                                        <a href="">Дымососы (вентиляторы дутьевые)</a>
+                                    </li>
+                                </ul>
+                                <ul class="mobile-submenu__secondary-list">
+                                    <span class="mobile-submenu__secondary-title">
+                                        <a href="">Домкраты гидравлические промышленные, <br>домкраты механические реечные</a>
+                                    </span>
+                                    <li class="mobile-submenu__secondary-item">
+                                        <a href="">Домкраты механические реечно-зубчатые</a>
+                                    </li>
+                                    <li class="mobile-submenu__secondary-item">
+                                        <a href="">Домкраты гидравлические бутылочные, автомобильные (от 15 до 50 тонн)</a>
+                                    </li>
+                                    <li class="mobile-submenu__secondary-item">
+                                        <a href="">Домкраты грузовые промышленные общего назначения (от 5 до 500 тонн)</a>
+                                    </li>
+                                    <li class="mobile-submenu__secondary-item">
+                                        <a href="">Домкраты монтажные низкие (от 5 до 200 тонн)</a>
+                                    </li>
+                                    <li class="mobile-submenu__secondary-item">
+                                        <a href="">Домкраты с полым штоком для распрессовки и запрессовки (от 15 до 200 тонн)</a>
+                                    </li>
+                                    <li class="mobile-submenu__secondary-item">
+                                        <a href="">Насосные станции с ручным и электроприводом</a>
+                                    </li>
+                                </ul>
+                                <ul class="mobile-submenu__secondary-list">
+                                    <span class="mobile-submenu__secondary-title">
+                                        <a href="">Насосы промышленные</a>
+                                    </span>
+                                    <li class="mobile-submenu__secondary-item">
+                                        <a href="">Насосы для водного хозяйства и ЖКХ</a>
+                                    </li>
+                                    <li class="mobile-submenu__secondary-item">
+                                        <a href="">Насосы для пищевой промышленности</a>
+                                    </li>
+                                    <li class="mobile-submenu__secondary-item">
+                                        <a href="">Насосы для нефтегазовой отрасли</a>
+                                    </li>
+                                    <li class="mobile-submenu__secondary-item">
+                                        <a href="">Насосы для химической промышленности</a>
+                                    </li>
+                                    <li class="mobile-submenu__secondary-item">
+                                        <a href="">Насосы для атомной энергетики (для АЭС)</a>
+                                    </li>
+                                    <li class="mobile-submenu__secondary-item">
+                                        <a href="">Насосы для теплоэнергетики</a>
+                                    </li>
+                                    <li class="mobile-submenu__secondary-item">
+                                        <a href="">Насосы для пожаротушения</a>
+                                    </li>
+                                    <li class="mobile-submenu__secondary-item">
+                                        <a href="">Насосы для судостроения</a>
+                                    </li>
+                                    <li class="mobile-submenu__secondary-item">
+                                        <a href="">Насосы для судостроения</a>
+                                    </li>
+                                    <li class="mobile-submenu__secondary-item">
+                                        <a href="">Насосы для металлургии и горнодобывающей промышленности</a>
+                                    </li>
+                                </ul>
+                                <ul class="mobile-submenu__secondary-list">
+                                    <span class="mobile-submenu__secondary-title">
+                                        <a href="">Автоматика для насосов (станции управления, шкафы)</a>
+                                    </span>
+                                </ul>
+                            </div>
+                        </li>
+                        <li class="mobile-submenu__item">
+                            <span class="mobile-submenu__item__wrapper"><a href="" class="mobile-submenu__link">Промышленное оборудование</a><i></i></span>
+                            <div class="mobile-submenu__secondary">
+                                <ul class="mobile-submenu__secondary-list">
+                                    <span class="mobile-submenu__secondary-title">
+                                        <a href="">Редукторы, мотор-редукторы, электродвигатели</a>
+                                    </span>
+                                    <li class="mobile-submenu__secondary-item">
+                                        <a href="">Редукторы</a>
+                                    </li>
+                                    <li class="mobile-submenu__secondary-item">
+                                        <a href="">Мотор-редукторы</a>
+                                    </li>
+                                    <li class="mobile-submenu__secondary-item">
+                                        <a href="">Электродвигатели промышленные</a>
+                                    </li>
+                                    <li class="mobile-submenu__secondary-item">
+                                        <a href="">Запчасти и смазки для редукторов и мотор-редукторов</a>
+                                    </li>
+                                </ul>
+                                <ul class="mobile-submenu__secondary-list">
+                                    <span class="mobile-submenu__secondary-title">
+                                        <a href="">Вентиляторы промышленные</a>
+                                    </span>
+                                    <li class="mobile-submenu__secondary-item">
+                                        <a href="">Вентиляторы высокого давления</a>
+                                    </li>
+                                    <li class="mobile-submenu__secondary-item">
+                                        <a href="">Вентиляторы низкого давления</a>
+                                    </li>
+                                    <li class="mobile-submenu__secondary-item">
+                                        <a href="">Вентиляторы среднего давления</a>
+                                    </li>
+                                    <li class="mobile-submenu__secondary-item">
+                                        <a href="">Вентиляторы пылевые</a>
+                                    </li>
+                                    <li class="mobile-submenu__secondary-item">
+                                        <a href="">Вентиляторы крышные (для крыш)</a>
+                                    </li>
+                                    <li class="mobile-submenu__secondary-item">
+                                        <a href="">Вентиляторы местного проветривания ВОЭ</a>
+                                    </li>
+                                    <li class="mobile-submenu__secondary-item">
+                                        <a href="">Вентиляторы осевые</a>
+                                    </li>
+                                    <li class="mobile-submenu__secondary-item">
+                                        <a href="">Дымососы (вентиляторы дутьевые)</a>
+                                    </li>
+                                </ul>
+                                <ul class="mobile-submenu__secondary-list">
+                                    <span class="mobile-submenu__secondary-title">
+                                        <a href="">Домкраты гидравлические промышленные, <br>домкраты механические реечные</a>
+                                    </span>
+                                    <li class="mobile-submenu__secondary-item">
+                                        <a href="">Домкраты механические реечно-зубчатые</a>
+                                    </li>
+                                    <li class="mobile-submenu__secondary-item">
+                                        <a href="">Домкраты гидравлические бутылочные, автомобильные (от 15 до 50 тонн)</a>
+                                    </li>
+                                    <li class="mobile-submenu__secondary-item">
+                                        <a href="">Домкраты грузовые промышленные общего назначения (от 5 до 500 тонн)</a>
+                                    </li>
+                                    <li class="mobile-submenu__secondary-item">
+                                        <a href="">Домкраты монтажные низкие (от 5 до 200 тонн)</a>
+                                    </li>
+                                    <li class="mobile-submenu__secondary-item">
+                                        <a href="">Домкраты с полым штоком для распрессовки и запрессовки (от 15 до 200 тонн)</a>
+                                    </li>
+                                    <li class="mobile-submenu__secondary-item">
+                                        <a href="">Насосные станции с ручным и электроприводом</a>
+                                    </li>
+                                </ul>
+                                <ul class="mobile-submenu__secondary-list">
+                                    <span class="mobile-submenu__secondary-title">
+                                        <a href="">Насосы промышленные</a>
+                                    </span>
+                                    <li class="mobile-submenu__secondary-item">
+                                        <a href="">Насосы для водного хозяйства и ЖКХ</a>
+                                    </li>
+                                    <li class="mobile-submenu__secondary-item">
+                                        <a href="">Насосы для пищевой промышленности</a>
+                                    </li>
+                                    <li class="mobile-submenu__secondary-item">
+                                        <a href="">Насосы для нефтегазовой отрасли</a>
+                                    </li>
+                                    <li class="mobile-submenu__secondary-item">
+                                        <a href="">Насосы для химической промышленности</a>
+                                    </li>
+                                    <li class="mobile-submenu__secondary-item">
+                                        <a href="">Насосы для атомной энергетики (для АЭС)</a>
+                                    </li>
+                                    <li class="mobile-submenu__secondary-item">
+                                        <a href="">Насосы для теплоэнергетики</a>
+                                    </li>
+                                    <li class="mobile-submenu__secondary-item">
+                                        <a href="">Насосы для пожаротушения</a>
+                                    </li>
+                                    <li class="mobile-submenu__secondary-item">
+                                        <a href="">Насосы для судостроения</a>
+                                    </li>
+                                    <li class="mobile-submenu__secondary-item">
+                                        <a href="">Насосы для судостроения</a>
+                                    </li>
+                                    <li class="mobile-submenu__secondary-item">
+                                        <a href="">Насосы для металлургии и горнодобывающей промышленности</a>
+                                    </li>
+                                </ul>
+                                <ul class="mobile-submenu__secondary-list">
+                                    <span class="mobile-submenu__secondary-title">
+                                        <a href="">Автоматика для насосов (станции управления, шкафы)</a>
+                                    </span>
+                                </ul>
+                            </div>
+                        </li>
+                        <li class="mobile-submenu__item">
+                            <span class="mobile-submenu__item__wrapper"><a href="" class="mobile-submenu__link">Весовое оборудование</a><i></i></span>
+                        </li>
+                        <li class="mobile-submenu__item">
+                            <span class="mobile-submenu__item__wrapper"><a href="" class="mobile-submenu__link">Насосное оборудование</a><i></i></span>
+                        </li>
+                    </ul>
+                </li>
+                <li class="mobile-menu__item">
+                    <a class="mobile-menu__link" href="">О компании</a>
+                </li>
+                <li class="mobile-menu__item">
+                    <a class="mobile-menu__link" href="">Оплата и доставка</a>
+                </li>
+                <li class="mobile-menu__item">
+                    <a class="mobile-menu__link" href="">Гарантии</a>
+                </li>
+                <li class="mobile-menu__item">
+                    <a class="mobile-menu__link" href="">Отзывы</a>
+                </li>
+                <li class="mobile-menu__item">
+                    <a class="mobile-menu__link" href="">Статьи</a>
+                </li>
+                <li class="mobile-menu__item">
+                    <a class="mobile-menu__link" href="">Отгрузки</a>
+                </li>
+                <li class="mobile-menu__item">
+                    <a class="mobile-menu__link" href="">Контакты</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</header>
+<nav class="breadrumbs">
+    <div class="container">
+        <ul class="breadrumbs-list">
+            <li class="breadrumbs-item">
+                <a href="">Главная</a><i>→</i>
+            </li>
+            <li class="breadrumbs-item">
+                <a href="">Грузоподъемное оборудование</a><i>→</i>
+            </li>
+            <li class="breadrumbs-item">
+                <a href="">Ручное подъемно-транспортное оборудование</a><i>→</i>
+            </li>
+            <li class="breadrumbs-item">
+                 Тали ручные шестеренные и рычажные
+            </li>
+        </ul>
+    </div>
+</nav>
+<main class="main-wrapper">
+    <div class="container">
+        <div class="catalog-wrapper">
+            <aside class="sidebar col-md-3">
+                <div class="sidebar-inner">
+                    <div class="sidebar-hiiden">
+                        <button class="clear-filters">
+                            <span>+</span>
+                            <strong>Сбросить фильтры</strong>
+                        </button>    
+                        <div class="filter-block">
+                            <span class="sidebar-title">Фильтр по товарам</span>
+                            <div class="filter-title__wrapper">
+                                <span class="filter-title">Цена:</span>
+                            </div>
+                            <div class="price-inputs">
+                                <div class="price-inputs__inner">
+                                    <span>от</span>
+                                    <input type="text" class="sliderValue val1" data-index="0" value="25" />
+                                    <span>до</span>
+                                    <input type="text" class="sliderValue val2" data-index="1" value="1500" />
+                                </div>
+                            </div>
+                            <div class="price-range"></div>
+                        </div>   
+                        <div class="filter-block">
+                            <div class="filter-title__wrapper">
+                                <span class="filter-title">Грузоподъемность:</span>
+                                <!--<i class="filter-info">?</i>-->
+                            </div>
+                            <ul class="filters-list">
+                                <li class="filter">
+                                    <input class="filter-checkbox" type="checkbox" name="" id="chk1">
+                                    <label for="chk1">0.5 тонн</label>
+                                </li>
+                                <li class="filter">
+                                    <input class="filter-checkbox" type="checkbox" name="" id="chk2">
+                                    <label for="chk2">0.75 тонн</label>
+                                </li>
+                                <li class="filter">
+                                    <input class="filter-checkbox" type="checkbox" name="" id="chk3">
+                                    <label for="chk3">1.25 тонн</label>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="filter-block">
+                            <div class="filter-title__wrapper">
+                                <span class="filter-title">Высота подъема:</span>
+                                <!--<i class="filter-info">?</i>-->
+                            </div>
+                            <ul class="filters-list">
+                                <li class="filter">
+                                    <input class="filter-checkbox" type="checkbox" name="" id="chk4">
+                                    <label for="chk4">1.5 м</label>
+                                </li>
+                                <li class="filter">
+                                    <input class="filter-checkbox" type="checkbox" name="" id="chk5">
+                                    <label for="chk5">3 м</label>
+                                </li>
+                                <li class="filter">
+                                    <input class="filter-checkbox" type="checkbox" name="" id="chk6">
+                                    <label for="chk6">6 м</label>
+                                </li>
+                                <li class="filter">
+                                    <input class="filter-checkbox" type="checkbox" name="" id="chk7">
+                                    <label for="chk7">8 м</label>
+                                </li>
+                                <li class="filter">
+                                    <input class="filter-checkbox" type="checkbox" name="" id="chk8">
+                                    <label for="chk8">10 м</label>
+                                </li>
+                                <li class="filter">
+                                    <input class="filter-checkbox" type="checkbox" name="" id="chk9">
+                                    <label for="chk9">12 м</label>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="filter-block">
+                            <div class="filter-title__wrapper">
+                                <span class="filter-title">Налисие:</span>
+                            </div>
+                            <ul class="filters-list full-width">
+                                <li class="filter">
+                                    <input class="filter-checkbox" type="checkbox" name="" id="chk10">
+                                    <label for="chk10">В наличии</label>
+                                </li>
+                                <li class="filter">
+                                    <input class="filter-checkbox" type="checkbox" name="" id="chk11">
+                                    <label for="chk11">Под заказ</label>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </aside>
+            <div class="catalog col-md-9">
+                <div class="row">
+                    <span class="catalog-title">Тали ручные шестеренные и рычажные</span>
+                    <div class="subcategories">
+                        <div class="item cat-item col-sm-4 col-xs-6">
+                            <div class="item-inner">
+                                <div class="item-pic__wrapper">
+                                    <a href="#"><img class="item-pic" src="../../images/products/1.jpg" alt=""></a>
+                                </div>
+                                <div class="item-info__wrapper">
+                                    <a class="item-link" href="">Таль электрическая 220 В - РА 500/1000 (трос 20 метров)</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item cat-item col-sm-4 col-xs-6">
+                            <div class="item-inner">
+                                <div class="item-pic__wrapper">
+                                    <img class="item-pic" src="../../images/products/1.jpg" alt="">
+                                </div>
+                                <div class="item-info__wrapper">
+                                    <a class="item-link" href="">Таль электрическая 220 В - РА 500/1000 (трос 20 метров)</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item cat-item col-sm-4 col-xs-6">
+                            <div class="item-inner">
+                                <div class="item-pic__wrapper">
+                                    <img class="item-pic" src="../../images/products/1.jpg" alt="">
+                                </div>
+                                <div class="item-info__wrapper">
+                                    <a class="item-link" href="">Таль электрическая 220 В - РА 500/1000 (трос 20 метров)</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                    <div class="cat-filters">
+                        <ul class="cat-view">
+                            <li class="cat-view__item grid active"><i></i></li>
+                            <li class="cat-view__item list"><i></i></li>
+                        </ul>
+                        <div class="cat-filter__dropdown-wrapper">
+                            <select class="cat-filter__dropdown">
+                                <option>По популярности</option>
+                                <option>По убыванию цены</option>
+                                <option>По возрастанию цены</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="catalog-main">
+                        <div class="item cat-item col-sm-4 col-xs-6">
+                            <div class="item-inner">
+                                <span class="item-label">Акция <i>%</i></span>
+                                <div class="item-pic__wrapper">
+                                    <img class="item-pic" src="../../images/products/1.jpg" alt="">
+                                </div>
+                                <div class="item-info__wrapper">
+                                    <a class="item-link" href="">Таль электрическая 220 В - РА 500/1000 (трос 20 метров)</a>
+                                    <div class="item-price-old">6 700 грн</div>
+                                    <div class="item-price">6 200 грн</div>
+                                    <a class="item-btn" href="">Подробнее</a>
+                                </div>
+                            </div>
+                        </div> 
+                        <div class="item cat-item col-sm-4 col-xs-6">
+                            <div class="item-inner">
+                                <span class="item-label">Акция <i>%</i></span>
+                                <div class="item-pic__wrapper">
+                                    <img class="item-pic" src="../../images/products/1.jpg" alt="">
+                                </div>
+                                <div class="item-info__wrapper">
+                                    <a class="item-link" href="">Таль электрическая 220 В - РА 500/1000 (трос 20 метров)</a>
+                                    <div class="item-price-old">6 700 грн</div>
+                                    <div class="item-price">6 200 грн</div>
+                                    <a class="item-btn" href="">Подробнее</a>
+                                </div>
+                            </div>
+                        </div> 
+                        <div class="item cat-item col-sm-4 col-xs-6">
+                            <div class="item-inner">
+                                <span class="item-label">Акция <i>%</i></span>
+                                <div class="item-pic__wrapper">
+                                    <img class="item-pic" src="../../images/products/1.jpg" alt="">
+                                </div>
+                                <div class="item-info__wrapper">
+                                    <a class="item-link" href="">Таль электрическая 220 В - РА 500/1000 (трос 20 метров)</a>
+                                    <div class="item-price-old">6 700 грн</div>
+                                    <div class="item-price">6 200 грн</div>
+                                    <a class="item-btn" href="">Подробнее</a>
+                                </div>
+                            </div>
+                        </div>       
+                        <div class="item cat-item col-sm-4 col-xs-6">
+                            <div class="item-inner">
+                                <span class="item-label">Акция <i>%</i></span>
+                                <div class="item-pic__wrapper">
+                                    <img class="item-pic" src="../../images/products/1.jpg" alt="">
+                                </div>
+                                <div class="item-info__wrapper">
+                                    <a class="item-link" href="">Таль электрическая 220 В - РА 500/1000 (трос 20 метров)</a>
+                                    <div class="item-price-old">6 700 грн</div>
+                                    <div class="item-price">6 200 грн</div>
+                                    <a class="item-btn" href="">Подробнее</a>
+                                </div>
+                            </div>
+                        </div> 
+                        <div class="item cat-item col-sm-4 col-xs-6">
+                            <div class="item-inner">
+                                <span class="item-label">Акция <i>%</i></span>
+                                <div class="item-pic__wrapper">
+                                    <img class="item-pic" src="../../images/products/1.jpg" alt="">
+                                </div>
+                                <div class="item-info__wrapper">
+                                    <a class="item-link" href="">Таль электрическая 220 В - РА 500/1000 (трос 20 метров)</a>
+                                    <div class="item-price-old">6 700 грн</div>
+                                    <div class="item-price">6 200 грн</div>
+                                    <a class="item-btn" href="">Подробнее</a>
+                                </div>
+                            </div>
+                        </div> 
+                        <div class="item cat-item col-sm-4 col-xs-6">
+                            <div class="item-inner">
+                                <span class="item-label">Акция <i>%</i></span>
+                                <div class="item-pic__wrapper">
+                                    <img class="item-pic" src="../../images/products/1.jpg" alt="">
+                                </div>
+                                <div class="item-info__wrapper">
+                                    <a class="item-link" href="">Таль электрическая 220 В - РА 500/1000 (трос 20 метров)</a>
+                                    <div class="item-price-old">6 700 грн</div>
+                                    <div class="item-price">6 200 грн</div>
+                                    <a class="item-btn" href="">Подробнее</a>
+                                </div>
+                            </div>
+                        </div>       
+                        <div class="item cat-item col-sm-4 col-xs-6">
+                            <div class="item-inner">
+                                <span class="item-label">Акция <i>%</i></span>
+                                <div class="item-pic__wrapper">
+                                    <img class="item-pic" src="../../images/products/1.jpg" alt="">
+                                </div>
+                                <div class="item-info__wrapper">
+                                    <a class="item-link" href="">Таль электрическая 220 В - РА 500/1000 (трос 20 метров)</a>
+                                    <div class="item-price-old">6 700 грн</div>
+                                    <div class="item-price">6 200 грн</div>
+                                    <a class="item-btn" href="">Подробнее</a>
+                                </div>
+                            </div>
+                        </div> 
+                        <div class="item cat-item col-sm-4 col-xs-6">
+                            <div class="item-inner">
+                                <span class="item-label">Акция <i>%</i></span>
+                                <div class="item-pic__wrapper">
+                                    <img class="item-pic" src="../../images/products/1.jpg" alt="">
+                                </div>
+                                <div class="item-info__wrapper">
+                                    <a class="item-link" href="">Таль электрическая 220 В - РА 500/1000 (трос 20 метров)</a>
+                                    <div class="item-price-old">6 700 грн</div>
+                                    <div class="item-price">6 200 грн</div>
+                                    <a class="item-btn" href="">Подробнее</a>
+                                </div>
+                            </div>
+                        </div> 
+                        <div class="item cat-item col-sm-4 col-xs-6">
+                            <div class="item-inner">
+                                <span class="item-label">Акция <i>%</i></span>
+                                <div class="item-pic__wrapper">
+                                    <img class="item-pic" src="../../images/products/1.jpg" alt="">
+                                </div>
+                                <div class="item-info__wrapper">
+                                    <a class="item-link" href="">Таль электрическая 220 В - РА 500/1000 (трос 20 метров)</a>
+                                    <div class="item-price-old">6 700 грн</div>
+                                    <div class="item-price">6 200 грн</div>
+                                    <a class="item-btn" href="">Подробнее</a>
+                                </div>
+                            </div>
+                        </div>                    
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="more-items"><i></i>Загрузить еще</div>
+            </div>
+        </div>
+    </div>
+    <div class="catalog-description">
+        <div class="container">
+            <h2 class="h2">Lorem ipsum dolor sit amet, consectetur adipiscing elit</h2>
+            <p>Maecenas tincidunt arcu in iaculis mattis. Morbi semper massa nec erat tempus, non ornare ipsum faucibus. Etiam semper placerat metus. Pellentesque fermentum efficitur ligula, eget luctus lacus interdum quis. Nunc blandit mauris eget commodo molestie. Nam semper quam sit amet nunc egestas ultricies ut ac purus. Etiam et porta orci. Phasellus ac lectus porttitor, luctus tellus sit amet, ullamcorper mi. Praesent ac ornare nulla. Cras turpis quam, ultrices eget arcu in, volutpat molestie arcu. Aliquam ante risus, pharetra sit amet porttitor non, rutrum nec purus. Sed vulputate ante at elit dignissim pretium. Cras dapibus placerat orci aliquam malesuada. Nam sed feugiat justo. Aliquam interdum eros ut neque egestas tempus.</p>
+            <h2 class="h2">Lorem ipsum dolor sit amet, consectetur adipiscing elit</h2>
+            <p>Maecenas tincidunt arcu in iaculis mattis. Morbi semper massa nec erat tempus, non ornare ipsum faucibus. Etiam semper placerat metus. Pellentesque fermentum efficitur ligula, eget luctus lacus interdum quis. Nunc blandit mauris eget commodo molestie. Nam semper quam sit amet nunc egestas ultricies ut ac purus. Etiam et porta orci. Phasellus ac lectus porttitor, luctus tellus sit amet, ullamcorper mi. Praesent ac ornare nulla. Cras turpis quam, ultrices eget arcu in, volutpat molestie arcu. Aliquam ante risus, pharetra sit amet porttitor non, rutrum nec purus. Sed vulputate ante at elit dignissim pretium. Cras dapibus placerat orci aliquam malesuada. Nam sed feugiat justo. Aliquam interdum eros ut neque egestas tempus.</p>
+            <p>Nam a suscipit augue. Donec ut rhoncus diam. Cras a scelerisque dui. Aliquam sit amet pretium nulla. Nunc cursus vel tortor non ultrices. Pellentesque fermentum tortor dui, id malesuada mauris sodales vitae. In sed odio tempor, porttitor erat vel, hendrerit quam. Proin rhoncus eros ac dolor tristique, ut molestie nulla aliquet. Fusce odio est, porttitor et ornare et, condimentum vel metus. Donec at mauris nec velit pretium viverra id id ante. Suspendisse iaculis hendrerit velit, ac mollis tortor lobortis quis. Vivamus sed ligula nisl.</p>
+            <p>Quisque accumsan nulla mauris, iaculis porta urna tempus nec. Duis libero risus, bibendum in rhoncus et, auctor eu augue. Vestibulum euismod pharetra viverra. Maecenas dignissim sem magna, eu dapibus odio commodo eget.</p>
+        </div>
+    </div>
+</main>
+<footer class="main-footer">
+    <div class="subscribe-footer">
+        <div class="container">
+            <div class="col-md-5 subscribe-txt__wrapper">
+                <span class="subscribe-title">Только для подписчиков:</span>
+                <span class="subscribe-txt">Горячие акции, закрытые распродажи и полезные советы</span>
+            </div>
+            <div class="col-md-7 subscribe-form__wrapper">
+                <form action="" class="subscribe-form pbz_form clear-styles" data-error-title="Ошибка отправки!" data-error-message="Попробуйте отправить заявку через некоторое время." data-success-title="Спасибо за заявку!" data-success-message="Наш менеджер свяжется с вами в ближайшее время.">
+                    <div class="subscribe-form__composition">
+                        <input class="subscribe-form__input" type="text" name="email" data-validate-required="Обязательное поле" placeholder="Ваш E-mail">
+                        <button class="subscribe-form__btn">Подписаться</button>
+                    </div>
+                </form>                
+            </div>
+        </div>
+    </div>
+    <div class="links-footer">
+        <div class="container">
+            <div class="links-footer__wrapper">
+                <ul class="footer-menu list1">
+                    <span class="footer-menu__title">О компании</span>
+                    <li class="footer-menu__item">
+                        <a class="footer-menu__link" href="">О компании</a>
+                    </li>
+                    <li class="footer-menu__item">
+                        <a class="footer-menu__link" href="">Новости компании</a>
+                    </li>
+                    <li class="footer-menu__item">
+                        <a class="footer-menu__link" href="">Наши клиенты</a>
+                    </li>
+                    <li class="footer-menu__item">
+                        <a class="footer-menu__link" href="">Отзывы и рекомендаци</a>
+                    </li>
+                </ul>
+                <span class="links-footer__sep-line"></span>
+                <ul class="footer-menu list2">
+                    <span class="footer-menu__title">Сотрудничество</span>
+                    <li class="footer-menu__item">
+                        <a class="footer-menu__link" href="">Поставщики и Партнеры</a>
+                    </li>
+                    <li class="footer-menu__item">
+                        <a class="footer-menu__link" href="">Дилерская сеть</a>
+                    </li>
+                    <li class="footer-menu__item">
+                        <a class="footer-menu__link" href="">Поиск поставщиков</a>
+                    </li>
+                </ul>
+                <span class="links-footer__sep-line mid"></span>
+                <ul class="footer-menu list3">
+                    <span class="footer-menu__title">Важно</span>
+                    <li class="footer-menu__item">
+                        <a class="footer-menu__link" href="">Полезные статьи</a>
+                    </li>
+                    <li class="footer-menu__item">
+                        <a class="footer-menu__link" href="">Дополнительные услуги</a>
+                    </li>
+                    <li class="footer-menu__item">
+                        <a class="footer-menu__link" href="">Вопросы и ответы (FAQ)</a>
+                    </li>
+                    <li class="footer-menu__item">
+                        <a class="footer-menu__link" href="">Горячие вакансии «GlobalProm»</a>
+                    </li>
+                </ul>
+                <span class="links-footer__sep-line"></span>
+                <ul class="footer-menu list4">
+                    <span class="footer-menu__title">Контакты</span>
+                    <li class="footer-menu__item">
+                        <a class="footer-menu__link" href="tel:+38 (057) 751-70-59">+38 (057) 751-70-59</a>
+                    </li>
+                    <li class="footer-menu__item">
+                        <a class="footer-menu__link" href="tel:+38 (050) 697-21-61">+38 (050) 697-21-61</a>
+                    </li>
+                    <li class="footer-menu__item">
+                        <a class="footer-menu__link" href="tel:+38 (097) 322-99-08">+38 (097) 322-99-08</a>
+                    </li>
+                </ul>
+                <span class="links-footer__sep-line last"></span>
+                <div class="footer-socials">
+                    <span class="footer-menu__title">Все новости в соц. сетях:</span>
+                    <ul class="footer-socials__list">
+                        <li class="footer-socials__item">
+                            <a class="footer-socials__link fb" href=""></a>
+                        </li>
+                        <li class="footer-socials__item">
+                            <a class="footer-socials__link vk" href=""></a>
+                        </li>
+                        <li class="footer-socials__item">
+                            <a class="footer-socials__link li" href=""></a>
+                        </li>
+                        <li class="footer-socials__item">
+                            <a class="footer-socials__link gp" href=""></a>
+                        </li>
+                        <li class="footer-socials__item">
+                            <a class="footer-socials__link ok" href=""></a>
+                        </li>
+                        <li class="footer-socials__item">
+                            <a class="footer-socials__link in" href=""></a>
+                        </li>
+                        <li class="footer-socials__item">
+                            <a class="footer-socials__link tw" href=""></a>
+                        </li>
+                        <li class="footer-socials__item">
+                            <a class="footer-socials__link yt" href=""></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="copyright-footer">
+        <span class="copyright">ООО "НПП "ГлобалПром" © 2013-2018 Политика конфиденциальности</span>
+    </div>
+</footer>
+
+<script type="text/javascript" src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script type="text/javascript">
+  /* слайдер цен */
+//  jQuery(document).ready(function(){
+//
+//  });
+//  $('.price-range').slider({
+//    min: 0,
+//    max: 2500,
+//    values: [250, 1500],
+//    range: true,
+//    slide: function(event, ui) {
+//      for (var i = 0; i < ui.values.length; ++i) {
+//        $('input.sliderValue[data-index=' + i + ']').val(ui.values[i]);
+//        $('.clear-filters').addClass('active');
+//      }
+//    }
+//  });
+//
+//  $('input.sliderValue').change(function() {
+//    var $this = $(this);
+//    $('.price-range').slider('values', $this.data('index'), $this.val());
+//  });
+</script>
+</body>
+</html>

@@ -1,0 +1,139 @@
+.section-8{
+	padding-top: 55px;
+}
+
+.cooperation-wrapper{
+	padding-top: 65px;
+}
+
+.cooperation-list{
+	@include bp(xs){
+		padding: 0;
+	}
+	&:first-child{
+		.cooperation-item{
+			&:last-child{
+				.cooperation-mark{
+					@include bp(md){
+						display: block;
+					}
+					@include bp(xs){
+						display: none;
+					}
+				}
+			}
+		}
+	}
+}
+
+.cooperation-item{
+	height: 102px;
+	margin-bottom: 12px;
+	display: flex;
+	@include bp(xs){
+		height: auto;
+	}
+	&:last-child{
+		.cooperation-mark{
+			display: none;
+		}
+	}
+}
+
+.cooperation-num{
+	position: relative;
+	width: 40px;
+	min-width: 40px;
+	height: 40px;
+	line-height: 40px;
+	text-align: center;
+	background-color: $yellow;
+	border-radius: 100%;
+	margin-right: 25px;
+	margin-top: 4px;
+	color: #fff;
+	font-size: 16px;
+	font-family: $bold-font;
+}
+
+.cooperation-mark{
+	position: absolute;
+	width: 6px;
+	height: 6px;
+	border-radius: 100%;
+	left: calc(50% - 3px);
+	top: 55px;
+	@include bp(xs){
+		display: none;
+	}
+	&.red{
+		background-color: $red;
+		&:before{
+			background-color: $red;
+		}
+		&:after{
+			background-color: $red;
+		}
+	}
+	&.green{
+		background-color: $green;
+		@include bp(md){
+			background-color: $red;
+		}
+		&:before{
+			background-color: $green;
+			@include bp(md){
+				background-color: $red;
+			}
+		}
+		&:after{
+			background-color: $green;
+			@include bp(md){
+				background-color: $red;
+			}
+		}
+	}
+	&:before{
+		content: '';
+		position: absolute;
+		width: 6px;
+		height: 6px;
+		border-radius: 100%;
+		top: 18px;
+		left: 0;
+		&.red{
+			background-color: $red;
+		}
+		&.green{
+			background-color: $green;
+		}
+	}
+	&:after{
+		content: '';
+		position: absolute;
+		width: 6px;
+		height: 6px;
+		border-radius: 100%;
+		top: 36px;
+		left: 0;
+		&.red{
+			background-color: $red;
+		}
+		&.green{
+			background-color: $green;
+		}
+	}
+}
+
+.cooperation-text{
+	font-size: 14px;
+	color: #696969;
+	line-height: 22px;
+	@include bp(sm){
+		line-height: 18px;
+	}
+	strong{
+		color: #434343;
+		font-family: $bold-font;
+	}
+}

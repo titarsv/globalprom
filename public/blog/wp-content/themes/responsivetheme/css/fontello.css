@@ -1,0 +1,19 @@
+@font-face{font-family:'fontello';src:url('../fonts/fontello/fontello.eot?43386277');src:url('../fonts/fontello/fontello.eot?43386277#iefix') format('embedded-opentype'),
+url('../fonts/fontello/fontello.woff2?43386277') format('woff2'),
+url('../fonts/fontello/fontello.woff?43386277') format('woff'),
+url('../fonts/fontello/fontello.ttf?43386277') format('truetype'),
+url('../fonts/fontello/fontello.svg?43386277#fontello') format('svg');font-weight:normal;font-style:normal;}
+[class^="icon-"]:before, [class*=" icon-"]:before{font-family:"fontello";font-style:normal;font-weight:normal;speak:none;display:inline-block;text-decoration:inherit;width:1em;margin-right:.2em;text-align:center;font-variant:normal;text-transform:none;line-height:1em;margin-left:.2em;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;}
+.icon-klout:before{content:'\e800';}
+.icon-linkedin:before{content:'\e801';}
+.icon-vk:before{content:'\e802';}
+.icon-disqus:before{content:'\e803';}
+.icon-skype:before{content:'\e804';}
+.icon-twitter:before{content:'\e805';}
+.icon-vimeo:before{content:'\e806';}
+.icon-youtube:before{content:'\e807';}
+.icon-yahoo:before{content:'\e808';}
+.icon-windows:before{content:'\e809';}
+.icon-facebook:before{content:'\e80a';}
+.icon-gmail:before{content:'\e80b';}
+.icon-gplus:before{content:'\e80c';}
