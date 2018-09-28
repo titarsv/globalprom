@@ -48,7 +48,7 @@ class CheckoutController extends Controller
         $rules = [
             'first_name' => 'required',
             'phone'     => 'required|regex:/^[0-9\-! ,\'\"\/+@\.:\(\)]+$/',
-            'email'     =>'required|email',
+//            'email'     =>'required|email',
             'payment' => 'required',
             'delivery' => 'required'
         ];
@@ -57,8 +57,8 @@ class CheckoutController extends Controller
             'first_name.required' => 'Вы не указали имя!',
             'phone.required'    => 'Вы не указали телефон!',
             'phone.regex'       => 'Некорректный номер телефона!',
-            'email.required'    => 'Вы не указали e-mail!',
-            'email.email'       => 'Некорректный email-адрес!',
+//            'email.required'    => 'Вы не указали e-mail!',
+//            'email.email'       => 'Некорректный email-адрес!',
             'payment'          => 'Не выбран способ оплаты!',
             'delivery'          => 'Не выбран способ доставки!'
         ];
@@ -92,6 +92,13 @@ class CheckoutController extends Controller
                 } elseif ($response == 'email error') {
                     return response()->json(['error' => ['email' => 'Пользователь с таким e-mail адресом уже зарегистрирован!']]);
                 }
+            }
+        }
+
+        if(empty($request->email)){
+            $request->email = 'email'.rand(0, 1000000).'@placeholder.com';
+            while($users->checkIfUnregistered($request->phone, $request->email)){
+                $request->email = 'email'.rand(0, 1000000).'@placeholder.com';
             }
         }
 
@@ -326,11 +333,13 @@ class CheckoutController extends Controller
             $msg->subject('Новый заказ');
         });
 
-        Mail::send('emails.order', ['user' => $order_user, 'order' => $order, 'admin' => false], function($msg) use ($order_user){
-            $msg->from('info@globalprom.com.ua', 'Интернет-магазин Globalprom');
-            $msg->to($order_user['email']);
-            $msg->subject('Новый заказ');
-        });
+        if(strpos($order_user['email'], '@placeholder.com') === false){
+            Mail::send('emails.order', ['user' => $order_user, 'order' => $order, 'admin' => false], function ($msg) use ($order_user) {
+                $msg->from('info@globalprom.com.ua', 'Интернет-магазин Globalprom');
+                $msg->to($order_user['email']);
+                $msg->subject('Новый заказ');
+            });
+        }
         
         return view('public.thanks', ['order_id' => $order_id, 'user' => $user, 'confirmed' => false, 'latest_products' => $latest_products]);
 

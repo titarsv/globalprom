@@ -1,5 +1,5 @@
 <div class="header" style="text-align: center;">
-    <img src="{!! url('/images/logo.jpg') !!}" alt="logo"  title="Globalprom" width="224" height="36" />
+    <img src="{!! url('/images/logo.png') !!}" alt="logo"  title="Globalprom" width="224" height="36" />
     <p style="font-size: 20px;">Новый заказ на сайте Globalprom!</p>
 </div>
 
@@ -40,7 +40,9 @@
 
 @if($admin)
     <p><strong>Заказчик:</strong> {!! $user['name'] !!}</p>
-    <p><strong>E-mail:</strong> {!! $user['email'] !!}</p>
+    @if(strpos($user['email'], '@placeholder.com') === false)
+        <p><strong>E-mail:</strong> {!! $user['email'] !!}</p>
+    @endif
     <p><strong>Телефон:</strong> {!! $user['phone'] !!}</p>
 @else
     <p style="font-size: 16px; color: #333;">Уважаемый {!! $user['name'] !!}! Благодарим Вас за заказ в интернет-магазине Globalprom! В ближайшее время с Вами свяжется наш менеджер для уточнения деталей заказа!</p>

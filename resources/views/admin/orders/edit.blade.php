@@ -81,10 +81,12 @@
                                     <td>Телефон</td>
                                     <td>{!! $order->user->phone !!}</td>
                                 </tr>
+                                @if(strpos($order->user->email, '@placeholder.com') === false)
                                 <tr>
                                     <td>Почта</td>
                                     <td>{!! $order->user->email !!}</td>
                                 </tr>
+                                @endif
                                 <tr>
                                     <td>Заказы покупателя</td>
                                     <td><a href="/admin/users/stat/{!! $order->user_id !!}" >Все заказы</a></td>
