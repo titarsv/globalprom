@@ -8,9 +8,7 @@
             <li><a href="/admin/products"><i class="fa fa-circle-thin" aria-hidden="true"></i>Каталог товаров</a></li>
             <li><a href="/admin/attributes"><i class="fa fa-circle-thin" aria-hidden="true"></i>Атрибуты товаров</a></li>
             <li><a href="/admin/upload-products"><i class="fa fa-circle-thin" aria-hidden="true"></i>Импорт товаров</a></li>
-            {{--<li><a href="/admin/manufacturers"><i class="fa fa-circle-thin" aria-hidden="true"></i>Линейки товаров</a></li>--}}
-            {{--<li><a href="/admin/parfum-groups"><i class="fa fa-circle-thin" aria-hidden="true"></i>Группы ароматов</a></li>--}}
-            {{--<li><a href="/admin/parfum-notes"><i class="fa fa-circle-thin" aria-hidden="true"></i>Ноты ароматов</a></li>--}}
+            <li><a href="/admin/export-products"><i class="fa fa-circle-thin" aria-hidden="true"></i>Экспорт товаров</a></li>
         </ul>
     </li>
     <li role="presentation">
