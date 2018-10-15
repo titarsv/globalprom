@@ -431,5 +431,6 @@
             filebrowserImageBrowseUrl: '/laravel-filemanager?type=Images',
             filebrowserImageUploadUrl: '/laravel-filemanager/upload?type=Images&_token={{csrf_token()}}',
         });
+        CKEDITOR.config.allowedContent = true;
     </script>
 @endsection
