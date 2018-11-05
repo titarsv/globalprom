@@ -99,7 +99,7 @@
                                             <li class="mobile-submenu__secondary-title">
                                                 <a href="{{env('APP_URL')}}/categories/{{ $children->url_alias }}">{{ $children->name }}</a>
                                             </li>
-                                            <?php $lchildrens = $children->children; ?>
+                                            <?php $lchildrens = $children->children()->where('status', 1)->get(); ?>
                                             @foreach($lchildrens as $lid => $lchildren)
                                                 <li class="mobile-submenu__secondary-item">
                                                     <a href="{{env('APP_URL')}}/categories/{{ $lchildren->url_alias }}">{{ $lchildren->name }}</a>
