@@ -72,6 +72,10 @@ var translitData = {
  "\\": "",
  "\"": "",
  "/": "",
+ "«": "",
+ "»": "",
+ "(": "",
+ ")": "",
 };
 
 String.prototype.transliterate = function() {

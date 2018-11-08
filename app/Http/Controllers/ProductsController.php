@@ -256,18 +256,40 @@ class ProductsController extends Controller
 
         $product = Products::find($id);
 
+        $gallery = [];
+        if(!empty($request->gallery)){
+            foreach($request->gallery as $i => $id){
+                $gallery[] = [
+                    'id' => $id,
+                    'alt' => isset($request->gallery_img_alt[$i]) ? $request->gallery_img_alt[$i] : '',
+                    'title' => isset($request->gallery_img_title[$i]) ? $request->gallery_img_title[$i] : ''
+                ];
+            }
+        }
+
         if(is_null($product->gallery)){
             $gallery = new Gallery();
-            $product_table_fill['gallery_id'] = $gallery->add_gallery($request->gallery);
+            $product_table_fill['gallery_id'] = $gallery->add_gallery($gallery);
         }else{
-            $product->gallery->images = json_encode($request->gallery);
+            $product->gallery->images = json_encode($gallery);
+        }
+
+        $photos = [];
+        if(!empty($request->photos)){
+            foreach($request->photos as $i => $id){
+                $photos[] = [
+                    'id' => $id,
+                    'alt' => isset($request->photos_img_alt[$i]) ? $request->photos_img_alt[$i] : '',
+                    'title' => isset($request->photos_img_title[$i]) ? $request->photos_img_title[$i] : ''
+                ];
+            }
         }
 
         if(is_null($product->photos)){
             $gallery = new Gallery();
-            $product_table_fill['photos_id'] = $gallery->add_gallery($request->photos);
+            $product_table_fill['photos_id'] = $gallery->add_gallery($photos);
         }else{
-            $product->photos->images = json_encode($request->photos);
+            $product->photos->images = json_encode($photos);
         }
 
         $product->set_products()->sync($request->sets);
@@ -463,7 +485,7 @@ class ProductsController extends Controller
      */
     public function show($alias, Request $request)
     {
-        $product = Products::where('url_alias', $alias)->first();
+        $product = Products::where('url_alias', $alias)->where('stock', 1)->first();
 
         if(empty($product)){
             abort(404);
@@ -487,7 +509,7 @@ class ProductsController extends Controller
 
         // Если у товара нет галлереи возвращаем его изображение
         if(empty($product->gallery))
-            $gallery = [$product->image];
+            $gallery = [['image' => $product->image, 'alt' => $product->name, 'title' => $product->name]];
         else
             $gallery = $product->gallery->objects();
 
@@ -495,25 +517,12 @@ class ProductsController extends Controller
 
         $attributes = [];
 
-        //        $variations = $product->get_variations();
-
         foreach ($product->attributes as $attribute){
-//            if(!isset($variations[$attribute->attribute_id])) {
-                if (!isset($attributes[$attribute->info->name])) {
-                    $attributes[$attribute->info->name] = [];
-                }
-                $attributes[$attribute->info->name][] = ['name' => $attribute->value->name, 'value' => $attribute->value->value];
-//            }
+            if (!isset($attributes[$attribute->info->name])) {
+                $attributes[$attribute->info->name] = [];
+            }
+            $attributes[$attribute->info->name][] = ['name' => $attribute->value->name, 'value' => $attribute->value->value];
         }
-
-//        $max_price = $product->price;
-//        foreach($variations as $attrs){
-//            foreach($attrs as $attr){
-//                if($max_price < $product->price + $attr->price){
-//                    $max_price = $product->price + $attr->price;
-//                }
-//            }
-//        }
 
         $max_price = $product->price;
         $variations_attrs = [];
