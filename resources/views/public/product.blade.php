@@ -252,6 +252,23 @@
                                         <span class="product-adv__text">По предоплате</span>
                                     </li>
                                 @endif
+                                @if(!empty($reviews) && isset($sumRating) && !empty($reviewCount))
+                                    <li class="product-adv__item">
+                                        <div class="product-adv__title">Рейтинг товара</div>
+                                        <div class="rating" style="margin-top: 10px;">
+                                            @php
+                                                $rating = round($sumRating/$reviewCount);
+                                            @endphp
+                                            @for($i=1; $i<=5; $i++)
+                                                @if($i <= $rating)
+                                                    <img src="/images/rp.png" alt="rp">
+                                                @else
+                                                    <img src="/images/rm.png" alt="rm">
+                                                @endif
+                                            @endfor
+                                        </div>
+                                    </li>
+                                @endif
                             </ul>
                         </div>
                     </div>

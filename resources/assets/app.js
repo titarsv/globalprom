@@ -656,6 +656,24 @@ $(function() {
           $('.view_popup_prod-slider').slick('slickGoTo', number);
         }, 500);
     });
+    $('#catalog_link').click(function(e){
+        var data = $(this).parents('form').formData({
+            validator: {},
+            invalid: function(data) {
+                for (var name in data.errors) {
+                    data.obj[name].obj.validateTooltip({
+                        text: data.obj[name].obj.rules[data.errors[name][0]]
+                    });
+                }
+            }
+        });
+        if (data === false){
+            e.preventDefault();
+            return false;
+        } else {
+            $(this).parents('form').submit();
+        }
+    });
     document.oncopy = function () { var bodyElement = document.body; var selection = getSelection(); var href = document.location.href; var copyright = "<br><br>Источник: <a href='"+ href +"'>" + href + "</a><br>© Globalprom"; var text = selection + copyright; var divElement = document.createElement('div'); divElement.style.position = 'absolute'; divElement.style.left = '-99999px'; divElement.innerHTML = text; bodyElement.appendChild(divElement); selection.selectAllChildren(divElement); setTimeout(function() { bodyElement.removeChild(divElement); }, 0); };
 });
 

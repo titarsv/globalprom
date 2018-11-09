@@ -131,7 +131,7 @@
                 <!-- <span class="menu-separate-line"></span>
                 <div class="catalog-btn popup-btn" data-mfp-src="#price-popup">
                     <i class="catalog-icon"></i>
-                    <span class="catalog-txt">Скачать прайс</span>
+                    <span class="catalog-txt">Скачать каталог</span>
                 </div> -->
             </div>
         </div>

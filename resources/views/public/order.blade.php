@@ -38,6 +38,14 @@
                             {!! csrf_field() !!}
                             <div class="order-page__form-input-wrapper">
                                 <input type="text"
+                                       placeholder="Телефон"
+                                       name="phone"
+                                       id="phone"
+                                       class="@if($errors->has('phone')) input_error @endif"
+                                       value="{!! old('phone') ? old('phone') : ( isset($user) && $user ? $user->phone : '' ) !!}">
+                            </div>
+                            <div class="order-page__form-input-wrapper">
+                                <input type="text"
                                        placeholder="Ваше имя"
                                        name="first_name"
                                        id="name"
@@ -53,14 +61,6 @@
                             </div>
                             <div class="order-page__form-input-wrapper">
                                 <input type="text"
-                                       placeholder="Телефон"
-                                       name="phone"
-                                       id="phone"
-                                       class="@if($errors->has('phone')) input_error @endif"
-                                       value="{!! old('phone') ? old('phone') : ( isset($user) && $user ? $user->phone : '' ) !!}">
-                            </div>
-                            <div class="order-page__form-input-wrapper">
-                                <input type="text"
                                        placeholder="E-mail"
                                        name="email"
                                        id="email"
@@ -68,13 +68,13 @@
                                        value="{!! old('email') ? old('email') : ( isset($user) && $user ? $user->email : '' ) !!}">
                             </div>
 
-                            <div class="order-page__form-select-wrapper">
-                                <select id="checkout-step__delivery" class="order-page__form-select" name="delivery">
-                                    <option disabled="" selected="">Выберите метод доставки</option>
-                                    <option value="newpost">Новая почта</option>
-                                    <option value="pickup">Самовывоз</option>
-                                </select>
-                            </div>
+                            {{--<div class="order-page__form-select-wrapper">--}}
+                                {{--<select id="checkout-step__delivery" class="order-page__form-select" name="delivery">--}}
+                                    {{--<option disabled="" selected="">Выберите метод доставки</option>--}}
+                                    {{--<option value="newpost">Новая почта</option>--}}
+                                    {{--<option value="pickup">Самовывоз</option>--}}
+                                {{--</select>--}}
+                            {{--</div>--}}
 
                             <div id="checkout-delivery-payment"></div>
                             <textarea class="order-page__form-textarea" placeholder="Примечания к вашему заказу, например, особые пожелания отделу доставки"></textarea>

@@ -40,17 +40,17 @@ class CheckoutController extends Controller
             return response()->json(['error' => ['cart' => 'В корзине нет товаров!']]);
         }
 
-        $errors = $this->validateFields($request->all());
-        if ($errors) {
-            return response()->json(['error' => $errors]);
-        }
+//        $errors = $this->validateFields($request->all());
+//        if ($errors) {
+//            return response()->json(['error' => $errors]);
+//        }
 
         $rules = [
             'first_name' => 'required',
             'phone'     => 'required|regex:/^[0-9\-! ,\'\"\/+@\.:\(\)]+$/',
 //            'email'     =>'required|email',
-            'payment' => 'required',
-            'delivery' => 'required'
+//            'payment' => 'required',
+//            'delivery' => 'required'
         ];
 
         $messages = [
@@ -59,8 +59,8 @@ class CheckoutController extends Controller
             'phone.regex'       => 'Некорректный номер телефона!',
 //            'email.required'    => 'Вы не указали e-mail!',
 //            'email.email'       => 'Некорректный email-адрес!',
-            'payment'          => 'Не выбран способ оплаты!',
-            'delivery'          => 'Не выбран способ доставки!'
+//            'payment'          => 'Не выбран способ оплаты!',
+//            'delivery'          => 'Не выбран способ доставки!'
         ];
 
         if (isset($request->checkout_registration)) {
@@ -119,10 +119,10 @@ class CheckoutController extends Controller
         if ($request->last_name)
             $user_name .= ' ' . $request->last_name;
 
-        $delivery_method = $request->delivery;
+        $delivery_method = isset($request->delivery) ? $request->delivery : '';
         $delivery_info = [
             'method'    => $delivery_method,
-            'info'      => $request->$delivery_method
+            'info'      => !empty($delivery_method) && isset($request->$delivery_method) ? $request->$delivery_method : ''
         ];
 
         $data = [
@@ -139,7 +139,7 @@ class CheckoutController extends Controller
             'company' => $request->company,
             'nds' => $request->nds,
             'company_info' => $request->company_info,
-            'payment'   => $request->payment,
+            'payment'   => isset($request->payment) ? $request->payment : '',
             'status_id' => 0,
             'created_at' => Carbon::now()
         ];

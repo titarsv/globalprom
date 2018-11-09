@@ -139,14 +139,14 @@
 
 <div class="mfp-hide">
     <div id='price-popup' class="order-popup">
-        <strong class="popup-title">Скачать прайс</strong>
-        <span class="popup-info">Скачайте прайс с самыми<br> актуальными ценами на <b><?=date('d.m.Y')?></b></span>
+        <strong class="popup-title">Скачать каталог</strong>
+        <span class="popup-info">Скачайте каталог с нашей<br> продукцией</span>
         <form action="/sendmail" class="pbz_form clear-styles"
               data-error-title="Ошибка отправки!"
               data-error-message="Попробуйте отправить заявку через некоторое время."
-              data-success-redirect="/price.pdf">
+              data-success-redirect="/catalog.pdf">
             <input type="tel" class="popup__input" name="phone" placeholder="Введите телефон" data-title="Телефон" data-validate-required="Обязательное поле" data-validate-phone="Неправильный номер">
-            <button type="submit" class="product-order__btn">Скачать прайс</button>
+            <button type="submit" class="product-order__btn">Скачать каталог</button>
         </form>
         <img src="/images/pdf.png" alt="pdf"/>
         <button title="Close (Esc)" type="button" class="mfp-close">×</button>

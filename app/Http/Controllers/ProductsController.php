@@ -924,9 +924,14 @@ class ProductsController extends Controller
         return strtr($string, $converter);
     }
 
+    /**
+     * Фид
+     *
+     * @param Products $products
+     */
     public function export(Products $products){
         $data = [];
-        foreach($products->where('stock', 1)->with(['categories', 'image'])->get() as $product){
+        foreach($products->where('stock', 1)->where('price', '>', 0)->with(['categories', 'image'])->get() as $product){
             $data[] = [
                 'ID' => $product->id,
                 'Item title' => $product->name,

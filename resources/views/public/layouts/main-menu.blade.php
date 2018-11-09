@@ -31,11 +31,11 @@
                     <a class="main-menu__link" href="{{env('APP_URL')}}/page/contact-us">Контакты</a>
                 </li>
             </ul>
-            {{--<span class="menu-separate-line"></span>--}}
-            {{--<div class="catalog-btn popup-btn" data-mfp-src="#price-popup">--}}
-            {{--<i class="catalog-icon"></i>--}}
-            {{--<span class="catalog-txt">Скачать прайс</span>--}}
-            {{--</div>--}}
+            <span class="menu-separate-line"></span>
+            <div class="catalog-btn popup-btn" data-mfp-src="#price-popup">
+            <i class="catalog-icon"></i>
+            <span class="catalog-txt">Скачать каталог</span>
+            </div>
         </div>
     </div>
     <div class="secondary-menu">
