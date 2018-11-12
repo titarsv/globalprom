@@ -183,6 +183,7 @@
     </nav>
     <nav class="mobile-menu">
         <div class="container">
+            <p class="mobile-menu__title">МЕНЮ</p>
             <i class="mobile-menu__btn-icon"><span></span></i>
             <ul class="mobile-menu__list">
                 <li class="mobile-menu__item">

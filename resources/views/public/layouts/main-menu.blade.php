@@ -83,7 +83,7 @@
 </nav>
 <nav class="mobile-menu">
     <div class="container">
-        <i class="mobile-menu__btn-icon"><span></span></i>
+        <i class="mobile-menu__btn-icon"><p class="mobile-menu__title">МЕНЮ</p><span class="burger"></span></i>
         <ul class="mobile-menu__list">
             <li class="mobile-menu__item">
                 <span class="mobile-menu__cat-btn">Каталог<i></i></span>
