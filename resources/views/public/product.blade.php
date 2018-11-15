@@ -70,6 +70,7 @@
                                 @forelse($gallery as $i => $image)
                                     @if(is_object($image['image']))
                                         <div class="product-slide popup-btn" data-index="{{ $i }}" data-mfp-src="#view_popup_prod">
+                                            {{--{!! $image['image']->webp_image('product', ['alt' => empty($image['alt']) ? '' : $image['alt'], 'title' => empty($image['title']) ? '' : $image['title'], 'itemprop' => 'image']) !!}--}}
                                             <img src="{{ $image['image']->url('full') }}"{!! empty($image['alt']) ? '' : ' alt="'.$image['alt'].'"' !!}{!! empty($image['title']) ? '' : ' title="'.$image['title'].'"' !!} itemprop="image">
                                         </div>
                                     @endif

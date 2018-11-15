@@ -2,9 +2,9 @@
 
 'use strict';
 
-if (process.env.NODE_ENV !== 'production') {
-    require('./assets/templates/layouts/index.html');
-}
+// if (process.env.NODE_ENV !== 'production') {
+//     require('./assets/templates/layouts/index.html');
+// }
 
 // Depends
 var $ = require('jquery');
@@ -15,11 +15,11 @@ var Forms = require('_modules/forms');
 var Slider = require('_modules/slider');
 var Popup = require('_modules/popup');
 var Fancy_select = require('_modules/fancyselect');
-var Jscrollpane = require('_modules/jscrollpane');
+// var Jscrollpane = require('_modules/jscrollpane');
 // var LightGallery = require('_modules/lightgallery');
 //var Jslider = require('_modules/jslider');
 var Fancybox = require('_modules/fancybox');
-var Chosen = require('_modules/chosen');
+// var Chosen = require('_modules/chosen');
 
 var Cookies = require('js-cookie');
 
@@ -43,12 +43,12 @@ $(function() {
     new Forms();
     new Popup();
     new Fancy_select();
-    new Jscrollpane();
+    // new Jscrollpane();
     // new LightGallery();
     new Slider();
     //new Jslider();
     new Fancybox();
-    new Chosen();
+    // new Chosen();
 
     /* слайдер цен */
     var price_range = $('.price-range');
@@ -209,6 +209,7 @@ $(function() {
         fade: true,
         dots: true,
         arrows: true,
+        lazyLoad: 'ondemand',
         autoplay: true,
         autoplaySpeed: 5000
     });
@@ -221,6 +222,7 @@ $(function() {
         slidesToScroll: 1,
         infinite: false,
         arrows: true,
+        lazyLoad: 'ondemand',
         nextArrow: '<div class="arrow-right"></div>',
         prevArrow: '<div class="arrow-left"></div>',
         responsive: [
@@ -253,6 +255,7 @@ $(function() {
         infinite: false,
         dots: false,
         arrows: true,
+        lazyLoad: 'ondemand',
         nextArrow: '<div class="arrow-right"></div>',
         prevArrow: '<div class="arrow-left"></div>',
         responsive: [

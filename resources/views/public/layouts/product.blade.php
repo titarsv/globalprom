@@ -9,7 +9,10 @@
             @else
                 <div class="card__img" style="visibility: hidden;"></div>
             @endif
-            <a href="{{env('APP_URL')}}/product/{{ $product->url_alias }}"><img class="item-pic" src="{{ $product->image == null ? '/assets/images/no_image.jpg' : $product->image->url('product_list') }}" alt=""></a>
+            <a href="{{env('APP_URL')}}/product/{{ $product->url_alias }}">
+                {!! $product->image->webp_image('product_list', ['alt' => $product->name]) !!}
+                {{--<img class="item-pic" src="{{ $product->image == null ? '/assets/images/no_image.jpg' : $product->image->url('product_list') }}" alt="">--}}
+            </a>
         </div>
         <div class="item-info__wrapper">
             <a class="item-link" href="{{env('APP_URL')}}/product/{{ $product->url_alias }}">{{ $product->name }}</a>

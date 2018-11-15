@@ -35,7 +35,6 @@
 @endsection
 
 @section('content')
-
     <main class="main-wrapper">
         <div class="container">
             <div class="catalog-wrapper {{ $category->url_alias }}">
@@ -110,7 +109,8 @@
                                             <div class="item-pic__wrapper">
                                                 @if(!empty($subcat->image))
                                                 <a href="{{env('APP_URL')}}/categories/{{ $subcat->url_alias }}">
-                                                    <img class="item-pic" src="{{ $subcat->image->url('product_list') }}" alt="">
+                                                    {!! $subcat->image->webp_image('product_list', ['alt' => $subcat->name, 'class' => 'item-pic']) !!}
+                                                    {{--<img class="item-pic" src="{{ $subcat->image->url('product_list') }}" alt="">--}}
                                                 </a>
                                                 @endif
                                             </div>

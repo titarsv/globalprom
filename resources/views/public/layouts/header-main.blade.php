@@ -3,9 +3,19 @@
         <div class="container main-header__container">
             <div class="logo-wrapper col-sm-3">
                 @if(request()->route() && request()->route()->getName() == 'home')
-                    <img class="header-logo" src="/images/logo.png" alt="Грузоподъёмное и промышленное оборудование" title="Грузоподъёмное и промышленное оборудование">
+                    <picture>
+                        <source srcset="{{env('APP_URL')}}/images/webp/logo.webp" type="image/webp">
+                        <source srcset="{{env('APP_URL')}}/images/logo.jpg" type="image/image/jpeg">
+                        <img class="header-logo" src="{{env('APP_URL')}}/images/logo.png" alt="Грузоподъёмное и промышленное оборудование" title="Грузоподъёмное и промышленное оборудование">
+                    </picture>
                 @else
-                    <a href="{{env('APP_URL')}}"><img class="header-logo" src="/images/logo.png" alt="Грузоподъёмное и промышленное оборудование" title="Грузоподъёмное и промышленное оборудование"></a>
+                    <a href="{{env('APP_URL')}}">
+                        <picture>
+                            <source srcset="{{env('APP_URL')}}/images/webp/logo.webp" type="image/webp">
+                            <source srcset="{{env('APP_URL')}}/images/logo.jpg" type="image/image/jpeg">
+                            <img class="header-logo" src="{{env('APP_URL')}}/images/logo.png" alt="Грузоподъёмное и промышленное оборудование" title="Грузоподъёмное и промышленное оборудование">
+                        </picture>
+                    </a>
                 @endif
                 <p>Грузоподъёмное и промышленное оборудование</p>
             </div>

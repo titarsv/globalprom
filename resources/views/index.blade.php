@@ -15,7 +15,7 @@
                     @foreach($slideshow as $slide)
                         <div class="main-slide">
                             <div class="col-sm-6 main-slider__pic-wrapper">
-                                <img class="main-slider__pic" src="/assets/images/{!! $slide->image->href !!}" alt="">
+                                <img class="main-slider__pic" data-lazy="/assets/images/{!! $slide->image->href !!}" alt="">
                             </div>
                             <div class="col-sm-6 main-slider__info">
                                 <div class="main-slider__info-inner">
@@ -43,7 +43,7 @@
                                 <div class="item-inner action">
                                     <span class="item-label">Акция <i>%</i></span>
                                     <div class="item-pic__wrapper">
-                                        <a href="{{env('APP_URL')}}/product/{{ $product->url_alias }}"><img class="item-pic" src="{{ $product->image == null ? '/assets/images/no_image.jpg' : $product->image->url('product_list') }}" alt=""></a>
+                                        <a href="{{env('APP_URL')}}/product/{{ $product->url_alias }}"><img class="item-pic" data-lazy="{{ $product->image == null ? '/assets/images/no_image.jpg' : $product->image->url('product_list') }}" alt=""></a>
                                     </div>
                                     <div class="item-info__wrapper">
                                         <a class="item-link" href="{{env('APP_URL')}}/product/{{ $product->url_alias }}">{{ $product->name }}</a>
@@ -140,127 +140,211 @@
                     <a href="{{env('APP_URL')}}/images/cert/cert-1.jpg" class="clients-item image-popup-vertical-fit">
                         <div class="clients-item__cert-wrapper">
                             <span class="clients-item__zoom"></span>
-                            <img class="clients-item__cert" src="/images/cert/min/cert-1.jpg" alt="">
+                            <picture>
+                                <source srcset="{{env('APP_URL')}}/images/webp/cert/min/cert-1.webp" type="image/webp">
+                                <source srcset="{{env('APP_URL')}}/images/cert/min/cert-1.jpg" type="image/image/jpeg">
+                                <img class="clients-item__cert" src="{{env('APP_URL')}}/images/cert/min/cert-1.jpg" alt="">
+                            </picture>
                         </div>
                     </a>
                     <a href="{{env('APP_URL')}}/images/cert/cert-2.jpg" class="clients-item image-popup-vertical-fit">
                         <div class="clients-item__cert-wrapper">
                             <span class="clients-item__zoom"></span>
-                            <img class="clients-item__cert" src="/images/cert/min/cert-2.jpg" alt="">
+                            <picture>
+                                <source srcset="{{env('APP_URL')}}/images/webp/cert/min/cert-2.webp" type="image/webp">
+                                <source srcset="{{env('APP_URL')}}/images/cert/min/cert-2.jpg" type="image/image/jpeg">
+                                <img class="clients-item__cert" src="{{env('APP_URL')}}/images/cert/min/cert-2.jpg" alt="">
+                            </picture>
                         </div>
                     </a>
                     <a href="{{env('APP_URL')}}/images/cert/cert-3.jpg" class="clients-item image-popup-vertical-fit">
                         <div class="clients-item__cert-wrapper">
                             <span class="clients-item__zoom"></span>
-                            <img class="clients-item__cert" src="/images/cert/min/cert-3.jpg" alt="">
+                            <picture>
+                                <source srcset="{{env('APP_URL')}}/images/webp/cert/min/cert-3.webp" type="image/webp">
+                                <source srcset="{{env('APP_URL')}}/images/cert/min/cert-3.jpg" type="image/image/jpeg">
+                                <img class="clients-item__cert" src="{{env('APP_URL')}}/images/cert/min/cert-3.jpg" alt="">
+                            </picture>
                         </div>
                     </a>
                     <a href="{{env('APP_URL')}}/images/cert/cert-4.jpg" class="clients-item image-popup-vertical-fit">
                         <div class="clients-item__cert-wrapper">
                             <span class="clients-item__zoom"></span>
-                            <img class="clients-item__cert" src="/images/cert/min/cert-4.jpg" alt="">
+                            <picture>
+                                <source srcset="{{env('APP_URL')}}/images/webp/cert/min/cert-4.webp" type="image/webp">
+                                <source srcset="{{env('APP_URL')}}/images/cert/min/cert-4.jpg" type="image/image/jpeg">
+                                <img class="clients-item__cert" src="{{env('APP_URL')}}/images/cert/min/cert-4.jpg" alt="">
+                            </picture>
                         </div>
                     </a>
                     <a href="{{env('APP_URL')}}/images/cert/cert-5.jpg" class="clients-item image-popup-vertical-fit">
                         <div class="clients-item__cert-wrapper">
                             <span class="clients-item__zoom"></span>
-                            <img class="clients-item__cert" src="/images/cert/min/cert-5.jpg" alt="">
+                            <picture>
+                                <source srcset="{{env('APP_URL')}}/images/webp/cert/min/cert-5.webp" type="image/webp">
+                                <source srcset="{{env('APP_URL')}}/images/cert/min/cert-5.jpg" type="image/image/jpeg">
+                                <img class="clients-item__cert" src="{{env('APP_URL')}}/images/cert/min/cert-5.jpg" alt="">
+                            </picture>
                         </div>
                     </a>
                     <a href="{{env('APP_URL')}}/images/cert/cert-6.jpg" class="clients-item image-popup-vertical-fit">
                         <div class="clients-item__cert-wrapper">
                             <span class="clients-item__zoom"></span>
-                            <img class="clients-item__cert" src="/images/cert/min/cert-6.jpg" alt="">
+                            <picture>
+                                <source srcset="{{env('APP_URL')}}/images/webp/cert/min/cert-6.webp" type="image/webp">
+                                <source srcset="{{env('APP_URL')}}/images/cert/min/cert-6.jpg" type="image/image/jpeg">
+                                <img class="clients-item__cert" src="{{env('APP_URL')}}/images/cert/min/cert-6.jpg" alt="">
+                            </picture>
                         </div>
                     </a>
                     <a href="{{env('APP_URL')}}/images/cert/cert-7.jpg" class="clients-item image-popup-vertical-fit">
                         <div class="clients-item__cert-wrapper">
                             <span class="clients-item__zoom"></span>
-                            <img class="clients-item__cert" src="/images/cert/min/cert-7.jpg" alt="">
+                            <picture>
+                                <source srcset="{{env('APP_URL')}}/images/webp/cert/min/cert-7.webp" type="image/webp">
+                                <source srcset="{{env('APP_URL')}}/images/cert/min/cert-7.jpg" type="image/image/jpeg">
+                                <img class="clients-item__cert" src="{{env('APP_URL')}}/images/cert/min/cert-7.jpg" alt="">
+                            </picture>
                         </div>
                     </a>
                     <a href="{{env('APP_URL')}}/images/cert/cert-8.jpg" class="clients-item image-popup-vertical-fit">
                         <div class="clients-item__cert-wrapper">
                             <span class="clients-item__zoom"></span>
-                            <img class="clients-item__cert" src="/images/cert/min/cert-8.jpg" alt="">
+                            <picture>
+                                <source srcset="{{env('APP_URL')}}/images/webp/cert/min/cert-8.webp" type="image/webp">
+                                <source srcset="{{env('APP_URL')}}/images/cert/min/cert-8.jpg" type="image/image/jpeg">
+                                <img class="clients-item__cert" src="{{env('APP_URL')}}/images/cert/min/cert-8.jpg" alt="">
+                            </picture>
                         </div>
                     </a>
                     <a href="{{env('APP_URL')}}/images/cert/cert-9.jpg" class="clients-item image-popup-vertical-fit">
                         <div class="clients-item__cert-wrapper">
                             <span class="clients-item__zoom"></span>
-                            <img class="clients-item__cert" src="/images/cert/min/cert-9.jpg" alt="">
+                            <picture>
+                                <source srcset="{{env('APP_URL')}}/images/webp/cert/min/cert-9.webp" type="image/webp">
+                                <source srcset="{{env('APP_URL')}}/images/cert/min/cert-9.jpg" type="image/image/jpeg">
+                                <img class="clients-item__cert" src="{{env('APP_URL')}}/images/cert/min/cert-9.jpg" alt="">
+                            </picture>
                         </div>
                     </a>
                     <a href="{{env('APP_URL')}}/images/cert/cert-10.jpg" class="clients-item image-popup-vertical-fit">
                         <div class="clients-item__cert-wrapper">
                             <span class="clients-item__zoom"></span>
-                            <img class="clients-item__cert" src="/images/cert/min/cert-10.jpg" alt="">
+                            <picture>
+                                <source srcset="{{env('APP_URL')}}/images/webp/cert/min/cert-10.webp" type="image/webp">
+                                <source srcset="{{env('APP_URL')}}/images/cert/min/cert-10.jpg" type="image/image/jpeg">
+                                <img class="clients-item__cert" src="{{env('APP_URL')}}/images/cert/min/cert-10.jpg" alt="">
+                            </picture>
                         </div>
                     </a>
                     <a href="{{env('APP_URL')}}/images/cert/cert-11.jpg" class="clients-item image-popup-vertical-fit">
                         <div class="clients-item__cert-wrapper">
                             <span class="clients-item__zoom"></span>
-                            <img class="clients-item__cert" src="/images/cert/min/cert-11.jpg" alt="">
+                            <picture>
+                                <source srcset="{{env('APP_URL')}}/images/webp/cert/min/cert-11.webp" type="image/webp">
+                                <source srcset="{{env('APP_URL')}}/images/cert/min/cert-11.jpg" type="image/image/jpeg">
+                                <img class="clients-item__cert" src="{{env('APP_URL')}}/images/cert/min/cert-11.jpg" alt="">
+                            </picture>
                         </div>
                     </a>
                     <a href="{{env('APP_URL')}}/images/cert/cert-12.jpg" class="clients-item image-popup-vertical-fit">
                         <div class="clients-item__cert-wrapper">
                             <span class="clients-item__zoom"></span>
-                            <img class="clients-item__cert" src="/images/cert/min/cert-12.jpg" alt="">
+                            <picture>
+                                <source srcset="{{env('APP_URL')}}/images/webp/cert/min/cert-12.webp" type="image/webp">
+                                <source srcset="{{env('APP_URL')}}/images/cert/min/cert-12.jpg" type="image/image/jpeg">
+                                <img class="clients-item__cert" src="{{env('APP_URL')}}/images/cert/min/cert-12.jpg" alt="">
+                            </picture>
                         </div>
                     </a>
                     <a href="{{env('APP_URL')}}/images/cert/cert-13.jpg" class="clients-item image-popup-vertical-fit">
                         <div class="clients-item__cert-wrapper">
                             <span class="clients-item__zoom"></span>
-                            <img class="clients-item__cert" src="/images/cert/min/cert-13.jpg" alt="">
+                            <picture>
+                                <source srcset="{{env('APP_URL')}}/images/webp/cert/min/cert-13.webp" type="image/webp">
+                                <source srcset="{{env('APP_URL')}}/images/cert/min/cert-13.jpg" type="image/image/jpeg">
+                                <img class="clients-item__cert" src="{{env('APP_URL')}}/images/cert/min/cert-13.jpg" alt="">
+                            </picture>
                         </div>
                     </a>
                     <a href="{{env('APP_URL')}}/images/cert/cert-14.jpg" class="clients-item image-popup-vertical-fit">
                         <div class="clients-item__cert-wrapper">
                             <span class="clients-item__zoom"></span>
-                            <img class="clients-item__cert" src="/images/cert/min/cert-14.jpg" alt="">
+                            <picture>
+                                <source srcset="{{env('APP_URL')}}/images/webp/cert/min/cert-14.webp" type="image/webp">
+                                <source srcset="{{env('APP_URL')}}/images/cert/min/cert-14.jpg" type="image/image/jpeg">
+                                <img class="clients-item__cert" src="{{env('APP_URL')}}/images/cert/min/cert-14.jpg" alt="">
+                            </picture>
                         </div>
                     </a>
                     <a href="{{env('APP_URL')}}/images/cert/cert-15.jpg" class="clients-item image-popup-vertical-fit">
                         <div class="clients-item__cert-wrapper">
                             <span class="clients-item__zoom"></span>
-                            <img class="clients-item__cert" src="/images/cert/min/cert-15.jpg" alt="">
+                            <picture>
+                                <source srcset="{{env('APP_URL')}}/images/webp/cert/min/cert-15.webp" type="image/webp">
+                                <source srcset="{{env('APP_URL')}}/images/cert/min/cert-15.jpg" type="image/image/jpeg">
+                                <img class="clients-item__cert" src="{{env('APP_URL')}}/images/cert/min/cert-15.jpg" alt="">
+                            </picture>
                         </div>
                     </a>
                     <a href="{{env('APP_URL')}}/images/cert/cert-16.jpg" class="clients-item image-popup-vertical-fit">
                         <div class="clients-item__cert-wrapper">
                             <span class="clients-item__zoom"></span>
-                            <img class="clients-item__cert" src="/images/cert/min/cert-16.jpg" alt="">
+                            <picture>
+                                <source srcset="{{env('APP_URL')}}/images/webp/cert/min/cert-16.webp" type="image/webp">
+                                <source srcset="{{env('APP_URL')}}/images/cert/min/cert-16.jpg" type="image/image/jpeg">
+                                <img class="clients-item__cert" src="{{env('APP_URL')}}/images/cert/min/cert-16.jpg" alt="">
+                            </picture>
                         </div>
                     </a>
                     <a href="{{env('APP_URL')}}/images/cert/cert-17.jpg" class="clients-item image-popup-vertical-fit">
                         <div class="clients-item__cert-wrapper">
                             <span class="clients-item__zoom"></span>
-                            <img class="clients-item__cert" src="/images/cert/min/cert-17.jpg" alt="">
+                            <picture>
+                                <source srcset="{{env('APP_URL')}}/images/webp/cert/min/cert-17.webp" type="image/webp">
+                                <source srcset="{{env('APP_URL')}}/images/cert/min/cert-17.jpg" type="image/image/jpeg">
+                                <img class="clients-item__cert" src="{{env('APP_URL')}}/images/cert/min/cert-17.jpg" alt="">
+                            </picture>
                         </div>
                     </a>
                     <a href="{{env('APP_URL')}}/images/cert/cert-18.jpg" class="clients-item image-popup-vertical-fit">
                         <div class="clients-item__cert-wrapper">
                             <span class="clients-item__zoom"></span>
-                            <img class="clients-item__cert" src="/images/cert/min/cert-18.jpg" alt="">
+                            <picture>
+                                <source srcset="{{env('APP_URL')}}/images/webp/cert/min/cert-18.webp" type="image/webp">
+                                <source srcset="{{env('APP_URL')}}/images/cert/min/cert-18.jpg" type="image/image/jpeg">
+                                <img class="clients-item__cert" src="{{env('APP_URL')}}/images/cert/min/cert-18.jpg" alt="">
+                            </picture>
                         </div>
                     </a>
                     <a href="{{env('APP_URL')}}/images/cert/cert-19.jpg" class="clients-item image-popup-vertical-fit">
                         <div class="clients-item__cert-wrapper">
                             <span class="clients-item__zoom"></span>
-                            <img class="clients-item__cert" src="/images/cert/min/cert-19.jpg" alt="">
+                            <picture>
+                                <source srcset="{{env('APP_URL')}}/images/webp/cert/min/cert-19.webp" type="image/webp">
+                                <source srcset="{{env('APP_URL')}}/images/cert/min/cert-19.jpg" type="image/image/jpeg">
+                                <img class="clients-item__cert" src="{{env('APP_URL')}}/images/cert/min/cert-19.jpg" alt="">
+                            </picture>
                         </div>
                     </a>
                     <a href="{{env('APP_URL')}}/images/cert/cert-20.jpg" class="clients-item image-popup-vertical-fit">
                         <div class="clients-item__cert-wrapper">
                             <span class="clients-item__zoom"></span>
-                            <img class="clients-item__cert" src="/images/cert/min/cert-20.jpg" alt="">
+                            <picture>
+                                <source srcset="{{env('APP_URL')}}/images/webp/cert/min/cert-20.webp" type="image/webp">
+                                <source srcset="{{env('APP_URL')}}/images/cert/min/cert-20.jpg" type="image/image/jpeg">
+                                <img class="clients-item__cert" src="{{env('APP_URL')}}/images/cert/min/cert-20.jpg" alt="">
+                            </picture>
                         </div>
                     </a>
                     <a href="{{env('APP_URL')}}/images/cert/cert-21.jpg" class="clients-item image-popup-vertical-fit">
                         <div class="clients-item__cert-wrapper">
                             <span class="clients-item__zoom"></span>
-                            <img class="clients-item__cert" src="/images/cert/min/cert-21.jpg" alt="">
+                            <picture>
+                                <source srcset="{{env('APP_URL')}}/images/webp/cert/min/cert-21.webp" type="image/webp">
+                                <source srcset="{{env('APP_URL')}}/images/cert/min/cert-21.jpg" type="image/image/jpeg">
+                                <img class="clients-item__cert" src="{{env('APP_URL')}}/images/cert/min/cert-21.jpg" alt="">
+                            </picture>
                         </div>
                     </a>
                 </div>
