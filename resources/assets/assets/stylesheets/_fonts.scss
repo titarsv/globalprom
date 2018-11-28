@@ -1,0 +1,9 @@
+@import 'mixin';
+@import 'icons';
+
+@include font-face("OpenSansRegular", "../fonts/OpenSansRegular/OpenSansRegular");
+@include font-face("OpenSansSemiBold", "../fonts/OpenSansSemiBold/OpenSansSemiBold");
+@include font-face("OpenSansBold", "../fonts/OpenSansBold/OpenSansBold");
+@include font-face("OpenSansExtraBold", "../fonts/OpenSansExtraBold/OpenSansExtraBold");
+@include font-face("OpenSansItalic", "../fonts/OpenSansItalic/OpenSansItalic");
+@include font-face("OpenSansLight", "../fonts/OpenSansLight/OpenSansLight");

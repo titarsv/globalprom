@@ -1,0 +1,174 @@
+.services-wrapper{
+	padding: 35px 0 60px;
+	border-bottom: 1px solid $grey;
+	text-align: center;
+	.container{
+		@include bp(xs){
+			padding: 0;
+		}
+	}
+}
+
+.services-types{
+	float: left;
+	padding-top: 35px;
+	@include bp(sm){
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: center;
+		padding: 35px 15px 0;
+	}
+	@include bp(xs){
+		padding: 35px 7px 0;
+	}
+}
+
+.services-types__item{
+	width: 20%;
+	@include bp(md){
+		padding: 0 7px;
+	}
+	@include bp(sm){
+		width: 50%;
+	}
+}
+
+.services-types__pic-wrapper{
+	width: 100%;
+	height: 200px;
+	border-radius: 10px;
+	border: 1px solid $grey;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	margin-bottom: 20px;
+	@include bp(sm){
+		height: 180px;
+		padding: 10px;
+	}
+
+}
+
+.services-types__txt-wrapper{
+	@include bp(sm){
+		height: auto;
+		padding-bottom: 20px;
+	}
+}
+
+.services-types__title{
+	font-size: 14px;
+	line-height: 20px;
+	font-family: $semibold-font;
+}
+
+.services-types__txt{
+	font-size: 11px;
+	color: #7a7a7a;
+	line-height: 14px;
+	display: block;
+	margin-top: 2px;
+}
+
+.services-wrapper__china{
+	padding: 50px 0 40px;
+	border-bottom: 1px solid $grey;
+	text-align: center;	
+	.container{
+		@include bp(xs){
+			padding: 0;
+		}
+	}
+}
+
+.china-map__wrapper{
+	position: relative;
+	padding-top: 60px;
+}
+
+.china-map{	
+	@include bp(lg){
+		width: 100%;
+	}
+}
+
+.china-map__title{
+	display: flex;
+	align-items: center;
+	position: absolute;
+	top: 60px;
+	left: 30px;
+}
+
+.china-map__flag{
+	margin-right: 30px;
+}
+
+.china-map__icon{
+	font-size: 24px;
+	font-family: $semibold-font;
+	color: #363636;
+}
+
+.china-list{
+	padding-top: 60px;
+	text-align: left;
+	@include bp(md){
+		padding-top: 15px;
+	}
+}
+
+.china-list__item{
+	display: flex;
+	align-items: center;
+	margin-bottom: 45px;
+	@include bp(md){
+		margin-bottom: 30px;
+	}
+	&:last-child{
+		.china-list__num{
+			&:after{
+				display: none;
+			}
+		}
+	}
+}
+
+.china-list__num{
+	position: relative;
+	width: 40px;
+	min-width: 40px;
+	height: 40px;
+	line-height: 40px;
+	text-align: center;
+	background-color: $yellow;
+	border-radius: 100%;
+	margin-right: 25px;
+	color: #fff;
+	font-size: 16px;
+	font-family: $bold-font;
+	font-style: normal;
+	&:after{
+		content: '';	
+		position: absolute;
+		width: 6px;
+		height: 6px;
+		border-radius: 100%;
+		background-color: $red;
+		left: calc(50% - 3px);
+		bottom: -23px;
+		@include bp(md){
+			bottom: -17px;
+		}
+	}
+}
+
+.china-list__txt{
+	font-size: 14px;
+	line-height: 18px;
+	font-family: $bold-font;
+	color: #434343;
+	@include bp(md){
+		font-size: 13px;
+	}
+}

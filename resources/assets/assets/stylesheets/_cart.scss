@@ -1,0 +1,269 @@
+.main-cart{
+	width: 880px;
+	background-color: #fff;
+	position: fixed;
+	height: 100%;
+	right: -890px;
+	top: 0;
+	bottom: 0;
+	transition: .2s linear;
+	z-index: 20;
+	color: #2b2b2b;
+	overflow: scroll;
+	&.active{
+		right: 0;
+	}
+    @include bp(md){
+    	width: 650px;
+    }
+    @include bp(sm){
+    	width: 100%;
+    }
+}
+
+.main-cart__close{
+	font-size: 58px;
+    height: 34px;
+    width: 34px;
+    line-height: 41px;
+    overflow: hidden;
+    display: block;
+    float: right;
+    margin-right: 75px;
+    margin-top: 20px;
+    cursor: pointer;
+    @include bp(md){
+    	margin-right: 30px;
+    }
+    @include bp(sm){
+    	margin-right: 15px;
+    	margin-top: 15px;
+    }
+}
+
+.main-cart__order{
+	display: flex;
+	align-items: center;
+	margin-bottom: 20px;
+	border-top: 1px solid #eee;
+	height: 180px;
+    @include bp(sm){
+    	flex-wrap: wrap;
+    	height: auto;
+    }
+    @include bp(xs){
+    	margin-bottom: 5px;
+    }
+	&:first-child{
+		border: none;
+	}
+}
+
+.main-cart__del-order{
+	font-size: 40px;
+	line-height: 25px;
+	font-family: $light-font;
+	color: #bfbfbf;
+	width: 20px;
+	height: 20px;
+	margin-left: 25px;
+	text-align: right;
+	cursor: pointer;
+	&:hover{
+		color: #015e8a;
+	}
+    @include bp(sm){
+    	margin: 0 auto;
+    }
+}
+
+.main-cart__pic-wrapper{
+	padding: 10px;
+	text-align: center;
+	width: 20%;
+    @include bp(xs){
+    	padding: 5px;
+    }
+}
+
+.main-cart__pic{
+	max-width: 100%;
+	display: block;
+	margin: 0 auto;
+}
+
+.main-cart__order-info{
+	width: 55%;
+	padding: 15px;
+    @include bp(sm){
+    	width: 70%;
+    }
+    @include bp(xs){
+    	padding: 10px 5px;
+    }
+}
+
+.main-cart__order-type{
+	font-family: $light-font;
+	font-size: 16px;
+	display: block;
+	margin-bottom: 24px;
+    @include bp(xs){
+    	font-size: 12px;
+    	margin-bottom: 10px;
+    }
+}
+
+.main-cart__order-name{
+	font-size: 18px;
+    @include bp(xs){
+    	font-size: 14px;
+    }
+}
+
+.main-cart__order-buy{
+	width: 25%;
+	padding: 15px 75px 15px 5px;
+    @include bp(md){
+    	padding: 15px 30px 15px 5px;
+    }
+    @include bp(sm){
+    	padding: 15px;
+    	width: 100%;
+    	display: flex;
+    	justify-content: space-around;
+    }
+    @include bp(xs){
+    	padding: 10px 5px;
+    }
+}
+
+.main-cart__order-vol{
+	display: block;
+	margin-bottom: 24px;
+	width: 125px;
+	text-align: center;
+    @include bp(sm){
+    	margin-bottom: 0px;
+    }
+	.volume-slider{
+		color: #cfcfcf;
+		.arrow-left{
+			&:before{
+				display: block;
+				line-height: 15px;
+			}
+		}
+		.arrow-right{
+			&:before{
+				display: block;
+				line-height: 14px;
+			}
+		}
+	}
+}
+
+.main-cart__order-price{
+	display: flex;
+}
+
+.main-cart__order-usd{
+	font-size: 16px;
+	margin-right: 15px;
+}
+
+.main-cart__order-uah{
+	font-size: 18px;
+	font-family: $bold-font;
+}
+
+.empty-cart{
+	display: none;
+	flex-wrap: wrap;
+    width: 300px;
+    font-size: 30px;
+    color: #cccccc;
+    margin: 40px auto;
+    justify-content: center;
+}
+
+.main-cart__total{
+	padding: 15px 75px 15px 25px;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	background-color: #eee;
+    @include bp(md){
+    	padding: 15px 30px 15px 25px;
+    }
+    @include bp(sm){
+    	padding: 15px;
+    	display: block;
+    	text-align: center;
+    }
+}
+
+.main-cart__total-text{
+	display: block;
+	font-size: 20px;
+	font-family: $light-font;
+	margin-bottom: 12px;
+    @include bp(xs){
+    	font-size: 18px;
+    	margin-bottom: 8px;
+    }
+}
+
+.main-cart__total-price{
+	display: flex;
+    @include bp(sm){
+    	display: block;
+    }
+}
+
+.main-cart__total-usd{
+	font-size: 20px;
+	line-height: 30px;
+	margin-right: 15px;
+    @include bp(xs){
+    	font-size: 18px;
+    }
+}
+
+.main-cart__total-uah{
+	font-size: 30px;
+	line-height: 30px;
+	font-family: $bold-font;
+    @include bp(xs){
+    	font-size: 24px;
+    }
+}
+
+.order-btn{
+	display: block;
+	width: 220px;
+	height: 48px;
+	line-height: 48px;
+	border: none;
+	font-size: 16px;
+	text-align: center;
+	font-family: $default-font;
+	text-transform: uppercase;
+	background-color: #347ea1;
+	color: #fff;
+	box-shadow: 0px 3px 20px 4px rgba(0, 0, 0, 0.25);
+	transition: .2s linear;
+	&:hover{
+		text-decoration: none;
+		color: #fff;
+		background-color: #70a4bc;
+	}
+    @include bp(sm){
+    	margin: 20px auto 0;
+    }
+    @include bp(xs){
+		height: 40px;
+		line-height: 40px;
+		margin-top: 10px;
+    }
+}

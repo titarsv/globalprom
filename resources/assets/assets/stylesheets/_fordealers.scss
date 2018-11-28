@@ -1,0 +1,105 @@
+.fordealers-subtitle {
+	font-size: 24px;
+	font-family: $semibold-font;
+	padding: 60px 0;
+	text-align: center;
+}
+.fordealersList {
+	li {
+		position: relative;
+		font-size: 14px;
+		line-height: 30px;
+		padding-left: 20px;
+		&:before {
+			content: '';
+		    position: absolute;
+			left: 0;
+			top: 12px;
+			display: inline-block;
+			width: 8px;
+			height: 8px;
+			background: $yellow;
+			border-radius: 50%;
+		}
+	}
+}
+.fordealers-wrapper {
+	padding: 60px 0;
+
+	.item-btn {
+		position: relative;
+		display: inline-block;
+		width: auto;
+		padding: 0 30px;
+		z-index: 10;
+	}
+	&.fordealers-wrapper--bordered {
+		border-bottom: solid 1px $grey;
+	}
+}
+.forleaders-action {
+	position: relative;
+	text-align: center;
+	background: #fff;
+	z-index: 0;
+	&:after {
+		content: '';
+		display: block;
+		position: absolute;
+		top: 40px;
+		height: 1px;
+		width: 100%;
+		background: $grey;
+	}
+}
+.payment-descr {
+	text-align: center;
+}
+.fordealers-content {
+	margin-bottom: 60px;
+}
+.fordealers-contacts-img {
+	width: 20%;
+	float: left;
+	margin-right: 60px;
+	text-align: center;
+	font-family: $semibold-font;
+	font-size: 18px;
+	@media screen and (max-width: 767px) {
+		width: 100%;
+	}
+	img {
+		margin-bottom: 15px;
+	}
+}
+.fordealers-contacts-text {
+	@media screen and (max-width: 767px) {
+		text-align: center;
+	}
+	.fordealers-contacts-title {
+		font-family: $semibold-font;
+		font-size: 18px;
+		margin-bottom: 20px;	
+	}
+	a {
+		display: block;
+		color: #7a7a7a;
+		font-size: 14px;
+		line-height: 24px;
+	}
+}
+.fordealers-email {
+	text-align: center;
+	font-size: 14px;
+	line-height: 24px;
+	font-family: $bold-font;
+	margin-bottom: 20px;
+	span {
+		color: #7a7a7a;
+	}
+	a {
+		color: $blue;
+		display: block;
+		margin-bottom: 20px;
+	}
+}

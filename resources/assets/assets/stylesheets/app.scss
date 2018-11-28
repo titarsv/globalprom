@@ -1,0 +1,95 @@
+body{
+  opacity: 1 !important;
+}
+
+@import 'variables';
+@import 'vendor';
+@import 'fonts';
+@import 'mixin';
+
+// главная
+@import 'section-3';
+@import 'section-4';
+@import 'section-5';
+@import 'section-6';
+@import 'section-7';
+@import 'section-8';
+@import 'section-9';
+
+// счетчики
+@import 'odometer';
+
+// каталог
+@import 'catalog';
+
+// карточка товара
+@import 'product';
+
+// доставка
+@import 'delivery';
+
+// услуги
+@import 'services';
+
+// контакты
+@import 'contacts';
+
+// FAQ
+@import 'faq';
+
+// новости
+@import 'news-item';
+
+// клиенты
+@import 'clients';
+
+// поставщики
+@import 'suppliers';
+
+// отгрузки
+@import 'shipments';
+
+// отзывы
+@import 'testimonials';
+
+// заказ
+@import 'order';
+
+// Попапы
+@import 'popup';
+
+// Подвал
+@import 'footer';
+
+// о нас
+@import 'about';
+
+// статьи
+@import 'articles';
+@import 'blog';
+@import 'policy';
+
+// список преимуществ
+@import 'benefits';
+
+// для дилеров
+@import 'fordealers';
+
+// гарантии
+@import 'guarantee';
+
+// блок подписки
+@import 'subscribe';
+
+// табы
+@import 'tabs';
+
+// вакансии
+@import 'vacancies';
+
+// авторизация/регистрация
+@import 'login';
+
+// 404
+@import '404';
+@import 'user';

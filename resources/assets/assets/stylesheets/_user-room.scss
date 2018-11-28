@@ -1,0 +1,406 @@
+.page-title{
+	clear: both;
+	display: block;
+	font-size: 34px;
+	color: #2b2b2b;
+	font-family: $light-font;
+	padding-top: 15px;
+}
+
+.user-room{
+	padding: 20px 0;
+}
+
+.user-room__tabs{
+	border-bottom: 2px solid #eee;
+}
+
+.user-room__tabs-list{
+	margin-top: 20px;
+}
+
+.user-room__tabs-item{
+	height: 65px;
+	line-height: 70px;
+	font-size: 16px;
+	font-family: $light-font;
+	text-align: center;
+	width: 175px;
+	float: left;
+	cursor: pointer;
+	@include bp(sm){
+		width: 50%;
+		height: 45px;
+		line-height: 50px;
+	}
+	&.active{
+		background-color: #eee;
+	}
+}
+
+.user-room__tabs-content{
+	display: none;
+	padding-top: 20px;
+	&.active{
+		display: block;
+	}
+}
+
+.user-room__form-row{
+	margin-bottom: 30px;
+	@include bp(sm){
+		margin-bottom: 5px;
+	}
+	.col-xs-6{
+		@include bp(xs){
+			width: 100%;
+		}
+	}
+}
+
+.user-room__label{
+	height: 50px;
+	line-height: 50px;
+	font-size: 16px;
+	font-family: $light-font;
+	width: 25%;
+	@include bp(lg){
+		width: 24%;
+	}
+	@include bp(md){
+		width: 100%;
+		height: auto;
+		line-height: 1;
+	}
+}
+
+.user-room__input{
+	height: 50px;
+	line-height: 50px;
+	font-size: 16px;
+	font-family: $light-font;
+	text-align: center;
+	width: 74%;
+	border: 1px solid #347ea1;
+	@include bp(md){
+		width: 100%;
+	}
+	@include bp(sm){
+		margin-bottom: 10px;
+	}
+	&:disabled{
+		border-color: #e0e0e0;
+		background-color: #fff;
+	}
+}
+
+.user-room__select-title{
+	height: 28px;
+	line-height: 28px;
+	font-size: 16px;
+	font-family: $light-font;	
+	@include bp(sm){
+		font-size: 15px;
+		line-height: 40px;
+	}
+}
+
+.user-room__select{
+	margin-left: 10px;
+	height: 28px;
+	line-height: 28px;
+	font-size: 16px;
+	font-family: $light-font;
+	text-align: center;
+	border: 1px solid #347ea1;
+	@include bp(sm){
+		margin: 5px 0 5px 5px;
+	}
+	&:disabled{
+		border-color: #fff;
+		background-color: #fff;
+		color: #015e8a;
+		font-family: $bold-font;
+		appearance: none;
+		-webkit-appearance: none;
+	}
+}
+
+.change-data__btn{
+	float: right;
+	width: 266px;
+	height: 50px;
+	line-height: 50px;
+	font-size: 16px;
+	font-family: $light-font;
+	text-align: center;
+	color: #015e8a;
+	cursor: pointer;
+	border: 1px dotted #015e8a;
+	text-transform: uppercase;
+	transition: .2s linear;
+	@include bp(sm){
+		width: 235px;
+		height: 40px;
+		line-height: 40px;
+		font-size: 14px;		
+	}
+	@include bp(xs){
+		width: 100%;
+		float: none;
+		margin: 20px auto 0;
+		display: block;		
+	}
+	&:hover{
+		border: 1px solid #015e8a;
+		background-color: #015e8a;
+		color: #fff;
+	}
+}
+
+.user-room__order-history-items{
+	display: flex;
+	align-items: center;
+	margin-bottom: 20px;
+	color: #2b2b2b;
+}
+
+.user-room__del-order{
+	font-size: 70px;
+	line-height: 36px;
+	font-family: $light-font;
+	color: #bfbfbf;
+	width: 80px;
+	padding: 15px;
+	cursor: pointer;
+	@include bp(md){
+		width: 46px;
+		text-align: center;
+		font-size: 55px;
+		line-height: 28px;
+		padding: 0;
+	}
+	&:hover{
+		color: #015e8a;
+	}
+}
+
+.user-room__order-history-wrapper{
+	display: flex;
+	align-items: center;
+	border: 1px solid #eee;
+	align-content: stretch;
+	width: 100%;
+	justify-content: flex-end;
+	@include bp(md){
+		width: 92%;
+	}
+	@include bp(sm){
+		width: 87%;
+		flex-wrap: wrap;
+	}
+	@include bp(xs){
+		width: 80%;
+	}
+}
+
+.user-room__order-history-list{
+	width: 76%;
+	@include bp(sm){
+		width: 100%;
+	}
+}
+
+.user-room__order-history-item{
+	display: flex;
+	align-items: center;	
+	@include bp(sm){
+		flex-wrap: wrap;
+		border-top: 1px solid #eee
+	}
+	&:first-child{
+		@include bp(sm){
+			border-top: none;
+		}
+	}
+}
+
+.user-room__order-history-pic__wrapper{
+	padding: 15px;
+	text-align: center;
+	width: 20%;
+	@include bp(sm){
+		width: 30%;
+	}
+	@include bp(xs){
+		padding: 5px;
+	}
+}
+
+.user-room__order-history-pic{
+	max-width: 100%;
+	display: block;
+	margin: 0 auto;
+}
+
+.user-room__order-history-info{
+	width: 55%;
+	padding: 15px;
+	@include bp(md){
+		width: 50%;
+	}
+	@include bp(sm){
+		width: 70%;
+	}
+	@include bp(xs){
+		padding: 10px;
+	}
+}
+
+.user-room__order-history-type{
+	font-family: $light-font;
+	font-size: 16px;
+	display: block;
+	margin-bottom: 24px;
+	@include bp(md){
+		margin-bottom: 15px;
+	}
+}
+
+.user-room__order-history-name{
+	font-size: 18px;
+	@include bp(md){
+		font-size: 16px;
+	}
+}
+
+.user-room__order-history-buy{
+	width: 25%;
+	padding: 15px;
+	@include bp(md){
+		width: 30%;
+	}
+	@include bp(sm){
+		width: 100%;
+		display: flex;
+    	justify-content: space-around;
+	}
+	@include bp(xs){
+		padding: 10px;
+	}
+}
+
+.user-room__order-history-vol{
+	color: #cfcfcf;
+	font-size: 18px;
+	display: block;
+	margin-bottom: 24px;
+	@include bp(md){
+		margin-bottom: 15px;
+	}
+}
+
+.user-room__order-history-price{
+	display: flex;
+}
+
+.user-room__order-history-usd{
+	font-size: 16px;
+	margin-right: 15px;
+	@include bp(md){
+		font-size: 14px;
+		line-height: 16px;
+	}
+}
+
+.user-room__order-history-uah{
+	font-size: 18px;
+	font-family: $bold-font;
+	@include bp(md){
+		font-size: 16px;
+		line-height: 16px;
+	}
+}
+
+.user-room__order-history-totals{
+	background-color: #eee;
+	align-self: stretch;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	padding: 25px;
+	width: 24%;
+	@include bp(lg){
+		padding: 15px;
+	}
+	@include bp(sm){
+		width: 100%;
+		text-align: right;
+	}
+	@include bp(xs){
+		padding: 10px;
+	}
+}
+
+.user-room__order-history-totals__title{
+	font-family: $light-font;
+	font-size: 20px;
+	display: block;
+	margin-bottom: 15px;
+	@include bp(md){
+		font-size: 16px;
+		margin-bottom: 10px;
+	}
+}
+
+.user-room__order-history-totals__price{
+	@include bp(md){
+		display: flex;
+		justify-content: space-between;
+	}
+	@include bp(sm){
+		justify-content: flex-end;
+	}
+}
+
+.user-room__order-history-totals__usd{
+	font-size: 20px;
+	margin-right: 15px;
+	@include bp(md){
+		font-size: 17px;
+		line-height: 20px;
+		margin-right: 10px;
+	}
+}
+
+.user-room__order-history-totals__uah{
+	font-size: 30px;
+	font-family: $bold-font;
+	@include bp(lg){
+		font-size: 25px;
+	}
+	@include bp(md){
+		font-size: 20px;
+		line-height: 20px;
+	}
+}
+
+.user-room__order-history__empty{
+	display: none;
+	justify-content: center;
+    align-items: center;
+    min-height: calc(100vh - 533px);
+    font-size: 40px;
+    color: #eee;
+    @include bp(xl){
+    	min-height: calc(100vh - 559px);
+    }
+    @include bp(sm){
+    	min-height: calc(100vh - 655px);
+    	font-size: 30px;
+    }
+    @include bp(xs){
+    	min-height: 300px;
+    	font-size: 23px;
+    }
+}

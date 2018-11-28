@@ -1,0 +1,77 @@
+@import 'variables';
+@import 'vendor';
+@import 'fonts';
+@import 'mixin';
+
+html, body{
+  min-width: 320px;
+  overflow-x: hidden;
+}
+
+body{
+	font-size: 16px;
+	min-width: 320px;
+	position: relative;
+	line-height: 1;
+	font-family: $default-font;
+	opacity: 1;	
+	background-color: #fff;
+	color: #000;
+	display: flex;
+	flex-direction: column;
+	min-height: 100vh;
+}
+
+section{
+	overflow: hidden;
+	width: 100%;
+}
+
+ul, li{
+	list-style-type: none;
+	padding: 0;
+	margin: 0;
+}
+
+h1, h2, h3, h4{
+	margin: 0;
+}
+
+a{
+	color: #373737;
+	&:hover, &:focus{
+		color: #373737;
+	}
+}
+
+*{
+	outline: none !important;
+	&:focus{
+		outline: none !important;
+	}
+}
+
+::placeholder{
+	font-size: 11px;
+	color: #696969;
+	font-family: $semibold-font;
+	text-transform: uppercase;
+}
+
+img {
+  max-width: 100%;
+}
+
+main{
+  min-height: calc(100vh - 579px);
+}
+
+// основные элементы сайта
+@import 'global';
+
+// Шапка
+@import 'header';
+
+// главная
+@import 'section-1';
+@import 'section-2';

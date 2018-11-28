@@ -1,0 +1,48 @@
+.section-4{
+	padding-bottom: 15px;
+}
+
+.counters{
+	padding-top: 55px;
+}
+
+.counter-wrapper{
+	text-align: center;
+	@include bp(sm){
+		margin-top: 15px;
+	}
+}
+
+.counter-title{
+	font-size: 14px;
+	font-family: $semibold-font;
+	display: block;
+	margin-bottom: 15px;
+	@include bp(md){
+		font-size: 13px;
+	}
+}
+
+.counter-footnote{
+	margin-top: 15px;
+	font-size: 11px;
+	display: flex;
+	justify-content: center;
+	text-align: center;
+	font-family: $bold-font;
+	@include bp(lg){
+		margin-top: 7px;
+	}
+	@include bp(sm){
+		margin: 5px auto 10px;
+		width: 200px;
+	}
+	span{
+		color: $blue;
+		width: 74px;
+		margin: 0 2px;
+		&:first-child{
+			color: #4e4e4e;
+		}
+	}
+}

@@ -1,0 +1,585 @@
+.contacts-nav{
+    padding: 55px 0 50px;
+}
+
+.contacts-tabs{
+    display: flex;
+    justify-content: center;
+    @include bp(xs){
+        justify-content: space-evenly;
+    }
+}
+
+.contacts-tabs__item{
+    padding: 0 45px;
+    text-align: center;
+    cursor: pointer;
+    @include bp(xs){
+        padding: 0
+    }
+    &.active{
+        .contacts-tabs__icon{
+            &.ukr{
+                background-position: 0 -88px;
+            }
+            &.ge{
+                background-position: 0 -60px;
+            }
+        }
+    }
+}
+
+.contacts-tabs__icon-wrapper{
+    height: 88px;
+}
+
+.contacts-tabs__icon{
+    display: block;
+    &.ukr{
+        width: 131px;
+        height: 88px;
+        background: url(../images/contacts/ukr.png) no-repeat;
+    }
+    &.ge{
+        width: 107px;
+        height: 60px;
+        background: url(../images/contacts/ge.png) no-repeat;
+    }
+}
+
+.contacts-tabs__txt{
+    font-size: 18px;
+    display: block;
+    font-family: $semibold-font;
+    color: #363636;
+    margin-top: 4px;
+}
+
+.contacts-wrapper{
+    background-color: #f7fafb;
+    padding: 50px 0 70px;
+    display: none;
+    .container{
+        @include bp(xs){
+            padding: 0;
+        }
+    }
+    &.active{
+        display: block;
+    }
+}
+
+.ukr-map__title{
+    font-size: 18px;
+    display: block;
+    font-family: $semibold-font;
+    color: #363636;
+}
+
+#mapdiv {
+    background: center url(../images/contacts/map.png) no-repeat;
+    background-size: contain;
+    position: relative;
+    width: 650px;
+    transform: scale(.86) translateX(-8%);
+    @include bp(lg){
+	    transform: scale(.72) translateX(-21%);	
+    }
+    @include bp(md){
+	    transform: translateX(-50%);
+	    left: 50%; 
+	    top: auto;
+	    margin-top: 55px;
+        margin-bottom: -100px;
+    }
+    @include bp(sm){
+	    transform: scale(0.72) translateX(-70%);
+	    top: -20px;
+	    margin-top: 0;
+        margin-bottom: -180px
+    }
+    @include bp(xs){
+	    transform: scale(0.48) translateX(-104%);
+    	top: -70px;
+        margin-bottom: -310px;
+    }
+}
+
+#map-cont{
+    height: 100%;
+    position: absolute;
+    width: 100%;
+    background-size: contain;
+}
+
+#Map{
+    height: 100%;
+    width: 100%;
+}
+
+.map-all{
+	width: 100%;
+}
+
+#mapdiv{
+    .map-1{
+    	background: center url(../images/maps/map-1.png) no-repeat;
+    	background-size: contain;
+    }
+    .map-2{
+    	background: center url(../images/maps/map-2.png) no-repeat;
+    	background-size: contain;
+    }
+    .map-3{
+    	background: center url(../images/maps/map-3.png) no-repeat;
+    	background-size: contain;
+    }
+    .map-4{
+    	background: center url(../images/maps/map-4.png) no-repeat;
+    	background-size: contain;
+    }
+    .map-5{
+    	background: center url(../images/maps/map-5.png) no-repeat;
+    	background-size: contain;
+    }
+    .map-6{
+    	background: center url(../images/maps/map-6.png) no-repeat;
+    	background-size: contain;
+    }
+    .map-7{
+    	background: center url(../images/maps/map-7.png) no-repeat;
+    	background-size: contain;
+    }
+    .map-8{
+    	background: center url(../images/maps/map-8.png) no-repeat;
+    	background-size: contain;
+    }
+    .map-9{
+    	background: center url(../images/maps/map-9.png) no-repeat;
+    	background-size: contain;
+    }
+    .map-10{
+    	background: center url(../images/maps/map-10.png) no-repeat;
+    	background-size: contain;
+    }
+    .map-11{
+    	background: center url(../images/maps/map-11.png) no-repeat;
+    	background-size: contain;
+    }
+    .map-12{
+    	background: center url(../images/maps/map-12.png) no-repeat;
+    	background-size: contain;
+    }
+    .map-13{
+    	background: center url(../images/maps/map-13.png) no-repeat;
+    	background-size: contain;
+    }
+    .map-14{
+    	background: center url(../images/maps/map-14.png) no-repeat;
+    	background-size: contain;
+    }
+    .map-15{
+    	background: center url(../images/maps/map-15.png) no-repeat;
+    	background-size: contain;
+    }
+    .map-16{
+    	background: center url(../images/maps/map-16.png) no-repeat;
+    	background-size: contain;
+    }
+    .map-17{
+    	background: center url(../images/maps/map-17.png) no-repeat;
+    	background-size: contain;
+    }
+    .map-18{
+    	background: center url(../images/maps/map-18.png) no-repeat;
+    	background-size: contain;
+    }
+    .map-19{
+    	background: center url(../images/maps/map-19.png) no-repeat;
+    	background-size: contain;
+    }
+    .map-20{
+    	background: center url(../images/maps/map-20.png) no-repeat;
+    	background-size: contain;
+    }
+    .map-21{
+    	background: center url(../images/maps/map-21.png) no-repeat;
+    	background-size: contain;
+    }
+    .map-22{
+    	background: center url(../images/maps/map-22.png) no-repeat;
+    	background-size: contain;
+    }
+    .map-23{
+    	background: center url(../images/maps/map-23.png) no-repeat;
+    	background-size: contain;
+    }
+    .map-24{
+    	background: center url(../images/maps/map-24.png) no-repeat;
+    	background-size: contain;
+    }
+    .map-25{
+    	background: center url(../images/maps/map-25.png) no-repeat;
+    	background-size: contain;
+    }
+}
+
+.ukr-map__line{
+    display: block;
+    margin-top: 150px;
+    width: 100%;
+    height: 1px;
+    background-color: $blue;
+}
+
+#filia{
+	width: 100%;
+	position: relative;
+	padding: 30px 65px;
+	top: -50px;
+	border: 1px solid #c4c5c5;
+	line-height: 2;
+	font-size: 18px;
+	font-family: $light-font;
+    @include bp(lg){
+	    top: -75px;    
+	    padding: 20px 40px;
+	    line-height: 1.5;	
+    }
+    @include bp(md){
+	    line-height: 1.2;
+	    font-size: 16px;
+	    top: auto;
+	    margin-top: 15px;
+    }
+    @include bp(xs){
+	    font-size: 14px;
+    }
+    @include bp(sm){
+	    top: -40px;
+	    margin-top: 0;
+    }
+    @include bp(xs){
+	    top: -140px;
+	    padding: 15px;
+    }
+}
+
+.address-info{
+    display: none;
+    @include bp(md){
+        padding-top: 30px;
+    }
+    &.active{
+        display: block;
+    }
+}
+
+.address-info__subtitle{
+    display: flex;
+    align-items: flex-end;
+    margin-bottom: 15px;
+}
+
+.address-info__sub-icon{
+    display: block;
+    width: 35px;
+    height: 24px;
+    &.ai1{
+        background: url(../images/contacts/blue-pointer.png) no-repeat;
+    }
+    &.ai2{
+        background: url(../images/contacts/cell.png) no-repeat;
+    }
+    &.ai3{
+        background: url(../images/contacts/letter.png) no-repeat;
+    }
+}
+
+.address-info__sub-text{
+    font-size: 18px;
+    display: block;
+    font-family: $semibold-font;
+    color: #363636;
+}
+
+.address-info__main-addr{
+    font-size: 14px;
+    color: #7a7a7a;
+    line-height: 20px;
+    margin-bottom: 15px;
+}
+
+.address-info__phones{
+    font-size: 14px;
+    color: #7a7a7a;
+    line-height: 20px;
+    margin-bottom: 15px;
+}
+
+.address-info__descr{
+    font-size: 12px;
+    line-height: 16px;
+    color: #7a7a7a;
+}
+
+.contact-form{
+    @include bp(sm){
+        width: 450px;
+        margin: 0 auto;
+    }
+    @include bp(xs){
+        width: 100%;
+    }
+}
+
+.contact-form__wrapper{
+    @include bp(md){
+        padding-top: 30px;
+    }
+}
+
+.contact-form__title{
+    font-size: 18px;
+    display: block;
+    font-family: $semibold-font;
+    color: #363636;
+    margin-bottom: 15px;
+}
+
+.contact-form__subtitle{
+    font-size: 14px;
+    color: #7a7a7a;
+    display: block;
+    position: relative;
+    margin-bottom: 30px;
+    &:after{
+        content: '';
+        width: 100%;
+        height: 1px;
+        background-color: $grey;
+        left: 0;
+        right: 0;
+        top: 7px;
+        position: absolute;
+        z-index: 0;
+    }
+    span{
+        position: relative;
+        display: inline-block;
+        background-color: #f7fafb;
+        padding-right: 50px;
+        z-index: 1;
+        @include bp(xs){
+            padding-right: 25px;
+        }
+    }
+}
+
+.contact-form__composition{
+    margin-bottom: 15px;
+    display: flex;
+    justify-content: space-between;
+    height: auto;
+    @include bp(sm){
+        margin-bottom: 0;
+        flex-direction: column;
+    }
+}
+
+.contact-form__input{
+    width: 32%;
+    height: 44px;
+    line-height: 42px;
+    border-radius: 25px;
+    border: 1px solid $grey;
+    background-color: #fff;
+    padding: 0 30px;
+    font-size: 11px;
+    text-transform: uppercase;
+    font-family: $semibold-font;
+    @include bp(sm){
+        width: 100%;
+        margin-bottom: 10px;
+    }
+}
+
+.contact-form__textarea{
+    height: 120px;
+    width: 66%;
+    border-radius: 25px;
+    border: 1px solid $grey;
+    background-color: #fff;
+    padding: 20px 30px;
+    font-size: 11px;
+    text-transform: uppercase;
+    font-family: $semibold-font;
+    resize: none;
+    @include bp(sm){
+        width: 100%;
+        margin-bottom: 10px;
+    }
+}
+
+.contact-form__btn-wrapper{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 32%;
+    @include bp(sm){
+        width: 100%;
+    }
+}
+
+.contact-form__checkbox-wrapper{
+    width: 275px;
+    margin: 0 auto;
+    padding-top: 5px;
+    @include bp(md){
+        width: 100%;
+    }
+    @include bp(sm){
+       padding-top: 0;
+    }
+}
+
+.contact-form__checkbox{
+    display: none;
+    + label{
+        display: block;
+        line-height: 17px;
+        cursor: pointer;
+        position: relative;
+        padding-left: 26px;
+        color: #7a7a7a;
+        font-size: 12px;
+        line-height: 18px;
+        @include bp(sm){
+            margin-bottom: 10px;
+        }
+        &:after{
+            position: absolute;
+            content: '';
+            width: 17px;
+            height: 17px;
+            left: 0;
+            top: 2px;
+            background: url(../images/contacts/agree-chk.png) no-repeat;
+        }
+        &:hover{
+            &:after{
+                opacity: 0.8;
+            }
+        }
+    }
+    &:checked + label{
+         &:after{
+            background-position: 0 -17px;
+         }
+    }
+}
+
+.contact-form__btn{
+    width: 100%;
+    display: block;
+    height: 44px;
+    line-height: 44px;
+    text-align: center;
+    background: $yellow-gradient;
+    border: none;
+    border-radius: 25px;
+    font-size: 11px;
+    font-family: $bold-font;
+    text-transform: uppercase;
+    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.1);
+    @include bp(xs){
+        width: 100%;
+    }
+    &:hover{
+        background: $green-gradient;
+        color: #fff;
+        text-decoration: none;
+    }
+}
+
+.map-wrapper{
+    padding-top: 80px;
+    @include bp(xs){
+        padding-top: 40px;
+    }
+}
+
+.map{
+    margin-top: 60px;
+    height: 400px;
+    width: 100%;
+    display: none;
+    &.active{
+      display: block;
+    }
+    @include bp(xs){
+        margin-top: 30px;
+    }
+}
+
+.map-dialog{    
+    > div{
+        >div + div{
+            background-color: #fff !important;
+            border-radius: 10px !important;
+        }
+        > div{
+            > div{
+                > div{
+                    box-shadow: none !important;
+                }
+            }
+        }
+    }
+}
+
+.gm-style-iw + div{
+    display: none !important;
+}
+
+.map-dialog__inner{
+    padding: 10px 0 10px 10px;
+}
+
+.map-dialog__txt{
+    font-size: 11px;
+    line-height: 15px;
+    display: block;
+    color: #696969;
+    font-family: $bold-font;
+}
+.svg-container{
+  width: 100%;
+  overflow: hidden;
+  max-width: 1200px;
+  margin: 25px auto 0;
+}
+.svg-container svg{
+  overflow: hidden;
+  position: relative;
+}
+.block-1-ukraine .svg-container svg{
+  transform: translateX(3%) scale(1.2);
+}
+svg path{
+  cursor: pointer;
+}
+svg g text, svg g use{
+  opacity: 0;
+  cursor: pointer;
+  font-family: Roboto Condensed,sans-serif;
+}
+svg path:hover{
+  fill: #ffc230;
+}
+svg g:hover path, svg g.active path{
+  fill: #ffc230;
+}
+svg g:hover text, svg g:hover use, svg g.active text, svg g.active use{
+  opacity: 1;
+}

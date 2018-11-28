@@ -1,0 +1,144 @@
+.testimonials-page__wrapper{
+	padding: 50px 0 70px;
+	text-align: center;
+	border-bottom: 1px solid $grey;
+	.container{
+		@include bp(xs){
+			padding: 0;
+		}
+	}
+}
+
+.testimonials-block{
+	display: flex;
+	margin-top: 35px;
+}
+
+.testimonials-pic{
+	min-width: 285px;
+	margin-right: 65px;
+	@include bp(md){
+		display: none;
+	}
+}
+
+.testimonials-wrapper{
+	height: 535px;
+	width: 100%;
+	border: 1px solid $grey;
+	border-radius: 10px;
+	background-color: #fbfbfb;
+	text-align: left;
+	padding: 15px 0 0 30px;
+	position: relative;
+	overflow: hidden;
+	@include bp(xs){
+		padding-left: 10px;
+	}
+	&:after{
+		position: absolute;
+		content: '';
+		width: 100%;
+		height: 60px;
+		background: linear-gradient(to bottom, rgba(255,255,255,0) 0%,rgba(255,255,255,1) 100%);
+		bottom: 0;
+		left: 0;
+	}
+}
+
+.testimonials-list__wrapper{
+	height: 518px;
+	overflow: auto;
+	padding-right: 15px;
+	padding-bottom: 15px;
+	@include bp(xs){
+		padding-right: 5px;
+	}
+}
+
+.testimonials-list{
+	padding-right: 15px;
+	@include bp(xs){
+		padding-right: 5px;
+	}
+}
+
+.testimonials-item{
+	width: 100%;
+	border-radius: 10px;
+	border: 1px solid $grey;
+	background-color: #fff;
+	padding: 35px 30px 15px;
+	margin-bottom: 12px;
+	box-shadow: 0px 4px 10px rgba(14, 15, 17, 0.05);
+	@include bp(xs){
+		padding: 15px;
+	}
+}
+
+.testimonials-item__header{
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	align-items: baseline;
+	line-height: 25px;
+}
+
+.testimonials-item__name{
+	font-family: $bold-font;
+	font-size: 18px;
+	color: #363636;
+	padding-right: 15px;
+	text-overflow: ellipsis;
+    overflow: hidden;
+	@include bp(xs){
+		font-size: 16px;
+	}
+}
+
+.testimonials-item__rating{
+	font-family: $bold-font;
+	font-size: 14px;
+	color: #363636;
+	@include bp(xs){
+		font-size: 12px;
+	}
+	span{
+		font-family: $default-font;
+		color: #7a7a7a;
+	}
+}
+
+.testimonials-item__txt{
+	margin-top: 10px;
+	font-size: 14px;
+	line-height: 22px;
+	color: #7a7a7a;
+	@include bp(xs){
+		line-height: 18px;
+	}
+}
+
+.testimonials-item__footer{
+	display: block;
+	margin-top: 25px;
+	width: 100%;
+	text-align: right;
+	font-size: 12px;
+	color: #363636;
+	font-family: $semibold-font;
+}
+
+.nicescroll-rails{
+	width: 6px !important;
+	background-color: #eaeaea;
+}
+
+.nicescroll-cursors{
+	background-color: $blue !important;
+}
+
+.testimonials-motivation{
+	padding: 50px 0 0;
+	text-align: center;
+}
