@@ -84,7 +84,7 @@
                             <div class="row">
                                 <label class="col-sm-2 text-right">Описание товара</label>
                                 <div class="form-element col-sm-10">
-                                    <textarea name="description"
+                                    <textarea id="editor1" name="description"
                                               class="form-control editor"
                                               rows="6">{!! old('description') ? old('description') : '' !!}</textarea>
                                 </div>
@@ -94,7 +94,7 @@
                             <div class="row">
                                 <label class="col-sm-2 text-right">Опции</label>
                                 <div class="form-element col-sm-10">
-                                    <textarea name="options"
+                                    <textarea id="editor2" name="options"
                                               class="form-control editor"
                                               rows="6">{!! old('options') ? old('options') : '' !!}</textarea>
                                 </div>
@@ -105,7 +105,7 @@
                             <div class="row">
                                 <label class="col-sm-2 text-right">Размеры</label>
                                 <div class="form-element col-sm-10">
-                                    <textarea name="sizes"
+                                    <textarea id="editor3" name="sizes"
                                               class="form-control editor"
                                               rows="6">{!! old('sizes') ? old('sizes') : '' !!}</textarea>
                                 </div>
@@ -418,7 +418,10 @@
         };
     </script>
     <script>
-        CKEDITOR.replaceAll('editor', options);
+        // CKEDITOR.replaceAll('editor', options);
+        CKEDITOR.replace('editor1', options);
+        CKEDITOR.replace('editor2', options);
+        CKEDITOR.replace('editor3', options);
     </script>
 @endsection
 @section('before_footer')

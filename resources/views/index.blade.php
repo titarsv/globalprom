@@ -15,7 +15,8 @@
                     @foreach($slideshow as $slide)
                         <div class="main-slide">
                             <div class="col-sm-6 main-slider__pic-wrapper">
-                                <img class="main-slider__pic" data-lazy="/assets/images/{!! $slide->image->href !!}" alt="">
+                                {{--<img class="main-slider__pic" data-lazy="/assets/images/{!! $slide->image->href !!}" alt="">--}}
+                                {!! $slide->image->webp_image('banner', ['class' => 'main-slider__pic']) !!}
                             </div>
                             <div class="col-sm-6 main-slider__info">
                                 <div class="main-slider__info-inner">
@@ -374,7 +375,8 @@
                                 <div class="news-item">
                                     <div class="news-item__main-wrap">
                                         <div class="news-item__pic-wrap">
-                                            <img class="news-item__pic" src="{!! $article->image->url('blog_list') !!}" alt>
+                                            {!! $article->image->webp_image('product_list', ['alt' => $article->name]) !!}
+                                            {{--<img class="news-item__pic" src="{!! $article->image->url('blog_list') !!}" alt>--}}
                                         </div>
                                         <div class="news-item__text-wrap">
                                             <a href="{{env('APP_URL')}}/news/{!! $article->url_alias !!}" class="news-item__title">{!! $article->title !!}</a>
@@ -401,11 +403,12 @@
                                 <div class="news-item">
                                     <div class="news-item__main-wrap">
                                         <div class="news-item__pic-wrap">
-                                            <img class="news-item__pic" src="{{env('APP_URL')}}{!! $article['image'] !!}" alt>
+                                            {!! $article['image'] !!}
+                                            {{--<img class="news-item__pic" src="{{env('APP_URL')}}{!! $article['image'] !!}" alt>--}}
                                         </div>
                                         <div class="news-item__text-wrap">
                                             <a href="{{env('APP_URL')}}/blog/{!! $article['post_name'] !!}/" class="news-item__title">{!! $article['post_title'] !!}</a>
-                                            <div class="news-item__text">{!! $article['post_content'] !!}</div>
+                                            <div class="news-item__text">{!! strip_tags($article['post_content']) !!}</div>
                                         </div>
                                     </div>
                                     <div class="news-item__more-wrap">

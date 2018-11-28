@@ -44,10 +44,53 @@ class Blog extends Model
             ->get()
             ->toArray();
 
+        $img = new Image();
+
         foreach($articles as $i => $article){
             $image_id = DB::table('wp_postmeta')->where('post_id', $article['ID'])->where('meta_key', '_thumbnail_id')->pluck('meta_value')->first();
             if(!empty($image_id)){
-                $articles[$i]['image'] = '/blog/wp-content/uploads/'.DB::table('wp_postmeta')->where('post_id', $image_id)->where('meta_key', '_wp_attached_file')->pluck('meta_value')->first();
+                $image = public_path().'/blog/wp-content/uploads/'.DB::table('wp_postmeta')->where('post_id', $image_id)->where('meta_key', '_wp_attached_file')->pluck('meta_value')->first();
+                $extension = strtolower(pathinfo($image, PATHINFO_EXTENSION ));
+                $limg = str_replace('.'.$extension, '_larevel.'.$extension, $image);
+                $webp = str_replace('.'.$extension, '_larevel.webp', $image);
+                if(!is_file($limg)){
+                    $file = $img->imagecreatefromfile($image);
+                    $k1=160/imagesx($file);
+                    $k2=160/imagesy($file);
+                    $k=$k1<$k2?$k2:$k1;
+
+                    $w=intval(imagesx($file)*$k);
+                    $h=intval(imagesy($file)*$k);
+
+                    $im1=imagecreatetruecolor($w,$h);
+                    imagecopyresampled($im1,$file,0,0,0,0,$w,$h,imagesx($file),imagesy($file));
+
+                    if($extension == 'png'){
+                        imagepng($im1, $limg, 3);
+                    }elseif(in_array($extension, ['jpeg', 'jpg'])){
+                        imagejpeg($im1, $limg, 80);
+                    }elseif(in_array($extension, ['gif'])){
+                        imagegif($im1, $limg);
+                    }
+                    imagedestroy($file);
+                    imagedestroy($im1);
+                }
+                if(!is_file($webp)){
+                    $file = $img->imagecreatefromfile($limg);
+                    imagewebp($file, $webp);
+                    imagedestroy($file);
+                }
+                $mime = $extension;
+                if($mime == 'jpg'){
+                    $mime = 'jpeg';
+                }
+
+                $articles[$i]['image'] = view('public.layouts.webp_blog')
+                    ->with('original', str_replace(public_path(), '', $limg))
+                    ->with('original_mime', $mime)
+                    ->with('webp', str_replace(public_path(), '', $webp))
+                    ->with('attributes', ['alt' =>  $article['post_title']])
+                    ->render();
             }
         }
 

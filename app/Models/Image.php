@@ -185,8 +185,6 @@ class Image extends Model
 	    return view('public.layouts.webp')
 		    ->with('attributes', $attributes)
 		    ->render();
-
-	    return '<img src="/assets/images/gnWVZbGVIV.jpeg">';
     }
 
 	/**

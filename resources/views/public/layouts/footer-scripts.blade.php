@@ -14,10 +14,16 @@
 <script src="/app.js"></script>
 
 <script data-skip-moving="true">
-        (function(w,d,u){
+    var bitrix_loaded = false;
+    window.onscroll = function() {
+        if(!bitrix_loaded){
+            bitrix_loaded = true;
+            (function(w,d,u){
                 var s=d.createElement('script');s.async=1;s.src=u+'?'+(Date.now()/60000|0);
                 var h=d.getElementsByTagName('script')[0];h.parentNode.insertBefore(s,h);
-        })(window,document,'https://cdn.bitrix24.ua/b2989835/crm/site_button/loader_3_5u6ldr.js');
+            })(window,document,'https://cdn.bitrix24.ua/b2989835/crm/site_button/loader_3_5u6ldr.js');
+        }
+    }
 </script>
 
 <div class="mfp-hide exit-popup">
