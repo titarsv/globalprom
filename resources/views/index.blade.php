@@ -108,6 +108,16 @@
                 </div>
             </div>
         </section>
+        <section>
+            <div class="team">
+                <div class="team-img-wrp all-team">
+                    <p class="team-title">Наша команда</p>
+                    <img data-mfp-src="/assets/images/all-team.jpg" class="popup-btn" data-type="image" src="/images/all-team.jpg" alt=""/>
+                    <span class="img-title">Компания GlobalProm</span>
+                </div>
+            </div>
+            <a href="{{env('APP_URL')}}/page/o-nas" target="_blank" class="item-btn team-btn">Подробнее</a>
+        </section>
         <section class="section-4">
             <div class="section-title"><span>Цифры в реальном времени</span></div>
             <div class="container">
