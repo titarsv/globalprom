@@ -112,7 +112,7 @@
             <div class="team">
                 <div class="team-img-wrp all-team">
                     <p class="team-title">Наша команда</p>
-                    <img data-mfp-src="/assets/images/all-team.jpg" class="popup-btn" data-type="image" src="/images/all-team.jpg" alt=""/>
+                    <img data-mfp-src="/images/all-team.jpg" class="popup-btn" data-type="image" src="/images/all-team.jpg" alt=""/>
                     <span class="img-title">Компания GlobalProm</span>
                 </div>
             </div>

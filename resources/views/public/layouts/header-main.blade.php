@@ -5,14 +5,14 @@
                 @if(request()->route() && request()->route()->getName() == 'home')
                     <picture>
                         <source srcset="{{env('APP_URL')}}/images/webp/logo.webp" type="image/webp">
-                        <source srcset="{{env('APP_URL')}}/images/logo.jpg" type="image/image/jpeg">
+                        <source srcset="{{env('APP_URL')}}/images/logo.png" type="image/image/png">
                         <img class="header-logo" src="{{env('APP_URL')}}/images/logo.png" alt="Грузоподъёмное и промышленное оборудование" title="Грузоподъёмное и промышленное оборудование">
                     </picture>
                 @else
                     <a href="{{env('APP_URL')}}">
                         <picture>
                             <source srcset="{{env('APP_URL')}}/images/webp/logo.webp" type="image/webp">
-                            <source srcset="{{env('APP_URL')}}/images/logo.jpg" type="image/image/jpeg">
+                            <source srcset="{{env('APP_URL')}}/images/logo.png" type="image/image/png">
                             <img class="header-logo" src="{{env('APP_URL')}}/images/logo.png" alt="Грузоподъёмное и промышленное оборудование" title="Грузоподъёмное и промышленное оборудование">
                         </picture>
                     </a>
