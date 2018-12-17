@@ -243,7 +243,7 @@
                         </div>
                         <div class="form-group">
                             <div class="row">
-                                <label class="col-sm-2 text-right">Связанные товары</label>
+                                <label class="col-sm-2 text-right">Похожие товары</label>
                                 <div class="form-element col-sm-10">
                                     <select name="related[]" class="form-control chosen-select" multiple="multiple">
                                         @foreach($sets as $set)
