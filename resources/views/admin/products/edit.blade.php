@@ -261,6 +261,24 @@
                         </div>
                         <div class="form-group">
                             <div class="row">
+                                <label class="col-sm-2 text-right">Сопутствующие товары</label>
+                                <div class="form-element col-sm-10">
+                                    <select name="similar[]" class="form-control chosen-select" multiple="multiple">
+                                        @foreach($sets as $set)
+                                            <option value="{!! $set->id !!}"
+                                                    @if (in_array($set->id, (array)old('similar')))
+                                                    selected
+                                                    @elseif (in_array($set->id, $similar))
+                                                    selected
+                                                    @endif
+                                            >{!! $set->name !!}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="row">
                                 <label class="col-sm-2 text-right">Наличие товара</label>
                                 <div class="form-element col-sm-10">
                                     <select name="stock" class="form-control">

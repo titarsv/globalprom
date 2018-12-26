@@ -214,39 +214,6 @@ $(function() {
         autoplaySpeed: 5000
     });
 
-    // слайдер акции
-
-    $('.actions-slider').not('.slick-initialized').slick({
-        speed: 700,
-        slidesToShow: 4,
-        slidesToScroll: 1,
-        infinite: false,
-        arrows: true,
-        lazyLoad: 'ondemand',
-        nextArrow: '<div class="arrow-right"></div>',
-        prevArrow: '<div class="arrow-left"></div>',
-        responsive: [
-            {
-                breakpoint: 1200,
-                settings: {
-                    slidesToShow: 3
-                }
-            },
-            {
-                breakpoint: 768,
-                settings: {
-                    slidesToShow: 2
-                }
-            },
-            {
-                breakpoint: 480,
-                settings: {
-                    slidesToShow: 1
-                }
-            }
-        ]
-    });
-
     // слайдер доставка
     $('.delivery-slider').not('.slick-initialized').slick({
         speed: 700,
@@ -423,10 +390,73 @@ $(function() {
                     $(this)
                         .addClass('active').siblings().removeClass('active')
                         .closest('nav.product-tabs').find('div.product-tabs__content').removeClass('active').eq($(this).index()).addClass('active');
+                    setTimeout(function(){
+                        $('.product-tabs__content.active .actions-slider').not('.slick-initialized').slick({
+                            speed: 700,
+                            slidesToShow: 4,
+                            slidesToScroll: 1,
+                            infinite: false,
+                            arrows: true,
+                            lazyLoad: 'ondemand',
+                            nextArrow: '<div class="arrow-right"></div>',
+                            prevArrow: '<div class="arrow-left"></div>',
+                            responsive: [
+                                {
+                                    breakpoint: 1200,
+                                    settings: {
+                                        slidesToShow: 3
+                                    }
+                                },
+                                {
+                                    breakpoint: 768,
+                                    settings: {
+                                        slidesToShow: 2
+                                    }
+                                },
+                                {
+                                    breakpoint: 480,
+                                    settings: {
+                                        slidesToShow: 1
+                                    }
+                                }
+                            ]
+                        });
+                    }, 50);
                 }
             });
         });
     })(jQuery);
+
+    $('.section-2 .actions-slider').not('.slick-initialized').slick({
+        speed: 700,
+        slidesToShow: 4,
+        slidesToScroll: 1,
+        infinite: false,
+        arrows: true,
+        lazyLoad: 'ondemand',
+        nextArrow: '<div class="arrow-right"></div>',
+        prevArrow: '<div class="arrow-left"></div>',
+        responsive: [
+            {
+                breakpoint: 1200,
+                settings: {
+                    slidesToShow: 3
+                }
+            },
+            {
+                breakpoint: 768,
+                settings: {
+                    slidesToShow: 2
+                }
+            },
+            {
+                breakpoint: 480,
+                settings: {
+                    slidesToShow: 1
+                }
+            }
+        ]
+    });
 
     // табы вместе дешевле
 

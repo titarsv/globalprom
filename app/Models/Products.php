@@ -123,6 +123,12 @@ class Products extends Model
         return $this->belongsToMany('App\Models\Products', 'related_products', 'product_id', 'related_id');
     }
 
+    // Сопутствующие товары
+    public function similar()
+    {
+        return $this->belongsToMany('App\Models\Products', 'similar_products', 'product_id', 'similar_id');
+    }
+
     /**
      * Поиск товаров
      * @param string $text Поисковый текст

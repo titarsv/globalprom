@@ -192,12 +192,13 @@ class ProductsController extends Controller
             }
         }
 
-        $sets = Products::where('id', '<>', $id)->get();
+        $sets = Products::where('id', '<>', $id)->where('stock', 1)->get();
         $added_set = $product->set_products->pluck('id')->toArray();
 
         return view('admin.products.edit')
             ->with('product', $product)
             ->with('related', $product->related->pluck('id')->toArray())
+            ->with('similar', $product->similar->pluck('id')->toArray())
             ->with('categories', Categories::all())
             ->with('added_categories', $categories)
             ->with('sets', $sets)
@@ -294,6 +295,7 @@ class ProductsController extends Controller
 
         $product->set_products()->sync($request->sets);
         $product->related()->sync($request->related);
+        $product->similar()->sync($request->similar);
 
         $product->fill($product_table_fill);
 
@@ -560,6 +562,7 @@ class ProductsController extends Controller
             ->with('reviews', $product_reviews)
             ->with('product_attributes', $attributes)
             ->with('related', $product->related()->where('stock', 1)->get())
+            ->with('similar', $product->similar()->where('stock', 1)->get())
             ->with('variations_prices', $variations_prices)
             ->with('variations', $variations_attrs));
     }

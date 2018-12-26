@@ -292,7 +292,12 @@
                             {{--<li class="product-tabs__item"><span>Цены</span></li>--}}
                             {{--@endif--}}
                             <li class="product-tabs__item"><span>Отзывы</span></li>
-                            {{--<li class="product-tabs__item"><a href="#similar-products"><span>С этим товаром покупают</span></a></li>--}}
+                            @if($related->count())
+                            <li class="product-tabs__item"><span>Похожие товары</span></li>
+                            @endif
+                            @if($similar->count())
+                                <li class="product-tabs__item"><span>Сопутствующие товары</span></li>
+                            @endif
                         </ul>
                         @if(!empty($product->description))
                         <div class="product-tabs__content active">
@@ -436,6 +441,62 @@
                                 </form>
                             </div>
                         </div>
+                        @if($related->count())
+                        <div class="product-tabs__content">
+                            <div class="actions-slider">
+                            @foreach($related as $related_product)
+                                <div class="item col-sm-4">
+                                    <div class="item-inner action">
+                                        @if(!empty($related_product->action))
+                                            <span class="item-label">Акция <i>%</i></span>
+                                        @endif
+                                        <div class="item-pic__wrapper">
+                                            <a href="{{env('APP_URL')}}/product/{{ $related_product->url_alias }}"><img class="item-pic" src="{{ $related_product->image == null ? '/assets/images/no_image.jpg' : $related_product->image->url('product_list') }}" alt=""></a>
+                                        </div>
+                                        <div class="item-info__wrapper">
+                                            <a class="item-link" href="{{env('APP_URL')}}/product/{{ $related_product->url_alias }}">{{ $related_product->name }}</a>
+                                            @if(!empty($related_product->old_price))
+                                                <div class="item-price-old">{{ round($related_product->old_price, 2) }} грн</div>
+                                            @else
+                                                <div class="item-price-old" style="text-decoration: none;">&nbsp;</div>
+                                            @endif
+                                            <div class="item-price">{{ round($related_product->price, 2) }} грн</div>
+                                            <a class="item-btn" href="/product/{{ $related_product->url_alias }}">Подробнее</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            @endforeach
+                            </div>
+                        </div>
+                        @endif
+                        @if($similar->count())
+                            <div class="product-tabs__content">
+                                <div class="actions-slider">
+                                    @foreach($similar as $similar_product)
+                                        <div class="item col-sm-4">
+                                            <div class="item-inner action">
+                                                @if(!empty($similar_product->action))
+                                                    <span class="item-label">Акция <i>%</i></span>
+                                                @endif
+                                                <div class="item-pic__wrapper">
+                                                    <a href="{{env('APP_URL')}}/product/{{ $similar_product->url_alias }}"><img class="item-pic" src="{{ $similar_product->image == null ? '/assets/images/no_image.jpg' : $similar_product->image->url('product_list') }}" alt=""></a>
+                                                </div>
+                                                <div class="item-info__wrapper">
+                                                    <a class="item-link" href="{{env('APP_URL')}}/product/{{ $similar_product->url_alias }}">{{ $similar_product->name }}</a>
+                                                    @if(!empty($similar_product->old_price))
+                                                        <div class="item-price-old">{{ round($similar_product->old_price, 2) }} грн</div>
+                                                    @else
+                                                        <div class="item-price-old" style="text-decoration: none;">&nbsp;</div>
+                                                    @endif
+                                                    <div class="item-price">{{ round($similar_product->price, 2) }} грн</div>
+                                                    <a class="item-btn" href="/product/{{ $similar_product->url_alias }}">Подробнее</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    @endforeach
+                                </div>
+                            </div>
+                        @endif
                     </nav>
                 </div>
             </div>
@@ -497,39 +558,39 @@
             </div>
         </section>
         @endif
-        @if($related->count())
-        <section class="similar-items__wrapper" id="similar-products">
-            <div class="section-title"><span>Похожие товары</span></div>
-            <div class="container">
-                <div class="actions-slider">
-                    @forelse($related as $related_product)
-                        <div class="item col-sm-4">
-                            <div class="item-inner action">
-                                @if(!empty($product->action))
-                                <span class="item-label">Акция <i>%</i></span>
-                                @endif
-                                <div class="item-pic__wrapper">
-                                    <a href="{{env('APP_URL')}}/product/{{ $related_product->url_alias }}"><img class="item-pic" src="{{ $related_product->image == null ? '/assets/images/no_image.jpg' : $related_product->image->url('product_list') }}" alt=""></a>
-                                </div>
-                                <div class="item-info__wrapper">
-                                    <a class="item-link" href="{{env('APP_URL')}}/product/{{ $related_product->url_alias }}">{{ $related_product->name }}</a>
-                                    @if(!empty($related_product->old_price))
-                                        <div class="item-price-old">{{ round($related_product->old_price, 2) }} грн</div>
-                                    @else
-                                        <div class="item-price-old" style="text-decoration: none;">&nbsp;</div>
-                                    @endif
-                                    <div class="item-price">{{ round($related_product->price, 2) }} грн</div>
-                                    <a class="item-btn" href="/product/{{ $related_product->url_alias }}">Подробнее</a>
-                                </div>
-                            </div>
-                        </div>
-                    @empty
+        {{--@if($related->count())--}}
+        {{--<section class="similar-items__wrapper" id="similar-products">--}}
+            {{--<div class="section-title"><span>Похожие товары</span></div>--}}
+            {{--<div class="container">--}}
+                {{--<div class="actions-slider">--}}
+                    {{--@forelse($related as $related_product)--}}
+                        {{--<div class="item col-sm-4">--}}
+                            {{--<div class="item-inner action">--}}
+                                {{--@if(!empty($product->action))--}}
+                                {{--<span class="item-label">Акция <i>%</i></span>--}}
+                                {{--@endif--}}
+                                {{--<div class="item-pic__wrapper">--}}
+                                    {{--<a href="{{env('APP_URL')}}/product/{{ $related_product->url_alias }}"><img class="item-pic" src="{{ $related_product->image == null ? '/assets/images/no_image.jpg' : $related_product->image->url('product_list') }}" alt=""></a>--}}
+                                {{--</div>--}}
+                                {{--<div class="item-info__wrapper">--}}
+                                    {{--<a class="item-link" href="{{env('APP_URL')}}/product/{{ $related_product->url_alias }}">{{ $related_product->name }}</a>--}}
+                                    {{--@if(!empty($related_product->old_price))--}}
+                                        {{--<div class="item-price-old">{{ round($related_product->old_price, 2) }} грн</div>--}}
+                                    {{--@else--}}
+                                        {{--<div class="item-price-old" style="text-decoration: none;">&nbsp;</div>--}}
+                                    {{--@endif--}}
+                                    {{--<div class="item-price">{{ round($related_product->price, 2) }} грн</div>--}}
+                                    {{--<a class="item-btn" href="/product/{{ $related_product->url_alias }}">Подробнее</a>--}}
+                                {{--</div>--}}
+                            {{--</div>--}}
+                        {{--</div>--}}
+                    {{--@empty--}}
 
-                    @endforelse
-                </div>
-            </div>
-        </section>
-        @endif
+                    {{--@endforelse--}}
+                {{--</div>--}}
+            {{--</div>--}}
+        {{--</section>--}}
+        {{--@endif--}}
     </main>
     <div class="mfp-hide">
         <div id='quick-order-popup' class="order-popup">
