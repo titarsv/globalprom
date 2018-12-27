@@ -427,6 +427,16 @@ $(function() {
         });
     })(jQuery);
 
+    // аккордион карточки товара
+    (function ($) {
+        $(function () {
+            $('.product-adv__collapse-btn').on('click', function () {
+                console.log('here we are')
+                $(this).toggleClass('open');
+            });
+        });
+    })(jQuery);
+
     $('.section-2 .actions-slider').not('.slick-initialized').slick({
         speed: 700,
         slidesToShow: 4,

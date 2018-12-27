@@ -272,6 +272,63 @@
                                 @endif
                             </ul>
                         </div>
+                        <div class="product-adv__wrapper-XL">
+                            <button class="product-adv__collapse-btn" data-toggle="collapse" data-target="#info">Дополнительна информация о товаре</button>
+                            <div id="info" class="collapse" >
+                                <ul class="product-adv__list collapse">
+                                    @if(in_array('Планетарные', $product->categories->pluck('name')->toArray()) || in_array('Мотор-редукторы 3МП', $product->categories->pluck('name')->toArray()) || in_array('Мотор-редукторы МР', $product->categories->pluck('name')->toArray()) || in_array('Мотор-редукторы МПО', $product->categories->pluck('name')->toArray()))
+                                        <li class="product-adv__item">
+                                            <i class="product-adv__icon ai1"></i>
+                                            <div class="product-adv__title">Гарантия:</div>
+                                            <span class="product-adv__text">18 мес.</span>
+                                        </li>
+                                        <li class="product-adv__item">
+                                            <i class="product-adv__icon ai2"></i>
+                                            <div class="product-adv__title">Доставка:</div>
+                                            <span class="product-adv__text">1-2 раб. дня</span>
+                                        </li>
+                                        <li class="product-adv__item">
+                                            <i class="product-adv__icon ai3"></i>
+                                            <div class="product-adv__title">Оплата:</div>
+                                            <span class="product-adv__text">По 20% предоплате</span>
+                                        </li>
+                                    @else
+                                        <li class="product-adv__item">
+                                            <i class="product-adv__icon ai1"></i>
+                                            <div class="product-adv__title">Гарантия:</div>
+                                            <span class="product-adv__text">12 мес.</span>
+                                        </li>
+                                        <li class="product-adv__item">
+                                            <i class="product-adv__icon ai2"></i>
+                                            <div class="product-adv__title">Доставка:</div>
+                                            <span class="product-adv__text">1-2 раб. дня</span>
+                                        </li>
+                                        <li class="product-adv__item">
+                                            <i class="product-adv__icon ai3"></i>
+                                            <div class="product-adv__title">Оплата:</div>
+                                            <span class="product-adv__text">По предоплате</span>
+                                        </li>
+                                    @endif
+                                    @if(!empty($reviews) && isset($sumRating) && !empty($reviewCount))
+                                        <li class="product-adv__item">
+                                            <div class="product-adv__title">Рейтинг товара</div>
+                                            <div class="rating" style="margin-top: 10px;">
+                                                @php
+                                                    $rating = round($sumRating/$reviewCount);
+                                                @endphp
+                                                @for($i=1; $i<=5; $i++)
+                                                    @if($i <= $rating)
+                                                        <img src="/images/rp.png" alt="rp">
+                                                    @else
+                                                        <img src="/images/rm.png" alt="rm">
+                                                    @endif
+                                                @endfor
+                                            </div>
+                                        </li>
+                                    @endif
+                                </ul>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="clearfix"></div>
@@ -291,13 +348,13 @@
                             {{--@if(count($variations))--}}
                             {{--<li class="product-tabs__item"><span>Цены</span></li>--}}
                             {{--@endif--}}
-                            <li class="product-tabs__item"><span>Отзывы</span></li>
                             @if($related->count())
-                            <li class="product-tabs__item"><span>Похожие товары</span></li>
+                            <li class="product-tabs__item item-blink"><span>Похожие товары</span></li>
                             @endif
                             @if($similar->count())
-                                <li class="product-tabs__item"><span>Сопутствующие товары</span></li>
+                                <li class="product-tabs__item item-blink"><span>Сопутствующие товары</span></li>
                             @endif
+                            <li class="product-tabs__item"><span>Отзывы</span></li>
                         </ul>
                         @if(!empty($product->description))
                         <div class="product-tabs__content active">
@@ -357,6 +414,62 @@
                             {{--</div>--}}
                         {{--</div>--}}
                         {{--@endif--}}
+                        @if($related->count())
+                        <div class="product-tabs__content">
+                            <div class="actions-slider">
+                            @foreach($related as $related_product)
+                                <div class="item col-sm-4">
+                                    <div class="item-inner action">
+                                        @if(!empty($related_product->action))
+                                            <span class="item-label">Акция <i>%</i></span>
+                                        @endif
+                                        <div class="item-pic__wrapper">
+                                            <a href="{{env('APP_URL')}}/product/{{ $related_product->url_alias }}"><img class="item-pic" src="{{ $related_product->image == null ? '/assets/images/no_image.jpg' : $related_product->image->url('product_list') }}" alt=""></a>
+                                        </div>
+                                        <div class="item-info__wrapper">
+                                            <a class="item-link" href="{{env('APP_URL')}}/product/{{ $related_product->url_alias }}">{{ $related_product->name }}</a>
+                                            @if(!empty($related_product->old_price))
+                                                <div class="item-price-old">{{ round($related_product->old_price, 2) }} грн</div>
+                                            @else
+                                                <div class="item-price-old" style="text-decoration: none;">&nbsp;</div>
+                                            @endif
+                                            <div class="item-price">{{ round($related_product->price, 2) }} грн</div>
+                                            <a class="item-btn" href="/product/{{ $related_product->url_alias }}">Подробнее</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            @endforeach
+                            </div>
+                        </div>
+                        @endif
+                        @if($similar->count())
+                            <div class="product-tabs__content">
+                                <div class="actions-slider">
+                                    @foreach($similar as $similar_product)
+                                        <div class="item col-sm-4">
+                                            <div class="item-inner action">
+                                                @if(!empty($similar_product->action))
+                                                    <span class="item-label">Акция <i>%</i></span>
+                                                @endif
+                                                <div class="item-pic__wrapper">
+                                                    <a href="{{env('APP_URL')}}/product/{{ $similar_product->url_alias }}"><img class="item-pic" src="{{ $similar_product->image == null ? '/assets/images/no_image.jpg' : $similar_product->image->url('product_list') }}" alt=""></a>
+                                                </div>
+                                                <div class="item-info__wrapper">
+                                                    <a class="item-link" href="{{env('APP_URL')}}/product/{{ $similar_product->url_alias }}">{{ $similar_product->name }}</a>
+                                                    @if(!empty($similar_product->old_price))
+                                                        <div class="item-price-old">{{ round($similar_product->old_price, 2) }} грн</div>
+                                                    @else
+                                                        <div class="item-price-old" style="text-decoration: none;">&nbsp;</div>
+                                                    @endif
+                                                    <div class="item-price">{{ round($similar_product->price, 2) }} грн</div>
+                                                    <a class="item-btn" href="/product/{{ $similar_product->url_alias }}">Подробнее</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    @endforeach
+                                </div>
+                            </div>
+                        @endif
                         <div class="product-tabs__content">
                             <div class="product-reviews">
                                 <div class="product-review__wrapper">
@@ -430,10 +543,10 @@
                                         <span class="product-review__rate-txt">Хорошо</span>
                                     </div>
                                     {{--<div class="product-review__capcha-wrapper">--}}
-                                        {{--<input class="product-review__form-input capcha-input" type="text" name="name" data-validate-required="Обязательное поле" placeholder="Введите код, указанный на картинке">--}}
-                                        {{--<div class="product-review__capcha-block">--}}
-                                            {{--<img src="data:image/jpeg;base64,/9j/4QAYRXhpZgAASUkqAAgAAAAAAAAAAAAAAP/sABFEdWNreQABAAQAAABQAAD/4QMraHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wLwA8P3hwYWNrZXQgYmVnaW49Iu+7vyIgaWQ9Ilc1TTBNcENlaGlIenJlU3pOVGN6a2M5ZCI/PiA8eDp4bXBtZXRhIHhtbG5zOng9ImFkb2JlOm5zOm1ldGEvIiB4OnhtcHRrPSJBZG9iZSBYTVAgQ29yZSA1LjMtYzAxMSA2Ni4xNDU2NjEsIDIwMTIvMDIvMDYtMTQ6NTY6MjcgICAgICAgICI+IDxyZGY6UkRGIHhtbG5zOnJkZj0iaHR0cDovL3d3dy53My5vcmcvMTk5OS8wMi8yMi1yZGYtc3ludGF4LW5zIyI+IDxyZGY6RGVzY3JpcHRpb24gcmRmOmFib3V0PSIiIHhtbG5zOnhtcD0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wLyIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bXA6Q3JlYXRvclRvb2w9IkFkb2JlIFBob3Rvc2hvcCBDUzYgKFdpbmRvd3MpIiB4bXBNTTpJbnN0YW5jZUlEPSJ4bXAuaWlkOjJCMURGQzdFMjM4NjExRThCRENDQ0I0M0U4NUYzMDk1IiB4bXBNTTpEb2N1bWVudElEPSJ4bXAuZGlkOjJCMURGQzdGMjM4NjExRThCRENDQ0I0M0U4NUYzMDk1Ij4gPHhtcE1NOkRlcml2ZWRGcm9tIHN0UmVmOmluc3RhbmNlSUQ9InhtcC5paWQ6MkIxREZDN0MyMzg2MTFFOEJEQ0NDQjQzRTg1RjMwOTUiIHN0UmVmOmRvY3VtZW50SUQ9InhtcC5kaWQ6MkIxREZDN0QyMzg2MTFFOEJEQ0NDQjQzRTg1RjMwOTUiLz4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1ldGE+IDw/eHBhY2tldCBlbmQ9InIiPz7/7gAOQWRvYmUAZMAAAAAB/9sAhAACAgICAgICAgICAwICAgMEAwIC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" alt="">--}}
-                                        {{--</div>--}}
+                                    {{--<input class="product-review__form-input capcha-input" type="text" name="name" data-validate-required="Обязательное поле" placeholder="Введите код, указанный на картинке">--}}
+                                    {{--<div class="product-review__capcha-block">--}}
+                                    {{--<img src="data:image/jpeg;base64,/9j/4QAYRXhpZgAASUkqAAgAAAAAAAAAAAAAAP/sABFEdWNreQABAAQAAABQAAD/4QMraHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wLwA8P3hwYWNrZXQgYmVnaW49Iu+7vyIgaWQ9Ilc1TTBNcENlaGlIenJlU3pOVGN6a2M5ZCI/PiA8eDp4bXBtZXRhIHhtbG5zOng9ImFkb2JlOm5zOm1ldGEvIiB4OnhtcHRrPSJBZG9iZSBYTVAgQ29yZSA1LjMtYzAxMSA2Ni4xNDU2NjEsIDIwMTIvMDIvMDYtMTQ6NTY6MjcgICAgICAgICI+IDxyZGY6UkRGIHhtbG5zOnJkZj0iaHR0cDovL3d3dy53My5vcmcvMTk5OS8wMi8yMi1yZGYtc3ludGF4LW5zIyI+IDxyZGY6RGVzY3JpcHRpb24gcmRmOmFib3V0PSIiIHhtbG5zOnhtcD0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wLyIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bXA6Q3JlYXRvclRvb2w9IkFkb2JlIFBob3Rvc2hvcCBDUzYgKFdpbmRvd3MpIiB4bXBNTTpJbnN0YW5jZUlEPSJ4bXAuaWlkOjJCMURGQzdFMjM4NjExRThCRENDQ0I0M0U4NUYzMDk1IiB4bXBNTTpEb2N1bWVudElEPSJ4bXAuZGlkOjJCMURGQzdGMjM4NjExRThCRENDQ0I0M0U4NUYzMDk1Ij4gPHhtcE1NOkRlcml2ZWRGcm9tIHN0UmVmOmluc3RhbmNlSUQ9InhtcC5paWQ6MkIxREZDN0MyMzg2MTFFOEJEQ0NDQjQzRTg1RjMwOTUiIHN0UmVmOmRvY3VtZW50SUQ9InhtcC5kaWQ6MkIxREZDN0QyMzg2MTFFOEJEQ0NDQjQzRTg1RjMwOTUiLz4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1ldGE+IDw/eHBhY2tldCBlbmQ9InIiPz7/7gAOQWRvYmUAZMAAAAAB/9sAhAACAgICAgICAgICAwICAgMEAwIC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" alt="">--}}
+                                    {{--</div>--}}
                                     {{--</div>--}}
                                     <button type="submit" class="consult-form__btn">Отправить</button>
                                     <div class="consult-form__composition">
@@ -441,62 +554,6 @@
                                 </form>
                             </div>
                         </div>
-                        @if($related->count())
-                        <div class="product-tabs__content">
-                            <div class="actions-slider">
-                            @foreach($related as $related_product)
-                                <div class="item col-sm-4">
-                                    <div class="item-inner action">
-                                        @if(!empty($related_product->action))
-                                            <span class="item-label">Акция <i>%</i></span>
-                                        @endif
-                                        <div class="item-pic__wrapper">
-                                            <a href="{{env('APP_URL')}}/product/{{ $related_product->url_alias }}"><img class="item-pic" src="{{ $related_product->image == null ? '/assets/images/no_image.jpg' : $related_product->image->url('product_list') }}" alt=""></a>
-                                        </div>
-                                        <div class="item-info__wrapper">
-                                            <a class="item-link" href="{{env('APP_URL')}}/product/{{ $related_product->url_alias }}">{{ $related_product->name }}</a>
-                                            @if(!empty($related_product->old_price))
-                                                <div class="item-price-old">{{ round($related_product->old_price, 2) }} грн</div>
-                                            @else
-                                                <div class="item-price-old" style="text-decoration: none;">&nbsp;</div>
-                                            @endif
-                                            <div class="item-price">{{ round($related_product->price, 2) }} грн</div>
-                                            <a class="item-btn" href="/product/{{ $related_product->url_alias }}">Подробнее</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            @endforeach
-                            </div>
-                        </div>
-                        @endif
-                        @if($similar->count())
-                            <div class="product-tabs__content">
-                                <div class="actions-slider">
-                                    @foreach($similar as $similar_product)
-                                        <div class="item col-sm-4">
-                                            <div class="item-inner action">
-                                                @if(!empty($similar_product->action))
-                                                    <span class="item-label">Акция <i>%</i></span>
-                                                @endif
-                                                <div class="item-pic__wrapper">
-                                                    <a href="{{env('APP_URL')}}/product/{{ $similar_product->url_alias }}"><img class="item-pic" src="{{ $similar_product->image == null ? '/assets/images/no_image.jpg' : $similar_product->image->url('product_list') }}" alt=""></a>
-                                                </div>
-                                                <div class="item-info__wrapper">
-                                                    <a class="item-link" href="{{env('APP_URL')}}/product/{{ $similar_product->url_alias }}">{{ $similar_product->name }}</a>
-                                                    @if(!empty($similar_product->old_price))
-                                                        <div class="item-price-old">{{ round($similar_product->old_price, 2) }} грн</div>
-                                                    @else
-                                                        <div class="item-price-old" style="text-decoration: none;">&nbsp;</div>
-                                                    @endif
-                                                    <div class="item-price">{{ round($similar_product->price, 2) }} грн</div>
-                                                    <a class="item-btn" href="/product/{{ $similar_product->url_alias }}">Подробнее</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    @endforeach
-                                </div>
-                            </div>
-                        @endif
                     </nav>
                 </div>
             </div>
