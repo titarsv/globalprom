@@ -15,5 +15,6 @@
 
     <script src="/js/libs/jquery.min.js"></script>
     <script src="/js/chosen/chosen.jquery.min.js"></script>
+    <script src="/js/chosen/chosen.order.jquery.min.js"></script>
     <script src="/js/libs/bootstrap.min.js"></script>
 </head>

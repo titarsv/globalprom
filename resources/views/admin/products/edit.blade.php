@@ -227,17 +227,29 @@
                             <div class="row">
                                 <label class="col-sm-2 text-right">Комплект из</label>
                                 <div class="form-element col-sm-10">
-                                    <select name="sets[]" class="form-control chosen-select" multiple="multiple">
+                                    <select class="form-control chosen-select sets_select" multiple="multiple">
+                                        @if(!empty((array)old('sets')))
+                                            @foreach((array)old('sets') as $r)
+                                                <option value="{{ $r }}" selected>{{ $sets->find($r)->name }}</option>
+                                            @endforeach
+                                        @else
+                                            @foreach($added_set as $r)
+                                                <option value="{{ $r }}" selected>{{ $sets->find($r)->name }}</option>
+                                            @endforeach
+                                        @endif
                                         @foreach($sets as $set)
-                                            <option value="{!! $set->id !!}"
-                                                    @if (in_array($set->id, (array)old('stock')))
-                                                    selected
-                                                    @elseif (in_array($set->id, $added_set))
-                                                    selected
-                                                    @endif
-                                            >{!! $set->name !!}</option>
+                                            @if (!in_array($set->id, (array)old('related')) && !in_array($set->id, $added_set))
+                                                <option value="{!! $set->id !!}">{!! $set->name !!}</option>
+                                            @endif
                                         @endforeach
                                     </select>
+                                    <div class="hidden">
+                                        <select name="sets[]" multiple="multiple">
+                                            @foreach($added_set as $r)
+                                                <option selected>{{ $r }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -245,17 +257,29 @@
                             <div class="row">
                                 <label class="col-sm-2 text-right">Похожие товары</label>
                                 <div class="form-element col-sm-10">
-                                    <select name="related[]" class="form-control chosen-select" multiple="multiple">
+                                    <select class="form-control chosen-select related_select" multiple="multiple">
+                                        @if(!empty((array)old('related')))
+                                            @foreach((array)old('related') as $r)
+                                                <option value="{{ $r }}" selected>{{ $sets->find($r)->name }}</option>
+                                            @endforeach
+                                        @else
+                                            @foreach($related as $r)
+                                                <option value="{{ $r }}" selected>{{ $sets->find($r)->name }}</option>
+                                            @endforeach
+                                        @endif
                                         @foreach($sets as $set)
-                                            <option value="{!! $set->id !!}"
-                                                    @if (in_array($set->id, (array)old('related')))
-                                                    selected
-                                                    @elseif (in_array($set->id, $related))
-                                                    selected
-                                                    @endif
-                                            >{!! $set->name !!}</option>
+                                            @if (!in_array($set->id, (array)old('related')) && !in_array($set->id, $related))
+                                                <option value="{!! $set->id !!}">{!! $set->name !!}</option>
+                                            @endif
                                         @endforeach
                                     </select>
+                                    <div class="hidden">
+                                        <select name="related[]" multiple="multiple">
+                                            @foreach($related as $r)
+                                                <option selected>{{ $r }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -263,17 +287,29 @@
                             <div class="row">
                                 <label class="col-sm-2 text-right">Сопутствующие товары</label>
                                 <div class="form-element col-sm-10">
-                                    <select name="similar[]" class="form-control chosen-select" multiple="multiple">
+                                    <select class="form-control chosen-select similar_select" multiple="multiple">
+                                        @if(!empty((array)old('similar')))
+                                            @foreach((array)old('similar') as $r)
+                                                <option value="{{ $r }}" selected>{{ $sets->find($r)->name }}</option>
+                                            @endforeach
+                                        @else
+                                            @foreach($similar as $r)
+                                                <option value="{{ $r }}" selected>{{ $sets->find($r)->name }}</option>
+                                            @endforeach
+                                        @endif
                                         @foreach($sets as $set)
-                                            <option value="{!! $set->id !!}"
-                                                    @if (in_array($set->id, (array)old('similar')))
-                                                    selected
-                                                    @elseif (in_array($set->id, $similar))
-                                                    selected
-                                                    @endif
-                                            >{!! $set->name !!}</option>
+                                            @if (!in_array($set->id, (array)old('related')) && !in_array($set->id, $similar))
+                                                <option value="{!! $set->id !!}">{!! $set->name !!}</option>
+                                            @endif
                                         @endforeach
                                     </select>
+                                    <div class="hidden">
+                                        <select name="similar[]" multiple="multiple">
+                                            @foreach($similar as $r)
+                                                <option selected>{{ $r }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
                                 </div>
                             </div>
                         </div>

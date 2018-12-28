@@ -353,6 +353,44 @@ $(document).ready(function(){
 
     $('.chosen-select').chosen();
 
+    var sets_select = $('.sets_select').get(0);
+
+    $(sets_select).on('change', function() {
+        setTimeout(function(){
+            var selection = ChosenOrder.getSelectionOrder(sets_select);
+
+            $('[name="sets[]"]').empty();
+            $(selection).each(function(i) {
+                $('[name="sets[]"]').append("<option selected>" + selection[i] + "</option>");
+            });
+        }, 10);
+    });
+
+    var related_select = $('.related_select').get(0);
+
+    $(related_select).on('change', function() {
+        setTimeout(function(){
+            var selection = ChosenOrder.getSelectionOrder(related_select);
+
+            $('[name="related[]"]').empty();
+            $(selection).each(function(i) {
+                $('[name="related[]"]').append("<option selected>" + selection[i] + "</option>");
+            });
+        }, 10);
+    });
+
+    var similar_select = $('.similar_select').get(0);
+
+    $(similar_select).on('change', function() {
+        setTimeout(function(){
+            var selection = ChosenOrder.getSelectionOrder(similar_select);
+
+            $('[name="similar[]"]').empty();
+            $(selection).each(function(i) {
+                $('[name="similar[]"]').append("<option selected>" + selection[i] + "</option>");
+            });
+        }, 10);
+    });
 });
 
 function navigate()

@@ -193,12 +193,12 @@ class ProductsController extends Controller
         }
 
         $sets = Products::where('id', '<>', $id)->where('stock', 1)->get();
-        $added_set = $product->set_products->pluck('id')->toArray();
+        $added_set = $product->set_products()->orderBy('product_sets.id')->get()->pluck('id')->toArray();
 
         return view('admin.products.edit')
             ->with('product', $product)
-            ->with('related', $product->related->pluck('id')->toArray())
-            ->with('similar', $product->similar->pluck('id')->toArray())
+            ->with('related', $product->related()->orderBy('related_products.id')->get()->pluck('id')->toArray())
+            ->with('similar', $product->similar()->orderBy('similar_products.id')->get()->pluck('id')->toArray())
             ->with('categories', Categories::all())
             ->with('added_categories', $categories)
             ->with('sets', $sets)
@@ -293,13 +293,33 @@ class ProductsController extends Controller
             $product->photos->images = json_encode($photos);
         }
 
-        $product->set_products()->sync($request->sets);
-        $product->related()->sync($request->related);
-        $product->similar()->sync($request->similar);
+//        $product->set_products()->sync($request->sets);
+//        $product->related()->sync($request->related);
+//        $product->similar()->sync($request->similar);
+
+        $product->set_products()->sync([]);
+        if(!empty($request->sets)){
+            foreach ($request->sets as $id){
+                $product->set_products()->attach([$id]);
+            }
+        }
+        $product->related()->sync([]);
+        if(!empty($request->related)){
+            foreach ($request->related as $id){
+                $product->related()->attach([$id]);
+            }
+        }
+        $product->similar()->sync([]);
+        if(!empty($request->similar)){
+            foreach ($request->similar as $id){
+                $product->similar()->attach([$id]);
+            }
+        }
 
         $product->fill($product_table_fill);
 
         $product->push();
+
 
         $product->categories()->sync($request->product_category_id);
 
@@ -561,8 +581,8 @@ class ProductsController extends Controller
             ->with('gallery', $gallery)
             ->with('reviews', $product_reviews)
             ->with('product_attributes', $attributes)
-            ->with('related', $product->related()->where('stock', 1)->get())
-            ->with('similar', $product->similar()->where('stock', 1)->get())
+            ->with('related', $product->related()->where('stock', 1)->orderBy('related_products.id')->get())
+            ->with('similar', $product->similar()->where('stock', 1)->orderBy('similar_products.id')->get())
             ->with('variations_prices', $variations_prices)
             ->with('variations', $variations_attrs));
     }
