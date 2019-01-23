@@ -336,13 +336,13 @@
                     <nav class="product-tabs">
                         <ul class="product-tabs__list">
                             @if(!empty($product->description))
-                            <li class="product-tabs__item active"><span>Описание</span></li>
+                            <li class="product-tabs__item{{ empty($similar->count()) ? ' active' : '' }}"><span>Описание</span></li>
                             @endif
                             @if(!empty($product->options))
-                            <li class="product-tabs__item{{ empty($product->description) ? ' active' : '' }}"><span>Опции</span></li>
+                            <li class="product-tabs__item{{ empty($similar->count()) && empty($product->description) ? ' active' : '' }}"><span>Опции</span></li>
                             @endif
                             @if(!empty($product->sizes))
-                                <li class="product-tabs__item{{ empty($product->description) && empty($product->options) ? ' active' : '' }}"><span>Размеры</span></li>
+                                <li class="product-tabs__item{{ empty($similar->count()) && empty($product->description) && empty($product->options) ? ' active' : '' }}"><span>Размеры</span></li>
                             @endif
                             <li class="product-tabs__item"><span>Фотогалерея</span></li>
                             {{--@if(count($variations))--}}
@@ -352,19 +352,19 @@
                             <li class="product-tabs__item item-blink"><span>Похожие товары</span></li>
                             @endif
                             @if($similar->count())
-                                <li class="product-tabs__item item-blink"><span>Сопутствующие товары</span></li>
+                                <li class="product-tabs__item item-blink active"><span>Сопутствующие товары</span></li>
                             @endif
                             <li class="product-tabs__item"><span>Отзывы</span></li>
                         </ul>
                         @if(!empty($product->description))
-                        <div class="product-tabs__content active">
+                        <div class="product-tabs__content{{ empty($similar->count()) ? ' active' : '' }}">
                             <div class="product-description" itemprop="description">
                                 {!! $product->description !!}
                             </div>
                         </div>
                         @endif
                         @if(!empty($product->options))
-                        <div class="product-tabs__content{{ empty($product->description) ? ' active' : '' }}">
+                        <div class="product-tabs__content{{ empty($similar->count()) && empty($product->description) ? ' active' : '' }}">
                             <div class="product-specs">
                                 <strong>{{ $product->name }}. Ниже приведены технические характеристики товара:</strong>
                                 {!! $product->options !!}
@@ -372,7 +372,7 @@
                         </div>
                         @endif
                         @if(!empty($product->sizes))
-                            <div class="product-tabs__content{{ empty($product->description) && empty($product->options) ? ' active' : '' }}">
+                            <div class="product-tabs__content{{ empty($similar->count()) && empty($product->description) && empty($product->options) ? ' active' : '' }}">
                                 <div class="product-specs">
                                     {!! $product->sizes !!}
                                 </div>
@@ -443,7 +443,7 @@
                         </div>
                         @endif
                         @if($similar->count())
-                            <div class="product-tabs__content">
+                            <div class="product-tabs__content active">
                                 <div class="actions-slider">
                                     @foreach($similar as $similar_product)
                                         <div class="item col-sm-4">
