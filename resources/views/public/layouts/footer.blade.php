@@ -41,6 +41,16 @@
                         <li class="footer-menu__item">
                             <a class="footer-menu__link" href="tel:+380671627874">+38 (067) 162-78-74</a>
                         </li>
+                    @elseif($source == 'facebook')
+                        <li class="footer-menu__item">
+                            <a class="footer-menu__link" href="tel:+380577517059">+38 (057) 751-70-59</a>
+                        </li>
+                        <li class="footer-menu__item">
+                            <a class="footer-menu__link" href="tel:+380671860180">+38 (067) 186-01-80</a>
+                        </li>
+                        <li class="footer-menu__item">
+                            <a class="footer-menu__link" href="tel:+380663583955">+38 (066) 358 39 55</a>
+                        </li>
                     @else
                         <li class="footer-menu__item">
                             <a class="footer-menu__link" href="tel:+380577517059">+38 (057) 751-70-59</a>

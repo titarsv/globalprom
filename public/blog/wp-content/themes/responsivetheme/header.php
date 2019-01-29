@@ -62,6 +62,16 @@
                                 <li class="header-phone">
                                     <a class="header-phone__link" href="tel:+380671627874">+38 (067) 162-78-74</a>
                                 </li>
+                            <?php }elseif($utm_source == 'facebook'){ ?>
+                                <li class="header-phone">
+                                    <a class="header-phone__link" href="tel:+380577517059">+38 (057) 751-70-59</a>
+                                </li>
+                                <li class="header-phone">
+                                    <a class="header-phone__link" href="tel:+380671860180">+38 (067) 186-01-80</a>
+                                </li>
+                                <li class="header-phone">
+                                    <a class="header-phone__link" href="tel:+380663583955">+38 (066) 358 39 55</a>
+                                </li>
                             <?php }else{ ?>
                                 <li class="header-phone">
                                     <a class="header-phone__link" href="tel:+380577517059">+38 (057) 751-70-59</a>

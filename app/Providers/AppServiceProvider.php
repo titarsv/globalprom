@@ -38,6 +38,8 @@ class AppServiceProvider extends ServiceProvider
                 $source = 'yandex';
             }elseif($_GET['utm_source'] == 'google'){
                 $source = 'google';
+            }elseif($_GET['utm_source'] == 'facebook'){
+                $source = 'facebook';
             }
             Cookie::queue('utm_source', $source, 2628000, null, null, false, false);
         }
