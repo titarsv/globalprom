@@ -9,6 +9,7 @@
             <li><a href="/admin/attributes"><i class="fa fa-circle-thin" aria-hidden="true"></i>Атрибуты товаров</a></li>
             <li><a href="/admin/upload-products"><i class="fa fa-circle-thin" aria-hidden="true"></i>Импорт товаров</a></li>
             <li><a href="/admin/export-products"><i class="fa fa-circle-thin" aria-hidden="true"></i>Экспорт товаров</a></li>
+            <li><a href="/admin/export-products-prom"><i class="fa fa-circle-thin" aria-hidden="true"></i>Экспорт для прома</a></li>
         </ul>
     </li>
     <li role="presentation">

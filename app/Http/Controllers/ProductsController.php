@@ -984,4 +984,44 @@ class ProductsController extends Controller
 
         })->download('csv');
     }
+
+    /**
+     * Фид для прома
+     *
+     * @param Products $products
+     */
+    public function prom_export(Products $products){
+        $data = [];
+        foreach($products->where('stock', 1)->where('price', '>', 0)->with(['categories', 'image'])->get() as $product){
+            $data[] = [
+                'ID' => $product->id,
+                'Title' => $product->name,
+                'Description' => $product->description,
+                'Link' => env('APP_URL').'/product/'.$product->url_alias,
+                'Image_​link' => empty($product->image) ? env('APP_URL').'/uploads/no_image.jpg' : env('APP_URL').$product->image->url(),
+                'Stock' => $product->stock,
+                'Price' => (!empty($product->old_price) && $product->price < $product->old_price) ? $product->old_price.' UAH' : $product->price.' UAH',
+                'Brand' => 'GlobalProm',
+                'Condition' => 'Новое'
+            ];
+        }
+
+        Excel::create('prom', function($excel) use ($data) {
+
+            // Set the title
+            $excel->setTitle('Prom');
+
+            // Chain the setters
+            $excel->setCreator('Triplefork')
+                ->setCompany('Triplefork');
+
+            // Call them separately
+            $excel->setDescription('Prom');
+
+            $excel->sheet('First sheet', function($sheet) use ($data) {
+                $sheet->fromArray($data);
+            });
+
+        })->download('csv');
+    }
 }

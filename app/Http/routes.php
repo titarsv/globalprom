@@ -91,6 +91,7 @@ Route::group(['middleware' => ['admin'], 'prefix' => 'admin'], function(){
     });
     Route::match(['get', 'post'], '/upload-products', 'ProductsController@upload');
     Route::get('/export-products', 'ProductsController@export');
+    Route::get('/export-products-prom', 'ProductsController@prom_export');
 
     Route::group(['prefix' => 'manufacturers'], function(){
         Route::get('/', 'ManufacturersController@index');
