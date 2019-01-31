@@ -68,23 +68,24 @@
                                        value="{!! old('email') ? old('email') : ( isset($user) && $user ? $user->email : '' ) !!}">
                             </div>
 
-                            {{--<div class="order-page__form-select-wrapper">--}}
-                                {{--<select id="checkout-step__delivery" class="order-page__form-select" name="delivery">--}}
-                                    {{--<option disabled="" selected="">Выберите метод доставки</option>--}}
-                                    {{--<option value="newpost">Новая почта</option>--}}
-                                    {{--<option value="pickup">Самовывоз</option>--}}
-                                {{--</select>--}}
-                            {{--</div>--}}
+                            <div class="order-page__form-select-wrapper">
+                                <select id="checkout-step__delivery" class="order-page__form-select" name="delivery">
+                                    <option disabled="" selected="">Выберите метод доставки</option>
+                                    <option value="newpost">Новая почта</option>
+                                    <option value="pickup">Самовывоз</option>
+                                    <option value="courier">Курьером</option>
+                                </select>
+                            </div>
 
                             <div id="checkout-delivery-payment"></div>
                             <textarea class="order-page__form-textarea" placeholder="Примечания к вашему заказу, например, особые пожелания отделу доставки"></textarea>
                             <button id="submit_order" class="order-page__form-btn" type="submit">Подтвердить заказ</button>
                         </form>
                     </div>
+                    <div id="liqpay_checkout"></div>
                 </div>
             </div>
         </section>
     </main>
-    <div id="liqpay_checkout"></div>
     <script src="//static.liqpay.com/libjs/checkout.js" async></script>
 @endsection

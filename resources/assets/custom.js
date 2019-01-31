@@ -377,6 +377,7 @@ $(function() {
                             window.location = '/checkout/complete?order_id=' + response.order_id;
                         }).on("liqpay.ready", function(data){
                             $('#liqpay_checkout').css('display', 'block');
+                            $('.order-page__forms-wrapper').css('display', 'none');
                         }).on("liqpay.close", function(data){
                             window.location = '/checkout/complete?order_id=' + response.order_id;
                         });

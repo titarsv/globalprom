@@ -8,10 +8,8 @@ return array(
     /**
      * Api Key
      */
-//    'public_key'    => 'i42129178958',
-    'public_key'    => 'i48321464650',
-//    'private_key'   => 'xADKpyqCN9XUQJHl9hqttCTE41KhS8LDR84aOT8K',
-    'private_key'   => 'Gid3PN7KyW0vMx1sqdKMSZsdA6cJClrjhM56PtpH',
+    'public_key'    => 'i40199195181',
+    'private_key'   => 'Yh4X9sVyrHjFmIpFih0BVSNh0NdlOciwg2TOjaV4',
     'version'       => 3,
     'action'        => 'pay',
     'currency'      => 'UAH',

@@ -13,7 +13,7 @@ use Cartalyst\Sentinel\Native\Facades\Sentinel;
 use Illuminate\Http\Request;
 use App\Models\Modules;
 use App\Models\Products;
-
+use App\Http\Controllers\Liqpay;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Cookie;
@@ -169,6 +169,31 @@ class CheckoutController extends Controller
             return $this->get_liqpay_data($order);
         else
             return response()->json(['success' => 'redirect', 'order_id' => $order->id]);
+    }
+
+    /**
+     * Получене данных для Liqpay
+     *
+     * @param $order
+     * @return array
+     * @throws \League\Flysystem\Exception
+     */
+    public function get_liqpay_data($order){
+        $public_key = config('liqpay.public_key');
+        $private_key = config('liqpay.private_key');
+        $liqpay = new LiqPay($public_key, $private_key);
+        $checkout = $liqpay->cnb_form([
+            'action'    => 'pay',
+            'amount'    => $order->total_price,
+            'currency'  => 'UAH',
+            'description'   => 'Оплата заказа №' . $order->id . ' на сайте GlobalProm',
+            'order_id'  => $order->id,
+            'sandbox'   => 0,
+            'version'   => 3,
+            'result_url' => url('/checkout/complete?order_id=' . $order->id)
+        ]);
+
+        return ['success' => 'liqpay', 'liqpay' => $checkout, 'order_id' => $order->id];
     }
 
     /**
