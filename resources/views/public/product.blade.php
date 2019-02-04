@@ -80,11 +80,11 @@
                                     </div>
                                 @endforelse
                                 @if(!empty($product->video))
-                                <div class="product-slide popup-btn" data-index="{{ isset($i) ? ($i + 1) : 0 }}" data-mfp-src="#view_popup_prod">
-                                    <div class="iframe-wrapper">
-                                        <iframe src="{{ $product->video }}" frameborder="0" gesture="media" allow="encrypted-media" allowfullscreen></iframe>
+                                    <div class="product-slide popup-btn" data-index="{{ isset($i) ? ($i + 1) : 0 }}" data-mfp-src="#view_popup_prod">
+                                        <div class="iframe-wrapper">
+                                            <iframe src="{{ $product->video }}" frameborder="0" gesture="media" allow="encrypted-media" allowfullscreen></iframe>
+                                        </div>
                                     </div>
-                                </div>
                                 @endif
                             </div>
                             <div class="product-nav">
@@ -100,26 +100,30 @@
                                     </div>
                                 @endforelse
                                 @if(!empty($product->video))
-                                <div class="nav-slide" style="border: none;">
-                                    <div class="nav-slide-video">
-                                        <img class="nav-slide-video__pic" src="/images/youtube.png" alt="{{ $product->name }}">
-                                        {{--<span class="nav-slide-video__txt">Bидеообзор</span>--}}
+                                    <div class="nav-slide" style="border: none;">
+                                        <div class="nav-slide-video">
+                                            <img class="nav-slide-video__pic" src="/images/youtube.png" alt="{{ $product->name }}">
+                                            {{--<span class="nav-slide-video__txt">Bидеообзор</span>--}}
+                                        </div>
                                     </div>
-                                </div>
                                 @endif
                             </div>
                         </div>
                         <div class="product-info__wrapper" itemprop="offers" itemscope itemtype="http://schema.org/Offer">
                             @if($product->stock)
+                                <div class="availibility-wrapper">
+                                    <i class="availibility-icon"></i>
+                                    <span class="availibility-text" itemprop="availability" href="http://schema.org/InStock">Есть в наличии</span>
+                                </div>
+                            @endif
                             <div class="availibility-wrapper">
                                 <i class="availibility-icon"></i>
-                                <span class="availibility-text" itemprop="availability" href="http://schema.org/InStock">Есть в наличии</span>
+                                <span class="availibility-text">Новое</span>
                             </div>
-                            @endif
                             @if(!empty($product->action))
-                            <div class="action-info__wrapper">
-                                {!! $product->action !!}
-                            </div>
+                                <div class="action-info__wrapper">
+                                    {!! $product->action !!}
+                                </div>
                             @endif
                             <div class="short-descr__wrapper">
                                 <span class="short-descr__title">Описание:</span>
@@ -128,29 +132,29 @@
                                 </p>
                             </div>
                             {{--@if(count($variations))--}}
-                                {{--<form action="#" id="variations">--}}
-                                {{--@foreach($variations as $attr => $values)--}}
-                                    {{--<div class="product-filter__wrapper">--}}
-                                        {{--<span class="product-filter__title">{{ $values->first()->info->name }}:</span>--}}
-                                        {{--<div class="product-filter__select-wrapper">--}}
-                                            {{--<select name="attr[{{ $attr }}]" class="product-filter__select variation-select">--}}
-                                                {{--<option value="" data-price="{{ round($product->price, 2) . ($max_price > $product->price ? ' - '.$max_price : '') }} грн.">--</option>--}}
-                                                {{--@foreach($values as $key => $value)--}}
-                                                    {{--<option value="{{ $value->value->id }}" data-price="{{ round($product->price + $value->price, 2) }} грн.">{{ $value->value->name }}</option>--}}
-                                                {{--@endforeach--}}
-                                            {{--</select>--}}
-                                            {{--<select name="attr[{{ $attr }}]" class="product-filter__select variation-select">--}}
-                                                {{--<option value="" data-price="0">--</option>--}}
-                                                {{--@foreach($values as $key => $value)--}}
-                                                    {{--<option value="{{ $value->value->id }}" data-price="{{ round($value->price, 2) }}">{{ $value->value->name }}</option>--}}
-                                                {{--@endforeach--}}
-                                            {{--</select>--}}
-                                        {{--</div>--}}
-                                    {{--</div>--}}
-                                {{--@endforeach--}}
-                                {{--</form>--}}
+                            {{--<form action="#" id="variations">--}}
+                            {{--@foreach($variations as $attr => $values)--}}
+                            {{--<div class="product-filter__wrapper">--}}
+                            {{--<span class="product-filter__title">{{ $values->first()->info->name }}:</span>--}}
+                            {{--<div class="product-filter__select-wrapper">--}}
+                            {{--<select name="attr[{{ $attr }}]" class="product-filter__select variation-select">--}}
+                            {{--<option value="" data-price="{{ round($product->price, 2) . ($max_price > $product->price ? ' - '.$max_price : '') }} грн.">--</option>--}}
+                            {{--@foreach($values as $key => $value)--}}
+                            {{--<option value="{{ $value->value->id }}" data-price="{{ round($product->price + $value->price, 2) }} грн.">{{ $value->value->name }}</option>--}}
+                            {{--@endforeach--}}
+                            {{--</select>--}}
+                            {{--<select name="attr[{{ $attr }}]" class="product-filter__select variation-select">--}}
+                            {{--<option value="" data-price="0">--</option>--}}
+                            {{--@foreach($values as $key => $value)--}}
+                            {{--<option value="{{ $value->value->id }}" data-price="{{ round($value->price, 2) }}">{{ $value->value->name }}</option>--}}
+                            {{--@endforeach--}}
+                            {{--</select>--}}
+                            {{--</div>--}}
+                            {{--</div>--}}
+                            {{--@endforeach--}}
+                            {{--</form>--}}
                             {{--@endif--}}
-							@if(count($variations))
+                            @if(count($variations))
                                 <form action="#" id="variations">
                                     <input type="hidden" id="variation" name="variation" value="">
                                     @foreach($variations as $attr_id => $attr)
@@ -184,38 +188,38 @@
                                 <small style="color: #7a7a7a; font-size: 80%">* Цена может меняться в зависимости от выбранных параметров<br>** Цены действуют только на территории Украины</small>
                             </div>
                             @if($product->stock)
-                            <table class="result-price">
-                                <tr>
-                                    <td>
-                                        <div class="product-filter__title">
-                                            Количество:
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div class="order-popup__count-wrapper">
-                                            <div class="order-popup__minus cart_minus">–</div>
-                                            <input class="order-popup__count-field count_field" pattern="^[ 0-9]+$" value="1" size="5" type="text">
-                                            <div class="order-popup__plus cart_plus">+</div>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr class="result-product-price-wrapper">
-                                    <td>
-                                        <div class="product-filter__title">
-                                            Сумма заказа:
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div class="result-product-price">
-                                            {{ round($product->price, 2) . ($max_price > $product->price ? ' - '.$max_price : '') }} грн.
-                                        </div>
-                                    </td>
-                                </tr>
-                            </table>
-                            <div class="product-order__wrapper">
-                                <button class="product-order__btn btn_buy" data-prod-id="{{ $product->id}}">Заказать</button>
-                                <button class="product-calc__btn popup-btn" data-mfp-src="#quick-order-popup">Купить в один клик</button>
-                            </div>
+                                <table class="result-price">
+                                    <tr>
+                                        <td>
+                                            <div class="product-filter__title">
+                                                Количество:
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="order-popup__count-wrapper">
+                                                <div class="order-popup__minus cart_minus">–</div>
+                                                <input class="order-popup__count-field count_field" pattern="^[ 0-9]+$" value="1" size="5" type="text">
+                                                <div class="order-popup__plus cart_plus">+</div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr class="result-product-price-wrapper">
+                                        <td>
+                                            <div class="product-filter__title">
+                                                Сумма заказа:
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="result-product-price">
+                                                {{ round($product->price, 2) . ($max_price > $product->price ? ' - '.$max_price : '') }} грн.
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </table>
+                                <div class="product-order__wrapper">
+                                    <button class="product-order__btn btn_buy" data-prod-id="{{ $product->id}}">Заказать</button>
+                                    <button class="product-calc__btn popup-btn" data-mfp-src="#quick-order-popup">Купить в один клик</button>
+                                </div>
                             @endif
                         </div>
                         <div class="product-adv__wrapper">
@@ -336,10 +340,10 @@
                     <nav class="product-tabs">
                         <ul class="product-tabs__list">
                             @if(!empty($product->description))
-                            <li class="product-tabs__item{{ empty($similar->count()) ? ' active' : '' }}"><span>Описание</span></li>
+                                <li class="product-tabs__item{{ empty($similar->count()) ? ' active' : '' }}"><span>Описание</span></li>
                             @endif
                             @if(!empty($product->options))
-                            <li class="product-tabs__item{{ empty($similar->count()) && empty($product->description) ? ' active' : '' }}"><span>Опции</span></li>
+                                <li class="product-tabs__item{{ empty($similar->count()) && empty($product->description) ? ' active' : '' }}"><span>Опции</span></li>
                             @endif
                             @if(!empty($product->sizes))
                                 <li class="product-tabs__item{{ empty($similar->count()) && empty($product->description) && empty($product->options) ? ' active' : '' }}"><span>Размеры</span></li>
@@ -349,27 +353,28 @@
                             {{--<li class="product-tabs__item"><span>Цены</span></li>--}}
                             {{--@endif--}}
                             @if($related->count())
-                            <li class="product-tabs__item item-blink"><span>Похожие товары</span></li>
+                                <li class="product-tabs__item item-blink"><span>Похожие товары</span></li>
                             @endif
                             @if($similar->count())
                                 <li class="product-tabs__item item-blink active"><span>Сопутствующие товары</span></li>
                             @endif
                             <li class="product-tabs__item"><span>Отзывы</span></li>
+                            <li class="product-tabs__item"><span>Условия возврата</span></li>
                         </ul>
                         @if(!empty($product->description))
-                        <div class="product-tabs__content{{ empty($similar->count()) ? ' active' : '' }}">
-                            <div class="product-description" itemprop="description">
-                                {!! $product->description !!}
+                            <div class="product-tabs__content{{ empty($similar->count()) ? ' active' : '' }}">
+                                <div class="product-description" itemprop="description">
+                                    {!! $product->description !!}
+                                </div>
                             </div>
-                        </div>
                         @endif
                         @if(!empty($product->options))
-                        <div class="product-tabs__content{{ empty($similar->count()) && empty($product->description) ? ' active' : '' }}">
-                            <div class="product-specs">
-                                <strong>{{ $product->name }}. Ниже приведены технические характеристики товара:</strong>
-                                {!! $product->options !!}
+                            <div class="product-tabs__content{{ empty($similar->count()) && empty($product->description) ? ' active' : '' }}">
+                                <div class="product-specs">
+                                    <strong>{{ $product->name }}. Ниже приведены технические характеристики товара:</strong>
+                                    {!! $product->options !!}
+                                </div>
                             </div>
-                        </div>
                         @endif
                         @if(!empty($product->sizes))
                             <div class="product-tabs__content{{ empty($similar->count()) && empty($product->description) && empty($product->options) ? ' active' : '' }}">
@@ -395,52 +400,52 @@
                         </div>
                         {{--@if(count($variations))--}}
                         {{--<div class="product-tabs__content">--}}
-                            {{--<div class="product-prices">--}}
-                                {{--@foreach($variations as $attr => $values)--}}
-                                    {{--<table>--}}
-                                        {{--<tr>--}}
-                                            {{--<td>Наименование</td>--}}
-                                            {{--<td>{{ $product->name }}</td>--}}
-                                        {{--</tr>--}}
-                                        {{--@foreach($values as $key => $value)--}}
-                                            {{--<tr>--}}
-                                                {{--<td>{{ $value->value->name }}</td>--}}
-                                                {{--<td>{{ round($product->price + $value->price, 2) }}</td>--}}
-                                            {{--</tr>--}}
-                                        {{--@endforeach--}}
-                                    {{--</table>--}}
-                                {{--@endforeach--}}
-                                {{--<span class="product-prices__footnote">* Цены указаны в гривне с НДС. Партнерская скидка 15%.</span>--}}
-                            {{--</div>--}}
+                        {{--<div class="product-prices">--}}
+                        {{--@foreach($variations as $attr => $values)--}}
+                        {{--<table>--}}
+                        {{--<tr>--}}
+                        {{--<td>Наименование</td>--}}
+                        {{--<td>{{ $product->name }}</td>--}}
+                        {{--</tr>--}}
+                        {{--@foreach($values as $key => $value)--}}
+                        {{--<tr>--}}
+                        {{--<td>{{ $value->value->name }}</td>--}}
+                        {{--<td>{{ round($product->price + $value->price, 2) }}</td>--}}
+                        {{--</tr>--}}
+                        {{--@endforeach--}}
+                        {{--</table>--}}
+                        {{--@endforeach--}}
+                        {{--<span class="product-prices__footnote">* Цены указаны в гривне с НДС. Партнерская скидка 15%.</span>--}}
+                        {{--</div>--}}
                         {{--</div>--}}
                         {{--@endif--}}
                         @if($related->count())
-                        <div class="product-tabs__content">
-                            <div class="actions-slider">
-                            @foreach($related as $related_product)
-                                <div class="item col-sm-4">
-                                    <div class="item-inner action">
-                                        @if(!empty($related_product->action))
-                                            <span class="item-label">Акция <i>%</i></span>
-                                        @endif
-                                        <div class="item-pic__wrapper">
-                                            <a href="{{env('APP_URL')}}/product/{{ $related_product->url_alias }}"><img class="item-pic" src="{{ $related_product->image == null ? '/assets/images/no_image.jpg' : $related_product->image->url('product_list') }}" alt=""></a>
+                            <div class="product-tabs__content">
+                                <div class="actions-slider">
+                                    @foreach($related as $related_product)
+                                        <div class="item col-sm-4">
+                                            <div class="item-inner action">
+                                                @if(!empty($related_product->action))
+                                                    <span class="item-label">Акция <i>%</i></span>
+                                                @endif
+                                                <div class="item-pic__wrapper">
+                                                    <a href="{{env('APP_URL')}}/product/{{ $related_product->url_alias }}"><img class="item-pic" src="{{ $related_product->image == null ? '/assets/images/no_image.jpg' : $related_product->image->url('product_list') }}" alt=""></a>
+                                                </div>
+                                                <div class="item-info__wrapper">
+                                                    <a class="item-link" href="{{env('APP_URL')}}/product/{{ $related_product->url_alias }}">{{ $related_product->name }}</a>
+                                                    @if(!empty($related_product->old_price))
+                                                        <div class="item-price-old">{{ round($related_product->old_price, 2) }} грн</div>
+                                                    @else
+                                                        <div class="item-price-old" style="text-decoration: none;">&nbsp;</div>
+                                                    @endif
+                                                    <div class="item-price">{{ round($related_product->price, 2) }} грн</div>
+                                                    <a class="item-btn" href="/product/{{ $related_product->url_alias }}">Подробнее</a>
+                                                </div>
+                                            </div>
                                         </div>
-                                        <div class="item-info__wrapper">
-                                            <a class="item-link" href="{{env('APP_URL')}}/product/{{ $related_product->url_alias }}">{{ $related_product->name }}</a>
-                                            @if(!empty($related_product->old_price))
-                                                <div class="item-price-old">{{ round($related_product->old_price, 2) }} грн</div>
-                                            @else
-                                                <div class="item-price-old" style="text-decoration: none;">&nbsp;</div>
-                                            @endif
-                                            <div class="item-price">{{ round($related_product->price, 2) }} грн</div>
-                                            <a class="item-btn" href="/product/{{ $related_product->url_alias }}">Подробнее</a>
-                                        </div>
-                                    </div>
+                                    @endforeach
                                 </div>
-                            @endforeach
                             </div>
-                        </div>
                         @endif
                         @if($similar->count())
                             <div class="product-tabs__content active">
@@ -554,98 +559,101 @@
                                 </form>
                             </div>
                         </div>
+                        <div class="product-tabs__content">
+                            <p>Возврат возможен в течении 14 дней по договоренности между клиентом и globalprom.com.ua <a href="" style="text-decoration: underline" class="popup-btn" data-mfp-src="#return_policy_popup">подробнее</a></p>
+                        </div>
                     </nav>
                 </div>
             </div>
         </section>
         @if($product->sets->count())
-        <section class="buy-together__wrapper">
-            <div class="section-title"><span>В комплекте дешевле</span></div>
-            <div class="buy-together">
-                <div class="container">
-                    <div class="buy-together__inner">
-                        @foreach($product->sets as $i => $set)
-                            <div class="buy-together__content{{ $i == 0 ? ' active' : '' }}">
-                                @foreach($set->set_products as $id => $set_prod)
-                                    <div class="item together-item">
-                                        <div class="item-inner">
-                                            <span class="item-label">Акция <i>%</i></span>
-                                            <div class="item-pic__wrapper">
-                                                <a href="{{env('APP_URL')}}/product/{{ $set_prod->url_alias }}"><img class="item-pic" src="{{ $set_prod->image == null ? '/assets/images/no_image.jpg' : $set_prod->image->url('product_list') }}" alt=""></a>
-                                            </div>
-                                            <div class="item-info__wrapper">
-                                                <a class="item-link" href="">{{ $set_prod->name }}</a>
-                                                @if(!empty($set_prod->old_price))
-                                                    <div class="item-price-old red">{{ round($set_prod->old_price, 2) }} грн</div>
-                                                @else
-                                                    <div class="item-price-old" style="text-decoration: none;">&nbsp;</div>
-                                                @endif
-                                                <div class="item-price">{{ round($set_prod->price, 2) }} грн</div>
+            <section class="buy-together__wrapper">
+                <div class="section-title"><span>В комплекте дешевле</span></div>
+                <div class="buy-together">
+                    <div class="container">
+                        <div class="buy-together__inner">
+                            @foreach($product->sets as $i => $set)
+                                <div class="buy-together__content{{ $i == 0 ? ' active' : '' }}">
+                                    @foreach($set->set_products as $id => $set_prod)
+                                        <div class="item together-item">
+                                            <div class="item-inner">
+                                                <span class="item-label">Акция <i>%</i></span>
+                                                <div class="item-pic__wrapper">
+                                                    <a href="{{env('APP_URL')}}/product/{{ $set_prod->url_alias }}"><img class="item-pic" src="{{ $set_prod->image == null ? '/assets/images/no_image.jpg' : $set_prod->image->url('product_list') }}" alt=""></a>
+                                                </div>
+                                                <div class="item-info__wrapper">
+                                                    <a class="item-link" href="">{{ $set_prod->name }}</a>
+                                                    @if(!empty($set_prod->old_price))
+                                                        <div class="item-price-old red">{{ round($set_prod->old_price, 2) }} грн</div>
+                                                    @else
+                                                        <div class="item-price-old" style="text-decoration: none;">&nbsp;</div>
+                                                    @endif
+                                                    <div class="item-price">{{ round($set_prod->price, 2) }} грн</div>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    @if($id + 1 < $set->set_products->count())
-                                    <span class="buy-together__plus">+</span>
-                                    @endif
-                                @endforeach
-                                <span class="buy-together__equally">=</span>
-                                <div class="buy-together__price-wrapper">
-                                    @if(!empty($set->old_price))
-                                        <div class="buy-together__price-old">{{ round($set->old_price, 2) }} грн.</div>
-                                    @else
-                                        <div class="buy-together__price-old" style="text-decoration: none;">&nbsp;</div>
-                                    @endif
-                                    <div class="buy-together__price-new">{{ round($set->price, 2) }} грн.</div>
-                                    <a href="{{env('APP_URL')}}/product/{{ $set->url_alias }}" class="buy-together__btn">Заказать Комплект</a>
-                                </div>
-                            </div>
-                        @endforeach
-                        @if($product->sets->count() > 1)
-                            <nav class="buy-together__tabs">
-                                <span class="buy-together__tabs-title">Еще варианты:</span>
-                                <ul class="buy-together__tabs-list">
-                                    @foreach($product->sets as $i => $set)
-                                        <li class="buy-together__tabs-item{{ $i == 0 ? ' active' : '' }}">{{ $set->name }}</li>
+                                        @if($id + 1 < $set->set_products->count())
+                                            <span class="buy-together__plus">+</span>
+                                        @endif
                                     @endforeach
-                                </ul>
-                            </nav>
-                        @endif
+                                    <span class="buy-together__equally">=</span>
+                                    <div class="buy-together__price-wrapper">
+                                        @if(!empty($set->old_price))
+                                            <div class="buy-together__price-old">{{ round($set->old_price, 2) }} грн.</div>
+                                        @else
+                                            <div class="buy-together__price-old" style="text-decoration: none;">&nbsp;</div>
+                                        @endif
+                                        <div class="buy-together__price-new">{{ round($set->price, 2) }} грн.</div>
+                                        <a href="{{env('APP_URL')}}/product/{{ $set->url_alias }}" class="buy-together__btn">Заказать Комплект</a>
+                                    </div>
+                                </div>
+                            @endforeach
+                            @if($product->sets->count() > 1)
+                                <nav class="buy-together__tabs">
+                                    <span class="buy-together__tabs-title">Еще варианты:</span>
+                                    <ul class="buy-together__tabs-list">
+                                        @foreach($product->sets as $i => $set)
+                                            <li class="buy-together__tabs-item{{ $i == 0 ? ' active' : '' }}">{{ $set->name }}</li>
+                                        @endforeach
+                                    </ul>
+                                </nav>
+                            @endif
+                        </div>
                     </div>
                 </div>
-            </div>
-        </section>
+            </section>
         @endif
         {{--@if($related->count())--}}
         {{--<section class="similar-items__wrapper" id="similar-products">--}}
-            {{--<div class="section-title"><span>Похожие товары</span></div>--}}
-            {{--<div class="container">--}}
-                {{--<div class="actions-slider">--}}
-                    {{--@forelse($related as $related_product)--}}
-                        {{--<div class="item col-sm-4">--}}
-                            {{--<div class="item-inner action">--}}
-                                {{--@if(!empty($product->action))--}}
-                                {{--<span class="item-label">Акция <i>%</i></span>--}}
-                                {{--@endif--}}
-                                {{--<div class="item-pic__wrapper">--}}
-                                    {{--<a href="{{env('APP_URL')}}/product/{{ $related_product->url_alias }}"><img class="item-pic" src="{{ $related_product->image == null ? '/assets/images/no_image.jpg' : $related_product->image->url('product_list') }}" alt=""></a>--}}
-                                {{--</div>--}}
-                                {{--<div class="item-info__wrapper">--}}
-                                    {{--<a class="item-link" href="{{env('APP_URL')}}/product/{{ $related_product->url_alias }}">{{ $related_product->name }}</a>--}}
-                                    {{--@if(!empty($related_product->old_price))--}}
-                                        {{--<div class="item-price-old">{{ round($related_product->old_price, 2) }} грн</div>--}}
-                                    {{--@else--}}
-                                        {{--<div class="item-price-old" style="text-decoration: none;">&nbsp;</div>--}}
-                                    {{--@endif--}}
-                                    {{--<div class="item-price">{{ round($related_product->price, 2) }} грн</div>--}}
-                                    {{--<a class="item-btn" href="/product/{{ $related_product->url_alias }}">Подробнее</a>--}}
-                                {{--</div>--}}
-                            {{--</div>--}}
-                        {{--</div>--}}
-                    {{--@empty--}}
+        {{--<div class="section-title"><span>Похожие товары</span></div>--}}
+        {{--<div class="container">--}}
+        {{--<div class="actions-slider">--}}
+        {{--@forelse($related as $related_product)--}}
+        {{--<div class="item col-sm-4">--}}
+        {{--<div class="item-inner action">--}}
+        {{--@if(!empty($product->action))--}}
+        {{--<span class="item-label">Акция <i>%</i></span>--}}
+        {{--@endif--}}
+        {{--<div class="item-pic__wrapper">--}}
+        {{--<a href="{{env('APP_URL')}}/product/{{ $related_product->url_alias }}"><img class="item-pic" src="{{ $related_product->image == null ? '/assets/images/no_image.jpg' : $related_product->image->url('product_list') }}" alt=""></a>--}}
+        {{--</div>--}}
+        {{--<div class="item-info__wrapper">--}}
+        {{--<a class="item-link" href="{{env('APP_URL')}}/product/{{ $related_product->url_alias }}">{{ $related_product->name }}</a>--}}
+        {{--@if(!empty($related_product->old_price))--}}
+        {{--<div class="item-price-old">{{ round($related_product->old_price, 2) }} грн</div>--}}
+        {{--@else--}}
+        {{--<div class="item-price-old" style="text-decoration: none;">&nbsp;</div>--}}
+        {{--@endif--}}
+        {{--<div class="item-price">{{ round($related_product->price, 2) }} грн</div>--}}
+        {{--<a class="item-btn" href="/product/{{ $related_product->url_alias }}">Подробнее</a>--}}
+        {{--</div>--}}
+        {{--</div>--}}
+        {{--</div>--}}
+        {{--@empty--}}
 
-                    {{--@endforelse--}}
-                {{--</div>--}}
-            {{--</div>--}}
+        {{--@endforelse--}}
+        {{--</div>--}}
+        {{--</div>--}}
         {{--</section>--}}
         {{--@endif--}}
     </main>
@@ -696,6 +704,21 @@
                     </div>
                 </div>
             </div>
+        </div>
+    </div>
+
+    <div class="mfp-hide">
+        <div id='return_policy_popup' class="order-popup">
+            <p><strong class="popup-title">Условия возврата и обмена</strong> </p>
+            <p>Компания осуществляет возврат и обмен этого товара в соответствии с требованиями законодательства.</p>
+            <p><strong>Сроки возврата</strong></p>
+            <p>Возврат возможен в течение 14 дней после получения (для товаров надлежащего качества).</p>
+            <p> Обратная доставка товаров осуществляется по договоренности.</p>
+            <p>Если у Вас возникли вопросы по заказу, Вы хотите вернуть или обменять товар, позвоните по одному из указанных номеров:</p>
+            <a href="tel:+38 (057) 751-70-59">+38 (057) 751-70-59</a><br>
+            <a href="tel:+38 (050) 697-21-61">+38 (050) 697-21-61</a><br>
+            <a href="tel:+38 (097) 322-99-08">+38 (097) 322-99-08</a>
+            <button title="Close (Esc)" type="button" class="mfp-close">×</button>
         </div>
     </div>
 @endsection

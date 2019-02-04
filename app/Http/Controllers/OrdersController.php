@@ -332,7 +332,7 @@ class OrdersController extends Controller
         return true;
     }
 
-    public function thank_you()
+    public function thank_you(Request $request)
     {
         $modules_settings = Modules::all();
 
@@ -343,6 +343,6 @@ class OrdersController extends Controller
         }
 //        $latest_products = Products::orderBy('created_at', 'desc')->take($latest_settings->quantity)->get();
         $latest_products = Products::orderBy('created_at', 'desc')->where('stock', 1)->whereNotNull('action')->take(12)->get();
-        return view('public.thanks')->with('latest_products', $latest_products);
+        return view('public.thanks')->with('latest_products', $latest_products)->with('id', $request->order_id);
     }
 }

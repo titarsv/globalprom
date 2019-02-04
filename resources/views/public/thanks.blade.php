@@ -14,13 +14,13 @@
 
     <main >
         <section class="siteSection">
-            <h1>Спасибо за Ваш заказ.</h1>
+            <h1>Спасибо за Ваш заказ. Номер заказа {{ $order_id }}</h1>
             <section class="subHeader" style="text-align: center; margin-bottom: 40px;">
                 <div class="container">
                     {{--<div class="succes__card">--}}
                         {{--<span class="succes__descr">Ваш заказ успешно оформлен</span>--}}
                     {{--</div>--}}
-                    <span class="succes__wait-call" style="font-size: 24px">В течение 15 минут наш специалист свяжется с Вами для уточнения заказа!</span>
+                    <span class="succes__wait-call" style="font-size: 24px">Ваш заказ принят. Спасибо за обращение!</span>
                     {{--<a href="{{env('APP_URL')}}" class="main-btn main-btn_accent" style="color: #1185c2;">Продолжить покупки</a>--}}
                 </div>
             </section>

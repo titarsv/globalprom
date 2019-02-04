@@ -989,6 +989,7 @@ class ProductsController extends Controller
      * Фид для прома
      *
      * @param Products $products
+     * @return mixed
      */
     public function prom_export(Products $products){
         $data = [];
@@ -996,7 +997,7 @@ class ProductsController extends Controller
             $data[] = [
                 'ID' => $product->id,
                 'Title' => $product->name,
-                'Description' => $product->description,
+                'Description' => $product->meta_description,
                 'Link' => env('APP_URL').'/product/'.$product->url_alias,
                 'Image_​link' => empty($product->image) ? env('APP_URL').'/uploads/no_image.jpg' : env('APP_URL').$product->image->url(),
                 'Stock' => $product->stock,
@@ -1006,22 +1007,28 @@ class ProductsController extends Controller
             ];
         }
 
-        Excel::create('prom', function($excel) use ($data) {
+        $contents = view('public.rss_feed')
+            ->with('products', $data);
 
-            // Set the title
-            $excel->setTitle('Prom');
+        return response($contents)
+            ->header('Content-Type', 'text/xml');
 
-            // Chain the setters
-            $excel->setCreator('Triplefork')
-                ->setCompany('Triplefork');
-
-            // Call them separately
-            $excel->setDescription('Prom');
-
-            $excel->sheet('First sheet', function($sheet) use ($data) {
-                $sheet->fromArray($data);
-            });
-
-        })->download('csv');
+//        Excel::create('prom', function($excel) use ($data) {
+//
+//            // Set the title
+//            $excel->setTitle('Prom');
+//
+//            // Chain the setters
+//            $excel->setCreator('Triplefork')
+//                ->setCompany('Triplefork');
+//
+//            // Call them separately
+//            $excel->setDescription('Prom');
+//
+//            $excel->sheet('First sheet', function($sheet) use ($data) {
+//                $sheet->fromArray($data);
+//            });
+//
+//        })->download('csv');
     }
 }
