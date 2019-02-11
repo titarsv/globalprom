@@ -20,6 +20,23 @@
     @endif
 
     <meta name="canonical" content="{{env('APP_URL')}}/product/{!! $product->url_alias !!}">
+
+    <!-- Код тега ремаркетинга Google -->
+    <script type="text/javascript">
+        var google_tag_params = {
+            dynx_itemid: '{{ $product->id }}',
+            dynx_pagetype: 'offerdetail',
+            dynx_totalvalue: '{{ $product->price }}',
+        };
+    </script>
+    <script type="text/javascript">
+        /* <![CDATA[ */
+        var google_conversion_id = 765411960;
+        var google_custom_params = window.google_tag_params;
+        var google_remarketing_only = true;
+        /* ]]> */
+    </script>
+    <script type="text/javascript" src="//www.googleadservices.com/pagead/conversion.js"></script>
 @endsection
 
 @section('breadcrumbs')

@@ -3,6 +3,22 @@
     <title>Поиск: {{ $search_text }}</title>
     <meta name="description" content="Поиск по запросу: {{ $search_text }}">
     <meta name="keywords" content="{{ $search_text }}">
+    <!-- Код тега ремаркетинга Google -->
+    <script type="text/javascript">
+        var google_tag_params = {
+            dynx_itemid: [{{ implode(', ', $products->pluck('id')->toArray()) }}],
+            dynx_pagetype: 'searchresults',
+            dynx_totalvalue: [{{ implode(', ', $products->pluck('price')->toArray()) }}],
+        };
+    </script>
+    <script type="text/javascript">
+        /* <![CDATA[ */
+        var google_conversion_id = 765411960;
+        var google_custom_params = window.google_tag_params;
+        var google_remarketing_only = true;
+        /* ]]> */
+    </script>
+    <script type="text/javascript" src="//www.googleadservices.com/pagead/conversion.js"></script>
 @endsection
 
 @section('breadcrumbs')

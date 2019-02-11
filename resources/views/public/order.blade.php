@@ -1,6 +1,30 @@
 @extends('public.layouts.main')
 @section('meta')
     <title>Оформление заказа</title>
+    <!-- Код тега ремаркетинга Google -->
+    @php
+        $dynx_itemid = [];
+        $dynx_totalvalue = [];
+        foreach ($cart->get_products() as $code => $product){
+            $dynx_itemid[] = $product['product']->id;
+            $dynx_totalvalue[] = $product['price'];
+        }
+    @endphp
+    <script type="text/javascript">
+        var google_tag_params = {
+            dynx_itemid: [{{ implode(',', $dynx_itemid) }}],
+            dynx_pagetype: 'conversionintent',
+            dynx_totalvalue: [{{ implode(',', $dynx_totalvalue) }}],
+        };
+    </script>
+    <script type="text/javascript">
+        /* <![CDATA[ */
+        var google_conversion_id = 765411960;
+        var google_custom_params = window.google_tag_params;
+        var google_remarketing_only = true;
+        /* ]]> */
+    </script>
+    <script type="text/javascript" src="//www.googleadservices.com/pagead/conversion.js"></script>
 @endsection
 @section('content')
 

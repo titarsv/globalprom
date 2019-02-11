@@ -997,7 +997,7 @@ class ProductsController extends Controller
             $data[] = [
                 'ID' => $product->id,
                 'Title' => $product->name,
-                'Description' => $product->meta_description,
+                'Description' => empty($product->description) ? $product->name : strip_tags($product->description),
                 'Link' => env('APP_URL').'/product/'.$product->url_alias,
                 'Image_​link' => empty($product->image) ? env('APP_URL').'/uploads/no_image.jpg' : env('APP_URL').$product->image->url(),
                 'Stock' => $product->stock,

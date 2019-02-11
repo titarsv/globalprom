@@ -12,7 +12,7 @@
                 <g:link>{{ $product['Link'] }}</g:link>
                 <g:image_link>{{ $product['Image_​link'] }}</g:image_link>
                 <g:availability>in stock</g:availability>
-                <g:price>{{ $product['Price'] }} UAH</g:price>
+                <g:price>{{ $product['Price'] }}</g:price>
                 <g:brand>GlobalProm</g:brand>
                 <g:condition>new</g:condition>
             </item>
