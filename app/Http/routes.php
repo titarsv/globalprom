@@ -34,7 +34,6 @@ Route::get('/product/{alias}', 'ProductsController@show');
 Route::post('/review/add', 'ReviewsController@add');
 Route::post('/review/add-likes', 'ReviewsController@addLikes');
 
-
 /**
  * Authorization routing
  */
@@ -48,6 +47,7 @@ Route::get('/forgotten', 'LoginController@forgotten');
 Route::post('/forgotten', 'LoginController@reminder');
 Route::get('/lostpassword', 'LoginController@lostpassword');
 Route::post('/lostpassword', 'LoginController@changePassword');
+Route::get('/export-products-prom', 'ProductsController@prom_export');
 
 /**
  * Admin routing
@@ -91,7 +91,7 @@ Route::group(['middleware' => ['admin'], 'prefix' => 'admin'], function(){
     });
     Route::match(['get', 'post'], '/upload-products', 'ProductsController@upload');
     Route::get('/export-products', 'ProductsController@export');
-    Route::get('/export-products-prom', 'ProductsController@prom_export');
+    Route::get('/export-prices', 'ProductsController@price_export');
 
     Route::group(['prefix' => 'manufacturers'], function(){
         Route::get('/', 'ManufacturersController@index');

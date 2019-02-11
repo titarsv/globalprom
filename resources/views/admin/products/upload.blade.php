@@ -32,18 +32,21 @@
                         </div>
                     </div>
                 </div>
-                {{--<div class="panel panel-default">--}}
-                    {{--<div class="panel-body">--}}
-                        {{--<div class="form-group">--}}
-                            {{--<div class="row">--}}
-                                {{--<label class="col-sm-2 text-right">Обновлять существующие</label>--}}
-                                {{--<div class="form-element col-sm-10">--}}
-                                    {{--<input type="checkbox" value="1" name="update">--}}
-                                {{--</div>--}}
-                            {{--</div>--}}
-                        {{--</div>--}}
-                    {{--</div>--}}
-                {{--</div>--}}
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <div class="form-group">
+                            <div class="row">
+                                <label class="col-sm-2 text-right">Обновить остатки и цены</label>
+                                <div class="form-element col-sm-1">
+                                    <input type="checkbox" value="1" name="update">
+                                </div>
+                                <div class="form-element col-sm-9">
+                                    <a href="/admin/export-prices">Скачать каталог цен</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 @if(!empty($errors))
                     @foreach($errors as $error)
                         <p>При загрузке товара в строке {{ $error['id'] + 1 }} были зафиксированы следующие ошибки:</p>

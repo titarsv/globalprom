@@ -643,9 +643,10 @@ class ProductsController extends Controller
      *
      * @param Request $request
      * @param Products $products
-     * @return mixed
+     * @param Variation $variations
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function upload(Request $request, Products $products)
+    public function upload(Request $request, Products $products, Variation $variations)
     {
         $update = $request->input('update');
         $errors = false;
@@ -658,120 +659,131 @@ class ProductsController extends Controller
 
             })->get();
 
-            if(!empty($data) && $data->count()){
-                $prepared_data = [];
+            if($request->update){
+                if (!empty($data) && $data->count()) {
+                    foreach ($data as $row) {
+                        if(!empty($row->Variation_ID)) {
+                            $variations->where('id', (int)$row->Variation_ID)->update(['price' => (float)$row->Price]);
+                        }elseif(!empty($row->ID)){
+                            $products->where('id', (int)$row->ID)->update(['price' => (float)$row->Price, 'old_price' => (float)$row->Old_Price, 'stock' => (int)$row->Stock]);
+                        }
+                    }
+                }
+            }else {
+                if (!empty($data) && $data->count()) {
+                    $prepared_data = [];
 
-                foreach ($data as $row) {
+                    foreach ($data as $row) {
 
-                    $row_data = ['tables' => []];
-                    foreach ($row as $key => $val){
-                        $field = ['options' => $this->get_field_options($key)];
+                        $row_data = ['tables' => []];
+                        foreach ($row as $key => $val) {
+                            $field = ['options' => $this->get_field_options($key)];
 
-                        // Если данные для этой таблицы ещё не заполнялись
-                        if(!isset($row_data['tables'][$field['options']['table']]))
-                            $row_data['tables'][$field['options']['table']] = [];
+                            // Если данные для этой таблицы ещё не заполнялись
+                            if (!isset($row_data['tables'][$field['options']['table']]))
+                                $row_data['tables'][$field['options']['table']] = [];
 
-                        // Если поле содержит несколько значений
-                        if(isset($field['options']['selector'])){
-                            $vals = explode($field['options']['selector'], $val);
+                            // Если поле содержит несколько значений
+                            if (isset($field['options']['selector'])) {
+                                $vals = explode($field['options']['selector'], $val);
 
-                            // Обходим каждое значение отдельно
-                            foreach ($vals as $result){
-                                $new_row = [];
+                                // Обходим каждое значение отдельно
+                                foreach ($vals as $result) {
+                                    $new_row = [];
 
-                                // Доподнительное поле
-                                if(isset($field['options']['relations'])){
-                                    $relation = preg_replace('/^([^{]+)\{([^}]+)\}/u', '$2', $result);
-                                    if($relation != $result) {
-                                        $new_row = array_merge($new_row, [$field['options']['relations'] => preg_replace('/^([^{]+)\{([^}]+)\}/u', '$2', $result)]);
-                                        $result = trim(preg_replace('/^([^{]+)\{([^}]+)\}/u', '$1', $result));
+                                    // Доподнительное поле
+                                    if (isset($field['options']['relations'])) {
+                                        $relation = preg_replace('/^([^{]+)\{([^}]+)\}/u', '$2', $result);
+                                        if ($relation != $result) {
+                                            $new_row = array_merge($new_row, [$field['options']['relations'] => preg_replace('/^([^{]+)\{([^}]+)\}/u', '$2', $result)]);
+                                            $result = trim(preg_replace('/^([^{]+)\{([^}]+)\}/u', '$1', $result));
+                                        }
                                     }
-                                }
 
-                                // Делаем необходимые подмены
-                                if(isset($field['options']['replace']) && !empty($result)) {
-                                    $result = $this->replace_inserted_data($result, $field['options']['replace']['table'], $field['options']['replace']['find'], $field['options']['replace']['replaced']);
+                                    // Делаем необходимые подмены
+                                    if (isset($field['options']['replace']) && !empty($result)) {
+                                        $result = $this->replace_inserted_data($result, $field['options']['replace']['table'], $field['options']['replace']['find'], $field['options']['replace']['replaced']);
+                                    }
+
+                                    // Подгружаем файлы
+                                    if (isset($field['options']['load']) && !empty($result)) {
+                                        $url = "http://globalprom.com.ua/image/$result";
+                                        $table = $field['options']['load'][0];
+                                        $replaced = $field['options']['load'][1];
+                                        if ($table == 'images') {
+                                            $file = new ImagesController(new Image());
+                                        }
+                                        if (isset($file)) {
+                                            $file = $file->uploadFromUrlImages($url);
+                                            if ($file) {
+                                                $result = $file->$replaced;
+                                            } else {
+                                                $result = 1;
+                                            }
+                                        }
+                                    }
+
+                                    $new_row = array_merge($new_row, [$field['options']['field'] => $result]);
+                                    // Заполняем связанное поле
+                                    if (isset($field['options']['attached_fields'])) {
+                                        $new_row = array_merge($new_row, $field['options']['attached_fields']);
+                                    }
+
+                                    // Добавляем данные в общий поток
+                                    if ($result !== '')
+                                        $row_data['tables'][$field['options']['table']][] = $new_row;
+                                }
+                            } else {
+                                if (isset($field['options']['replace']) && !empty($val)) {
+                                    $val = $this->replace_inserted_data($val, $field['options']['replace']['table'], $field['options']['replace']['find'], $field['options']['replace']['replaced']);
                                 }
 
                                 // Подгружаем файлы
-                                if(isset($field['options']['load']) && !empty($result)) {
-                                    $url = "http://globalprom.com.ua/image/$result";
+                                if (isset($field['options']['load']) && !empty($val)) {
+                                    $url = "http://globalprom.com.ua/image/$val";
                                     $table = $field['options']['load'][0];
                                     $replaced = $field['options']['load'][1];
-                                    if($table == 'images'){
+                                    if ($table == 'images') {
                                         $file = new ImagesController(new Image());
                                     }
-                                    if(isset($file)){
+                                    if (isset($file)) {
                                         $file = $file->uploadFromUrlImages($url);
-                                        if($file){
-                                            $result = $file->$replaced;
-                                        }else{
-                                            $result = 1;
+                                        if ($file) {
+                                            $val = $file->$replaced;
+                                        } else {
+                                            $val = 1;
                                         }
                                     }
                                 }
 
-                                $new_row = array_merge($new_row, [$field['options']['field'] => $result]);
-                                // Заполняем связанное поле
-                                if(isset($field['options']['attached_fields'])){
-                                    $new_row = array_merge($new_row, $field['options']['attached_fields']);
+                                if (isset($field['options']['unique'])) {
+                                    $row_data['tables'][$field['options']['table']][$field['options']['field']] = $val;
+                                } else {
+                                    $row_data['tables'][$field['options']['table']][] = [$field['options']['field'] => $val];
                                 }
-
-                                // Добавляем данные в общий поток
-                                if($result !== '')
-                                    $row_data['tables'][$field['options']['table']][] = $new_row;
-                            }
-                        }else{
-                            if(isset($field['options']['replace']) && !empty($val)) {
-                                $val = $this->replace_inserted_data($val, $field['options']['replace']['table'], $field['options']['replace']['find'], $field['options']['replace']['replaced']);
-                            }
-
-                            // Подгружаем файлы
-                            if(isset($field['options']['load']) && !empty($val)) {
-                                $url = "http://globalprom.com.ua/image/$val";
-                                $table = $field['options']['load'][0];
-                                $replaced = $field['options']['load'][1];
-                                if($table == 'images'){
-                                    $file = new ImagesController(new Image());
-                                }
-                                if(isset($file)){
-                                    $file = $file->uploadFromUrlImages($url);
-                                    if($file){
-                                        $val = $file->$replaced;
-                                    }else{
-                                        $val = 1;
-                                    }
-                                }
-                            }
-
-                            if(isset($field['options']['unique'])) {
-                                $row_data['tables'][$field['options']['table']][$field['options']['field']] = $val;
-                            }else {
-                                $row_data['tables'][$field['options']['table']][] = [$field['options']['field'] => $val];
                             }
                         }
+                        $prepared_data[] = $row_data;
                     }
-                    $prepared_data[] = $row_data;
-                }
 
-                $errors = $this->validate_prepared_data($prepared_data);
+                    $errors = $this->validate_prepared_data($prepared_data);
 
-                if(empty($errors)) {
-                    foreach ($prepared_data as $product) {
-                        if ($update)
-                            $products->update_product($product['tables']);
-                        else
-                            $products->insert_product($product['tables']);
+                    if (empty($errors)) {
+                        foreach ($prepared_data as $product) {
+                            if ($update)
+                                $products->update_product($product['tables']);
+                            else
+                                $products->insert_product($product['tables']);
 
-                        if (isset($product['errors']))
-                            $errors[] = $product;
+                            if (isset($product['errors']))
+                                $errors[] = $product;
+                        }
+                    } else {
+                        return view('admin.products.upload')
+                            ->with('errors', $errors);
                     }
-                }else{
-                    return view('admin.products.upload')
-                        ->with('errors', $errors);
                 }
             }
-
         }
 
         return view('admin.products.upload')
@@ -1030,5 +1042,56 @@ class ProductsController extends Controller
 //            });
 //
 //        })->download('csv');
+    }
+
+    public function price_export(Products $products){
+        $data = [];
+        foreach($products->whereNull('deleted_at')->with(['variations.attribute_values'])->get() as $product){
+            $data[] = [
+                'ID' => $product->id,
+                'Variation_ID' =>0,
+                'Name' => $product->name,
+                'Price' => $product->price,
+                'Old_Price' => $product->old_price,
+                'Stock' => $product->stock,
+                'URL' => env('APP_URL').'/product/'.$product->url_alias,
+            ];
+            foreach ($product->variations as $variation){
+                $attributes = [];
+                if($variation->attribute_values->count()){
+                    foreach($variation->attribute_values as $val){
+                        $attributes[] = $val->attribute->name . ': ' . $val->name;
+                    }
+                }
+                $data[] = [
+                    'ID' => $product->id,
+                    'Variation_ID' => $variation->id,
+                    'Name' => implode(', ', $attributes),
+                    'Price' => $variation->price,
+                    'Sale Price' => '',
+                    'Stock' => $product->stock,
+                    'URL' => env('APP_URL').'/product/'.$product->url_alias,
+                ];
+            }
+        }
+//        dd($data);
+
+        Excel::create('prices', function($excel) use ($data) {
+
+            // Set the title
+            $excel->setTitle('Prices');
+
+            // Chain the setters
+            $excel->setCreator('Triplefork')
+                ->setCompany('Triplefork');
+
+            // Call them separately
+            $excel->setDescription('Prices');
+
+            $excel->sheet('First sheet', function($sheet) use ($data) {
+                $sheet->fromArray($data);
+            });
+
+        })->download('xls');
     }
 }
