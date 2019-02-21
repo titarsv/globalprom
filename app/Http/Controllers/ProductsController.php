@@ -1094,4 +1094,45 @@ class ProductsController extends Controller
 
         })->download('xls');
     }
+
+    /**
+     * Фид для FB
+     *
+     * @param Products $products
+     * @return mixed
+     */
+    public function fb_feed(Products $products){
+        $data = [];
+        foreach($products->where('stock', 1)->where('price', '>', 0)->with(['categories', 'image'])->get() as $product){
+            $data[] = [
+                'id' => $product->id,
+                'title' => $product->name,
+                'description' => empty($product->description) ? $product->name : strip_tags($product->description),
+                'availability' => 'in stock',
+                'condition' => 'new',
+                'price' => (!empty($product->old_price) && $product->price < $product->old_price) ? $product->old_price.' UAH' : $product->price.' UAH',
+                'link' => env('APP_URL').'/product/'.$product->url_alias,
+                'image_​link' => empty($product->image) ? env('APP_URL').'/uploads/no_image.jpg' : env('APP_URL').$product->image->url(),
+                'brand' => 'GlobalProm'
+            ];
+        }
+
+        Excel::create('feed', function($excel) use ($data) {
+
+            // Set the title
+            $excel->setTitle('Feed');
+
+            // Chain the setters
+            $excel->setCreator('Triplefork')
+                ->setCompany('Triplefork');
+
+            // Call them separately
+            $excel->setDescription('Feed');
+
+            $excel->sheet('First sheet', function($sheet) use ($data) {
+                $sheet->fromArray($data);
+            });
+
+        })->download('csv');
+    }
 }

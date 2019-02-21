@@ -48,6 +48,7 @@ Route::post('/forgotten', 'LoginController@reminder');
 Route::get('/lostpassword', 'LoginController@lostpassword');
 Route::post('/lostpassword', 'LoginController@changePassword');
 Route::get('/export-products-prom', 'ProductsController@prom_export');
+Route::get('/fb_feed', 'ProductsController@fb_feed');
 
 /**
  * Admin routing
