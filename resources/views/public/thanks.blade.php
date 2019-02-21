@@ -1,6 +1,11 @@
 @extends('public.layouts.main')
 @section('meta')
     <title>Спасибо за заказ</title>
+    <script>
+        if(typeof fbq !== 'undefined') {
+            fbq('track', 'Purchase', {currency: 'UAH', value: '{{ $order->total_price }}'});
+        }
+    </script>
 @endsection
 @section('content')
     <nav class="breadrumbs">

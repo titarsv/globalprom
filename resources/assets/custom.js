@@ -181,6 +181,10 @@ $(function() {
                 type: 'inline'
             }, 0);
             update_cart_quantity();
+
+            if(typeof fbq !== 'undefined' && typeof fbqProductsData[data.product_id] !== 'undefined'){
+                fbq('track', 'AddToCart', fbqProductsData[data.product_id]);
+            }
         });
         //update_cart(data);
     });
@@ -452,10 +456,8 @@ function update_cart(data){
         if(order_cart_content.length > 0){
             order_cart_content.load("/cart/update", {type: "order_cart"});
         }
-        //$('.cart_scroll_wrapper').jScrollPane();
+
         update_cart_quantity();
-        //if(order_cart_content.length == 0)
-        //    $('#cart').trigger('click');
     });
 }
 

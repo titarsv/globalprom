@@ -21,6 +21,20 @@
 
     <meta name="canonical" content="{{env('APP_URL')}}/product/{!! $product->url_alias !!}">
 
+    <script>
+        var fbqProductsData = [];
+        fbqProductsData[{{ $product->id }}] = {
+            content_type: 'product',
+            content_ids: ['{{ $product->id }}'],
+            content_name: '{{ $product->name }}',
+            content_category: '{{ $product->categories->count() ? $product->categories->first()->name : '' }}',
+            value: {{ $product->price }},
+            currency: 'UAH'
+        }
+        if(typeof fbq !== 'undefined'){
+            fbq('track', 'ViewContent', fbqProductsData[{{ $product->id }}]);
+        }
+    </script>
     <!-- Код тега ремаркетинга Google -->
     <script type="text/javascript">
         var google_tag_params = {
