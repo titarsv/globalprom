@@ -342,7 +342,8 @@ class CheckoutController extends Controller
         $latest_products = Products::orderBy('created_at', 'desc')->where('stock', 1)->whereNotNull('action')->take(12)->get();
 
         if ($order->status_id){
-            return view('public.thanks', ['order_id' => $order_id, 'user' => $user, 'confirmed' => true, 'latest_products' => $latest_products, 'order' => $order]);
+            return redirect('/');
+//            return view('public.thanks', ['order_id' => $order_id, 'user' => $user, 'confirmed' => true, 'latest_products' => $latest_products, 'order' => $order]);
         } else {
             $order->update(['status_id' => 1]);
         }

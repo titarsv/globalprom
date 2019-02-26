@@ -17,7 +17,7 @@
         </div>
     </nav>
 
-    <main >
+    <main>
         <section class="siteSection">
             <h1>Спасибо за Ваш заказ. Номер заказа {{ $order_id }}</h1>
             <section class="subHeader" style="text-align: center; margin-bottom: 40px;">
