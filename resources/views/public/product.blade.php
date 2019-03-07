@@ -35,12 +35,19 @@
             fbq('track', 'ViewContent', fbqProductsData[{{ $product->id }}]);
         }
     </script>
+@endsection
+
+@section('breadcrumbs')
+    {!! Breadcrumbs::render('product', $product, $product->categories) !!}
+@endsection
+
+@section('content')
     <!-- Код тега ремаркетинга Google -->
     <script type="text/javascript">
         var google_tag_params = {
-            dynx_itemid: '{{ $product->id }}',
-            dynx_pagetype: 'offerdetail',
-            dynx_totalvalue: '{{ $product->price }}',
+            ecomm_prodid: '{{ $product->id }}',
+            ecomm_pagetype: 'offerdetail',
+            ecomm_totalvalue: {{ $product->price }},
         };
     </script>
     <script type="text/javascript">
@@ -50,14 +57,13 @@
         var google_remarketing_only = true;
         /* ]]> */
     </script>
+    <script>
+        dataLayer.push ({
+            'event':'remarketingTriggered',
+            'google_tag_params': window.google_tag_params
+        });
+    </script>
     <script type="text/javascript" src="//www.googleadservices.com/pagead/conversion.js"></script>
-@endsection
-
-@section('breadcrumbs')
-    {!! Breadcrumbs::render('product', $product, $product->categories) !!}
-@endsection
-
-@section('content')
     <main class="main-wrapper">
         <section class="product-wrapper" itemscope itemtype="http://schema.org/Product">
             <div class="container">
@@ -101,8 +107,8 @@
                                 @forelse($gallery as $i => $image)
                                     @if(is_object($image['image']))
                                         <div class="product-slide popup-btn" data-index="{{ $i }}" data-mfp-src="#view_popup_prod">
-                                            {{--{!! $image['image']->webp_image('product', ['alt' => empty($image['alt']) ? '' : $image['alt'], 'title' => empty($image['title']) ? '' : $image['title'], 'itemprop' => 'image']) !!}--}}
-                                            <img src="{{ $image['image']->url('full') }}"{!! empty($image['alt']) ? '' : ' alt="'.$image['alt'].'"' !!}{!! empty($image['title']) ? '' : ' title="'.$image['title'].'"' !!} itemprop="image">
+                                            {!! $image['image']->webp_image('product', ['alt' => empty($image['alt']) ? '' : $image['alt'], 'title' => empty($image['title']) ? '' : $image['title'], 'itemprop' => 'image'], 'slider') !!}
+                                            {{--<img src="{{ $image['image']->url('full') }}"{!! empty($image['alt']) ? '' : ' alt="'.$image['alt'].'"' !!}{!! empty($image['title']) ? '' : ' title="'.$image['title'].'"' !!} itemprop="image">--}}
                                         </div>
                                     @endif
                                 @empty
@@ -122,7 +128,8 @@
                                 @forelse($gallery as $image)
                                     @if(is_object($image['image']))
                                         <div class="nav-slide">
-                                            <img class="nav-pic" src="{{ $image['image']->url('full') }}"{!! empty($image['alt']) ? '' : ' alt="'.$image['alt'].'"' !!}{!! empty($image['title']) ? '' : ' title="'.$image['title'].'"' !!}>
+                                            {!! $image['image']->webp_image('product', ['alt' => empty($image['alt']) ? '' : $image['alt'], 'title' => empty($image['title']) ? '' : $image['title'], 'itemprop' => 'image'], 'slider') !!}
+                                            {{--<img class="nav-pic" src="{{ $image['image']->url('full') }}"{!! empty($image['alt']) ? '' : ' alt="'.$image['alt'].'"' !!}{!! empty($image['title']) ? '' : ' title="'.$image['title'].'"' !!}>--}}
                                         </div>
                                     @endif
                                 @empty
@@ -421,7 +428,8 @@
                                         @if(is_object($image['image']))
                                             <a href="{{env('APP_URL')}}{{ $image['image']->url('full') }}" class="col-md-3 col-xs-6 image-popup-vertical-fit">
                                                 <div class="product-gallery__item">
-                                                    <img class="product-gallery__pic" src="{{ $image['image']->url('full') }}"{!! empty($image['alt']) ? '' : ' alt="'.$image['alt'].'"' !!}{!! empty($image['title']) ? '' : ' title="'.$image['title'].'"' !!}>
+                                                    {!! $image['image']->webp_image('product', ['class' => 'product-gallery__pic', 'alt' => empty($image['alt']) ? '' : $image['alt'], 'title' => empty($image['title']) ? '' : $image['title'], 'title' => 'image'], 'static') !!}
+                                                    {{--<img class="product-gallery__pic" src="{{ $image['image']->url('full') }}"{!! empty($image['alt']) ? '' : ' alt="'.$image['alt'].'"' !!}{!! empty($image['title']) ? '' : ' title="'.$image['title'].'"' !!}>--}}
                                                 </div>
                                             </a>
                                         @endif
@@ -460,7 +468,10 @@
                                                     <span class="item-label">Акция <i>%</i></span>
                                                 @endif
                                                 <div class="item-pic__wrapper">
-                                                    <a href="{{env('APP_URL')}}/product/{{ $related_product->url_alias }}"><img class="item-pic" src="{{ $related_product->image == null ? '/assets/images/no_image.jpg' : $related_product->image->url('product_list') }}" alt=""></a>
+                                                    <a href="{{env('APP_URL')}}/product/{{ $related_product->url_alias }}">
+                                                        {!! $related_product->image->webp_image('product_list', ['class' => 'item-pic', 'alt' => $product->name], 'slider') !!}
+                                                        {{--<img class="item-pic" src="{{ $related_product->image == null ? '/assets/images/no_image.jpg' : $related_product->image->url('product_list') }}" alt="">--}}
+                                                    </a>
                                                 </div>
                                                 <div class="item-info__wrapper">
                                                     <a class="item-link" href="{{env('APP_URL')}}/product/{{ $related_product->url_alias }}">{{ $related_product->name }}</a>
@@ -488,7 +499,10 @@
                                                     <span class="item-label">Акция <i>%</i></span>
                                                 @endif
                                                 <div class="item-pic__wrapper">
-                                                    <a href="{{env('APP_URL')}}/product/{{ $similar_product->url_alias }}"><img class="item-pic" src="{{ $similar_product->image == null ? '/assets/images/no_image.jpg' : $similar_product->image->url('product_list') }}" alt=""></a>
+                                                    <a href="{{env('APP_URL')}}/product/{{ $similar_product->url_alias }}">
+                                                        {!! $similar_product->image->webp_image('product_list', ['class' => 'item-pic', 'alt' => $product->name], 'slider') !!}
+                                                        {{--<img class="item-pic" src="{{ $similar_product->image == null ? '/assets/images/no_image.jpg' : $similar_product->image->url('product_list') }}" alt="">--}}
+                                                    </a>
                                                 </div>
                                                 <div class="item-info__wrapper">
                                                     <a class="item-link" href="{{env('APP_URL')}}/product/{{ $similar_product->url_alias }}">{{ $similar_product->name }}</a>
@@ -610,7 +624,10 @@
                                             <div class="item-inner">
                                                 <span class="item-label">Акция <i>%</i></span>
                                                 <div class="item-pic__wrapper">
-                                                    <a href="{{env('APP_URL')}}/product/{{ $set_prod->url_alias }}"><img class="item-pic" src="{{ $set_prod->image == null ? '/assets/images/no_image.jpg' : $set_prod->image->url('product_list') }}" alt=""></a>
+                                                    <a href="{{env('APP_URL')}}/product/{{ $set_prod->url_alias }}">
+                                                        {!! $set_prod->image->webp_image('product_list', ['class' => 'item-pic', 'alt' => $product->name], 'static') !!}
+                                                        {{--<img class="item-pic" src="{{ $set_prod->image == null ? '/assets/images/no_image.jpg' : $set_prod->image->url('product_list') }}" alt="">--}}
+                                                    </a>
                                                 </div>
                                                 <div class="item-info__wrapper">
                                                     <a class="item-link" href="">{{ $set_prod->name }}</a>
@@ -712,7 +729,8 @@
                                 @if(is_object($image['image']))
                                     <div data-index="{{ $i }}">
                                         <div class="img-wrp">
-                                            <img src="{{ $image['image']->url() }}"{!! empty($image['alt']) ? '' : ' alt="'.$image['alt'].'"' !!}{!! empty($image['title']) ? '' : ' title="'.$image['title'].'"' !!} itemprop="image">
+                                            {!! $image['image']->webp_image('product_list', ['alt' => empty($image['alt']) ? '' : $image['alt'], 'title' => empty($image['title']) ? '' : $image['title'], 'itemprop' => 'image']) !!}
+                                            {{--<img src="{{ $image['image']->url() }}"{!! empty($image['alt']) ? '' : ' alt="'.$image['alt'].'"' !!}{!! empty($image['title']) ? '' : ' title="'.$image['title'].'"' !!} itemprop="image">--}}
                                         </div>
                                     </div>
                                 @endif

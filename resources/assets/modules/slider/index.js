@@ -10,5 +10,19 @@ module.exports = function() {
     if ($this.parents('.hidden').length == 0) {
       $this.slick();
     }
-  });
+  }).on('lazyLoaded', function (event, slick, image, imageSource) {
+        var picture = $(image[0]).parents('picture');
+        if (picture.length) {
+            picture
+                .children('source')
+                .each(function (index, el) {
+                    var $child = $(el),
+                        source = $child.data('lazy');
+
+                    if (source) {
+                        $child.attr('srcset', source);
+                    }
+                });
+        }
+    });
 };

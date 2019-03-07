@@ -103,6 +103,10 @@
 
 .main-slider{
 	position: relative;
+  picture{
+    display: block;
+    margin: 0 auto;
+  }
 	.slick-dots{
 		position: absolute;
 		left: 50%;

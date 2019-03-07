@@ -10,7 +10,7 @@
                 <div class="card__img" style="visibility: hidden;"></div>
             @endif
             <a href="{{env('APP_URL')}}/product/{{ $product->url_alias }}">
-                {!! $product->image->webp_image('product_list', ['alt' => $product->name]) !!}
+                {!! $product->image->webp_image('product_list', ['alt' => $product->name], 'static') !!}
                 {{--<img class="item-pic" src="{{ $product->image == null ? '/assets/images/no_image.jpg' : $product->image->url('product_list') }}" alt="">--}}
             </a>
         </div>

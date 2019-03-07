@@ -143,127 +143,159 @@ class Image extends Model
      */
     public function url($size = 'full')
     {
-    	return $this->get_file_url($this, $size);
+        return $this->get_file_url($this, $size);
     }
 
-	/**
-	 * Вывод оптимизированного изображения
-	 *
-	 * @param string $size
-	 * @param array $attributes
-	 *
-	 * @return mixed
-	 */
-    public function webp_image($size = 'full', $attributes = []){
-	    $image_data = $this->toArray();
-    	if(is_array($size)){
-		    $size = $this->find_size_name($image_data, $size);
-	    }
-	    $data = $this->find_by_size($image_data, $size);
+    /**
+     * Вывод оптимизированного изображения
+     *
+     * @param string $size
+     * @param array $attributes
+     * @param bool $lazy
+     * @return string
+     * @throws \Throwable
+     */
+    public function webp_image($size = 'full', $attributes = [], $lazy = false){
+        $this->update_file_names();
+        $image_data = $this->toArray();
+        if(is_array($size)){
+            $size = $this->find_size_name($image_data, $size);
+        }
+        $data = $this->find_by_size($image_data, $size);
 
-	    if(!empty($data)){
-	    	$original = $data->href;
-	    	if(isset($data->webp)){
-	    		$webp = $data->webp;
-		    }else{
-			    $webp = $this->createWebp($size);
-		    }
-
-		    $mime = strtolower(pathinfo($original, PATHINFO_EXTENSION ));
-	    	if($mime == 'jpg'){
-			    $mime = 'jpeg';
-		    }
-
-		    return view('public.layouts.webp')
-			    ->with('original', $original)
-			    ->with('original_mime', $mime)
-			    ->with('webp', $webp)
-			    ->with('attributes', $attributes)
-			    ->render();
-	    }
-
-	    return view('public.layouts.webp')
-		    ->with('attributes', $attributes)
-		    ->render();
-    }
-
-	/**
-	 * Создание webp-изображения
-	 *
-	 * @param $size
-	 *
-	 * @return mixed|null
-	 */
-    public function createWebp($size){
-	    $image_data = $this->toArray();
-	    $data = $this->find_by_size($image_data, $size);
-	    $sizes = json_decode($image_data['sizes']);
-
-	    if(!empty($data)){
-		    $filepath = public_path() . '/assets/images/' . $data->href;
-		    $webp_name = str_replace('.'.strtolower(pathinfo($data->href, PATHINFO_EXTENSION )), '.webp', $data->href);
-		    $webp_path = public_path() . '/assets/images/' . $webp_name;
-		    if(is_file($filepath)){
-                $image = $this->imagecreatefromfile($filepath);
-                imagewebp($image, $webp_path);
-                imagedestroy($image);
-
-                $sizes->$size->webp = $webp_name;
-                $this->update_images_sizes($this->id, $sizes);
-                return $webp_name;
+        if(empty($data)){
+            $size = 'full';
+            $data = $this->find_by_size($image_data, $size);
+            if(empty($data)){
+                $sizes = json_decode($image_data['sizes']);
+                if(empty($sizes)){
+                    $sizes = (object)[];
+                }
+                if(is_file(public_path('assets/images/') . $image_data['href'])){
+                    $imagesizes = getimagesize(public_path('assets/images/') . $image_data['href']);
+                    if($imagesizes[0] > 1920 || $imagesizes[1] > 1920){
+                        $name = $this->update_image_size($image_data['href'], 1920, 1920,'contain');
+                        $imagesizes = getimagesize(public_path('assets/images/') . $name);
+                        $sizes->full = (object)[
+                            'w' => $imagesizes[0],
+                            'h' => $imagesizes[1],
+                            'href' => $name
+                        ];
+                    }else{
+                        $sizes->full = (object)[
+                            'w' => $imagesizes[0],
+                            'h' => $imagesizes[1],
+                            'href' => $image_data['href']
+                        ];
+                    }
+                    $this->update_images_sizes($this->id, $sizes);
+                    $data = $sizes->full;
+                }
             }
-	    }
+        }
 
-		return null;
+        if(!empty($data)){
+            $original = $data->href;
+            if(isset($data->webp)){
+                $webp = $data->webp;
+            }else{
+                $webp = $this->createWebp($size);
+            }
+
+            $mime = strtolower(pathinfo($original, PATHINFO_EXTENSION ));
+            if($mime == 'jpg'){
+                $mime = 'jpeg';
+            }
+
+            return view('public.layouts.webp')
+                ->with('original', $original)
+                ->with('original_mime', $mime)
+                ->with('webp', $webp)
+                ->with('attributes', $attributes)
+                ->with('lazy', $lazy)
+                ->render();
+        }
+
+        return view('public.layouts.webp')
+            ->with('attributes', $attributes)
+            ->render();
     }
 
-	/**
-	 * Поиск миниатюры необходимого размера
-	 *
-	 * @param $image_data
-	 * @param $size
-	 *
-	 * @return null
-	 */
+    /**
+     * Создание webp-изображения
+     *
+     * @param $size
+     *
+     * @return mixed|null
+     */
+    public function createWebp($size){
+        $image_data = $this->toArray();
+        $data = $this->find_by_size($image_data, $size);
+        $sizes = json_decode($image_data['sizes']);
+
+        if(!empty($data)){
+            $filepath = public_path() . '/assets/images/' . $data->href;
+            $webp_name = str_replace('.'.strtolower(pathinfo($data->href, PATHINFO_EXTENSION )), '.webp', $data->href);
+            $webp_path = public_path() . '/assets/images/' . $webp_name;
+            $image = $this->imagecreatefromfile($filepath);
+            imagewebp($image, $webp_path);
+            imagedestroy($image);
+
+            $sizes->$size->webp = $webp_name;
+            $this->update_images_sizes($this->id, $sizes);
+            return $webp_name;
+        }
+
+        return null;
+    }
+
+    /**
+     * Поиск миниатюры необходимого размера
+     *
+     * @param $image_data
+     * @param $size
+     *
+     * @return null
+     */
     public function find_by_size($image_data, $size){
-	    $img_sizes = json_decode($image_data['sizes']);
-	    $data = null;
+        $img_sizes = json_decode($image_data['sizes']);
+        $data = null;
 
-	    if(is_array($size)){
-		    $name = $this->find_size_name($image_data, $size);
-		    if(!empty($name)){
-		    	return $img_sizes->$name;
-		    }
-	    }else{
-		    if(isset($img_sizes->$size)){
-			    $data = $img_sizes->$size;
-		    }
-	    }
+        if(is_array($size)){
+            $name = $this->find_size_name($image_data, $size);
+            if(!empty($name)){
+                return $img_sizes->$name;
+            }
+        }else{
+            if(isset($img_sizes->$size)){
+                $data = $img_sizes->$size;
+            }
+        }
 
-	    return $data;
+        return $data;
     }
 
-	/**
-	 * Поиск названия размера миниатюры
-	 *
-	 * @param $image_data
-	 * @param array $size
-	 *
-	 * @return int|null|string
-	 */
+    /**
+     * Поиск названия размера миниатюры
+     *
+     * @param $image_data
+     * @param array $size
+     *
+     * @return int|null|string
+     */
     public function find_size_name($image_data, $size = [0, 0]){
-	    $img_sizes = json_decode($image_data['sizes'], true);
+        $img_sizes = json_decode($image_data['sizes'], true);
 
-	    foreach ($img_sizes as $name => $img_size){
-		    if($img_size['w'] == $size[0] && $img_size['h'] == $size[1])
-			    return $name;
-	    }
-	    foreach ($img_sizes as $img_size){
-		    if($img_size['w'] >= $size[0] && $img_size['h'] >= $size[1])
-			    return $name;
-	    }
+        foreach ($img_sizes as $name => $img_size){
+            if($img_size['w'] == $size[0] && $img_size['h'] == $size[1])
+                return $name;
+        }
+        foreach ($img_sizes as $img_size){
+            if($img_size['w'] >= $size[0] && $img_size['h'] >= $size[1])
+                return $name;
+        }
 
-	    return null;
+        return null;
     }
 
     /**
@@ -439,10 +471,10 @@ class Image extends Model
         // Удаление лишних изображений
         foreach ($created_sizes as $size => $data){
             //if(!isset($registered_sizes[$size]) || isset($data['href']) && ($data['w'] != $registered_sizes[$size]['width'] || $data['h'] != $registered_sizes[$size]['height'])){
-                $path = public_path('assets/images/' . $data['href']);
-                if(is_file($path))
-                    unlink($path);
-                unset($created_sizes[$size]);
+            $path = public_path('assets/images/' . $data['href']);
+            if(is_file($path))
+                unlink($path);
+            unset($created_sizes[$size]);
             //}
         }
 
@@ -557,5 +589,86 @@ class Image extends Model
         }else{
             return '';
         }
+    }
+
+    /**
+     * Транслит
+     * @param $string
+     * @return mixed
+     */
+    public function rus2lat($string)
+    {
+        $converter = array(
+            'а' => 'a',   'б' => 'b',   'в' => 'v',
+            'г' => 'g',   'д' => 'd',   'е' => 'e',
+            'ё' => 'e',   'ж' => 'zh',  'з' => 'z',
+            'и' => 'i',   'й' => 'y',   'к' => 'k',
+            'л' => 'l',   'м' => 'm',   'н' => 'n',
+            'о' => 'o',   'п' => 'p',   'р' => 'r',
+            'с' => 's',   'т' => 't',   'у' => 'u',
+            'ф' => 'f',   'х' => 'h',   'ц' => 'c',
+            'ч' => 'ch',  'ш' => 'sh',  'щ' => 'sch',
+            'ь' => "",  'ы' => 'y',   'ъ' => "",
+            'э' => 'e',   'ю' => 'yu',  'я' => 'ya',
+            'А' => 'A',   'Б' => 'B',   'В' => 'V',
+            'Г' => 'G',   'Д' => 'D',   'Е' => 'E',
+            'Ё' => 'E',   'Ж' => 'Zh',  'З' => 'Z',
+            'И' => 'I',   'Й' => 'Y',   'К' => 'K',
+            'Л' => 'L',   'М' => 'M',   'Н' => 'N',
+            'О' => 'O',   'П' => 'P',   'Р' => 'R',
+            'С' => 'S',   'Т' => 'T',   'У' => 'U',
+            'Ф' => 'F',   'Х' => 'H',   'Ц' => 'C',
+            'Ч' => 'Ch',  'Ш' => 'Sh',  'Щ' => 'Sch',
+            'Ь' => "",  'Ы' => 'Y',   'Ъ' => "",
+            'Э' => 'E',   'Ю' => 'Yu',  'Я' => 'Ya',
+        );
+        return strtr($string, $converter);
+    }
+
+    public function update_file_names(){
+        $update = false;
+        $name = $this->href;
+        $valid =  $this->update_file_name($name);
+        if($name != $valid){
+            $update = true;
+            $this->href = $valid;
+        }
+        $sizes = json_decode($this->sizes, true);
+        if(is_array($sizes)){
+            foreach($sizes as $key => $size){
+                if(isset($size['href'])){
+                    $name = $size['href'];
+                    $valid =  $this->update_file_name($name);
+                    if($name != $valid){
+                        $update = true;
+                        $sizes[$key]['href'] = $valid;
+                    }
+                }
+                if(isset($size['webp'])){
+                    $name = $size['webp'];
+                    $valid =  $this->update_file_name($name);
+                    if($name != $valid){
+                        $update = true;
+                        $sizes[$key]['webp'] = $valid;
+                    }
+                }
+            }
+        }
+
+        if($update){
+            $this->sizes = json_encode($sizes);
+            $this->push();
+        }
+    }
+
+    public function update_file_name($name){
+        $valid = str_replace(' ', '_', $this->rus2lat($name));
+        if($name != $valid && is_file(public_path('assets/images/' . $name))){
+            if(!rename(public_path('assets/images/' . $name), public_path('assets/images/' . $valid))){
+                $valid = $name;
+            }
+        }
+
+        return $valid;
     }
 }

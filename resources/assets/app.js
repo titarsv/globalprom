@@ -2,6 +2,8 @@
 
 'use strict';
 
+performance.mark("vendors initialization");
+
 // if (process.env.NODE_ENV !== 'production') {
 //     require('./assets/templates/layouts/index.html');
 // }
@@ -11,6 +13,7 @@ var $ = require('jquery');
 require('bootstrap');
 
 // Modules
+let Lazyload = require('_modules/lazyload');
 var Forms = require('_modules/forms');
 var Slider = require('_modules/slider');
 var Popup = require('_modules/popup');
@@ -40,6 +43,7 @@ require('_modules/jquery-ui');
 
 // Are you ready?
 $(function() {
+    new Lazyload();
     new Forms();
     new Popup();
     new Fancy_select();
@@ -49,6 +53,8 @@ $(function() {
     //new Jslider();
     new Fancybox();
     // new Chosen();
+
+    performance.measure("vendors initialization");
 
     /* слайдер цен */
     var price_range = $('.price-range');
@@ -212,6 +218,20 @@ $(function() {
         lazyLoad: 'ondemand',
         autoplay: true,
         autoplaySpeed: 5000
+    }).on('lazyLoaded', function (event, slick, image, imageSource) {
+        var picture = $(image[0]).parents('picture');
+        if (picture.length) {
+            picture
+                .children('source')
+                .each(function (index, el) {
+                    var $child = $(el),
+                        source = $child.data('lazy');
+
+                    if (source) {
+                        $child.attr('srcset', source);
+                    }
+                });
+        }
     });
 
     // слайдер доставка
@@ -251,6 +271,20 @@ $(function() {
                 }
             }
         ]
+    }).on('lazyLoaded', function (event, slick, image, imageSource) {
+        var picture = $(image[0]).parents('picture');
+        if (picture.length) {
+            picture
+                .children('source')
+                .each(function (index, el) {
+                    var $child = $(el),
+                        source = $child.data('lazy');
+
+                    if (source) {
+                        $child.attr('srcset', source);
+                    }
+                });
+        }
     });
 
     /* интерактивная карта */
@@ -369,6 +403,20 @@ $(function() {
         nextArrow: '<div class="arrow-right"></div>',
         prevArrow: '<div class="arrow-left"></div>',
         asNavFor: '.product-nav'
+    }).on('lazyLoaded', function (event, slick, image, imageSource) {
+        var picture = $(image[0]).parents('picture');
+        if (picture.length) {
+            picture
+                .children('source')
+                .each(function (index, el) {
+                    var $child = $(el),
+                        source = $child.data('lazy');
+
+                    if (source) {
+                        $child.attr('srcset', source);
+                    }
+                });
+        }
     });
 
     $('.product-nav').not('.slick-initialized').slick({
@@ -379,6 +427,20 @@ $(function() {
         arrows: false,
         focusOnSelect: true,
         asNavFor: '.product-slider'
+    }).on('lazyLoaded', function (event, slick, image, imageSource) {
+        var picture = $(image[0]).parents('picture');
+        if (picture.length) {
+            picture
+                .children('source')
+                .each(function (index, el) {
+                    var $child = $(el),
+                        source = $child.data('lazy');
+
+                    if (source) {
+                        $child.attr('srcset', source);
+                    }
+                });
+        }
     });
 
     // табы карточка товара
@@ -391,6 +453,7 @@ $(function() {
                         .addClass('active').siblings().removeClass('active')
                         .closest('nav.product-tabs').find('div.product-tabs__content').removeClass('active').eq($(this).index()).addClass('active');
                     setTimeout(function(){
+                        $('body').scroll();
                         $('.product-tabs__content.active .actions-slider').not('.slick-initialized').slick({
                             speed: 700,
                             slidesToShow: 4,
@@ -420,6 +483,20 @@ $(function() {
                                     }
                                 }
                             ]
+                        }).on('lazyLoaded', function (event, slick, image, imageSource) {
+                            var picture = $(image[0]).parents('picture');
+                            if (picture.length) {
+                                picture
+                                    .children('source')
+                                    .each(function (index, el) {
+                                        var $child = $(el),
+                                            source = $child.data('lazy');
+
+                                        if (source) {
+                                            $child.attr('srcset', source);
+                                        }
+                                    });
+                            }
                         });
                     }, 50);
                 }
@@ -455,6 +532,20 @@ $(function() {
                     }
                 }
             ]
+        }).on('lazyLoaded', function (event, slick, image, imageSource) {
+            var picture = $(image[0]).parents('picture');
+            if (picture.length) {
+                picture
+                    .children('source')
+                    .each(function (index, el) {
+                        var $child = $(el),
+                            source = $child.data('lazy');
+
+                        if (source) {
+                            $child.attr('srcset', source);
+                        }
+                    });
+            }
         });
     })(jQuery);
 
@@ -497,6 +588,20 @@ $(function() {
                 }
             }
         ]
+    }).on('lazyLoaded', function (event, slick, image, imageSource) {
+        var picture = $(image[0]).parents('picture');
+        if (picture.length) {
+            picture
+                .children('source')
+                .each(function (index, el) {
+                    var $child = $(el),
+                        source = $child.data('lazy');
+
+                    if (source) {
+                        $child.attr('srcset', source);
+                    }
+                });
+        }
     });
 
     // табы вместе дешевле

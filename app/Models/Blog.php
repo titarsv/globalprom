@@ -90,6 +90,7 @@ class Blog extends Model
                     ->with('original_mime', $mime)
                     ->with('webp', str_replace(public_path(), '', $webp))
                     ->with('attributes', ['alt' =>  $article['post_title']])
+                    ->with('lazy', 'static')
                     ->render();
             }
         }
