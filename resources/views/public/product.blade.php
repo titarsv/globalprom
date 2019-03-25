@@ -148,15 +148,17 @@
                             </div>
                         </div>
                         <div class="product-info__wrapper" itemprop="offers" itemscope itemtype="http://schema.org/Offer">
-                            @if($product->stock)
+                            <div class="availibility-wrapper__main">
+                                @if($product->stock)
+                                    <div class="availibility-wrapper">
+                                        <i class="availibility-icon"></i>
+                                        <span class="availibility-text" itemprop="availability" href="http://schema.org/InStock">Есть в наличии</span>
+                                    </div>
+                                @endif
                                 <div class="availibility-wrapper">
                                     <i class="availibility-icon"></i>
-                                    <span class="availibility-text" itemprop="availability" href="http://schema.org/InStock">Есть в наличии</span>
+                                    <span class="availibility-text">Новое</span>
                                 </div>
-                            @endif
-                            <div class="availibility-wrapper">
-                                <i class="availibility-icon"></i>
-                                <span class="availibility-text">Новое</span>
                             </div>
                             @if(!empty($product->action))
                                 <div class="action-info__wrapper">
@@ -215,14 +217,16 @@
                                 </form>
                             @endif
                             <div class="product-price__wrapper">
-                                <span class="product-price__title">Цена:</span>
-                                <meta itemprop="priceCurrency" content="грн." />
-                                <meta itemprop="price" content="{{ round($product->price, 2) }}" />
-                                @if(!empty($product->price))
-                                    <div class="product-price" data-price="{{ round($product->price, 2) . ($max_price > $product->price ? ' - '.$max_price : '') }}"><span>{{ round($product->price, 2) . ($max_price > $product->price ? ' - '.$max_price : '') }}</span> грн.</div>
-                                @else
-                                    <div class="product-price" data-price="{{ round($product->price, 2) . ($max_price > $product->price ? ' - '.$max_price : '') }}"><span>Цена по запросу</span></div>
-                                @endif
+                                <div class="product-price__inner">
+                                    <span class="product-price__title">Цена:</span>
+                                    <meta itemprop="priceCurrency" content="грн." />
+                                    <meta itemprop="price" content="{{ round($product->price, 2) }}" />
+                                    @if(!empty($product->price))
+                                        <div class="product-price" data-price="{{ round($product->price, 2) . ($max_price > $product->price ? ' - '.$max_price : '') }}"><span>{{ round($product->price, 2) . ($max_price > $product->price ? ' - '.$max_price : '') }}</span> грн.</div>
+                                    @else
+                                        <div class="product-price" data-price="{{ round($product->price, 2) . ($max_price > $product->price ? ' - '.$max_price : '') }}"><span>Цена по запросу</span></div>
+                                    @endif
+                                </div>
                                 <small style="color: #7a7a7a; font-size: 80%">* Цена может меняться в зависимости от выбранных параметров<br>** Цены действуют только на территории Украины</small>
                             </div>
                             @if($product->stock)
