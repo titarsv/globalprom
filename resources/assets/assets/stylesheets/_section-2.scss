@@ -150,6 +150,9 @@
 
 .item-info__wrapper{
 	padding: 15px 25px 30px;
+	@include bp(xs){
+		padding: 10px 15px;
+	}
 }
 
 .item-link{
@@ -161,6 +164,10 @@
 	display: block;
 	height: 44px;
 	overflow: hidden;
+    @include bp(xs){
+      height: auto;
+      padding-bottom: 10px;
+    }
 }
 
 .item-price-old{
@@ -173,6 +180,9 @@
 	&.red{
 		color: $red;
 	}
+    @include bp(xs){
+        margin-top: 0;
+    }
 }
 
 .item-price{
