@@ -1,19 +1,6 @@
 {{--@if(!empty($webp))--}}
-{{--<picture>--}}
-    {{--<source srcset="{{env('APP_URL')}}/assets/images/{{ $webp }}" type="image/webp">--}}
-    {{--<source srcset="{{env('APP_URL')}}/assets/images/{{ $original }}" type="image/{{ $original_mime }}">--}}
-    {{--<img src="{{env('APP_URL')}}/assets/images/{{ $original }}" @foreach($attributes as $key => $attr){{ $key }}="{{ $attr }}"@endforeach>--}}
-{{--</picture>--}}
-{{--@else--}}
-{{--@if(!empty($original))--}}
-{{--<img src="{{env('APP_URL')}}/assets/images/{{ $original }}" @foreach($attributes as $key => $attr){{ $key }}="{{ $attr }}"@endforeach>--}}
-{{--@else--}}
-{{--<img src="{{env('APP_URL')}}/assets/images/no_image.jpg" @foreach($attributes as $key => $attr){{ $key }}="{{ $attr }}"@endforeach>--}}
-{{--@endif--}}
-{{--@endif--}}
-
-@if(!empty($webp))
     <picture>
+        @if(!empty($webp))
         <source
                 @if($lazy == 'slider')
                 data-lazy="/assets/images/{{ $webp }}" srcset="/images/webp/pixel.webp"
@@ -23,6 +10,7 @@
                 srcset="/assets/images/{{ $webp }}"
                 @endif
                 type="image/webp">
+        @endif
         <source
                 @if($lazy == 'slider')
                 data-lazy="/assets/images/{{ $original }}" srcset="/images/pixel.{{ $original_mime }}"
@@ -43,10 +31,10 @@
         @endif
         @foreach($attributes as $key => $attr) {{ $key }}="{{ $attr }}"@endforeach>
     </picture>
-@else
-    @if(!empty($original))
-        <img src="/assets/images/{{ $original }}" @foreach($attributes as $key => $attr){{ $key }}="{{ $attr }}"@endforeach>
-    @else
-        <img src="/assets/images/no_image.jpg" @foreach($attributes as $key => $attr){{ $key }}="{{ $attr }}"@endforeach>
-    @endif
-@endif
+{{--@else--}}
+    {{--@if(!empty($original))--}}
+        {{--<img src="/assets/images/{{ $original }}" @foreach($attributes as $key => $attr) {{ $key }}="{{ $attr }}"@endforeach>--}}
+    {{--@else--}}
+        {{--<img src="/assets/images/no_image.jpg" @foreach($attributes as $key => $attr) {{ $key }}="{{ $attr }}"@endforeach>--}}
+    {{--@endif--}}
+{{--@endif--}}

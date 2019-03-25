@@ -173,9 +173,17 @@ class Image extends Model
                 }
                 if(is_file(public_path('assets/images/') . $image_data['href'])){
                     $imagesizes = getimagesize(public_path('assets/images/') . $image_data['href']);
-                    if($imagesizes[0] > 1920 || $imagesizes[1] > 1920){
+                    if($imagesizes[0]*$imagesizes[1] > 14745600){
+                        $sizes->full = (object)[
+                            'w' => $imagesizes[0],
+                            'h' => $imagesizes[1],
+                            'href' => $image_data['href']
+                        ];
+                    }elseif($imagesizes[0] > 1920 || $imagesizes[1] > 1920){
                         $name = $this->update_image_size($image_data['href'], 1920, 1920,'contain');
-                        $imagesizes = getimagesize(public_path('assets/images/') . $name);
+                        if(is_file(public_path('assets/images/') . $name)) {
+                            $imagesizes = getimagesize(public_path('assets/images/') . $name);
+                        }
                         $sizes->full = (object)[
                             'w' => $imagesizes[0],
                             'h' => $imagesizes[1],
@@ -196,10 +204,15 @@ class Image extends Model
 
         if(!empty($data)){
             $original = $data->href;
-            if(isset($data->webp)){
+            if(isset($data->webp) && is_file(public_path() . '/assets/images/' . $data->webp)){
                 $webp = $data->webp;
-            }else{
+            }elseif(isset($data->w) && isset($data->h) && ($data->w <= 1920 || $data->h <= 1920)){
                 $webp = $this->createWebp($size);
+            }else{
+                if(isset($data->w) && isset($data->h) && ($data->w > 1920 || $data->h > 1920) && is_file(public_path() . '/assets/images/'.$original) && !is_file(public_path() . '/assets/big_images/'.$original)){
+                    copy(public_path() . '/assets/images/'.$original, public_path() . '/assets/big_images/'.$original);
+                }
+                $webp = '';
             }
 
             $mime = strtolower(pathinfo($original, PATHINFO_EXTENSION ));
@@ -238,6 +251,9 @@ class Image extends Model
             $webp_name = str_replace('.'.strtolower(pathinfo($data->href, PATHINFO_EXTENSION )), '.webp', $data->href);
             $webp_path = public_path() . '/assets/images/' . $webp_name;
             $image = $this->imagecreatefromfile($filepath);
+            if(empty($image)){
+                return null;
+            }
             imagewebp($image, $webp_path);
             imagedestroy($image);
 

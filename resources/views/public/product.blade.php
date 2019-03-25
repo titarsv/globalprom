@@ -729,7 +729,7 @@
                                 @if(is_object($image['image']))
                                     <div data-index="{{ $i }}">
                                         <div class="img-wrp">
-                                            {!! $image['image']->webp_image('product_list', ['alt' => empty($image['alt']) ? '' : $image['alt'], 'title' => empty($image['title']) ? '' : $image['title'], 'itemprop' => 'image']) !!}
+                                            {!! $image['image']->webp_image('full', ['alt' => empty($image['alt']) ? '' : $image['alt'], 'title' => empty($image['title']) ? '' : $image['title'], 'itemprop' => 'image']) !!}
                                             {{--<img src="{{ $image['image']->url() }}"{!! empty($image['alt']) ? '' : ' alt="'.$image['alt'].'"' !!}{!! empty($image['title']) ? '' : ' title="'.$image['title'].'"' !!} itemprop="image">--}}
                                         </div>
                                     </div>

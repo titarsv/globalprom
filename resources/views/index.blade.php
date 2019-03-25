@@ -3,12 +3,15 @@
     <title>{!! $settings->meta_title !!}</title>
     <meta name="description" content="{!! $settings->meta_description !!}">
     <meta name="keywords" content="{!! $settings->meta_keywords !!}">
+@endsection
+
+@section('content')
     <!-- Код тега ремаркетинга Google -->
     <script type="text/javascript">
         var google_tag_params = {
-            dynx_itemid: '',
-            dynx_pagetype: 'home',
-            dynx_totalvalue: '',
+            ecomm_prodid: '',
+            ecomm_pagetype: 'home',
+            ecomm_totalvalue: 0,
         };
     </script>
     <script type="text/javascript">
@@ -18,11 +21,13 @@
         var google_remarketing_only = true;
         /* ]]> */
     </script>
+    <script>
+        dataLayer.push ({
+            'event':'remarketingTriggered',
+            'google_tag_params': window.google_tag_params
+        });
+    </script>
     <script type="text/javascript" src="//www.googleadservices.com/pagead/conversion.js"></script>
-@endsection
-
-@section('content')
-
     <main class="main-wrapper">
         <section class="section-1">
             <div class="container">
@@ -107,22 +112,22 @@
                         </div>
                     </a>
                     {{--<a href="{{env('APP_URL')}}/categories/vesovoe-oborudovanie" class="cat-item col-md-3 col-sm-6">--}}
-                        {{--<div class="cat-item__inner">--}}
-                            {{--<i class="cat-item__icon cii3"></i>--}}
-                            {{--<span class="cat-item__txt">Весовое <br>оборудование</span>--}}
-                        {{--</div>--}}
-                        {{--<div class="cat-item__btn">--}}
-                            {{--<span class="cat-item__btn-inner">Перейти в категорию</span>--}}
-                        {{--</div>--}}
+                    {{--<div class="cat-item__inner">--}}
+                    {{--<i class="cat-item__icon cii3"></i>--}}
+                    {{--<span class="cat-item__txt">Весовое <br>оборудование</span>--}}
+                    {{--</div>--}}
+                    {{--<div class="cat-item__btn">--}}
+                    {{--<span class="cat-item__btn-inner">Перейти в категорию</span>--}}
+                    {{--</div>--}}
                     {{--</a>--}}
                     {{--<a href="{{env('APP_URL')}}/categories/nasosnoe-oborudovanie" class="cat-item col-md-3 col-sm-6">--}}
-                        {{--<div class="cat-item__inner">--}}
-                            {{--<i class="cat-item__icon cii4"></i>--}}
-                            {{--<span class="cat-item__txt">Насосное <br>оборудование</span>--}}
-                        {{--</div>--}}
-                        {{--<div class="cat-item__btn">--}}
-                            {{--<span class="cat-item__btn-inner">Перейти в категорию</span>--}}
-                        {{--</div>--}}
+                    {{--<div class="cat-item__inner">--}}
+                    {{--<i class="cat-item__icon cii4"></i>--}}
+                    {{--<span class="cat-item__txt">Насосное <br>оборудование</span>--}}
+                    {{--</div>--}}
+                    {{--<div class="cat-item__btn">--}}
+                    {{--<span class="cat-item__btn-inner">Перейти в категорию</span>--}}
+                    {{--</div>--}}
                     {{--</a>--}}
                 </div>
             </div>
@@ -136,7 +141,6 @@
                         <source scrset="/images/pixel.jpg" data-src="/images/all-team.jpg" type="image/jpg">
                         <img src="/images/pixel.jpg" data-src="/images/all-team.jpg" alt="ariston logo">
                     </picture>
-                    {{--<img data-mfp-src="/images/all-team.jpg" class="popup-btn" data-type="image" src="/images/all-team.jpg" alt=""/>--}}
                     <span class="img-title">Компания GlobalProm</span>
                 </div>
             </div>
@@ -385,7 +389,7 @@
                 </div>
                 <div class="show-more-clients">
                     <div class="show-more-clients__btn-wrapper"><span class="show-more-clients__btn" id="show-more-clients__btn">Показать еще +</span></div>
-                <span class="add-review">
+                    <span class="add-review">
                     <a class="add-review__link" href="https://docs.google.com/forms/d/e/1FAIpQLSfEioKyz3xz4yM_cIlU-7WVeq96HWgVue_SOr9LIyLJaJNk5w/viewform">Написать отзыв</a>
                 </span>
                 </div>
@@ -437,7 +441,7 @@
                                 <div class="news-item">
                                     <div class="news-item__main-wrap">
                                         <div class="news-item__pic-wrap">
-                                            {!! $article['image'] !!}
+                                            {!! isset($article['image']) ? $article['image'] : '' !!}
                                             {{--<img class="news-item__pic" src="{{env('APP_URL')}}{!! $article['image'] !!}" alt>--}}
                                         </div>
                                         <div class="news-item__text-wrap">
@@ -452,9 +456,9 @@
                             </div>
                         @endforeach
                         <div class="clearfix"></div>
-                            <div class="show-more-articles">
-                                <div class="show-more-clients__btn-wrapper"></div>
-                                <span class="add-review">
+                        <div class="show-more-articles">
+                            <div class="show-more-clients__btn-wrapper"></div>
+                            <span class="add-review">
                                 <a class="add-review__link" href="{{env('APP_URL')}}/blog">Все статьи</a>
                             </span>
                         </div>

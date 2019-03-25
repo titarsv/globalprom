@@ -260,11 +260,15 @@
                                     <select class="form-control chosen-select related_select" multiple="multiple">
                                         @if(!empty((array)old('related')))
                                             @foreach((array)old('related') as $r)
-                                                <option value="{{ $r }}" selected>{{ $sets->find($r)->name }}</option>
+                                                @if(!empty($sets->find($r)))
+                                                    <option value="{{ $r }}" selected>{{ $sets->find($r)->name }}</option>
+                                                @endif
                                             @endforeach
                                         @else
                                             @foreach($related as $r)
-                                                <option value="{{ $r }}" selected>{{ $sets->find($r)->name }}</option>
+                                                @if(!empty($sets->find($r)))
+                                                    <option value="{{ $r }}" selected>{{ $sets->find($r)->name }}</option>
+                                                @endif
                                             @endforeach
                                         @endif
                                         @foreach($sets as $set)
@@ -289,12 +293,14 @@
                                 <div class="form-element col-sm-10">
                                     <select class="form-control chosen-select similar_select" multiple="multiple">
                                         @if(!empty((array)old('similar')))
-                                            @foreach((array)old('similar') as $r)
+                                            @if(!empty($sets->find($r)))
                                                 <option value="{{ $r }}" selected>{{ $sets->find($r)->name }}</option>
-                                            @endforeach
+                                            @endif
                                         @else
                                             @foreach($similar as $r)
-                                                <option value="{{ $r }}" selected>{{ $sets->find($r)->name }}</option>
+                                                @if(!empty($sets->find($r)))
+                                                    <option value="{{ $r }}" selected>{{ $sets->find($r)->name }}</option>
+                                                @endif
                                             @endforeach
                                         @endif
                                         @foreach($sets as $set)
@@ -670,7 +676,6 @@
             </div>
         </form>
     </div>
-
 
     <script src="/js/libs/transliterate.js"></script>
 

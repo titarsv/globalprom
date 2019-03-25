@@ -597,6 +597,7 @@ $(function() {
                     var $child = $(el),
                         source = $child.data('lazy');
 
+                    
                     if (source) {
                         $child.attr('srcset', source);
                     }
