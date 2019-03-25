@@ -167,6 +167,10 @@
 	box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.1);
 	font-size: 16px;
 	font-family: $bold-font;
+	@include bp(xs) {
+		width: 82px;
+		margin: 0 7px;
+	}
 }
 
 .order-popup__buy-wrp{
@@ -674,6 +678,18 @@
 
 .view_popup_prod-slider.product-slider{
 	height: initial;
+	width: auto;
+	border: none;
+	.arrow-right{
+		@include bp(xs){
+			display: block !important;
+		}
+	}
+	.arrow-left{
+		@include bp(xs){
+			display: block !important;
+		}
+	}
 }
 .view_popup_prod-slider{
 	text-align: center;
@@ -699,6 +715,9 @@
 		min-width: 100%;
 		.slick-slide{
 			min-width: 280px;
+			@include bp(xs){
+				min-width: auto;
+			}
 		}
 	}
 }

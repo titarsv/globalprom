@@ -12,6 +12,7 @@
 	@include bp(xs){
 		height: 225px;
 		padding-top: 8px;
+		border-bottom: none;
 	}
 }
 
@@ -20,21 +21,36 @@
 		display: flex;
 		justify-content: center;
 	}
+	@include bp(xs){
+		border-bottom: 1px solid #ddd;
+		justify-content: flex-start;
+		height: 76px;
+	}
 }
 
 .logo-wrapper{
+	@include bp(xs){
+		padding-left: 0;
+	}
     img{
-      max-width: 224px;
+		max-width: 224px;
+		@include bp(xs){
+			max-width: 174px;
+		}
     }
     p, h1{
-      color: #1185c2;
-      font-weight: 600;
-      font-size: 8.8px;
-      margin: 5px 0 0;
-      white-space: nowrap;
-      display: block;
-      text-align: center;
-      max-width: 224px;
+		color: #1185c2;
+		font-weight: 600;
+		font-size: 8.8px;
+		margin: 5px 0 0;
+		white-space: nowrap;
+		display: block;
+		text-align: center;
+		max-width: 224px;
+		@include bp(xs){
+			max-width: 174px;
+			font-size: 7px;
+		}
     }
 	@include bp(md){
 		width: auto;
@@ -53,7 +69,8 @@
 	}
 	@include bp(xs){
 		bottom: 88px;
-		width: 100%;
+		width: calc(100vw - 30px);
+		padding: 0;
 	}
 }
 
@@ -74,7 +91,8 @@
 		width: 450px;
 	}
 	@include bp(xs){
-		width: 100%;
+		width: calc(100% - 90px);
+		margin: 0;
 	}
 }
 
@@ -180,6 +198,7 @@
 	}
 	@include bp(xs){
 		width: 235px;
+		margin: 0 auto;
 	}
 }
 
@@ -234,6 +253,8 @@
 	@include bp(xs){
 		position: absolute;
 		bottom: 10px;
+		left: 0;
+		width: 100%;
 	}
 }
 
@@ -272,6 +293,11 @@
 	@include bp(md){
 		width: auto;
 	}
+	@include bp(xs){
+		position: absolute;
+		right: 0;
+		top: 76px;
+	}
 }
 
 
@@ -294,6 +320,9 @@
 	@include bp(sm){
 		flex-direction: column;
 	}
+	@include bp(xs){
+		flex-direction: row;
+	}
 }
 
 .login-btn{
@@ -314,6 +343,9 @@
 	height: 28px;
 	position: relative;
 	cursor: pointer;
+	@include bp(xs){
+		margin-left: 18px;
+	}
 	i{
 		font-style: normal;
 		position: absolute;
@@ -571,6 +603,11 @@
 	@include bp(sm){
 		display: block;
 	}
+	@include bp(xs){
+		position: absolute;
+		right: 0;
+		top: 17px;
+	}
 }
 
 .mobile-menu__btn-icon {
@@ -648,6 +685,11 @@
 	color: #fff;
 	box-shadow: 0 4px 10px rgba(14, 15, 17, 0.05);
 	text-align: center;
+	@include bp(xs){
+		width: 100vw;
+		left: auto;
+		top: calc(100% + 12px);
+	}
 }
 
 .mobile-menu__item{
