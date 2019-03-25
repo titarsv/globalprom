@@ -398,6 +398,11 @@
     @include bp(xs) {
       order: 3;
     }
+    small{
+      @include bp(xs) {
+        display: none;
+      }
+    }
 }
 
 .product-price__inner{
