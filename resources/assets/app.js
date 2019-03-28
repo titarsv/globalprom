@@ -426,7 +426,16 @@ $(function() {
         infinite: false,
         arrows: false,
         focusOnSelect: true,
-        asNavFor: '.product-slider'
+        asNavFor: '.product-slider',
+        responsive: [
+            {
+                breakpoint: 480,
+                settings: {
+                    slidesToShow: 2,
+                    vertical: true
+                }
+            }
+        ]
     }).on('lazyLoaded', function (event, slick, image, imageSource) {
         var picture = $(image[0]).parents('picture');
         if (picture.length) {

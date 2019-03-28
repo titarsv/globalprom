@@ -180,8 +180,9 @@
 		margin-top: 25px;
 	}
 	@include bp(xs){
-		font-size: 20px;
-		margin-bottom: 25px;
+		font-size: 16px;
+		margin-bottom: 12px;
+		margin-top: 0;
 	}
 }
 
@@ -195,7 +196,7 @@
 	padding-bottom: 25px;
 	@include bp(xs){
 		width: 100%;
-		padding: 0 0 25px;
+		padding: 0 0 15px;
 	}
 }
 
@@ -527,8 +528,14 @@
   float: left;
   padding-bottom: 20px;
   width: 100%;
+  @include bp(xs){
+    padding-bottom: 0;
+  }
   .item{
     padding: 0 15px 25px;
+  	@include bp(xs){
+		padding: 0 0 15px;
+	}
     .item-inner{
       border: 1px solid #dddddd;
       border-radius: 10px;
