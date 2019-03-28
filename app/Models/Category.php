@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Facades\Cache;
 
 class Category extends Model
 {
@@ -124,17 +125,22 @@ class Category extends Model
      * @return null|object
      */
     public function level($id){
-        $parent_ids = [0];
-        $categories = null;
-        for($i = 0; $i < $id; $i++){
-            $categories = $this->whereIn('parent_id', $parent_ids)->get();
-            if($i+1 < $id){
-                $parent_ids = [];
-                foreach ($categories as $category){
-                    $parent_ids[] = $category->id;
+
+        $categories = Cache::remember('categories_level_'.$id, 60, function () use (&$id) {
+            $parent_ids = [0];
+            $categories = null;
+            for($i = 0; $i < $id; $i++){
+                $categories = $this->whereIn('parent_id', $parent_ids)->get();
+                if($i+1 < $id){
+                    $parent_ids = [];
+                    foreach ($categories as $category){
+                        $parent_ids[] = $category->id;
+                    }
                 }
             }
-        }
+
+            return $categories;
+        });
 
         return $categories;
     }

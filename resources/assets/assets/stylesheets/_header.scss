@@ -256,6 +256,8 @@
 	display: inline-block;
 	margin-bottom: 5px;
 	border-bottom: 1px solid transparent;
+  font-size: 11px;
+  width: 117px;
 	@include bp(sm){
 		margin-bottom: 2px;
 	}

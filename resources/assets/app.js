@@ -444,6 +444,58 @@ $(function() {
     });
 
     // табы карточка товара
+    if($('.product-tabs__content').length){
+        setInterval(function(){
+            var slider = $('.product-tabs__content.active .actions-slider').not('.slick-initialized');
+            if(slider.length){
+                $('body').scroll();
+                slider.slick({
+                    speed: 700,
+                    slidesToShow: 4,
+                    slidesToScroll: 1,
+                    infinite: false,
+                    arrows: true,
+                    lazyLoad: 'ondemand',
+                    nextArrow: '<div class="arrow-right"></div>',
+                    prevArrow: '<div class="arrow-left"></div>',
+                    responsive: [
+                        {
+                            breakpoint: 1200,
+                            settings: {
+                                slidesToShow: 3
+                            }
+                        },
+                        {
+                            breakpoint: 768,
+                            settings: {
+                                slidesToShow: 2
+                            }
+                        },
+                        {
+                            breakpoint: 480,
+                            settings: {
+                                slidesToShow: 1
+                            }
+                        }
+                    ]
+                }).on('lazyLoaded', function (event, slick, image, imageSource) {
+                    var picture = $(image[0]).parents('picture');
+                    if (picture.length) {
+                        picture
+                            .children('source')
+                            .each(function (index, el) {
+                                var $child = $(el),
+                                    source = $child.data('lazy');
+
+                                if (source) {
+                                    $child.attr('srcset', source);
+                                }
+                            });
+                    }
+                });
+            }
+        }, 250);
+    }
 
     (function($) {
         $(function() {
@@ -452,53 +504,16 @@ $(function() {
                     $(this)
                         .addClass('active').siblings().removeClass('active')
                         .closest('nav.product-tabs').find('div.product-tabs__content').removeClass('active').eq($(this).index()).addClass('active');
-                    setTimeout(function(){
-                        $('body').scroll();
-                        $('.product-tabs__content.active .actions-slider').not('.slick-initialized').slick({
-                            speed: 700,
-                            slidesToShow: 4,
-                            slidesToScroll: 1,
-                            infinite: false,
-                            arrows: true,
-                            lazyLoad: 'ondemand',
-                            nextArrow: '<div class="arrow-right"></div>',
-                            prevArrow: '<div class="arrow-left"></div>',
-                            responsive: [
-                                {
-                                    breakpoint: 1200,
-                                    settings: {
-                                        slidesToShow: 3
-                                    }
-                                },
-                                {
-                                    breakpoint: 768,
-                                    settings: {
-                                        slidesToShow: 2
-                                    }
-                                },
-                                {
-                                    breakpoint: 480,
-                                    settings: {
-                                        slidesToShow: 1
-                                    }
-                                }
-                            ]
-                        }).on('lazyLoaded', function (event, slick, image, imageSource) {
-                            var picture = $(image[0]).parents('picture');
-                            if (picture.length) {
-                                picture
-                                    .children('source')
-                                    .each(function (index, el) {
-                                        var $child = $(el),
-                                            source = $child.data('lazy');
+                    var load = $(this).data('load');
+                    if(typeof load !== 'undefined' ){
+                        var destination = $(this).closest('nav.product-tabs').find('div.product-tabs__content').eq($(this).index());
+                        if(destination.html().trim() == ''){
+                            destination.load(load, function(){
 
-                                        if (source) {
-                                            $child.attr('srcset', source);
-                                        }
-                                    });
-                            }
-                        });
-                    }, 50);
+                            });
+                        }
+                    }
+                    $('body').scroll();
                 }
             });
         });
@@ -553,7 +568,6 @@ $(function() {
     (function ($) {
         $(function () {
             $('.product-adv__collapse-btn').on('click', function () {
-                console.log('here we are')
                 $(this).toggleClass('open');
             });
         });
@@ -830,12 +844,12 @@ $(function() {
             Cookies.set('exit', 1, {expires: 1});
         }
     });
-    $('.product-slider').click(function(){
-        var number = $(this).data('index');
-        setTimeout(function(){
-          $('.view_popup_prod-slider').slick('slickGoTo', number);
-        }, 500);
-    });
+    // $('.product-slider').click(function(){
+    //     var number = $(this).data('index');
+    //     setTimeout(function(){
+    //       $('.view_popup_prod-slider').slick('slickGoTo', number);
+    //     }, 500);
+    // });
     $('#catalog_link').click(function(e){
         var data = $(this).parents('form').formData({
             validator: {},

@@ -108,18 +108,16 @@ class AppServiceProvider extends ServiceProvider
                 $view->with('user_id', 0)->with('user_wishlist',[]);
             });
         }
-        
+
         view()->composer(['public.layouts.main-menu', 'index'], function ($view) use ($categories) {
             $root_categories = $categories->get_root_categories();
             $view->with('items', $root_categories);
         });
 
-        view()->composer(['public.layouts.footer', 'public.layouts.header-main'], function ($view) use ($categories) {
+        view()->composer(['public.layouts.header-main'], function ($view) {
             $cart = new Cart;
             $current_cart = $cart->current_cart();
-            $root_categories = $categories->get_root_categories();
-            $view->with('items', $root_categories)
-                ->with('cart', $current_cart);
+            $view->with('cart', $current_cart);
         });
 
         $user = $this->user;

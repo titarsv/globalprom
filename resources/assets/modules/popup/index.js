@@ -27,6 +27,42 @@ module.exports = function() {
           }
         };
       }
+    }else if(settings.type == 'ajax'){
+        settings.callbacks = {
+            open: function() {
+                window.galleryInterval = setInterval(function(){
+                    var slider = $('.view_popup_prod-slider');
+                    if(slider.length){
+                        clearInterval(window.galleryInterval);
+                        var number = slider.data('index');
+                        slider.slick({
+                            speed: 700,
+                            slidesToShow: 1,
+                            slidesToScroll: 1,
+                            infinite: false,
+                            arrows: true,
+                            nextArrow: '<div class="arrow-right"></div>',
+                            prevArrow: '<div class="arrow-left"></div>',
+                            asNavFor: '.product-nav'
+                        }).on('lazyLoaded', function (event, slick, image, imageSource) {
+                            var picture = $(image[0]).parents('picture');
+                            if (picture.length) {
+                                picture
+                                    .children('source')
+                                    .each(function (index, el) {
+                                        var $child = $(el),
+                                            source = $child.data('lazy');
+
+                                        if (source) {
+                                            $child.attr('srcset', source);
+                                        }
+                                    });
+                            }
+                        }).slick('slickGoTo', number);
+                    }
+                }, 100);
+            }
+        };
     }
 
     $this.magnificPopup(settings);

@@ -8,9 +8,10 @@
                       height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <!-- End Google Tag Manager (noscript) -->
     @include('public.layouts.header-main')
-
-    @yield('breadcrumbs')
-    @yield('content')
+    <div id="main-wrapper">
+        @yield('breadcrumbs')
+        @yield('content')
+    </div>
     @include('public.layouts.footer')
 	@include('public.layouts.footer-scripts')
 </body>

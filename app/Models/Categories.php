@@ -53,7 +53,7 @@ class Categories extends Model
     }
 
     public function children(){
-        return $this->hasMany('App\Models\Categories', 'parent_id', 'id')->with('children');
+        return $this->hasMany('App\Models\Categories', 'parent_id', 'id')->where('status', 1)->with('children');
     }
 
     public function get_products($category_id, $subcategory_id, $filter, $sort, $take = false, $price = [])
@@ -241,10 +241,13 @@ class Categories extends Model
      * @return bool
      */
     public function hasChildren(){
-        if($this->where('parent_id', $this->id)->count()){
-            return true;
-        }else
-            return false;
+        $id = $this->id;
+        return Cache::remember('has_children_categories_'.$id, 60, function () use (&$id) {
+            if ($this->where('parent_id', $id)->count()) {
+                return true;
+            } else
+                return false;
+        });
     }
 
     /**
@@ -294,9 +297,11 @@ class Categories extends Model
     }
 
     public function get_root_category(){
-        $categories = $this->get_parent_categories($this->id);
-
-        return end($categories);
+        $id = $this->id;
+        return Cache::remember('root_category_'.$id, 60, function () use (&$id) {
+            $categories = $this->get_parent_categories($id);
+            return end($categories);
+        });
     }
 
     public function all_categories_with_parent_name(){

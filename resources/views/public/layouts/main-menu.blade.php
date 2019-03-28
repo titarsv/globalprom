@@ -54,7 +54,7 @@
                 @foreach($items as $i => $item)
                     @if($item->status && $item->name != 'Распродажа')
                         <div class="secondary-menu__content{{ $i == 0 ? '  active' : '' }}">
-                            <?php $childrens = $item->children()->where('status', 1)->get(); ?>
+                            <?php $childrens = $item->children; ?>
                             <div class="secondary-menu__content-left">
                                 @foreach($childrens->where('status', 1) as $id => $children)
                                     @if($id == floor(count($childrens) / 2) && count($childrens) > 1)
@@ -65,7 +65,7 @@
                                     <li class="secondary-menu__content-title">
                                         <a href="{{env('APP_URL')}}/categories/{{ $children->url_alias }}">{{ $children->name }}</a>
                                     </li>
-                                    <?php $lchildrens = $children->children()->where('status', 1)->get(); ?>
+                                    <?php $lchildrens = $children->children; ?>
                                     @foreach($lchildrens as $lid => $lchildren)
                                         <li class="secondary-menu__content-item">
                                             <a href="{{env('APP_URL')}}/categories/{{ $lchildren->url_alias }}">{{ $lchildren->name }}</a>
@@ -93,13 +93,13 @@
                             <li class="mobile-submenu__item">
                                 <span class="mobile-submenu__item__wrapper"><a href="{{env('APP_URL')}}/categories/{{ $item->url_alias }}" class="mobile-submenu__link">{{ $item->name }}</a><i></i></span>
                                 <div class="mobile-submenu__secondary">
-                                    <?php $childrens = $item->children()->where('status', 1)->get(); ?>
+                                    <?php $childrens = $item->children; ?>
                                     @foreach($childrens as $id => $children)
                                         <ul class="mobile-submenu__secondary-list">
                                             <li class="mobile-submenu__secondary-title">
                                                 <a href="{{env('APP_URL')}}/categories/{{ $children->url_alias }}">{{ $children->name }}</a>
                                             </li>
-                                            <?php $lchildrens = $children->children()->where('status', 1)->get(); ?>
+                                            <?php $lchildrens = $children->children; ?>
                                             @foreach($lchildrens as $lid => $lchildren)
                                                 <li class="mobile-submenu__secondary-item">
                                                     <a href="{{env('APP_URL')}}/categories/{{ $lchildren->url_alias }}">{{ $lchildren->name }}</a>

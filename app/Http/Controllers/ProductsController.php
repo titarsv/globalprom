@@ -507,7 +507,7 @@ class ProductsController extends Controller
      */
     public function show($alias, Request $request)
     {
-        $product = Products::where('url_alias', $alias)->where('stock', 1)->first();
+        $product = Products::where('url_alias', $alias)->where('stock', 1)->with(['variations', 'variations.attribute_values', 'variations.attribute_values.attribute'])->first();
 
         if(empty($product)){
             abort(404);
@@ -581,10 +581,66 @@ class ProductsController extends Controller
             ->with('gallery', $gallery)
             ->with('reviews', $product_reviews)
             ->with('product_attributes', $attributes)
-            ->with('related', $product->related()->where('stock', 1)->orderBy('related_products.id')->get())
-            ->with('similar', $product->similar()->where('stock', 1)->orderBy('similar_products.id')->get())
+            ->with('related', $product->related()->where('stock', 1)->orderBy('related_products.id')->with('image')->get())
+            ->with('similar', $product->similar()->where('stock', 1)->orderBy('similar_products.id')->with('image')->get())
             ->with('variations_prices', $variations_prices)
             ->with('variations', $variations_attrs));
+    }
+
+    /**
+     * Галлерея товара
+     *
+     * @param $id
+     * @param Request $request
+     * @return \Illuminate\Contracts\Routing\ResponseFactory|\Symfony\Component\HttpFoundation\Response
+     */
+    public function gallery($id, $active, Request $request)
+    {
+        $product = Products::where('id', $id)->where('stock', 1)->first();
+
+        if(empty($product)){
+            abort(404);
+        }
+
+        // Если у товара нет галлереи возвращаем его изображение
+        if(empty($product->gallery))
+            $gallery = [['image' => $product->image, 'alt' => $product->name, 'title' => $product->name]];
+        else
+            $gallery = $product->gallery->objects();
+
+        array_splice($gallery, 4);
+
+        return response(view('public.layouts.view_popup_prod')
+            ->with('product', $product)
+            ->with('active', $active)
+            ->with('gallery', $gallery));
+    }
+
+    /**
+     * Размеры товара
+     *
+     * @param $id
+     * @param Request $request
+     * @return \Illuminate\Contracts\Routing\ResponseFactory|\Symfony\Component\HttpFoundation\Response
+     */
+    public function sizes($id, Request $request){
+        $product = Products::where('id', $id)->where('stock', 1)->first();
+
+        return response(view('public.layouts.sizes')
+            ->with('product', $product));
+    }
+
+    /**
+     * Похожие товары
+     *
+     * @param $id
+     * @return \Illuminate\Contracts\Routing\ResponseFactory|\Symfony\Component\HttpFoundation\Response
+     */
+    public function related($id){
+        $product = Products::where('id', $id)->where('stock', 1)->first();
+
+        return response(view('public.layouts.related')
+            ->with('related', $product->related()->where('stock', 1)->orderBy('related_products.id')->with('image')->get()));
     }
 
     /**

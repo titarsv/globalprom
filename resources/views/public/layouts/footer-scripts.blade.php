@@ -1,7 +1,6 @@
-<!-- Load Custom CSS Compiled without JS Start -->
-<noscript>
-    <link rel="stylesheet" href="/assets/css/application.css">
-</noscript>
+<!-- Load Custom CSS Start -->
+<script>loadCSS( "/assets/css/application.css", false, "all" );</script>
+<!-- Load Custom CSS End -->
 
 <!-- Optimized loading JS Start -->
 {{--<script>var scr = {"scripts":[--}}

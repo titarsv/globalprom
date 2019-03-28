@@ -31,6 +31,9 @@ Route::post('/neworder', 'OrdersController@newOrder');
 Route::post('/neworderuser', 'OrdersController@newOrderUser');
 
 Route::get('/product/{alias}', 'ProductsController@show');
+Route::get('/product_gallery/{id}/{active}', 'ProductsController@gallery');
+Route::get('/product_sizes/{id}', 'ProductsController@sizes');
+Route::get('/product_related/{id}', 'ProductsController@related');
 Route::post('/review/add', 'ReviewsController@add');
 Route::post('/review/add-likes', 'ReviewsController@addLikes');
 

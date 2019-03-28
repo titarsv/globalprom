@@ -106,8 +106,8 @@
                             <div class="product-slider">
                                 @forelse($gallery as $i => $image)
                                     @if(is_object($image['image']))
-                                        <div class="product-slide popup-btn" data-index="{{ $i }}" data-mfp-src="#view_popup_prod">
-                                            {!! $image['image']->webp_image('product', ['alt' => empty($image['alt']) ? '' : $image['alt'], 'title' => empty($image['title']) ? '' : $image['title'], 'itemprop' => 'image'], 'slider') !!}
+                                        <div class="product-slide popup-btn" data-index="{{ $i }}" data-mfp-src="/product_gallery/{{ $product->id }}/{{ $i }}" data-type="ajax">
+                                            {!! $image['image']->webp_image('product', ['alt' => empty($image['alt']) ? '' : $image['alt'], 'title' => empty($image['title']) ? '' : $image['title'], 'itemprop' => 'image']) !!}
                                             {{--<img src="{{ $image['image']->url('full') }}"{!! empty($image['alt']) ? '' : ' alt="'.$image['alt'].'"' !!}{!! empty($image['title']) ? '' : ' title="'.$image['title'].'"' !!} itemprop="image">--}}
                                         </div>
                                     @endif
@@ -128,7 +128,7 @@
                                 @forelse($gallery as $image)
                                     @if(is_object($image['image']))
                                         <div class="nav-slide">
-                                            {!! $image['image']->webp_image('product', ['alt' => empty($image['alt']) ? '' : $image['alt'], 'title' => empty($image['title']) ? '' : $image['title'], 'itemprop' => 'image'], 'slider') !!}
+                                            {!! $image['image']->webp_image('product', ['alt' => empty($image['alt']) ? '' : $image['alt'], 'title' => empty($image['title']) ? '' : $image['title'], 'itemprop' => 'image']) !!}
                                             {{--<img class="nav-pic" src="{{ $image['image']->url('full') }}"{!! empty($image['alt']) ? '' : ' alt="'.$image['alt'].'"' !!}{!! empty($image['title']) ? '' : ' title="'.$image['title'].'"' !!}>--}}
                                         </div>
                                     @endif
@@ -148,15 +148,17 @@
                             </div>
                         </div>
                         <div class="product-info__wrapper" itemprop="offers" itemscope itemtype="http://schema.org/Offer">
-                            @if($product->stock)
+                            <div class="availibility-wrapper__main">
+                                @if($product->stock)
+                                    <div class="availibility-wrapper">
+                                        <i class="availibility-icon"></i>
+                                        <span class="availibility-text" itemprop="availability" href="http://schema.org/InStock">Есть в наличии</span>
+                                    </div>
+                                @endif
                                 <div class="availibility-wrapper">
                                     <i class="availibility-icon"></i>
-                                    <span class="availibility-text" itemprop="availability" href="http://schema.org/InStock">Есть в наличии</span>
+                                    <span class="availibility-text">Новое</span>
                                 </div>
-                            @endif
-                            <div class="availibility-wrapper">
-                                <i class="availibility-icon"></i>
-                                <span class="availibility-text">Новое</span>
                             </div>
                             @if(!empty($product->action))
                                 <div class="action-info__wrapper">
@@ -215,14 +217,16 @@
                                 </form>
                             @endif
                             <div class="product-price__wrapper">
-                                <span class="product-price__title">Цена:</span>
-                                <meta itemprop="priceCurrency" content="грн." />
-                                <meta itemprop="price" content="{{ round($product->price, 2) }}" />
-                                @if(!empty($product->price))
-                                    <div class="product-price" data-price="{{ round($product->price, 2) . ($max_price > $product->price ? ' - '.$max_price : '') }}"><span>{{ round($product->price, 2) . ($max_price > $product->price ? ' - '.$max_price : '') }}</span> грн.</div>
-                                @else
-                                    <div class="product-price" data-price="{{ round($product->price, 2) . ($max_price > $product->price ? ' - '.$max_price : '') }}"><span>Цена по запросу</span></div>
-                                @endif
+                                <div class="product-price__inner">
+                                    <span class="product-price__title">Цена:</span>
+                                    <meta itemprop="priceCurrency" content="грн." />
+                                    <meta itemprop="price" content="{{ round($product->price, 2) }}" />
+                                    @if(!empty($product->price))
+                                        <div class="product-price" data-price="{{ round($product->price, 2) . ($max_price > $product->price ? ' - '.$max_price : '') }}"><span>{{ round($product->price, 2) . ($max_price > $product->price ? ' - '.$max_price : '') }}</span> грн.</div>
+                                    @else
+                                        <div class="product-price" data-price="{{ round($product->price, 2) . ($max_price > $product->price ? ' - '.$max_price : '') }}"><span>Цена по запросу</span></div>
+                                    @endif
+                                </div>
                                 <small style="color: #7a7a7a; font-size: 80%">* Цена может меняться в зависимости от выбранных параметров<br>** Цены действуют только на территории Украины</small>
                             </div>
                             @if($product->stock)
@@ -384,14 +388,14 @@
                                 <li class="product-tabs__item{{ empty($similar->count()) && empty($product->description) ? ' active' : '' }}"><span>Опции</span></li>
                             @endif
                             @if(!empty($product->sizes))
-                                <li class="product-tabs__item{{ empty($similar->count()) && empty($product->description) && empty($product->options) ? ' active' : '' }}"><span>Размеры</span></li>
+                                <li class="product-tabs__item{{ empty($similar->count()) && empty($product->description) && empty($product->options) ? ' active' : '' }}" data-load="/product_sizes/{{ $product->id }}"><span>Размеры</span></li>
                             @endif
                             <li class="product-tabs__item"><span>Фотогалерея</span></li>
                             {{--@if(count($variations))--}}
                             {{--<li class="product-tabs__item"><span>Цены</span></li>--}}
                             {{--@endif--}}
                             @if($related->count())
-                                <li class="product-tabs__item item-blink"><span>Похожие товары</span></li>
+                                <li class="product-tabs__item item-blink" data-load="/product_related/{{ $product->id }}"><span>Похожие товары</span></li>
                             @endif
                             @if($similar->count())
                                 <li class="product-tabs__item item-blink active"><span>Сопутствующие товары</span></li>
@@ -416,9 +420,9 @@
                         @endif
                         @if(!empty($product->sizes))
                             <div class="product-tabs__content{{ empty($similar->count()) && empty($product->description) && empty($product->options) ? ' active' : '' }}">
-                                <div class="product-specs">
-                                    {!! $product->sizes !!}
-                                </div>
+                                {{--<div class="product-specs">--}}
+                                    {{--{!! $product->sizes !!}--}}
+                                {{--</div>--}}
                             </div>
                         @endif
                         <div class="product-tabs__content">
@@ -460,33 +464,33 @@
                         {{--@endif--}}
                         @if($related->count())
                             <div class="product-tabs__content">
-                                <div class="actions-slider">
-                                    @foreach($related as $related_product)
-                                        <div class="item col-sm-4">
-                                            <div class="item-inner action">
-                                                @if(!empty($related_product->action))
-                                                    <span class="item-label">Акция <i>%</i></span>
-                                                @endif
-                                                <div class="item-pic__wrapper">
-                                                    <a href="{{env('APP_URL')}}/product/{{ $related_product->url_alias }}">
-                                                        {!! $related_product->image->webp_image('product_list', ['class' => 'item-pic', 'alt' => $product->name], 'slider') !!}
+                                {{--<div class="actions-slider">--}}
+                                    {{--@foreach($related as $related_product)--}}
+                                        {{--<div class="item col-sm-4">--}}
+                                            {{--<div class="item-inner action">--}}
+                                                {{--@if(!empty($related_product->action))--}}
+                                                    {{--<span class="item-label">Акция <i>%</i></span>--}}
+                                                {{--@endif--}}
+                                                {{--<div class="item-pic__wrapper">--}}
+                                                    {{--<a href="{{env('APP_URL')}}/product/{{ $related_product->url_alias }}">--}}
+                                                        {{--{!! $related_product->image->webp_image('product_list', ['class' => 'item-pic', 'alt' => $related_product->name], 'slider') !!}--}}
                                                         {{--<img class="item-pic" src="{{ $related_product->image == null ? '/assets/images/no_image.jpg' : $related_product->image->url('product_list') }}" alt="">--}}
-                                                    </a>
-                                                </div>
-                                                <div class="item-info__wrapper">
-                                                    <a class="item-link" href="{{env('APP_URL')}}/product/{{ $related_product->url_alias }}">{{ $related_product->name }}</a>
-                                                    @if(!empty($related_product->old_price))
-                                                        <div class="item-price-old">{{ round($related_product->old_price, 2) }} грн</div>
-                                                    @else
-                                                        <div class="item-price-old" style="text-decoration: none;">&nbsp;</div>
-                                                    @endif
-                                                    <div class="item-price">{{ round($related_product->price, 2) }} грн</div>
-                                                    <a class="item-btn" href="/product/{{ $related_product->url_alias }}">Подробнее</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    @endforeach
-                                </div>
+                                                    {{--</a>--}}
+                                                {{--</div>--}}
+                                                {{--<div class="item-info__wrapper">--}}
+                                                    {{--<a class="item-link" href="{{env('APP_URL')}}/product/{{ $related_product->url_alias }}">{{ $related_product->name }}</a>--}}
+                                                    {{--@if(!empty($related_product->old_price))--}}
+                                                        {{--<div class="item-price-old">{{ round($related_product->old_price, 2) }} грн</div>--}}
+                                                    {{--@else--}}
+                                                        {{--<div class="item-price-old" style="text-decoration: none;">&nbsp;</div>--}}
+                                                    {{--@endif--}}
+                                                    {{--<div class="item-price">{{ round($related_product->price, 2) }} грн</div>--}}
+                                                    {{--<a class="item-btn" href="/product/{{ $related_product->url_alias }}">Подробнее</a>--}}
+                                                {{--</div>--}}
+                                            {{--</div>--}}
+                                        {{--</div>--}}
+                                    {{--@endforeach--}}
+                                {{--</div>--}}
                             </div>
                         @endif
                         @if($similar->count())
@@ -500,7 +504,7 @@
                                                 @endif
                                                 <div class="item-pic__wrapper">
                                                     <a href="{{env('APP_URL')}}/product/{{ $similar_product->url_alias }}">
-                                                        {!! $similar_product->image->webp_image('product_list', ['class' => 'item-pic', 'alt' => $product->name], 'slider') !!}
+                                                        {!! $similar_product->image->webp_image('product_list', ['class' => 'item-pic', 'alt' => $similar_product->name], 'slider') !!}
                                                         {{--<img class="item-pic" src="{{ $similar_product->image == null ? '/assets/images/no_image.jpg' : $similar_product->image->url('product_list') }}" alt="">--}}
                                                     </a>
                                                 </div>
@@ -720,40 +724,40 @@
             <button title="Close (Esc)" type="button" class="mfp-close">×</button>
         </div>
 
-        <div id="view_popup_prod" class="view-popup">
-            <div class="container">
-                <div class="row">
-                    <div class="col-sm-offset-2 col-sm-8 col-xs-12">
-                        <div class="product-slider view_popup_prod-slider">
-                            @forelse($gallery as $i => $image)
-                                @if(is_object($image['image']))
-                                    <div data-index="{{ $i }}">
-                                        <div class="img-wrp">
-                                            {!! $image['image']->webp_image('full', ['alt' => empty($image['alt']) ? '' : $image['alt'], 'title' => empty($image['title']) ? '' : $image['title'], 'itemprop' => 'image']) !!}
+        {{--<div id="view_popup_prod" class="view-popup">--}}
+            {{--<div class="container">--}}
+                {{--<div class="row">--}}
+                    {{--<div class="col-sm-offset-2 col-sm-8 col-xs-12">--}}
+                        {{--<div class="product-slider view_popup_prod-slider">--}}
+                            {{--@forelse($gallery as $i => $image)--}}
+                                {{--@if(is_object($image['image']))--}}
+                                    {{--<div data-index="{{ $i }}">--}}
+                                        {{--<div class="img-wrp">--}}
+                                            {{--{!! $image['image']->webp_image('product', ['alt' => empty($image['alt']) ? '' : $image['alt'], 'title' => empty($image['title']) ? '' : $image['title'], 'itemprop' => 'image']) !!}--}}
                                             {{--<img src="{{ $image['image']->url() }}"{!! empty($image['alt']) ? '' : ' alt="'.$image['alt'].'"' !!}{!! empty($image['title']) ? '' : ' title="'.$image['title'].'"' !!} itemprop="image">--}}
-                                        </div>
-                                    </div>
-                                @endif
-                            @empty
-                                <div data-index="0">
-                                    <div class="img-wrp">
-                                        <img src="/assets/images/no_image.jpg" alt="{{ $product->name }}">
-                                    </div>
-                                </div>
-                            @endforelse
-                            @if(!empty($product->video))
-                                <div data-index="{{ isset($i) ? ($i + 1) : 0 }}">
-                                    <div class="iframe-wrapper">
-                                        <iframe src="{{ $product->video }}" frameborder="0" gesture="media" allow="encrypted-media" allowfullscreen></iframe>
-                                    </div>
-                                </div>
-                            @endif
-                        </div>
-                        <button title="Close (Esc)" type="button" class="mfp-close">×</button>
-                    </div>
-                </div>
-            </div>
-        </div>
+                                        {{--</div>--}}
+                                    {{--</div>--}}
+                                {{--@endif--}}
+                            {{--@empty--}}
+                                {{--<div data-index="0">--}}
+                                    {{--<div class="img-wrp">--}}
+                                        {{--<img src="/assets/images/no_image.jpg" alt="{{ $product->name }}">--}}
+                                    {{--</div>--}}
+                                {{--</div>--}}
+                            {{--@endforelse--}}
+                            {{--@if(!empty($product->video))--}}
+                                {{--<div data-index="{{ isset($i) ? ($i + 1) : 0 }}">--}}
+                                    {{--<div class="iframe-wrapper">--}}
+                                        {{--<iframe src="{{ $product->video }}" frameborder="0" gesture="media" allow="encrypted-media" allowfullscreen></iframe>--}}
+                                    {{--</div>--}}
+                                {{--</div>--}}
+                            {{--@endif--}}
+                        {{--</div>--}}
+                        {{--<button title="Close (Esc)" type="button" class="mfp-close">×</button>--}}
+                    {{--</div>--}}
+                {{--</div>--}}
+            {{--</div>--}}
+        {{--</div>--}}
     </div>
 
     <div class="mfp-hide">
