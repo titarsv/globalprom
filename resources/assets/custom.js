@@ -455,6 +455,11 @@ $(function() {
             dataLayer.push({'event':'checkout'});
         }
     });
+
+    $('#close_reminder').click(function(){
+        $('#reminder').hide();
+        $.post('/hide_reminder', [], function(){});
+    });
 });
 
 /**

@@ -44,7 +44,7 @@ class Cart extends Model
             $cart = $this->where('user_id', $user_id)->first();
 
             if(!is_null($cart) && $cart->session_id != Session::getId())
-                $cart->update(['session_id' => Session::getId(), 'update_at' => date('Y-m-d H:i:s')]);
+                $cart->update(['session_id' => Session::getId(), 'updated_at' => date('Y-m-d H:i:s')]);
         } else {
             $user_id = 0;
             $cart = $this->where('session_id', Session::getId())->first();
@@ -72,7 +72,7 @@ class Cart extends Model
             'total_quantity' => 0,
             'total_price' => 0,
 	        'created_at' => date('Y-m-d H:i:s'),
-            'update_at' => date('Y-m-d H:i:s')
+            'updated_at' => date('Y-m-d H:i:s')
         ]);
 
         return $this->where('id', $id)->first();
@@ -92,7 +92,7 @@ class Cart extends Model
             $total_price += (float)$data['price'] * (int)$data['quantity'];
         }
 
-        $this->update(['total_quantity' => $total_quantity, 'total_price' => $total_price, 'update_at' => date('Y-m-d H:i:s')]);
+        $this->update(['total_quantity' => $total_quantity, 'total_price' => $total_price, 'updated_at' => date('Y-m-d H:i:s')]);
 
     }
 
@@ -176,7 +176,7 @@ class Cart extends Model
             $products[$product_code]['price'] = $this->get_product_price($product_id, $variation);
         }
 
-        $this->update(['products' => json_encode($products), 'update_at' => date('Y-m-d H:i:s')]);
+        $this->update(['products' => json_encode($products), 'updated_at' => date('Y-m-d H:i:s')]);
         $this->update_cart();
     }
 
@@ -189,7 +189,7 @@ class Cart extends Model
         $products = json_decode($this->products, true);
         unset($products[$product_code]);
 
-        $this->update(['products' => json_encode($products), 'update_at' => date('Y-m-d H:i:s')]);
+        $this->update(['products' => json_encode($products), 'updated_at' => date('Y-m-d H:i:s')]);
         $this->update_cart();
     }
 
@@ -232,7 +232,7 @@ class Cart extends Model
         if ($this->product_isset($product_code)) {
             $products = json_decode($this->products, true);
             $products[$product_code]['quantity'] = $quantity;
-            $this->update(['products' => json_encode($products), 'update_at' => date('Y-m-d H:i:s')]);
+            $this->update(['products' => json_encode($products), 'updated_at' => date('Y-m-d H:i:s')]);
             $this->update_cart();
         } else {
             $this->add_product($product_id, $quantity, $variations);
@@ -305,8 +305,12 @@ class Cart extends Model
 		    $user_data = ['statuses' => []];
 	    }
 
+	    if(($key = array_search('reminder_showed', $user_data)) !== FALSE){
+		    unset($user_data[$key]);
+	    }
+
 	    $user_data['statuses'][] = 'reminder_send';
 
-    	$this->update(['user_data' => $user_data]);
+    	$this->update(['user_data' => json_encode($user_data)]);
     }
 }

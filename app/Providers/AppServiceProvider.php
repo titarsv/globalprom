@@ -114,7 +114,7 @@ class AppServiceProvider extends ServiceProvider
             $view->with('items', $root_categories);
         });
 
-        view()->composer(['public.layouts.header-main'], function ($view) {
+        view()->composer(['public.layouts.header-main', 'public.layouts.footer'], function ($view) {
             $cart = new Cart;
             $current_cart = $cart->current_cart();
             $view->with('cart', $current_cart);

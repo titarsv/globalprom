@@ -191,4 +191,17 @@ class CartController extends Controller
 		    }
 	    }
     }
+
+    public function hide_reminder(Cart $cart){
+	    $current_cart = $cart->current_cart();
+
+	    $user_data = json_decode($current_cart->user_data, true);
+	    if(!is_array($user_data)){
+		    $user_data = ['statuses' => []];
+	    }
+
+	    $user_data['statuses'][] = 'reminder_showed';
+
+	    $current_cart->update(['user_data' => json_encode($user_data)]);
+    }
 }
