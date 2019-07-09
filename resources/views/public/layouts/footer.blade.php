@@ -31,6 +31,9 @@
                         <li class="footer-menu__item">
                             <a class="footer-menu__link" href="tel:+380671627494">+38 (067) 162-74-94</a>
                         </li>
+                        <li class="footer-menu__item">
+                            <a class="footer-menu__link" href="mailto:office@globalprom.com.ua">office@globalprom.com.ua</a>
+                        </li>
                     @elseif($source == 'yandex')
                         <li class="footer-menu__item">
                             <a class="footer-menu__link" href="tel:+380577517062">+38 (057) 751-70-62</a>
@@ -40,6 +43,9 @@
                         </li>
                         <li class="footer-menu__item">
                             <a class="footer-menu__link" href="tel:+380671627874">+38 (067) 162-78-74</a>
+                        </li>
+                        <li class="footer-menu__item">
+                            <a class="footer-menu__link" href="mailto:office@globalprom.com.ua">office@globalprom.com.ua</a>
                         </li>
                     @elseif($source == 'facebook')
                         <li class="footer-menu__item">
@@ -61,7 +67,26 @@
                         <li class="footer-menu__item">
                             <a class="footer-menu__link" href="tel:+380973229908">+38 (097) 322-99-08</a>
                         </li>
+                        <li class="footer-menu__item">
+                            <a class="footer-menu__link" href="mailto:office@globalprom.com.ua">office@globalprom.com.ua</a>
+                        </li>
                     @endif
+                </ul>
+                <span class="links-footer__sep-line"></span>
+                <ul class="footer-menu list5">
+                    <li class="footer-menu__title">Адреса</li>
+                    <li class="footer-menu__item">
+                        г. Киев, ул. Передовая 27
+                    </li>
+                    <li class="footer-menu__item">
+                        Склад в Киеве: ул. Передовая 27
+                    </li>
+                    <li class="footer-menu__item">
+                        г. Харьков, 61146 ул. Сумская 37
+                    </li>
+                    <li class="footer-menu__item">
+                        Склад в Харькове: ул. Академика Павлова 271
+                    </li>
                 </ul>
                 <span class="links-footer__sep-line"></span>
                 <ul class="footer-menu list2">
@@ -109,9 +134,9 @@
                             <li class="footer-socials__item">
                                 <a class="footer-socials__link li" target="_blank" rel="nofollow" href="https://www.linkedin.com/company-beta/15239152"></a>
                             </li>
-                            <li class="footer-socials__item">
-                                <a class="footer-socials__link gp" target="_blank" rel="nofollow" href="https://plus.google.com/u/0/+GlobalpromUaKh"></a>
-                            </li>
+                            {{--<li class="footer-socials__item">--}}
+                            {{--<a class="footer-socials__link gp" target="_blank" rel="nofollow" href="https://plus.google.com/u/0/+GlobalpromUaKh"></a>--}}
+                            {{--</li>--}}
                             <li class="footer-socials__item">
                                 <a class="footer-socials__link ok" target="_blank" rel="nofollow" href="https://ok.ru/group/54392722292850"></a>
                             </li>
@@ -134,6 +159,34 @@
         <span class="copyright">ООО "НПП "ГлобалПром" © 2013-2018 Политика конфиденциальности</span>
     </div>
 </footer>
+
+<div class="container to-top__wrapper">
+    <a href="#top" class="to-top">
+        <i></i>
+        <span>наверх</span>
+    </a>
+</div>
+
+<div id="reminder" style="position: fixed;bottom: 0;background-color: #fff;width: 100%;">
+    <div class="container">
+        <div class="row">
+            <div class="logo-wrapper col-sm-3">
+                <picture>
+                    <source srcset="{{env('APP_URL')}}/images/webp/logo.webp" type="image/webp">
+                    <source srcset="{{env('APP_URL')}}/images/logo.png" type="image/png">
+                    <img class="header-logo" src="{{env('APP_URL')}}/images/logo.png" alt="Грузоподъёмное и промышленное оборудование" title="Грузоподъёмное и промышленное оборудование">
+                </picture>
+            </div>
+            <div class="col-sm-offset-3 col-sm-3">
+                <p>Чтобы завершить заказ нажмите</p>
+            </div>
+            <div class="col-sm-2">
+                <a href="https://globalprom.com.ua/cart" class="consult-form__btn">Заказать</a>
+            </div>
+        </div>
+    </div>
+    <div id="close_reminder" style="position: absolute; top: 0; right: 0">x</div>
+</div>
 
 <div class="mfp-hide">
     <div id='order-popup' class="order-popup">

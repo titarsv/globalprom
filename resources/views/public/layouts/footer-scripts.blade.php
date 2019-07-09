@@ -25,7 +25,7 @@
     }
 </script>
 
-<div class="mfp-hide exit-popup">
+{{--<div class="mfp-hide exit-popup">
     <div id="exit-popup" class="photo-popup__wrapper">
         <p class="exit-popup__title">НЕ СПЕШИТЕ УХОДИТЬ!</p>
         <span class="exit-popup_subtitle">Задайте интересующий Вас вопрос нашим супер профессиональным менеджерам прямо сейчас</span>
@@ -43,7 +43,7 @@
         <button type="button" class="mfp-close close-btn">×</button>
     </div>
 </div>
-<div id="exit_cont"></div>
+<div id="exit_cont"></div>--}}
 <div class="mobile-fixed-phone">
     <a href="tel:+380506972161">позвонить</a>
 </div>

@@ -89,85 +89,42 @@
                 </div>
             </section>
         @endif
-        <section class="section-3">
-            <div class="section-title"><span>Наша продукция</span></div>
+        <section class="section-7">
+            <div class="section-title"><span>О Компании</span></div>
+
+            <h1>Промышленное и грузоподъемное оборудование</h1>
+
             <div class="container">
-                <div class="categories-wrapper">
-                    <a href="{{env('APP_URL')}}/categories/gruzopodemnoe-oborudovanie" class="cat-item col-md-3 col-sm-6">
-                        <div class="cat-item__inner">
-                            <i class="cat-item__icon cii1"></i>
-                            <span class="cat-item__txt">Грузоподъемное <br>оборудование</span>
-                        </div>
-                        <div class="cat-item__btn">
-                            <span class="cat-item__btn-inner">Перейти в категорию</span>
-                        </div>
-                    </a>
-                    <a href="{{env('APP_URL')}}/categories/promishlennoe-oborudovanie" class="cat-item col-md-3 col-sm-6">
-                        <div class="cat-item__inner">
-                            <i class="cat-item__icon cii2"></i>
-                            <span class="cat-item__txt">Промышленное <br>оборудование</span>
-                        </div>
-                        <div class="cat-item__btn">
-                            <span class="cat-item__btn-inner">Перейти в категорию</span>
-                        </div>
-                    </a>
-                    {{--<a href="{{env('APP_URL')}}/categories/vesovoe-oborudovanie" class="cat-item col-md-3 col-sm-6">--}}
-                    {{--<div class="cat-item__inner">--}}
-                    {{--<i class="cat-item__icon cii3"></i>--}}
-                    {{--<span class="cat-item__txt">Весовое <br>оборудование</span>--}}
-                    {{--</div>--}}
-                    {{--<div class="cat-item__btn">--}}
-                    {{--<span class="cat-item__btn-inner">Перейти в категорию</span>--}}
-                    {{--</div>--}}
-                    {{--</a>--}}
-                    {{--<a href="{{env('APP_URL')}}/categories/nasosnoe-oborudovanie" class="cat-item col-md-3 col-sm-6">--}}
-                    {{--<div class="cat-item__inner">--}}
-                    {{--<i class="cat-item__icon cii4"></i>--}}
-                    {{--<span class="cat-item__txt">Насосное <br>оборудование</span>--}}
-                    {{--</div>--}}
-                    {{--<div class="cat-item__btn">--}}
-                    {{--<span class="cat-item__btn-inner">Перейти в категорию</span>--}}
-                    {{--</div>--}}
-                    {{--</a>--}}
+                <div class="about-top__wrap">
+                    <div class="about-top__pic-wrap"><picture> <source data-src="https://globalprom.com.ua/images/webp/about-pic1.webp" scrset="/images/webp/pixel.webp" type="image/webp" /> <source data-src="https://globalprom.com.ua/images/about-pic1.jpg" scrset="/images/pixel.jpg" type="image/image/jpeg" /> <img alt="about-pic1" data-src="https://globalprom.com.ua/images/about-pic1.jpg" src="/images/pixel.jpg" /> </picture></div>
+
+                    <div class="about-top__txt-wrap"><span class="about-top__title">У нас есть все, что вы ищете и даже больше!</span>
+
+                        <p class="about-top__txt">Ищете грузоподъемное, горно-шахтное или промышленное оборудование? Мы готовы сделать для вас выгодное предложение!</p>
+
+                        <p class="about-top__txt">Наша компания &laquo;GlobalProm&raquo; вот уже 6 лет производит и поставляет на рынки Украины, Грузии и территорию стран бывшего СНГ производственно-технологическое оборудование и подъемное оборудование для строительства и оснащения промышленных и строительно-монтажных зон. За столь короткое время мы успели зарекомендовать себя как надежный партнер и получить множество положительных отзывов от крупнейших игроков промышленного рынка.</p>
+                    </div>
                 </div>
-            </div>
-        </section>
-        <section>
-            <div class="team">
-                <div class="team-img-wrp all-team">
-                    <p class="team-title">Наша команда</p>
-                    <picture data-mfp-src="/images/all-team.jpg" class="popup-btn" data-type="image">
-                        <source scrset="/images/webp/pixel.webp" data-src="/images/webp/all-team.webp" type="image/webp">
-                        <source scrset="/images/pixel.jpg" data-src="/images/all-team.jpg" type="image/jpg">
-                        <img src="/images/pixel.jpg" data-src="/images/all-team.jpg" alt="ariston logo">
-                    </picture>
-                    <span class="img-title">Компания GlobalProm</span>
-                </div>
-            </div>
-            <a href="{{env('APP_URL')}}/page/o-nas" target="_blank" class="item-btn team-btn">Подробнее</a>
-        </section>
-        <section class="section-4">
-            <div class="section-title"><span>Цифры в реальном времени</span></div>
-            <div class="container">
-                <div class="counters">
-                    <div class="counter-wrapper col-sm-4">
-                        <span class="counter-title">Товаров в наличии на складе</span>
-                        <div class="odometer odometer1">0000</div>
+
+                <div class="about-bot__wrap">
+                    <div class="about-top__txt-wrap"><span class="about-bot__title">Более 1000 разновидностей промышленных и грузоподъемных товаров!</span>
+
+                        <p class="about-bot__txt">На сегодняшний день мы готовы предложить вам широкий выбор товаров, а именно разнообразное промышленное подъемное оборудование, а также промышленное производственное оборудование от компании &laquo;GlobalProm&raquo;:</p>
+
+                        <ul class="about-bot__list">
+                            <li class="about-bot__list-item">Ручные шестеренные, рычажные и червячные тали для подъема груза массой до 10 тонн;</li>
+                            <li class="about-bot__list-item">Ручные и электрические лебедки, монтажно-тяговые механизмы типа МТМ, тельферы и тали электрические для горизонтального и вертикального подъема груза любой тяжести;</li>
+                            <li class="about-bot__list-item">Гидравлические тележки (роклы), штабелеры и автопогрузчики для перемещения груза в цехах, на стройплощадках и в складских помещениях;</li>
+                            <li class="about-bot__list-item">Промышленное весовое оборудование для взвешивания грузовых авто, железнодорожных вагонов, промышленного груза, а также крупного рогатого скота (весы для животных);</li>
+                            <li class="about-bot__list-item">Промышленные грузоподъемные электрические и ручные краны для оборудования крупных строительных и монтажных площадок;</li>
+                            <li class="about-bot__list-item">Промышленные редукторы, мотор-редукторы, а также электродвигатели для привода различного промышленного оборудования (мельниц, бетономешалок, конвейеров, инкубаторов, буровых установок, шнеков, экструдеров и т.д.);</li>
+                            <li class="about-bot__list-item">Оборудование для горнодобывающей отросли (буровые станки, конвейеры, машины породопогрузочные, комбайны, а также шахтные скреперные лебедки);</li>
+                            <li class="about-bot__list-item">Промышленные насосы для перекачивания любых видов жидкости, в том числе химикатов;</li>
+                            <li class="about-bot__list-item">Промышленные вентиляторы и дымососы для проветривания и кондиционирования различных промышленных помещений, цехов и офисов.</li>
+                        </ul>
                     </div>
-                    <div class="counter-wrapper col-sm-4">
-                        <span class="counter-title">Мы открыли компанию:</span>
-                        <div class="odometer odometer2">0000</div>
-                        <div class="counter-footnote">
-                            <span>Лет</span>
-                            <span></span>
-                            <span>Дней</span>
-                            <span></span>
-                        </div>
-                    </div>
-                    <div class="counter-wrapper col-sm-4">
-                        <span class="counter-title">Клиентов по всему миру</span>
-                        <div class="odometer odometer3">0000</div>
-                    </div>
+
+                    <div class="about-bot__pic-wrap"><picture> <source data-src="https://globalprom.com.ua/images/webp/about-pic2.webp" scrset="/images/webp/pixel.webp" type="image/webp" /> <source data-src="https://globalprom.com.ua/images/about-pic2.jpg" scrset="/images/pixel.jpg" type="image/image/jpeg" /> <img alt="about-pic2" data-src="https://globalprom.com.ua/images/about-pic2.jpg" src="/images/pixel.jpg" /> </picture></div>
                 </div>
             </div>
         </section>
@@ -467,5 +424,103 @@
             </div>
         </section>
         {!! $settings->about !!}
+        <section class="section-3">
+            <div class="section-title"><span>Наша продукция</span></div>
+            <div class="container">
+                <div class="categories-wrapper">
+                    <a href="{{env('APP_URL')}}/categories/gruzopodemnoe-oborudovanie" class="cat-item col-md-3 col-sm-6">
+                        <div class="cat-item__inner">
+                            <i class="cat-item__icon cii1"></i>
+                            <span class="cat-item__txt">Грузоподъемное <br>оборудование</span>
+                        </div>
+                        <div class="cat-item__btn">
+                            <span class="cat-item__btn-inner">Перейти в категорию</span>
+                        </div>
+                    </a>
+                    <a href="{{env('APP_URL')}}/categories/promishlennoe-oborudovanie" class="cat-item col-md-3 col-sm-6">
+                        <div class="cat-item__inner">
+                            <i class="cat-item__icon cii2"></i>
+                            <span class="cat-item__txt">Промышленное <br>оборудование</span>
+                        </div>
+                        <div class="cat-item__btn">
+                            <span class="cat-item__btn-inner">Перейти в категорию</span>
+                        </div>
+                    </a>
+                    {{--<a href="{{env('APP_URL')}}/categories/vesovoe-oborudovanie" class="cat-item col-md-3 col-sm-6">--}}
+                    {{--<div class="cat-item__inner">--}}
+                    {{--<i class="cat-item__icon cii3"></i>--}}
+                    {{--<span class="cat-item__txt">Весовое <br>оборудование</span>--}}
+                    {{--</div>--}}
+                    {{--<div class="cat-item__btn">--}}
+                    {{--<span class="cat-item__btn-inner">Перейти в категорию</span>--}}
+                    {{--</div>--}}
+                    {{--</a>--}}
+                    {{--<a href="{{env('APP_URL')}}/categories/nasosnoe-oborudovanie" class="cat-item col-md-3 col-sm-6">--}}
+                    {{--<div class="cat-item__inner">--}}
+                    {{--<i class="cat-item__icon cii4"></i>--}}
+                    {{--<span class="cat-item__txt">Насосное <br>оборудование</span>--}}
+                    {{--</div>--}}
+                    {{--<div class="cat-item__btn">--}}
+                    {{--<span class="cat-item__btn-inner">Перейти в категорию</span>--}}
+                    {{--</div>--}}
+                    {{--</a>--}}
+                </div>
+            </div>
+        </section>
+        <section>
+            <div class="team">
+                <div class="team-img-wrp all-team">
+                    <p class="team-title">Наша команда</p>
+                    <picture data-mfp-src="/images/all-team.jpg" class="popup-btn" data-type="image">
+                        <source scrset="/images/webp/pixel.webp" data-src="/images/webp/all-team.webp" type="image/webp">
+                        <source scrset="/images/pixel.jpg" data-src="/images/all-team.jpg" type="image/jpg">
+                        <img src="/images/pixel.jpg" data-src="/images/all-team.jpg" alt="ariston logo">
+                    </picture>
+                    <span class="img-title">Компания GlobalProm</span>
+                </div>
+            </div>
+            <a href="{{env('APP_URL')}}/page/o-nas" target="_blank" class="item-btn team-btn">Подробнее</a>
+        </section>
+        <section class="section-4">
+            <div class="section-title"><span>Цифры в реальном времени</span></div>
+            <div class="container">
+                <div class="counters">
+                    <div class="counter-wrapper col-sm-4">
+                        <span class="counter-title">Товаров в наличии на складе</span>
+                        <div class="odometer odometer1">0000</div>
+                    </div>
+                    <div class="counter-wrapper col-sm-4">
+                        <span class="counter-title">Мы открыли компанию:</span>
+                        <div class="odometer odometer2">0000</div>
+                        <div class="counter-footnote">
+                            <span>Лет</span>
+                            <span></span>
+                            <span>Дней</span>
+                            <span></span>
+                        </div>
+                    </div>
+                    <div class="counter-wrapper col-sm-4">
+                        <span class="counter-title">Клиентов по всему миру</span>
+                        <div class="odometer odometer3">0000</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="section-9">
+            <div class="consult-wrapper">
+                <div class="container">
+                    <div class="col-md-7 consult-form__wrapper"><span class="consult-title">Получить грамотную консультацию специалиста и купить выбранный товар в один клик!</span>
+
+                        <p class="consult-text">Продажа всего представленного в нашем интернет-магазине товара осуществляется напрямую с сайта или через менеджеров. Чтобы заказать выбранное оборудование или получить консультацию свяжитесь с нами.</p>
+
+                        <form action="/sendmail" class="consult-form pbz_form clear-styles" data-error-message="Попробуйте отправить заявку через некоторое время." data-error-title="Ошибка отправки!" data-success-message="Наш менеджер свяжется с вами в ближайшее время." data-success-title="Спасибо за заявку!">
+                            <div class="consult-form__composition"><input class="consult-form__input" data-validate-required="Обязательное поле" name="phone" placeholder="Введите ваш телефон" type="text" /><button class="consult-form__btn">Получить консультацию</button></div>
+                        </form>
+                    </div>
+
+                    <div class="col-md-5 consult-pic__wrapper"><picture> <source data-src="/images/webp/consult-pic.webp" scrset="/images/webp/pixel.webp" type="image/webp" /> <source data-src="/images/consult-pic.jpg" scrset="/images/pixel.jpg" type="image/image/jpeg" /> <img alt="" class="consult-pic" data-src="/images/consult-pic.png" src="/images/pixel.jpg" /> </picture></div>
+                </div>
+            </div>
+        </section>
     </main>
 @endsection

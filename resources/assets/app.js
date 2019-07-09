@@ -878,6 +878,21 @@ $(function() {
         }
     });
     document.oncopy = function () { var bodyElement = document.body; var selection = getSelection(); var href = document.location.href; var copyright = "<br><br>Источник: <a href='"+ href +"'>" + href + "</a><br>© Globalprom"; var text = selection + copyright; var divElement = document.createElement('div'); divElement.style.position = 'absolute'; divElement.style.left = '-99999px'; divElement.innerHTML = text; bodyElement.appendChild(divElement); selection.selectAllChildren(divElement); setTimeout(function() { bodyElement.removeChild(divElement); }, 0); };
+
+    /*fixed header*/
+
+    $(window).scroll(function(){
+        if ($(window).scrollTop() >= 1) {
+            $('.header').addClass('fixed');
+            $('body').css('padding-top', '164px');
+            $('.main-menu').addClass('hide-menu');
+        }
+        else {
+            $('.header').removeClass('fixed');
+            $('body').css('padding-top', '0');
+            $('.main-menu').removeClass('hide-menu');
+        }
+    });
 });
 
 require('./custom.js');

@@ -1,4 +1,4 @@
-<header class="header">
+<header class="header" id="top">
     <div class="main-header">
         <div class="container main-header__container">
             <div class="logo-wrapper col-sm-3">
@@ -46,6 +46,9 @@
                                 <li class="header-phone">
                                     <a class="header-phone__link" href="tel:+380671627494">+38 (067) 162-74-94</a>
                                 </li>
+                                <li class="header-phone">
+                                    <a class="header-phone__link" href="mailto:office@globalprom.com.ua">office@globalprom.com.ua</a>
+                                </li>
                             @elseif($source == 'yandex')
                                 <li class="header-phone">
                                     <a class="header-phone__link" href="tel:+380577517062">+38 (057) 751-70-62</a>
@@ -55,6 +58,9 @@
                                 </li>
                                 <li class="header-phone">
                                     <a class="header-phone__link" href="tel:+380671627874">+38 (067) 162-78-74</a>
+                                </li>
+                                <li class="header-phone">
+                                    <a class="header-phone__link" href="mailto:office@globalprom.com.ua">office@globalprom.com.ua</a>
                                 </li>
                             @elseif($source == 'facebook')
                                 <li class="header-phone">
@@ -66,6 +72,9 @@
                                 <li class="header-phone">
                                     <a class="header-phone__link" href="tel:+380663583955">+38 (066) 358 39 55</a>
                                 </li>
+                                <li class="header-phone">
+                                    <a class="header-phone__link" href="mailto:office@globalprom.com.ua">office@globalprom.com.ua</a>
+                                </li>
                             @else
                                 <li class="header-phone">
                                     <a class="header-phone__link" href="tel:+380577517059">+38 (057) 751-70-59</a>
@@ -75,6 +84,9 @@
                                 </li>
                                 <li class="header-phone">
                                     <a class="header-phone__link" href="tel:+380973229908">+38 (097) 322-99-08</a>
+                                </li>
+                                <li class="header-phone">
+                                    <a class="header-phone__link" href="mailto:office@globalprom.com.ua">office@globalprom.com.ua</a>
                                 </li>
                             @endif
                         </ul>

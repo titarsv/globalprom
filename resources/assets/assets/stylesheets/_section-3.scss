@@ -4,6 +4,10 @@
 	.categories-wrapper {
 		display: flex;
 		justify-content: center;
+		@include bp(xs){
+			flex-direction: column;
+			align-items: center;
+		}
 	}
 }
 

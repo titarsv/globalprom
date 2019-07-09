@@ -2,6 +2,10 @@ body, #main-wrapper, footer{
   opacity: 1 !important;
 }
 
+body, main{
+  overflow: hidden;
+}
+
 @import 'variables';
 @import 'vendor';
 @import 'fonts';
