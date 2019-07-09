@@ -5,14 +5,14 @@
                 @if(request()->route() && request()->route()->getName() == 'home')
                     <picture>
                         <source srcset="{{env('APP_URL')}}/images/webp/logo.webp" type="image/webp">
-                        <source srcset="{{env('APP_URL')}}/images/logo.png" type="image/image/png">
+                        <source srcset="{{env('APP_URL')}}/images/logo.png" type="image/png">
                         <img class="header-logo" src="{{env('APP_URL')}}/images/logo.png" alt="Грузоподъёмное и промышленное оборудование" title="Грузоподъёмное и промышленное оборудование">
                     </picture>
                 @else
                     <a href="{{env('APP_URL')}}">
                         <picture>
                             <source srcset="{{env('APP_URL')}}/images/webp/logo.webp" type="image/webp">
-                            <source srcset="{{env('APP_URL')}}/images/logo.png" type="image/image/png">
+                            <source srcset="{{env('APP_URL')}}/images/logo.png" type="image/png">
                             <img class="header-logo" src="{{env('APP_URL')}}/images/logo.png" alt="Грузоподъёмное и промышленное оборудование" title="Грузоподъёмное и промышленное оборудование">
                         </picture>
                     </a>
@@ -104,7 +104,8 @@
                 </nav>
             </div>
             <div class="login-wrapper col-sm-2">
-                <noindex class="login-inner">
+                <!--noindex-->
+                <div class="login-inner">
                     @if($user_logged)
                         @if (in_array('admin', $user_roles) || in_array('manager', $user_roles))
                             <a href="{{env('APP_URL')}}/admin" class="login-btn"></a>
@@ -119,7 +120,8 @@
                             <i>{{ $cart->total_quantity }}</i>
                         @endif
 					</span>
-                </noindex>
+                </div>
+                <!--/noindex-->
             </div>
         </div>
     </div>

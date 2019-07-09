@@ -18,7 +18,10 @@
                         <div class="item-price-old" style="text-decoration: none;">&nbsp;</div>
                     @endif
                     <div class="item-price">{{ round($related_product->price, 2) }} грн</div>
-                    <a class="item-btn" href="/product/{{ $related_product->url_alias }}">Подробнее</a>
+                    <div class="more">
+                        <a class="item-btn" href="/product/{{ $product->url_alias }}">Подробнее</a>
+                        <button class="add_to_cart_btn" data-id="{{ $product->id }}">Cart</button>
+                    </div>
                 </div>
             </div>
         </div>

@@ -9,12 +9,17 @@
     </title>
 
     @if(empty(trim($product->meta_description)) || $product->meta_description == 'NULL')
-        <meta name="description" content="На нашем сайте всегда в наличии {!! $product->name !!}} по лучшей цене. Доставка товара осуществляется во все города Украины быстро и недорого.">
+        <meta name="description" content="На нашем сайте всегда в наличии {!! $product->name !!} по лучшей цене. Доставка товара осуществляется во все города Украины быстро и недорого.">
     @else
         <meta name="description" content="{!! $product->meta_description !!}">
     @endif
 
-    <meta name="keywords" content="{!! $product->meta_keywords !!}">
+    @if(!empty($product->meta_keywords))
+        <meta name="keywords" content="{!! $product->meta_keywords !!}">
+    @else
+        <meta name="keywords" content="{!! $product->name !!}, {!! $product->name !!} купить, в продаже {!! $product->name !!}, {!! $product->name !!} цена, заказать {!! $product->name !!} онлайн, {!! $product->name !!} доставка по Украине">
+    @endif
+
     @if(!empty($product->robots))
         <meta name="robots" content="{!! $product->robots !!}">
     @endif
@@ -43,14 +48,14 @@
 
 @section('content')
     <!-- Код тега ремаркетинга Google -->
-    <script type="text/javascript">
+    <script>
         var google_tag_params = {
             ecomm_prodid: '{{ $product->id }}',
             ecomm_pagetype: 'offerdetail',
             ecomm_totalvalue: {{ $product->price }},
         };
     </script>
-    <script type="text/javascript">
+    <script>
         /* <![CDATA[ */
         var google_conversion_id = 765411960;
         var google_custom_params = window.google_tag_params;
@@ -63,9 +68,16 @@
             'google_tag_params': window.google_tag_params
         });
     </script>
-    <script type="text/javascript" src="//www.googleadservices.com/pagead/conversion.js"></script>
+    <script src="//www.googleadservices.com/pagead/conversion.js"></script>
     <main class="main-wrapper">
         <section class="product-wrapper" itemscope itemtype="http://schema.org/Product">
+            <meta itemprop="sku" content="{{ $product->articul }}">
+            <meta itemprop="brand" content="GlobalProm">
+            @if(empty(trim($product->meta_description)) || $product->meta_description == 'NULL')
+                <meta itemprop="description" content="На нашем сайте всегда в наличии {!! $product->name !!} по лучшей цене. Доставка товара осуществляется во все города Украины быстро и недорого.">
+            @else
+                <meta itemprop="description" content="{!! $product->meta_description !!}">
+            @endif
             <div class="container">
                 <div class="col-xs-12 product-title__wrapper">
                     <h1 class="product-title" itemprop="name" style="text-align: left;">{{ $product->name }}</h1>
@@ -148,11 +160,14 @@
                             </div>
                         </div>
                         <div class="product-info__wrapper" itemprop="offers" itemscope itemtype="http://schema.org/Offer">
+                            <meta itemprop="priceValidUntil" content="{{ date('Y-m-d', time() + 86400 * 30) }}">
+                            <meta itemprop="url" content="{{ env('APP_URL')}}/product/{{ $product->url_alias }}">
                             <div class="availibility-wrapper__main">
                                 @if($product->stock)
                                     <div class="availibility-wrapper">
                                         <i class="availibility-icon"></i>
-                                        <span class="availibility-text" itemprop="availability" href="http://schema.org/InStock">Есть в наличии</span>
+                                        <link itemprop="availability" href="http://schema.org/InStock" />
+                                        <span class="availibility-text">Есть в наличии</span>
                                     </div>
                                 @endif
                                 <div class="availibility-wrapper">
@@ -395,10 +410,10 @@
                             {{--<li class="product-tabs__item"><span>Цены</span></li>--}}
                             {{--@endif--}}
                             @if($related->count())
-                                <li class="product-tabs__item item-blink" data-load="/product_related/{{ $product->id }}"><span>Похожие товары</span></li>
+                                <li class="product-tabs__item item-blink active"><span>Похожие товары</span></li>
                             @endif
                             @if($similar->count())
-                                <li class="product-tabs__item item-blink active"><span>Сопутствующие товары</span></li>
+                                <li class="product-tabs__item item-blink" data-load="/product_related/{{ $product->id }}"><span>Сопутствующие товары</span></li>
                             @endif
                             <li class="product-tabs__item"><span>Отзывы</span></li>
                             <li class="product-tabs__item"><span>Условия возврата</span></li>
@@ -414,7 +429,7 @@
                             <div class="product-tabs__content{{ empty($similar->count()) && empty($product->description) ? ' active' : '' }}">
                                 <div class="product-specs">
                                     <strong>{{ $product->name }}. Ниже приведены технические характеристики товара:</strong>
-                                    {!! $product->options !!}
+                                    {!! str_replace([' cellspacing="0"', ' border="1"'], ['', ''], $product->options) !!}
                                 </div>
                             </div>
                         @endif
@@ -463,60 +478,29 @@
                         {{--</div>--}}
                         {{--@endif--}}
                         @if($related->count())
-                            <div class="product-tabs__content">
-                                {{--<div class="actions-slider">--}}
-                                    {{--@foreach($related as $related_product)--}}
-                                        {{--<div class="item col-sm-4">--}}
-                                            {{--<div class="item-inner action">--}}
-                                                {{--@if(!empty($related_product->action))--}}
-                                                    {{--<span class="item-label">Акция <i>%</i></span>--}}
-                                                {{--@endif--}}
-                                                {{--<div class="item-pic__wrapper">--}}
-                                                    {{--<a href="{{env('APP_URL')}}/product/{{ $related_product->url_alias }}">--}}
-                                                        {{--{!! $related_product->image->webp_image('product_list', ['class' => 'item-pic', 'alt' => $related_product->name], 'slider') !!}--}}
-                                                        {{--<img class="item-pic" src="{{ $related_product->image == null ? '/assets/images/no_image.jpg' : $related_product->image->url('product_list') }}" alt="">--}}
-                                                    {{--</a>--}}
-                                                {{--</div>--}}
-                                                {{--<div class="item-info__wrapper">--}}
-                                                    {{--<a class="item-link" href="{{env('APP_URL')}}/product/{{ $related_product->url_alias }}">{{ $related_product->name }}</a>--}}
-                                                    {{--@if(!empty($related_product->old_price))--}}
-                                                        {{--<div class="item-price-old">{{ round($related_product->old_price, 2) }} грн</div>--}}
-                                                    {{--@else--}}
-                                                        {{--<div class="item-price-old" style="text-decoration: none;">&nbsp;</div>--}}
-                                                    {{--@endif--}}
-                                                    {{--<div class="item-price">{{ round($related_product->price, 2) }} грн</div>--}}
-                                                    {{--<a class="item-btn" href="/product/{{ $related_product->url_alias }}">Подробнее</a>--}}
-                                                {{--</div>--}}
-                                            {{--</div>--}}
-                                        {{--</div>--}}
-                                    {{--@endforeach--}}
-                                {{--</div>--}}
-                            </div>
-                        @endif
-                        @if($similar->count())
                             <div class="product-tabs__content active">
                                 <div class="actions-slider">
-                                    @foreach($similar as $similar_product)
+                                    @foreach($related as $related_product)
                                         <div class="item col-sm-4">
                                             <div class="item-inner action">
-                                                @if(!empty($similar_product->action))
+                                                @if(!empty($related_product->action))
                                                     <span class="item-label">Акция <i>%</i></span>
                                                 @endif
                                                 <div class="item-pic__wrapper">
-                                                    <a href="{{env('APP_URL')}}/product/{{ $similar_product->url_alias }}">
-                                                        {!! $similar_product->image->webp_image('product_list', ['class' => 'item-pic', 'alt' => $similar_product->name], 'slider') !!}
-                                                        {{--<img class="item-pic" src="{{ $similar_product->image == null ? '/assets/images/no_image.jpg' : $similar_product->image->url('product_list') }}" alt="">--}}
+                                                    <a href="{{env('APP_URL')}}/product/{{ $related_product->url_alias }}">
+                                                        {!! $related_product->image->webp_image('product_list', ['class' => 'item-pic', 'alt' => $related_product->name], 'slider') !!}
+{{--                                                        <img class="item-pic" src="{{ $related_product->image == null ? '/assets/images/no_image.jpg' : $related_product->image->url('product_list') }}" alt="">--}}
                                                     </a>
                                                 </div>
                                                 <div class="item-info__wrapper">
-                                                    <a class="item-link" href="{{env('APP_URL')}}/product/{{ $similar_product->url_alias }}">{{ $similar_product->name }}</a>
-                                                    @if(!empty($similar_product->old_price))
-                                                        <div class="item-price-old">{{ round($similar_product->old_price, 2) }} грн</div>
+                                                    <a class="item-link" href="{{env('APP_URL')}}/product/{{ $related_product->url_alias }}">{{ $related_product->name }}</a>
+                                                    @if(!empty($related_product->old_price))
+                                                        <div class="item-price-old">{{ round($related_product->old_price, 2) }} грн</div>
                                                     @else
                                                         <div class="item-price-old" style="text-decoration: none;">&nbsp;</div>
                                                     @endif
-                                                    <div class="item-price">{{ round($similar_product->price, 2) }} грн</div>
-                                                    <a class="item-btn" href="/product/{{ $similar_product->url_alias }}">Подробнее</a>
+                                                    <div class="item-price">{{ round($related_product->price, 2) }} грн</div>
+                                                    <a class="item-btn" href="/product/{{ $related_product->url_alias }}">Подробнее</a>
                                                 </div>
                                             </div>
                                         </div>
@@ -524,20 +508,51 @@
                                 </div>
                             </div>
                         @endif
+                        @if($similar->count())
+                            <div class="product-tabs__content">
+                                {{--<div class="actions-slider">--}}
+                                    {{--@foreach($similar as $similar_product)--}}
+                                        {{--<div class="item col-sm-4">--}}
+                                            {{--<div class="item-inner action">--}}
+                                                {{--@if(!empty($similar_product->action))--}}
+                                                    {{--<span class="item-label">Акция <i>%</i></span>--}}
+                                                {{--@endif--}}
+                                                {{--<div class="item-pic__wrapper">--}}
+                                                    {{--<a href="{{env('APP_URL')}}/product/{{ $similar_product->url_alias }}">--}}
+                                                        {{--{!! $similar_product->image->webp_image('product_list', ['class' => 'item-pic', 'alt' => $similar_product->name], 'slider') !!}--}}
+                                                        {{--<img class="item-pic" src="{{ $similar_product->image == null ? '/assets/images/no_image.jpg' : $similar_product->image->url('product_list') }}" alt="">--}}
+                                                    {{--</a>--}}
+                                                {{--</div>--}}
+                                                {{--<div class="item-info__wrapper">--}}
+                                                    {{--<a class="item-link" href="{{env('APP_URL')}}/product/{{ $similar_product->url_alias }}">{{ $similar_product->name }}</a>--}}
+                                                    {{--@if(!empty($similar_product->old_price))--}}
+                                                        {{--<div class="item-price-old">{{ round($similar_product->old_price, 2) }} грн</div>--}}
+                                                    {{--@else--}}
+                                                        {{--<div class="item-price-old" style="text-decoration: none;">&nbsp;</div>--}}
+                                                    {{--@endif--}}
+                                                    {{--<div class="item-price">{{ round($similar_product->price, 2) }} грн</div>--}}
+                                                    {{--<a class="item-btn" href="/product/{{ $similar_product->url_alias }}">Подробнее</a>--}}
+                                                {{--</div>--}}
+                                            {{--</div>--}}
+                                        {{--</div>--}}
+                                    {{--@endforeach--}}
+                                {{--</div>--}}
+                            </div>
+                        @endif
                         <div class="product-tabs__content">
                             <div class="product-reviews">
                                 <div class="product-review__wrapper">
                                     @forelse($reviews as $review)
-                                        <div class="product-review">
-                                            <span class="product-review__title">
+                                        <div class="product-review" itemprop="review" itemscope itemtype="http://schema.org/Review">
+                                            <span class="product-review__title" itemprop="author">
                                                  @if(!empty($review['parent']->user))
                                                     {{ $review['parent']->user->first_name }}
                                                 @else
                                                     {{ $review['parent']->author }}
                                                 @endif
                                             </span>
-                                            <p class="product-review__txt">{!! $review['parent']->review !!}</p>
-                                            <small class="product-review__date">{!! $review['parent']->date !!}</small>
+                                            <p class="product-review__txt" itemprop="description">{!! $review['parent']->review !!}</p>
+                                            <small class="product-review__date" itemprop="datePublished" content="{!! $review['parent']->date !!}">{!! $review['parent']->date !!}</small>
                                         </div>
                                         @if(!empty($review['parent']->answer))
                                             <div class="product-answer">
@@ -710,20 +725,6 @@
         {{--@endif--}}
     </main>
     <div class="mfp-hide">
-        <div id='quick-order-popup' class="order-popup">
-            <strong class="popup-title">Купить в один клик</strong>
-            <span class="popup-info">Введите Ваш номер телефона<br> и наш менеджер свяжется с Вами в ближайшее время</span>
-            <form action="/sendmail" class="pbz_form clear-styles"
-                  data-error-title="Ошибка отправки!"
-                  data-error-message="Попробуйте отправить заявку через некоторое время."
-                  data-success-title="Спасибо за заявку!"
-                  data-success-message="Наш менеджер свяжется с Вами в ближайшее время.">
-                <input type="tel" class="popup__input" name="phone" placeholder="Введите телефон" data-title="Телефон" data-validate-required="Обязательное поле" data-validate-phone="Неправильный номер">
-                <button type="submit" class="product-order__btn">Купить</button>
-            </form>
-            <button title="Close (Esc)" type="button" class="mfp-close">×</button>
-        </div>
-
         {{--<div id="view_popup_prod" class="view-popup">--}}
             {{--<div class="container">--}}
                 {{--<div class="row">--}}
@@ -768,9 +769,9 @@
             <p>Возврат возможен в течение 14 дней после получения (для товаров надлежащего качества).</p>
             <p> Обратная доставка товаров осуществляется по договоренности.</p>
             <p>Если у Вас возникли вопросы по заказу, Вы хотите вернуть или обменять товар, позвоните по одному из указанных номеров:</p>
-            <a href="tel:+38 (057) 751-70-59">+38 (057) 751-70-59</a><br>
-            <a href="tel:+38 (050) 697-21-61">+38 (050) 697-21-61</a><br>
-            <a href="tel:+38 (097) 322-99-08">+38 (097) 322-99-08</a>
+            <a href="tel:+380577517059">+38 (057) 751-70-59</a><br>
+            <a href="tel:+380506972161">+38 (050) 697-21-61</a><br>
+            <a href="tel:+380973229908">+38 (097) 322-99-08</a>
             <button title="Close (Esc)" type="button" class="mfp-close">×</button>
         </div>
     </div>

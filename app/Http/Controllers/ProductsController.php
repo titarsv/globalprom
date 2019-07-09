@@ -587,6 +587,89 @@ class ProductsController extends Controller
             ->with('variations', $variations_attrs));
     }
 
+	/**
+	 * @param $alias
+	 * @return mixed
+	 */
+	public function quick_buy($id, Request $request)
+	{
+		$product = Products::where('id', $id)->where('stock', 1)->with(['variations', 'variations.attribute_values', 'variations.attribute_values.attribute'])->first();
+
+		if(empty($product)){
+			abort(404);
+		}
+
+		setlocale(LC_TIME, 'RU');
+		$reviews = $product->reviews()
+		                   ->where('published', 1)
+		                   ->orderBy('created_at', 'desc')
+		                   ->get();
+
+		$product_reviews = [];
+		foreach ($reviews as $review) {
+			$review->date = iconv("cp1251", "UTF-8", $review->updated_at->formatLocalized('%d.%m.%Y'));
+			if(!is_null($review->parent_review_id)){
+				$product_reviews[$review->parent_review_id]['comments'][] = $review;
+			} else {
+				$product_reviews[$review->id]['parent'] = $review;
+			}
+		}
+
+		// Если у товара нет галлереи возвращаем его изображение
+		if(empty($product->gallery))
+			$gallery = [['image' => $product->image, 'alt' => $product->name, 'title' => $product->name]];
+		else
+			$gallery = $product->gallery->objects();
+
+		array_splice($gallery, 4);
+
+		$attributes = [];
+
+		foreach ($product->attributes as $attribute){
+			if (!isset($attributes[$attribute->info->name])) {
+				$attributes[$attribute->info->name] = [];
+			}
+			$attributes[$attribute->info->name][] = ['name' => $attribute->value->name, 'value' => $attribute->value->value];
+		}
+
+		$max_price = $product->price;
+		$variations_attrs = [];
+		$variations_prices = [];
+
+		foreach($product->variations as $variation){
+			$values = $variation->attribute_values;
+			$variations_prices[implode('_', $values->pluck(['id'])->sort()->values()->all())] = [
+				'price' => $variation->price,
+				'id' => $variation->id
+			];
+			if($max_price < $variation->price){
+				$max_price = $variation->price;
+			}
+			foreach($values as $value){
+				$attr = $value->attribute;
+				if(!isset($variations_attrs[$attr->id])){
+					$variations_attrs[$attr->id] = [
+						'name' => $attr->name,
+						'values' => [
+							$value->id => $value->name
+						]
+					];
+				}elseif(!isset($variations_attrs[$attr->id]['values'][$value->id])){
+					$variations_attrs[$attr->id]['values'][$value->id] = $value->name;
+				}
+			}
+			asort($variations_attrs[$attr->id]['values']);
+		}
+
+		return response(view('public.layouts.product_popup')
+			->with('product', $product)
+			->with('max_price', $max_price)
+			->with('gallery', $gallery)
+			->with('product_attributes', $attributes)
+			->with('variations_prices', $variations_prices)
+			->with('variations', $variations_attrs));
+	}
+
     /**
      * Галлерея товара
      *
@@ -640,7 +723,7 @@ class ProductsController extends Controller
         $product = Products::where('id', $id)->where('stock', 1)->first();
 
         return response(view('public.layouts.related')
-            ->with('related', $product->related()->where('stock', 1)->orderBy('related_products.id')->with('image')->get()));
+            ->with('related', $product->similar()->where('stock', 1)->orderBy('similar_products.id')->with('image')->get()));
     }
 
     /**

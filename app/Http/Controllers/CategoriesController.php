@@ -179,9 +179,15 @@ class CategoriesController extends Controller
             if($request->limit == 12)
                 $except[] = 'limit';
 
-            return redirect()->action(
-                'CategoriesController@show', ['request' => $request->except($except), 'alias' => $alias, 'filters' => $filters], 301
-            );
+            $r = $request->except($except);
+
+            if(empty($r)){
+	            return redirect()->to('/categories/'.$alias);
+            }else{
+	            return redirect()->action(
+		            'CategoriesController@show', ['request' => $r, 'alias' => $alias, 'filters' => $filters], 301
+	            );
+            }
         }
 
         $sort_array = [

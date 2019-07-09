@@ -29,7 +29,7 @@
     <div id="exit-popup" class="photo-popup__wrapper">
         <p class="exit-popup__title">НЕ СПЕШИТЕ УХОДИТЬ!</p>
         <span class="exit-popup_subtitle">Задайте интересующий Вас вопрос нашим супер профессиональным менеджерам прямо сейчас</span>
-        <form class="pbz_form clear-styles" data-error-title="Ошибка отправки!" data-error-message="Попробуйте отправить заявку через некоторое время." data-success-title="Спасибо за заявку!" data-success-message="Наш менеджер свяжется с вами в ближайшее время." action="">
+        <form class="pbz_form clear-styles" data-error-title="Ошибка отправки!" data-error-message="Попробуйте отправить заявку через некоторое время." data-success-title="Спасибо за заявку!" data-success-message="Наш менеджер свяжется с вами в ближайшее время." action="/sendmail">
             <ul class="product-popup__form-fields">
                 <li>
                     <input type="text" name="phone" class="product-popup__form-input" placeholder="Введите Ваш телефон" data-validate-required="Обязательное поле"

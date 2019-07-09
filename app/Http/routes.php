@@ -52,6 +52,9 @@ Route::get('/lostpassword', 'LoginController@lostpassword');
 Route::post('/lostpassword', 'LoginController@changePassword');
 Route::get('/export-products-prom', 'ProductsController@prom_export');
 Route::get('/fb_feed', 'ProductsController@fb_feed');
+Route::get('/send_reminders', 'CartController@send_reminders');
+Route::post('/hide_reminder', 'CartController@hide_reminder');
+Route::get('/product_popup/{id}', 'ProductsController@quick_buy');
 
 /**
  * Admin routing
@@ -217,6 +220,7 @@ Route::post('/checkout/cities', 'CheckoutController@getCities');
 Route::post('/checkout/warehouses', 'CheckoutController@getWarehouses');
 Route::post('/checkout/confirm', 'CheckoutController@confirmOrder');
 Route::get('/checkout/complete', 'CheckoutController@orderComplete');
+Route::get('/checkout/pay_parts_result', 'CheckoutController@pay_parts_result');
 Route::post('/sendmail', 'UserController@sendMail');
 
 

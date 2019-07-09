@@ -234,7 +234,9 @@
                                             @endforeach
                                         @else
                                             @foreach($added_set as $r)
-                                                <option value="{{ $r }}" selected>{{ $sets->find($r)->name }}</option>
+                                                @if(!empty($sets->find($r)))
+                                                    <option value="{{ $r }}" selected>{{ $sets->find($r)->name }}</option>
+                                                @endif
                                             @endforeach
                                         @endif
                                         @foreach($sets as $set)

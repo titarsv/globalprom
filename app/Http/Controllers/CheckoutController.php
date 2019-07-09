@@ -19,6 +19,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\Mail;
 use Validator;
+use App\Models\PayParts;
 
 class CheckoutController extends Controller
 {
@@ -155,9 +156,21 @@ class CheckoutController extends Controller
 
             if (!is_null($current_order)) {
                 $current_order->update($data);
-                if($current_order->payment == 'card')
-                    return $this->get_liqpay_data($current_order);
-                else
+                if($current_order->payment == 'card') {
+	                return $this->get_liqpay_data($current_order);
+                }elseif($current_order->payment == 'payment_in_parts'){
+	                $url = $this->pay_parts_payment($current_order, 'PP', $request->payment_parts);
+	                if(empty($url)){
+		                return response()->json(['error' => 'Ошибка оплаты частями.']);
+	                }
+	                return response()->json(['success' => 'redirect', 'url' => $url]);
+                }elseif($current_order->payment == 'instant_installments'){
+	                $url = $this->pay_parts_payment($current_order, 'II', $request->payment_parts);
+	                if(empty($url)){
+		                return response()->json(['error' => 'Ошибка оплаты в рассрочку.']);
+	                }
+	                return response()->json(['success' => 'redirect', 'url' => $url]);
+                }else
                     return response()->json(['success' => 'redirect', 'order_id' => $current_order->id]);
             }
         }
@@ -165,9 +178,21 @@ class CheckoutController extends Controller
         $order->fill($data)->save();
         Cookie::queue('current_order_id', $order->id);
 
-        if($order->payment == 'card')
-            return $this->get_liqpay_data($order);
-        else
+        if($order->payment == 'card') {
+	        return $this->get_liqpay_data($order);
+        }elseif($order->payment == 'payment_in_parts'){
+        	$url = $this->pay_parts_payment($order, 'PP', $request->payment_parts);
+	        if(empty($url)){
+		        return response()->json(['error' => 'Ошибка оплаты частями.']);
+	        }
+	        return response()->json(['success' => 'redirect', 'url' => $url]);
+        }elseif($order->payment == 'instant_installments'){
+	        $url = $this->pay_parts_payment($order, 'II', $request->payment_parts);
+	        if(empty($url)){
+		        return response()->json(['error' => 'Ошибка оплаты в рассрочку.']);
+	        }
+	        return response()->json(['success' => 'redirect', 'url' => $url]);
+        }else
             return response()->json(['success' => 'redirect', 'order_id' => $order->id]);
     }
 
@@ -194,6 +219,51 @@ class CheckoutController extends Controller
         ]);
 
         return ['success' => 'liqpay', 'liqpay' => $checkout, 'order_id' => $order->id];
+    }
+
+    public function pay_parts_payment($order, $merchantType = 'PP', $count = 3){
+//    	$storeId = '4AAD1369CF734B64B70F';
+//    	$pass = '75bef16bfdce4d0e9c0ad5a19b9940df';
+    	$storeId = 'EE62763536CA460F91AB';
+    	$pass = 'fecd2cb70e084b4687e8da1be12d409f';
+	    $ProductsList = [];
+    	foreach($order->getProducts() as $product){
+		    $ProductsList[] = [
+			    'name' => $product['product']->name,
+			    'count' => $product['quantity'],
+			    'price' => $product['price']
+		    ];
+	    }
+
+	    $options = array(
+		    'ResponseUrl' => url('/checkout/pay_parts_result?order_id=' . $order->id),          //URL, на который Банк отправит результат сделки (НЕ ОБЯЗАТЕЛЬНО)
+		    'RedirectUrl' =>  url('/checkout/complete?order_id=' . $order->id),          //URL, на который Банк сделает редирект клиента (НЕ ОБЯЗАТЕЛЬНО)
+		    'PartsCount' => (int)$count,  //Количество частей на которые делится сумма транзакции ( >1)
+		    'Prefix' => '',                                  //Параметр не обязательный если Prefix указан с пустотой или не указа вовсе префикс будет ORDER
+//		    'OrderID' => $order->id,                         //Если OrderID задан с пустотой или не укан вовсе OrderID сгенерится автоматически
+		    'OrderID' => '',                                 //Если OrderID задан с пустотой или не укан вовсе OrderID сгенерится автоматически
+            'merchantType' => $merchantType,                 //II - Мгновенная рассрочка; PP - Оплата частями; PB - Оплата частями. Деньги в периоде. IA - Мгновенная рассрочка. Акционная.
+		    'Currency' => '980',                             //Валюта по умолчанию 980 – Украинская гривна; Значения в соответствии с ISO
+		    'ProductsList' => $ProductsList,                 //Список продуктов, каждый продукт содержит поля: name - Наименование товара price - Цена за еденицу товара (Пример: 100.00) count - Количество товаров данного вида
+		    'recipientId' => ''                              //Идентификатор получателя, по умолчанию берется основной получатель. Установка основного получателя происходит в профиле магазина.
+	    );
+
+	    $pp = new PayParts($storeId, $pass);
+
+	    $pp->setOptions($options);
+
+	    $send = $pp->create('hold');//hold //pay
+
+	    if($send == 'error')
+	    	return false;
+
+	    return 'https://payparts2.privatbank.ua/ipp/v2/payment?token=' . $send['token'];
+    }
+
+    public function pay_parts_result(Request $request){
+	    $handle = fopen(storage_path('logs/payment.log'), "r+");
+	    fwrite($handle, json_encode($request->all()));
+	    fclose($handle);
     }
 
     /**

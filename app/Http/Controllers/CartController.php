@@ -15,6 +15,7 @@ use App\Models\User;
 use App\Models\Order;
 use Crypt;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Mail;
 
 class CartController extends Controller
 {
@@ -164,5 +165,43 @@ class CartController extends Controller
         }
 
         return $current_cart;
+    }
+
+	/**
+	 * Рассылка уведомлений о неоконченной покупке
+	 *
+	 * @param Cart $cart
+	 */
+    public function send_reminders(Cart $cart){
+	    $reminders = $cart->get_reminders();
+
+	    foreach ($reminders as $reminder){
+		    $user = $reminder->user;
+
+		    if(!empty($user->email)){
+			    Mail::send('emails.cart_reminder', ['user' => $user, 'products' => $reminder->get_products()], function($msg) use ($user){
+				    $msg->from('info@globalprom.com.ua', 'Интернет-магазин Globalprom');
+				    $msg->to($user->email);
+				    $msg->subject('Неоконченный заказ на сайте Globalprom');
+			    });
+
+			    $reminder->reminder_success();
+		    }else{
+			    $reminder->reminder_success();
+		    }
+	    }
+    }
+
+    public function hide_reminder(Cart $cart){
+	    $current_cart = $cart->current_cart();
+
+	    $user_data = json_decode($current_cart->user_data, true);
+	    if(!is_array($user_data)){
+		    $user_data = ['statuses' => []];
+	    }
+
+	    $user_data['statuses'][] = 'reminder_showed';
+
+	    $current_cart->update(['user_data' => json_encode($user_data)]);
     }
 }

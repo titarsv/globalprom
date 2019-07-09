@@ -1,3 +1,3 @@
 <div class="product-specs">
-    {!! $product->sizes !!}
+    {!! str_replace([' cellspacing="0"', ' border="1"'], ['', ''], $product->sizes) !!}
 </div>

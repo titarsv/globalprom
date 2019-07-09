@@ -25,7 +25,7 @@
                         {!! $item['quantity'] !!}
                     </td>
                     <td align="center" width="20%" height="150px">
-                        {!! $item['product']->price * $item['quantity'] !!} грн
+                        {!! $item['price'] * $item['quantity'] !!} грн
                     </td>
                 </tr>
             @endforeach

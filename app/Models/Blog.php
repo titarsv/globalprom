@@ -54,31 +54,35 @@ class Blog extends Model
                 $limg = str_replace('.'.$extension, '_larevel.'.$extension, $image);
                 $webp = str_replace('.'.$extension, '_larevel.webp', $image);
                 if(!is_file($limg)){
-                    $file = $img->imagecreatefromfile($image);
-                    $k1=160/imagesx($file);
-                    $k2=160/imagesy($file);
-                    $k=$k1<$k2?$k2:$k1;
+                	if(is_file($image)) {
+		                $file = $img->imagecreatefromfile( $image );
+		                $k1   = 160 / imagesx( $file );
+		                $k2   = 160 / imagesy( $file );
+		                $k    = $k1 < $k2 ? $k2 : $k1;
 
-                    $w=intval(imagesx($file)*$k);
-                    $h=intval(imagesy($file)*$k);
+		                $w = intval( imagesx( $file ) * $k );
+		                $h = intval( imagesy( $file ) * $k );
 
-                    $im1=imagecreatetruecolor($w,$h);
-                    imagecopyresampled($im1,$file,0,0,0,0,$w,$h,imagesx($file),imagesy($file));
+		                $im1 = imagecreatetruecolor( $w, $h );
+		                imagecopyresampled( $im1, $file, 0, 0, 0, 0, $w, $h, imagesx( $file ), imagesy( $file ) );
 
-                    if($extension == 'png'){
-                        imagepng($im1, $limg, 3);
-                    }elseif(in_array($extension, ['jpeg', 'jpg'])){
-                        imagejpeg($im1, $limg, 80);
-                    }elseif(in_array($extension, ['gif'])){
-                        imagegif($im1, $limg);
-                    }
-                    imagedestroy($file);
-                    imagedestroy($im1);
+		                if ( $extension == 'png' ) {
+			                imagepng( $im1, $limg, 3 );
+		                } elseif ( in_array( $extension, [ 'jpeg', 'jpg' ] ) ) {
+			                imagejpeg( $im1, $limg, 80 );
+		                } elseif ( in_array( $extension, [ 'gif' ] ) ) {
+			                imagegif( $im1, $limg );
+		                }
+		                imagedestroy( $file );
+		                imagedestroy( $im1 );
+	                }
                 }
                 if(!is_file($webp)){
-                    $file = $img->imagecreatefromfile($limg);
-                    imagewebp($file, $webp);
-                    imagedestroy($file);
+	                if(is_file($image)) {
+		                $file = $img->imagecreatefromfile( $limg );
+		                imagewebp( $file, $webp );
+		                imagedestroy( $file );
+	                }
                 }
                 $mime = $extension;
                 if($mime == 'jpg'){
