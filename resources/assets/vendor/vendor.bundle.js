@@ -11723,7 +11723,7 @@ var vendor_lib =
 /* 5 */
 /***/ (function(module, exports) {
 
-	module.exports = __webpack_public_path__ + "assets/static/css/chosen_28044a7e0054e1b5e623b9d6be36fdf7.css";
+	module.exports = __webpack_public_path__ + "assets/static/css/chosen_ad79117811f5c0ecae58c007b862155f.css";
 
 /***/ }),
 /* 6 */
@@ -19437,6 +19437,42 @@ var vendor_lib =
 	          }
 	        };
 	      }
+	    }else if(settings.type == 'ajax'){
+	        settings.callbacks = {
+	            open: function() {
+	                window.galleryInterval = setInterval(function(){
+	                    var slider = $('.view_popup_prod-slider');
+	                    if(slider.length){
+	                        clearInterval(window.galleryInterval);
+	                        var number = slider.data('index');
+	                        slider.slick({
+	                            speed: 700,
+	                            slidesToShow: 1,
+	                            slidesToScroll: 1,
+	                            infinite: false,
+	                            arrows: true,
+	                            nextArrow: '<div class="arrow-right"></div>',
+	                            prevArrow: '<div class="arrow-left"></div>',
+	                            asNavFor: '.product-nav'
+	                        }).on('lazyLoaded', function (event, slick, image, imageSource) {
+	                            var picture = $(image[0]).parents('picture');
+	                            if (picture.length) {
+	                                picture
+	                                    .children('source')
+	                                    .each(function (index, el) {
+	                                        var $child = $(el),
+	                                            source = $child.data('lazy');
+
+	                                        if (source) {
+	                                            $child.attr('srcset', source);
+	                                        }
+	                                    });
+	                            }
+	                        }).slick('slickGoTo', number);
+	                    }
+	                }, 100);
+	            }
+	        };
 	    }
 
 	    $this.magnificPopup(settings);
@@ -24394,7 +24430,21 @@ var vendor_lib =
 	    if ($this.parents('.hidden').length == 0) {
 	      $this.slick();
 	    }
-	  });
+	  }).on('lazyLoaded', function (event, slick, image, imageSource) {
+	        var picture = $(image[0]).parents('picture');
+	        if (picture.length) {
+	            picture
+	                .children('source')
+	                .each(function (index, el) {
+	                    var $child = $(el),
+	                        source = $child.data('lazy');
+
+	                    if (source) {
+	                        $child.attr('srcset', source);
+	                    }
+	                });
+	        }
+	    });
 	};
 
 

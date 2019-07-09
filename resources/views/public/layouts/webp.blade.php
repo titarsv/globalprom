@@ -1,5 +1,8 @@
 {{--@if(!empty($webp))--}}
     <picture>
+        @php
+            $lazy = false;
+        @endphp
         @if(!empty($webp))
         <source
                 @if($lazy == 'slider')
