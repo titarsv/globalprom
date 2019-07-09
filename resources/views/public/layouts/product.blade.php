@@ -26,7 +26,10 @@
             @else
                 <div class="item-price">Цена по запросу</div>
             @endif
-            <a class="item-btn" href="/product/{{ $product->url_alias }}">Подробнее</a>
+            <div class="more">
+                <a class="item-btn" href="/product/{{ $product->url_alias }}">Подробнее</a>
+                <button class="add_to_cart_btn" data-id="{{ $product->id }}">Cart</button>
+            </div>
         </div>
     </div>
 </div>

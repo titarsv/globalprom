@@ -170,6 +170,20 @@
         <img src="/images/pdf.png" alt="pdf"/>
         <button title="Close (Esc)" type="button" class="mfp-close">×</button>
     </div>
+
+    <div id='quick-order-popup' class="order-popup">
+        <strong class="popup-title">Купить в один клик</strong>
+        <span class="popup-info">Введите Ваш номер телефона<br> и наш менеджер свяжется с Вами в ближайшее время</span>
+        <form action="/sendmail" class="pbz_form clear-styles"
+              data-error-title="Ошибка отправки!"
+              data-error-message="Попробуйте отправить заявку через некоторое время."
+              data-success-title="Спасибо за заявку!"
+              data-success-message="Наш менеджер свяжется с Вами в ближайшее время.">
+            <input type="tel" class="popup__input" name="phone" placeholder="Введите телефон" data-title="Телефон" data-validate-required="Обязательное поле" data-validate-phone="Неправильный номер">
+            <button type="submit" class="product-order__btn">Купить</button>
+        </form>
+        <button title="Close (Esc)" type="button" class="mfp-close">×</button>
+    </div>
 </div>
 
 @if(strtotime($cart->updated_at) < time() - 3 * 86400 && strpos('reminder_showed', $cart->user_data) === false)
