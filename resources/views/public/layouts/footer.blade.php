@@ -98,7 +98,7 @@
                 <span class="links-footer__sep-line last"></span>
                 <div class="footer-socials">
                     <span class="footer-menu__title">Все новости в соц. сетях:</span>
-                    <noindex>
+                    <!--noindex-->
                         <ul class="footer-socials__list">
                             <li class="footer-socials__item">
                                 <a class="footer-socials__link fb" target="_blank" rel="nofollow" href="https://www.facebook.com/gglobalprom/"></a>
@@ -109,9 +109,9 @@
                             <li class="footer-socials__item">
                                 <a class="footer-socials__link li" target="_blank" rel="nofollow" href="https://www.linkedin.com/company-beta/15239152"></a>
                             </li>
-                            <li class="footer-socials__item">
-                                <a class="footer-socials__link gp" target="_blank" rel="nofollow" href="https://plus.google.com/u/0/+GlobalpromUaKh"></a>
-                            </li>
+                            {{--<li class="footer-socials__item">--}}
+                                {{--<a class="footer-socials__link gp" target="_blank" rel="nofollow" href="https://plus.google.com/u/0/+GlobalpromUaKh"></a>--}}
+                            {{--</li>--}}
                             <li class="footer-socials__item">
                                 <a class="footer-socials__link ok" target="_blank" rel="nofollow" href="https://ok.ru/group/54392722292850"></a>
                             </li>
@@ -125,7 +125,7 @@
                                 <a class="footer-socials__link yt" target="_blank" rel="nofollow" href="https://www.youtube.com/channel/UCLet8R8Be22p-948IxqkvOg/featured"></a>
                             </li>
                         </ul>
-                    </noindex>
+                    <!--/noindex-->
                 </div>
             </div>
         </div>

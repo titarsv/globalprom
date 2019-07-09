@@ -122,9 +122,9 @@
                         <li class="footer-socials__item">
                             <a class="footer-socials__link li" target="_blank" rel="nofollow" href="https://www.linkedin.com/company-beta/15239152"></a>
                         </li>
-                        <li class="footer-socials__item">
-                            <a class="footer-socials__link gp" target="_blank" rel="nofollow" href="https://plus.google.com/u/0/+GlobalpromUaKh"></a>
-                        </li>
+<!--                        <li class="footer-socials__item">-->
+<!--                            <a class="footer-socials__link gp" target="_blank" rel="nofollow" href="https://plus.google.com/u/0/+GlobalpromUaKh"></a>-->
+<!--                        </li>-->
                         <li class="footer-socials__item">
                             <a class="footer-socials__link ok" target="_blank" rel="nofollow" href="https://ok.ru/group/54392722292850"></a>
                         </li>

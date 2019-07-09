@@ -348,7 +348,6 @@ $(function() {
                 $('select, input').removeClass('input-error');
             },
             success: function(response) {
-
                 if (response.error) {
                     var html = '';
                     $.each(response.error, function (id, text){
@@ -386,11 +385,23 @@ $(function() {
                             window.location = '/checkout/complete?order_id=' + response.order_id;
                         });
                     } else if (response.success == 'redirect') {
-                        window.location = '/checkout/complete?order_id=' + response.order_id;
+                        if(typeof response.url === 'undefined'){
+                            window.location = '/checkout/complete?order_id=' + response.order_id;
+                        }else{
+                            window.location = response.url;
+                        }
                     }
                 }
             }
         })
+    });
+
+    $('#checkout-delivery-payment').on('change', '#checkout-step__payment', function(){
+        if($(this).val() == 'instant_installments' || $(this).val() == 'payment_in_parts'){
+            $('#checkout-payment__parts').parent().removeClass('hidden');
+        }else{
+            $('#checkout-payment__parts').parent().addClass('hidden');
+        }
     });
 
     $('.subscribe-form').on('submit', function(e){

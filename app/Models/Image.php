@@ -250,7 +250,10 @@ class Image extends Model
             $filepath = public_path() . '/assets/images/' . $data->href;
             $webp_name = str_replace('.'.strtolower(pathinfo($data->href, PATHINFO_EXTENSION )), '.webp', $data->href);
             $webp_path = public_path() . '/assets/images/' . $webp_name;
-            $image = $this->imagecreatefromfile($filepath);
+
+            if(is_file($filepath))
+                $image = $this->imagecreatefromfile($filepath);
+
             if(empty($image)){
                 return null;
             }
@@ -367,7 +370,8 @@ class Image extends Model
 
     public function create_thumbnail($filepath, $overlays)
     {
-        $image = $this->imagecreatefromfile($filepath);
+    	if(is_file($filepath))
+            $image = $this->imagecreatefromfile($filepath);
         imagealphablending($image, true);
         imagesavealpha($image, true);
         list($src_width, $src_height) = getimagesize($filepath);
@@ -377,7 +381,8 @@ class Image extends Model
             $offset = 0;
 
             foreach ($attribute_images as $i => $attribute_image) {
-                $overlay_image = $this->imagecreatefromfile(public_path('assets/attributes_images/') . $attribute_image);
+	            if(is_file(public_path('assets/attributes_images/') . $attribute_image))
+                    $overlay_image = $this->imagecreatefromfile(public_path('assets/attributes_images/') . $attribute_image);
                 list($width, $height) = getimagesize(public_path('assets/attributes_images/') . $attribute_image);
 
                 $percent = $overlay['settings']['image_percent'];

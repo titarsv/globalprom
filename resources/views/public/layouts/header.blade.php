@@ -14,11 +14,6 @@
         fbq('init', '664405463896680');
         fbq('track', 'PageView');
     </script>
-    <noscript>
-        <img height="1" width="1"
-             src="https://www.facebook.com/tr?id=664405463896680&ev=PageView
-&noscript=1"/>
-    </noscript>
     <!-- End Facebook Pixel Code -->
 
     @yield('meta')

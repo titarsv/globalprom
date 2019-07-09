@@ -7,14 +7,14 @@
 
 @section('content')
     <!-- Код тега ремаркетинга Google -->
-    <script type="text/javascript">
+    <script>
         var google_tag_params = {
             ecomm_prodid: '',
             ecomm_pagetype: 'home',
             ecomm_totalvalue: 0,
         };
     </script>
-    <script type="text/javascript">
+    <script>
         /* <![CDATA[ */
         var google_conversion_id = 765411960;
         var google_custom_params = window.google_tag_params;
@@ -27,9 +27,9 @@
             'google_tag_params': window.google_tag_params
         });
     </script>
-    <script type="text/javascript" src="//www.googleadservices.com/pagead/conversion.js"></script>
+    <script src="//www.googleadservices.com/pagead/conversion.js"></script>
     <main class="main-wrapper">
-        <section class="section-1">
+        <div class="section-1">
             <div class="container">
                 <div class="main-title"><span>Промышленное и грузоподъемное оборудование в строго оговоренные сроки.</span><br> За каждый день просрочки выплатим неустойку в размере 2% от суммы заказа!</div>
                 <div class="main-slider">
@@ -37,7 +37,7 @@
                         <div class="main-slide">
                             <div class="col-sm-6 main-slider__pic-wrapper">
                                 {{--<img class="main-slider__pic" data-lazy="/assets/images/{!! $slide->image->href !!}" alt="">--}}
-                                {!! $slide->image->webp_image('banner', ['class' => 'main-slider__pic'], 'slider') !!}
+                                {!! $slide->image->webp_image('banner', ['class' => 'main-slider__pic', 'alt' => json_decode($slide->slide_data)->slide_title], 'slider') !!}
                             </div>
                             <div class="col-sm-6 main-slider__info">
                                 <div class="main-slider__info-inner">
@@ -54,9 +54,9 @@
                     @endforeach
                 </div>
             </div>
-        </section>
+        </div>
         @if($actions && $actions->count() > 0)
-            <section class="section-2">
+            <div class="section-2">
                 <div class="section-title"><span>Акции</span></div>
                 <div class="container">
                     <div class="actions-slider">
@@ -87,9 +87,9 @@
                         @endforelse
                     </div>
                 </div>
-            </section>
+            </div>
         @endif
-        <section class="section-3">
+        <div class="section-3">
             <div class="section-title"><span>Наша продукция</span></div>
             <div class="container">
                 <div class="categories-wrapper">
@@ -131,22 +131,22 @@
                     {{--</a>--}}
                 </div>
             </div>
-        </section>
-        <section>
+        </div>
+        <div>
             <div class="team">
                 <div class="team-img-wrp all-team">
                     <p class="team-title">Наша команда</p>
                     <picture data-mfp-src="/images/all-team.jpg" class="popup-btn" data-type="image">
-                        <source scrset="/images/webp/pixel.webp" data-src="/images/webp/all-team.webp" type="image/webp">
-                        <source scrset="/images/pixel.jpg" data-src="/images/all-team.jpg" type="image/jpg">
+                        <source srcset="/images/webp/pixel.webp" data-src="/images/webp/all-team.webp" type="image/webp">
+                        <source srcset="/images/pixel.jpg" data-src="/images/all-team.jpg" type="image/jpg">
                         <img src="/images/pixel.jpg" data-src="/images/all-team.jpg" alt="ariston logo">
                     </picture>
                     <span class="img-title">Компания GlobalProm</span>
                 </div>
             </div>
             <a href="{{env('APP_URL')}}/page/o-nas" target="_blank" class="item-btn team-btn">Подробнее</a>
-        </section>
-        <section class="section-4">
+        </div>
+        <div class="section-4">
             <div class="section-title"><span>Цифры в реальном времени</span></div>
             <div class="container">
                 <div class="counters">
@@ -170,8 +170,8 @@
                     </div>
                 </div>
             </div>
-        </section>
-        <section class="section-5">
+        </div>
+        <div class="section-5">
             <div class="section-title"><span>Рекомендации</span></div>
             <span class="section-subtitle">ОТ ПОСТОЯННЫХ КЛИЕНТОВ</span>
             <div class="container">
@@ -180,8 +180,8 @@
                         <div class="clients-item__cert-wrapper">
                             <span class="clients-item__zoom"></span>
                             <picture>
-                                <source scrset="/images/webp/pixel.webp" data-src="{{env('APP_URL')}}/images/webp/cert/min/cert-1.webp" type="image/webp">
-                                <source scrset="/images/pixel.jpg" data-src="{{env('APP_URL')}}/images/cert/min/cert-1.jpg" type="image/jpg">
+                                <source srcset="/images/webp/pixel.webp" data-src="{{env('APP_URL')}}/images/webp/cert/min/cert-1.webp" type="image/webp">
+                                <source srcset="/images/pixel.jpg" data-src="{{env('APP_URL')}}/images/cert/min/cert-1.jpg" type="image/jpg">
                                 <img src="/images/pixel.jpg" data-src="{{env('APP_URL')}}/images/cert/min/cert-1.jpg" alt="">
                             </picture>
                         </div>
@@ -190,8 +190,8 @@
                         <div class="clients-item__cert-wrapper">
                             <span class="clients-item__zoom"></span>
                             <picture>
-                                <source scrset="/images/webp/pixel.webp" data-src="{{env('APP_URL')}}/images/webp/cert/min/cert-2.webp" type="image/webp">
-                                <source scrset="/images/pixel.jpg" data-src="{{env('APP_URL')}}/images/cert/min/cert-2.jpg" type="image/jpg">
+                                <source srcset="/images/webp/pixel.webp" data-src="{{env('APP_URL')}}/images/webp/cert/min/cert-2.webp" type="image/webp">
+                                <source srcset="/images/pixel.jpg" data-src="{{env('APP_URL')}}/images/cert/min/cert-2.jpg" type="image/jpg">
                                 <img src="/images/pixel.jpg" data-src="{{env('APP_URL')}}/images/cert/min/cert-2.jpg" alt="">
                             </picture>
                         </div>
@@ -200,8 +200,8 @@
                         <div class="clients-item__cert-wrapper">
                             <span class="clients-item__zoom"></span>
                             <picture>
-                                <source scrset="/images/webp/pixel.webp" data-src="{{env('APP_URL')}}/images/webp/cert/min/cert-3.webp" type="image/webp">
-                                <source scrset="/images/pixel.jpg" data-src="{{env('APP_URL')}}/images/cert/min/cert-3.jpg" type="image/jpg">
+                                <source srcset="/images/webp/pixel.webp" data-src="{{env('APP_URL')}}/images/webp/cert/min/cert-3.webp" type="image/webp">
+                                <source srcset="/images/pixel.jpg" data-src="{{env('APP_URL')}}/images/cert/min/cert-3.jpg" type="image/jpg">
                                 <img src="/images/pixel.jpg" data-src="{{env('APP_URL')}}/images/cert/min/cert-3.jpg" alt="">
                             </picture>
                         </div>
@@ -210,8 +210,8 @@
                         <div class="clients-item__cert-wrapper">
                             <span class="clients-item__zoom"></span>
                             <picture>
-                                <source scrset="/images/webp/pixel.webp" data-src="{{env('APP_URL')}}/images/webp/cert/min/cert-4.webp" type="image/webp">
-                                <source scrset="/images/pixel.jpg" data-src="{{env('APP_URL')}}/images/cert/min/cert-4.jpg" type="image/jpg">
+                                <source srcset="/images/webp/pixel.webp" data-src="{{env('APP_URL')}}/images/webp/cert/min/cert-4.webp" type="image/webp">
+                                <source srcset="/images/pixel.jpg" data-src="{{env('APP_URL')}}/images/cert/min/cert-4.jpg" type="image/jpg">
                                 <img src="/images/pixel.jpg" data-src="{{env('APP_URL')}}/images/cert/min/cert-4.jpg" alt="">
                             </picture>
                         </div>
@@ -220,8 +220,8 @@
                         <div class="clients-item__cert-wrapper">
                             <span class="clients-item__zoom"></span>
                             <picture>
-                                <source scrset="/images/webp/pixel.webp" data-src="{{env('APP_URL')}}/images/webp/cert/min/cert-5.webp" type="image/webp">
-                                <source scrset="/images/pixel.jpg" data-src="{{env('APP_URL')}}/images/cert/min/cert-5.jpg" type="image/jpg">
+                                <source srcset="/images/webp/pixel.webp" data-src="{{env('APP_URL')}}/images/webp/cert/min/cert-5.webp" type="image/webp">
+                                <source srcset="/images/pixel.jpg" data-src="{{env('APP_URL')}}/images/cert/min/cert-5.jpg" type="image/jpg">
                                 <img src="/images/pixel.jpg" data-src="{{env('APP_URL')}}/images/cert/min/cert-5.jpg" alt="">
                             </picture>
                         </div>
@@ -230,8 +230,8 @@
                         <div class="clients-item__cert-wrapper">
                             <span class="clients-item__zoom"></span>
                             <picture>
-                                <source scrset="/images/webp/pixel.webp" data-src="{{env('APP_URL')}}/images/webp/cert/min/cert-1.webp" type="image/webp">
-                                <source scrset="/images/pixel.jpg" data-src="{{env('APP_URL')}}/images/cert/min/cert-6.jpg" type="image/jpg">
+                                <source srcset="/images/webp/pixel.webp" data-src="{{env('APP_URL')}}/images/webp/cert/min/cert-1.webp" type="image/webp">
+                                <source srcset="/images/pixel.jpg" data-src="{{env('APP_URL')}}/images/cert/min/cert-6.jpg" type="image/jpg">
                                 <img src="/images/pixel.jpg" data-src="{{env('APP_URL')}}/images/cert/min/cert-6.jpg" alt="">
                             </picture>
                         </div>
@@ -240,8 +240,8 @@
                         <div class="clients-item__cert-wrapper">
                             <span class="clients-item__zoom"></span>
                             <picture>
-                                <source scrset="/images/webp/pixel.webp" data-src="{{env('APP_URL')}}/images/webp/cert/min/cert-7.webp" type="image/webp">
-                                <source scrset="/images/pixel.jpg" data-src="{{env('APP_URL')}}/images/cert/min/cert-7.jpg" type="image/jpg">
+                                <source srcset="/images/webp/pixel.webp" data-src="{{env('APP_URL')}}/images/webp/cert/min/cert-7.webp" type="image/webp">
+                                <source srcset="/images/pixel.jpg" data-src="{{env('APP_URL')}}/images/cert/min/cert-7.jpg" type="image/jpg">
                                 <img src="/images/pixel.jpg" data-src="{{env('APP_URL')}}/images/cert/min/cert-7.jpg" alt="">
                             </picture>
                         </div>
@@ -250,8 +250,8 @@
                         <div class="clients-item__cert-wrapper">
                             <span class="clients-item__zoom"></span>
                             <picture>
-                                <source scrset="/images/webp/pixel.webp" data-src="{{env('APP_URL')}}/images/webp/cert/min/cert-8.webp" type="image/webp">
-                                <source scrset="/images/pixel.jpg" data-src="{{env('APP_URL')}}/images/cert/min/cert-8.jpg" type="image/jpg">
+                                <source srcset="/images/webp/pixel.webp" data-src="{{env('APP_URL')}}/images/webp/cert/min/cert-8.webp" type="image/webp">
+                                <source srcset="/images/pixel.jpg" data-src="{{env('APP_URL')}}/images/cert/min/cert-8.jpg" type="image/jpg">
                                 <img src="/images/pixel.jpg" data-src="{{env('APP_URL')}}/images/cert/min/cert-8.jpg" alt="">
                             </picture>
                         </div>
@@ -260,8 +260,8 @@
                         <div class="clients-item__cert-wrapper">
                             <span class="clients-item__zoom"></span>
                             <picture>
-                                <source scrset="/images/webp/pixel.webp" data-src="{{env('APP_URL')}}/images/webp/cert/min/cert-9.webp" type="image/webp">
-                                <source scrset="/images/pixel.jpg" data-src="{{env('APP_URL')}}/images/cert/min/cert-9.jpg" type="image/jpg">
+                                <source srcset="/images/webp/pixel.webp" data-src="{{env('APP_URL')}}/images/webp/cert/min/cert-9.webp" type="image/webp">
+                                <source srcset="/images/pixel.jpg" data-src="{{env('APP_URL')}}/images/cert/min/cert-9.jpg" type="image/jpg">
                                 <img src="/images/pixel.jpg" data-src="{{env('APP_URL')}}/images/cert/min/cert-9.jpg" alt="">
                             </picture>
                         </div>
@@ -270,8 +270,8 @@
                         <div class="clients-item__cert-wrapper">
                             <span class="clients-item__zoom"></span>
                             <picture>
-                                <source scrset="/images/webp/pixel.webp" data-src="{{env('APP_URL')}}/images/webp/cert/min/cert-10.webp" type="image/webp">
-                                <source scrset="/images/pixel.jpg" data-src="{{env('APP_URL')}}/images/cert/min/cert-10.jpg" type="image/jpg">
+                                <source srcset="/images/webp/pixel.webp" data-src="{{env('APP_URL')}}/images/webp/cert/min/cert-10.webp" type="image/webp">
+                                <source srcset="/images/pixel.jpg" data-src="{{env('APP_URL')}}/images/cert/min/cert-10.jpg" type="image/jpg">
                                 <img src="/images/pixel.jpg" data-src="{{env('APP_URL')}}/images/cert/min/cert-10.jpg" alt="">
                             </picture>
                         </div>
@@ -280,8 +280,8 @@
                         <div class="clients-item__cert-wrapper">
                             <span class="clients-item__zoom"></span>
                             <picture>
-                                <source scrset="/images/webp/pixel.webp" data-src="{{env('APP_URL')}}/images/webp/cert/min/cert-11.webp" type="image/webp">
-                                <source scrset="/images/pixel.jpg" data-src="{{env('APP_URL')}}/images/cert/min/cert-11.jpg" type="image/jpg">
+                                <source srcset="/images/webp/pixel.webp" data-src="{{env('APP_URL')}}/images/webp/cert/min/cert-11.webp" type="image/webp">
+                                <source srcset="/images/pixel.jpg" data-src="{{env('APP_URL')}}/images/cert/min/cert-11.jpg" type="image/jpg">
                                 <img src="/images/pixel.jpg" data-src="{{env('APP_URL')}}/images/cert/min/cert-11.jpg" alt="">
                             </picture>
                         </div>
@@ -290,8 +290,8 @@
                         <div class="clients-item__cert-wrapper">
                             <span class="clients-item__zoom"></span>
                             <picture>
-                                <source scrset="/images/webp/pixel.webp" data-src="{{env('APP_URL')}}/images/webp/cert/min/cert-12.webp" type="image/webp">
-                                <source scrset="/images/pixel.jpg" data-src="{{env('APP_URL')}}/images/cert/min/cert-12.jpg" type="image/jpg">
+                                <source srcset="/images/webp/pixel.webp" data-src="{{env('APP_URL')}}/images/webp/cert/min/cert-12.webp" type="image/webp">
+                                <source srcset="/images/pixel.jpg" data-src="{{env('APP_URL')}}/images/cert/min/cert-12.jpg" type="image/jpg">
                                 <img src="/images/pixel.jpg" data-src="{{env('APP_URL')}}/images/cert/min/cert-12.jpg" alt="">
                             </picture>
                         </div>
@@ -300,8 +300,8 @@
                         <div class="clients-item__cert-wrapper">
                             <span class="clients-item__zoom"></span>
                             <picture>
-                                <source scrset="/images/webp/pixel.webp" data-src="{{env('APP_URL')}}/images/webp/cert/min/cert-13.webp" type="image/webp">
-                                <source scrset="/images/pixel.jpg" data-src="{{env('APP_URL')}}/images/cert/min/cert-13.jpg" type="image/jpg">
+                                <source srcset="/images/webp/pixel.webp" data-src="{{env('APP_URL')}}/images/webp/cert/min/cert-13.webp" type="image/webp">
+                                <source srcset="/images/pixel.jpg" data-src="{{env('APP_URL')}}/images/cert/min/cert-13.jpg" type="image/jpg">
                                 <img src="/images/pixel.jpg" data-src="{{env('APP_URL')}}/images/cert/min/cert-13.jpg" alt="">
                             </picture>
                         </div>
@@ -310,8 +310,8 @@
                         <div class="clients-item__cert-wrapper">
                             <span class="clients-item__zoom"></span>
                             <picture>
-                                <source scrset="/images/webp/pixel.webp" data-src="{{env('APP_URL')}}/images/webp/cert/min/cert-14.webp" type="image/webp">
-                                <source scrset="/images/pixel.jpg" data-src="{{env('APP_URL')}}/images/cert/min/cert-14.jpg" type="image/jpg">
+                                <source srcset="/images/webp/pixel.webp" data-src="{{env('APP_URL')}}/images/webp/cert/min/cert-14.webp" type="image/webp">
+                                <source srcset="/images/pixel.jpg" data-src="{{env('APP_URL')}}/images/cert/min/cert-14.jpg" type="image/jpg">
                                 <img src="/images/pixel.jpg" data-src="{{env('APP_URL')}}/images/cert/min/cert-14.jpg" alt="">
                             </picture>
                         </div>
@@ -320,8 +320,8 @@
                         <div class="clients-item__cert-wrapper">
                             <span class="clients-item__zoom"></span>
                             <picture>
-                                <source scrset="/images/webp/pixel.webp" data-src="{{env('APP_URL')}}/images/webp/cert/min/cert-15.webp" type="image/webp">
-                                <source scrset="/images/pixel.jpg" data-src="{{env('APP_URL')}}/images/cert/min/cert-15.jpg" type="image/jpg">
+                                <source srcset="/images/webp/pixel.webp" data-src="{{env('APP_URL')}}/images/webp/cert/min/cert-15.webp" type="image/webp">
+                                <source srcset="/images/pixel.jpg" data-src="{{env('APP_URL')}}/images/cert/min/cert-15.jpg" type="image/jpg">
                                 <img src="/images/pixel.jpg" data-src="{{env('APP_URL')}}/images/cert/min/cert-15.jpg" alt="">
                             </picture>
                         </div>
@@ -330,8 +330,8 @@
                         <div class="clients-item__cert-wrapper">
                             <span class="clients-item__zoom"></span>
                             <picture>
-                                <source scrset="/images/webp/pixel.webp" data-src="{{env('APP_URL')}}/images/webp/cert/min/cert-16.webp" type="image/webp">
-                                <source scrset="/images/pixel.jpg" data-src="{{env('APP_URL')}}/images/cert/min/cert-16.jpg" type="image/jpg">
+                                <source srcset="/images/webp/pixel.webp" data-src="{{env('APP_URL')}}/images/webp/cert/min/cert-16.webp" type="image/webp">
+                                <source srcset="/images/pixel.jpg" data-src="{{env('APP_URL')}}/images/cert/min/cert-16.jpg" type="image/jpg">
                                 <img src="/images/pixel.jpg" data-src="{{env('APP_URL')}}/images/cert/min/cert-16.jpg" alt="">
                             </picture>
                         </div>
@@ -340,8 +340,8 @@
                         <div class="clients-item__cert-wrapper">
                             <span class="clients-item__zoom"></span>
                             <picture>
-                                <source scrset="/images/webp/pixel.webp" data-src="{{env('APP_URL')}}/images/webp/cert/min/cert-17.webp" type="image/webp">
-                                <source scrset="/images/pixel.jpg" data-src="{{env('APP_URL')}}/images/cert/min/cert-17.jpg" type="image/jpg">
+                                <source srcset="/images/webp/pixel.webp" data-src="{{env('APP_URL')}}/images/webp/cert/min/cert-17.webp" type="image/webp">
+                                <source srcset="/images/pixel.jpg" data-src="{{env('APP_URL')}}/images/cert/min/cert-17.jpg" type="image/jpg">
                                 <img src="/images/pixel.jpg" data-src="{{env('APP_URL')}}/images/cert/min/cert-17.jpg" alt="">
                             </picture>
                         </div>
@@ -350,8 +350,8 @@
                         <div class="clients-item__cert-wrapper">
                             <span class="clients-item__zoom"></span>
                             <picture>
-                                <source scrset="/images/webp/pixel.webp" data-src="{{env('APP_URL')}}/images/webp/cert/min/cert-18.webp" type="image/webp">
-                                <source scrset="/images/pixel.jpg" data-src="{{env('APP_URL')}}/images/cert/min/cert-18.jpg" type="image/jpg">
+                                <source srcset="/images/webp/pixel.webp" data-src="{{env('APP_URL')}}/images/webp/cert/min/cert-18.webp" type="image/webp">
+                                <source srcset="/images/pixel.jpg" data-src="{{env('APP_URL')}}/images/cert/min/cert-18.jpg" type="image/jpg">
                                 <img src="/images/pixel.jpg" data-src="{{env('APP_URL')}}/images/cert/min/cert-18.jpg" alt="">
                             </picture>
                         </div>
@@ -360,8 +360,8 @@
                         <div class="clients-item__cert-wrapper">
                             <span class="clients-item__zoom"></span>
                             <picture>
-                                <source scrset="/images/webp/pixel.webp" data-src="{{env('APP_URL')}}/images/webp/cert/min/cert-19.webp" type="image/webp">
-                                <source scrset="/images/pixel.jpg" data-src="{{env('APP_URL')}}/images/cert/min/cert-19.jpg" type="image/jpg">
+                                <source srcset="/images/webp/pixel.webp" data-src="{{env('APP_URL')}}/images/webp/cert/min/cert-19.webp" type="image/webp">
+                                <source srcset="/images/pixel.jpg" data-src="{{env('APP_URL')}}/images/cert/min/cert-19.jpg" type="image/jpg">
                                 <img src="/images/pixel.jpg" data-src="{{env('APP_URL')}}/images/cert/min/cert-19.jpg" alt="">
                             </picture>
                         </div>
@@ -370,8 +370,8 @@
                         <div class="clients-item__cert-wrapper">
                             <span class="clients-item__zoom"></span>
                             <picture>
-                                <source scrset="/images/webp/pixel.webp" data-src="{{env('APP_URL')}}/images/webp/cert/min/cert-20.webp" type="image/webp">
-                                <source scrset="/images/pixel.jpg" data-src="{{env('APP_URL')}}/images/cert/min/cert-20.jpg" type="image/jpg">
+                                <source srcset="/images/webp/pixel.webp" data-src="{{env('APP_URL')}}/images/webp/cert/min/cert-20.webp" type="image/webp">
+                                <source srcset="/images/pixel.jpg" data-src="{{env('APP_URL')}}/images/cert/min/cert-20.jpg" type="image/jpg">
                                 <img src="/images/pixel.jpg" data-src="{{env('APP_URL')}}/images/cert/min/cert-20.jpg" alt="">
                             </picture>
                         </div>
@@ -380,8 +380,8 @@
                         <div class="clients-item__cert-wrapper">
                             <span class="clients-item__zoom"></span>
                             <picture>
-                                <source scrset="/images/webp/pixel.webp" data-src="{{env('APP_URL')}}/images/webp/cert/min/cert-21.webp" type="image/webp">
-                                <source scrset="/images/pixel.jpg" data-src="{{env('APP_URL')}}/images/cert/min/cert-21.jpg" type="image/jpg">
+                                <source srcset="/images/webp/pixel.webp" data-src="{{env('APP_URL')}}/images/webp/cert/min/cert-21.webp" type="image/webp">
+                                <source srcset="/images/pixel.jpg" data-src="{{env('APP_URL')}}/images/cert/min/cert-21.jpg" type="image/jpg">
                                 <img src="/images/pixel.jpg" data-src="{{env('APP_URL')}}/images/cert/min/cert-21.jpg" alt="">
                             </picture>
                         </div>
@@ -394,8 +394,8 @@
                 </span>
                 </div>
             </div>
-        </section>
-        <section class="section-6">
+        </div>
+        <div class="section-6">
             <div class="section-title"><span>Новости и Статьи</span></div>
             <div class="container">
                 <nav class="news-tabs">
@@ -465,7 +465,7 @@
                     </div>
                 </nav>
             </div>
-        </section>
+        </div>
         {!! $settings->about !!}
     </main>
 @endsection

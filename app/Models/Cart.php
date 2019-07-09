@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Session;
 use Cartalyst\Sentinel\Native\Facades\Sentinel;
 use App\Models\Variation;
+use Carbon\Carbon;
 
 class Cart extends Model
 {
@@ -18,8 +19,15 @@ class Cart extends Model
         'total_quantity',
         'total_price',
         'user_data',
-        'cart_data'
+        'cart_data',
+	    'created_at',
+	    'updated_at'
     ];
+
+	public function user()
+	{
+		return $this->hasOne('App\Models\User', 'id', 'user_id');
+	}
 
     /**
      * Получение корзины пользователя
@@ -36,7 +44,7 @@ class Cart extends Model
             $cart = $this->where('user_id', $user_id)->first();
 
             if(!is_null($cart) && $cart->session_id != Session::getId())
-                $cart->update(['session_id' => Session::getId()]);
+                $cart->update(['session_id' => Session::getId(), 'update_at' => date('Y-m-d H:i:s')]);
         } else {
             $user_id = 0;
             $cart = $this->where('session_id', Session::getId())->first();
@@ -62,7 +70,9 @@ class Cart extends Model
             'session_id' => Session::getId(),
             'products' => null,
             'total_quantity' => 0,
-            'total_price' => 0
+            'total_price' => 0,
+	        'created_at' => date('Y-m-d H:i:s'),
+            'update_at' => date('Y-m-d H:i:s')
         ]);
 
         return $this->where('id', $id)->first();
@@ -82,7 +92,7 @@ class Cart extends Model
             $total_price += (float)$data['price'] * (int)$data['quantity'];
         }
 
-        $this->update(['total_quantity' => $total_quantity, 'total_price' => $total_price]);
+        $this->update(['total_quantity' => $total_quantity, 'total_price' => $total_price, 'update_at' => date('Y-m-d H:i:s')]);
 
     }
 
@@ -166,7 +176,7 @@ class Cart extends Model
             $products[$product_code]['price'] = $this->get_product_price($product_id, $variation);
         }
 
-        $this->update(['products' => json_encode($products)]);
+        $this->update(['products' => json_encode($products), 'update_at' => date('Y-m-d H:i:s')]);
         $this->update_cart();
     }
 
@@ -179,7 +189,7 @@ class Cart extends Model
         $products = json_decode($this->products, true);
         unset($products[$product_code]);
 
-        $this->update(['products' => json_encode($products)]);
+        $this->update(['products' => json_encode($products), 'update_at' => date('Y-m-d H:i:s')]);
         $this->update_cart();
     }
 
@@ -222,7 +232,7 @@ class Cart extends Model
         if ($this->product_isset($product_code)) {
             $products = json_decode($this->products, true);
             $products[$product_code]['quantity'] = $quantity;
-            $this->update(['products' => json_encode($products)]);
+            $this->update(['products' => json_encode($products), 'update_at' => date('Y-m-d H:i:s')]);
             $this->update_cart();
         } else {
             $this->add_product($product_id, $quantity, $variations);
@@ -266,5 +276,37 @@ class Cart extends Model
         }
 
         return $price;
+    }
+
+	/**
+	 * Получение претендентов на рассылку уведомлений о неоконченной покупке
+	 *
+	 * @return mixed
+	 */
+    public function get_reminders(){
+	    $this->where('total_quantity', 0)->where(function ($query) {
+		    $query->where('updated_at', '<', Carbon::now()->subDays(3))
+		          ->orWhere('updated_at', null);
+	    })->delete();
+		$reminders = $this->where('user_id', '>', 0)->where('total_quantity', '>', 0)->where('updated_at', '<', Carbon::now()->subDays(3))->where(function ($query) {
+			$query->where('user_data', 'NOT LIKE', '%reminder_send%')
+			      ->orWhere('user_data', null);
+		})->limit(15)->get();
+
+		return $reminders;
+    }
+
+	/**
+	 * Сохранене статуса отправки уведомления о неоконченной покупке
+	 */
+    public function reminder_success(){
+    	$user_data = json_decode($this->user_data, true);
+    	if(!is_array($user_data)){
+		    $user_data = ['statuses' => []];
+	    }
+
+	    $user_data['statuses'][] = 'reminder_send';
+
+    	$this->update(['user_data' => $user_data]);
     }
 }

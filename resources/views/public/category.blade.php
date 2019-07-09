@@ -36,14 +36,14 @@
 
 @section('content')
     <!-- Код тега ремаркетинга Google -->
-    <script type="text/javascript">
+    <script>
         var google_tag_params = {
             ecomm_prodid: [{{ implode(', ', $products->pluck('id')->toArray()) }}],
             ecomm_pagetype: 'searchresults',
             ecomm_totalvalue: [{{ implode(', ', $products->pluck('price')->toArray()) }}],
         };
     </script>
-    <script type="text/javascript">
+    <script>
         /* <![CDATA[ */
         var google_conversion_id = 765411960;
         var google_custom_params = window.google_tag_params;
@@ -56,7 +56,7 @@
             'google_tag_params': window.google_tag_params
         });
     </script>
-    <script type="text/javascript" src="//www.googleadservices.com/pagead/conversion.js"></script>
+    <script src="//www.googleadservices.com/pagead/conversion.js"></script>
     <main class="main-wrapper">
         <div class="container">
             <div class="catalog-wrapper {{ $category->url_alias }}">

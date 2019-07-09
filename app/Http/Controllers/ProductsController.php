@@ -640,7 +640,7 @@ class ProductsController extends Controller
         $product = Products::where('id', $id)->where('stock', 1)->first();
 
         return response(view('public.layouts.related')
-            ->with('related', $product->related()->where('stock', 1)->orderBy('related_products.id')->with('image')->get()));
+            ->with('related', $product->similar()->where('stock', 1)->orderBy('similar_products.id')->with('image')->get()));
     }
 
     /**

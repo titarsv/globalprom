@@ -111,5 +111,5 @@
             </div>
         </section>
     </main>
-    <script src="//static.liqpay.com/libjs/checkout.js" async></script>
+    <script src="//static.liqpay.ua/libjs/checkout.js" async></script>
 @endsection
