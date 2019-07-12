@@ -92,6 +92,45 @@
                 </div>
             </div>
         @endif
+        <div class="section-7">
+            <div class="section-title"><span>О Компании</span></div>
+
+            <h1>Промышленное и грузоподъемное оборудование</h1>
+
+            <div class="container">
+                <div class="about-top__wrap">
+                    <div class="about-top__pic-wrap"><picture> <source data-src="https://globalprom.com.ua/images/webp/about-pic1.webp" scrset="/images/webp/pixel.webp" type="image/webp" /> <source data-src="https://globalprom.com.ua/images/about-pic1.jpg" scrset="/images/pixel.jpg" type="image/image/jpeg" /> <img alt="about-pic1" data-src="https://globalprom.com.ua/images/about-pic1.jpg" src="/images/pixel.jpg" /> </picture></div>
+
+                    <div class="about-top__txt-wrap"><span class="about-top__title">У нас есть все, что вы ищете и даже больше!</span>
+
+                        <p class="about-top__txt">Ищете грузоподъемное, горно-шахтное или промышленное оборудование? Мы готовы сделать для вас выгодное предложение!</p>
+
+                        <p class="about-top__txt">Наша компания &laquo;GlobalProm&raquo; вот уже 6 лет производит и поставляет на рынки Украины, Грузии и территорию стран бывшего СНГ производственно-технологическое оборудование и подъемное оборудование для строительства и оснащения промышленных и строительно-монтажных зон. За столь короткое время мы успели зарекомендовать себя как надежный партнер и получить множество положительных отзывов от крупнейших игроков промышленного рынка.</p>
+                    </div>
+                </div>
+
+                <div class="about-bot__wrap">
+                    <div class="about-top__txt-wrap"><span class="about-bot__title">Более 1000 разновидностей промышленных и грузоподъемных товаров!</span>
+
+                        <p class="about-bot__txt">На сегодняшний день мы готовы предложить вам широкий выбор товаров, а именно разнообразное промышленное подъемное оборудование, а также промышленное производственное оборудование от компании &laquo;GlobalProm&raquo;:</p>
+
+                        <ul class="about-bot__list">
+                            <li class="about-bot__list-item">Ручные шестеренные, рычажные и червячные тали для подъема груза массой до 10 тонн;</li>
+                            <li class="about-bot__list-item">Ручные и электрические лебедки, монтажно-тяговые механизмы типа МТМ, тельферы и тали электрические для горизонтального и вертикального подъема груза любой тяжести;</li>
+                            <li class="about-bot__list-item">Гидравлические тележки (роклы), штабелеры и автопогрузчики для перемещения груза в цехах, на стройплощадках и в складских помещениях;</li>
+                            <li class="about-bot__list-item">Промышленное весовое оборудование для взвешивания грузовых авто, железнодорожных вагонов, промышленного груза, а также крупного рогатого скота (весы для животных);</li>
+                            <li class="about-bot__list-item">Промышленные грузоподъемные электрические и ручные краны для оборудования крупных строительных и монтажных площадок;</li>
+                            <li class="about-bot__list-item">Промышленные редукторы, мотор-редукторы, а также электродвигатели для привода различного промышленного оборудования (мельниц, бетономешалок, конвейеров, инкубаторов, буровых установок, шнеков, экструдеров и т.д.);</li>
+                            <li class="about-bot__list-item">Оборудование для горнодобывающей отросли (буровые станки, конвейеры, машины породопогрузочные, комбайны, а также шахтные скреперные лебедки);</li>
+                            <li class="about-bot__list-item">Промышленные насосы для перекачивания любых видов жидкости, в том числе химикатов;</li>
+                            <li class="about-bot__list-item">Промышленные вентиляторы и дымососы для проветривания и кондиционирования различных промышленных помещений, цехов и офисов.</li>
+                        </ul>
+                    </div>
+
+                    <div class="about-bot__pic-wrap"><picture> <source data-src="https://globalprom.com.ua/images/webp/about-pic2.webp" scrset="/images/webp/pixel.webp" type="image/webp" /> <source data-src="https://globalprom.com.ua/images/about-pic2.jpg" scrset="/images/pixel.jpg" type="image/image/jpeg" /> <img alt="about-pic2" data-src="https://globalprom.com.ua/images/about-pic2.jpg" src="/images/pixel.jpg" /> </picture></div>
+                </div>
+            </div>
+        </div>
         {!! $settings->about !!}
         <div class="section-5">
             <div class="section-title"><span>Рекомендации</span></div>
