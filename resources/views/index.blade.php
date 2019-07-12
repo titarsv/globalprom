@@ -92,88 +92,7 @@
                 </div>
             </div>
         @endif
-        <div class="section-3">
-            <div class="section-title"><span>Наша продукция</span></div>
-            <div class="container">
-                <div class="categories-wrapper">
-                    <a href="{{env('APP_URL')}}/categories/gruzopodemnoe-oborudovanie" class="cat-item col-md-3 col-sm-6">
-                        <div class="cat-item__inner">
-                            <i class="cat-item__icon cii1"></i>
-                            <span class="cat-item__txt">Грузоподъемное <br>оборудование</span>
-                        </div>
-                        <div class="cat-item__btn">
-                            <span class="cat-item__btn-inner">Перейти в категорию</span>
-                        </div>
-                    </a>
-                    <a href="{{env('APP_URL')}}/categories/promishlennoe-oborudovanie" class="cat-item col-md-3 col-sm-6">
-                        <div class="cat-item__inner">
-                            <i class="cat-item__icon cii2"></i>
-                            <span class="cat-item__txt">Промышленное <br>оборудование</span>
-                        </div>
-                        <div class="cat-item__btn">
-                            <span class="cat-item__btn-inner">Перейти в категорию</span>
-                        </div>
-                    </a>
-                    {{--<a href="{{env('APP_URL')}}/categories/vesovoe-oborudovanie" class="cat-item col-md-3 col-sm-6">--}}
-                    {{--<div class="cat-item__inner">--}}
-                    {{--<i class="cat-item__icon cii3"></i>--}}
-                    {{--<span class="cat-item__txt">Весовое <br>оборудование</span>--}}
-                    {{--</div>--}}
-                    {{--<div class="cat-item__btn">--}}
-                    {{--<span class="cat-item__btn-inner">Перейти в категорию</span>--}}
-                    {{--</div>--}}
-                    {{--</a>--}}
-                    {{--<a href="{{env('APP_URL')}}/categories/nasosnoe-oborudovanie" class="cat-item col-md-3 col-sm-6">--}}
-                    {{--<div class="cat-item__inner">--}}
-                    {{--<i class="cat-item__icon cii4"></i>--}}
-                    {{--<span class="cat-item__txt">Насосное <br>оборудование</span>--}}
-                    {{--</div>--}}
-                    {{--<div class="cat-item__btn">--}}
-                    {{--<span class="cat-item__btn-inner">Перейти в категорию</span>--}}
-                    {{--</div>--}}
-                    {{--</a>--}}
-                </div>
-            </div>
-        </div>
-        <div>
-            <div class="team">
-                <div class="team-img-wrp all-team">
-                    <p class="team-title">Наша команда</p>
-                    <picture data-mfp-src="/images/all-team.jpg" class="popup-btn" data-type="image">
-                        <source srcset="/images/webp/pixel.webp" data-src="/images/webp/all-team.webp" type="image/webp">
-                        <source srcset="/images/pixel.jpg" data-src="/images/all-team.jpg" type="image/jpg">
-                        <img src="/images/pixel.jpg" data-src="/images/all-team.jpg" alt="ariston logo">
-                    </picture>
-                    <span class="img-title">Компания GlobalProm</span>
-                </div>
-            </div>
-            <a href="{{env('APP_URL')}}/page/o-nas" target="_blank" class="item-btn team-btn">Подробнее</a>
-        </div>
-        <div class="section-4">
-            <div class="section-title"><span>Цифры в реальном времени</span></div>
-            <div class="container">
-                <div class="counters">
-                    <div class="counter-wrapper col-sm-4">
-                        <span class="counter-title">Товаров в наличии на складе</span>
-                        <div class="odometer odometer1">0000</div>
-                    </div>
-                    <div class="counter-wrapper col-sm-4">
-                        <span class="counter-title">Мы открыли компанию:</span>
-                        <div class="odometer odometer2">0000</div>
-                        <div class="counter-footnote">
-                            <span>Лет</span>
-                            <span></span>
-                            <span>Дней</span>
-                            <span></span>
-                        </div>
-                    </div>
-                    <div class="counter-wrapper col-sm-4">
-                        <span class="counter-title">Клиентов по всему миру</span>
-                        <div class="odometer odometer3">0000</div>
-                    </div>
-                </div>
-            </div>
-        </div>
+        {!! $settings->about !!}
         <div class="section-5">
             <div class="section-title"><span>Рекомендации</span></div>
             <span class="section-subtitle">ОТ ПОСТОЯННЫХ КЛИЕНТОВ</span>
@@ -469,7 +388,6 @@
                 </nav>
             </div>
         </div>
-        {!! $settings->about !!}
         <div class="section-3">
             <div class="section-title"><span>Наша продукция</span></div>
             <div class="container">
