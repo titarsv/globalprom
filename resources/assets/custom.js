@@ -157,23 +157,15 @@ $(function() {
             product_id: $this.data('prod-id'),
             quantity: qty > 1 ? qty : 1
         };
-        // var variations = $('.variation-select');
-        // if(variations.length){
-        //     var v = variations.serializeArray();
-        //     if(v.length){
-        //         data['variations'] = [];
-        //         for(var variation in v){
-        //             data['variations'][v[variation].name.replace(/attr\[(\d+)\]/, "$1")] = v[variation].value;
-        //         }
-        //     }
-        // }
 
         var variation = $('[name="variation"]:checked');
         if(variation.length){
             data['variation'] = variation.val();
         }
 
-        $("#order-popup").load("/cart/update", data, function(cart){
+        $.post("/cart/update", data, function(cart){
+            $("#order-popup").html(cart.html.popup_cart);
+            $("#minicart").html(cart.html.minicart);
             $.magnificPopup.open({
                 items: {
                     src: '#order-popup'
@@ -185,8 +177,21 @@ $(function() {
             if(typeof fbq !== 'undefined' && typeof fbqProductsData[data.product_id] !== 'undefined'){
                 fbq('track', 'AddToCart', fbqProductsData[data.product_id]);
             }
-        });
-        //update_cart(data);
+        }, 'json');
+
+        // $("#order-popup").load("/cart/update", data, function(cart){
+        //     $.magnificPopup.open({
+        //         items: {
+        //             src: '#order-popup'
+        //         },
+        //         type: 'inline'
+        //     }, 0);
+        //     update_cart_quantity();
+        //
+        //     if(typeof fbq !== 'undefined' && typeof fbqProductsData[data.product_id] !== 'undefined'){
+        //         fbq('track', 'AddToCart', fbqProductsData[data.product_id]);
+        //     }
+        // });
     });
 
     /*
@@ -265,7 +270,7 @@ $(function() {
     /**
      * Удаление товара из корзины
      */
-    $('#order-popup, #order_cart_content').on('click', '.mc_item_delete', function(){
+    $('#order-popup, #order_cart_content, #minicart').on('click', '.mc_item_delete', function(){
         var $this = $(this);
         update_cart({
             action: 'remove',
@@ -296,14 +301,25 @@ $(function() {
     });
 
     $('.login-inner .cart-wrapper').click(function(){
-        $("#order-popup").load("/cart/get", {}, function(cart){
+        $.post("/cart/get", {}, function(cart){
+            $("#order-popup").html(cart.html.popup_cart);
+            $("#minicart").html(cart.html.minicart);
             $.magnificPopup.open({
                 items: {
                     src: '#order-popup'
                 },
                 type: 'inline'
             }, 0);
-        });
+        }, 'json');
+
+        // $("#order-popup").load("/cart/get", {}, function(cart){
+        //     $.magnificPopup.open({
+        //         items: {
+        //             src: '#order-popup'
+        //         },
+        //         type: 'inline'
+        //     }, 0);
+        // });
     });
 
     /**
@@ -525,7 +541,9 @@ $(function() {
                             data['variation'] = variation.val();
                         }
 
-                        $("#order-popup").load("/cart/update", data, function(cart){
+                        $.post("/cart/update", data, function(cart){
+                            $("#order-popup").html(cart.html.popup_cart);
+                            $("#minicart").html(cart.html.minicart);
                             $.magnificPopup.close();
                             $.magnificPopup.open({
                                 items: {
@@ -538,7 +556,22 @@ $(function() {
                             if(typeof fbq !== 'undefined' && typeof fbqProductsData[data.product_id] !== 'undefined'){
                                 fbq('track', 'AddToCart', fbqProductsData[data.product_id]);
                             }
-                        });
+                        }, 'json');
+
+                        // $("#order-popup").load("/cart/update", data, function(cart){
+                        //     $.magnificPopup.close();
+                        //     $.magnificPopup.open({
+                        //         items: {
+                        //             src: '#order-popup'
+                        //         },
+                        //         type: 'inline'
+                        //     }, 0);
+                        //     update_cart_quantity();
+                        //
+                        //     if(typeof fbq !== 'undefined' && typeof fbqProductsData[data.product_id] !== 'undefined'){
+                        //         fbq('track', 'AddToCart', fbqProductsData[data.product_id]);
+                        //     }
+                        // });
                     });
 
                     $('.mfp-content .popup-btn').click(function(){
@@ -673,14 +706,25 @@ $(function() {
  * @param data
  */
 function update_cart(data){
-    $("#order-popup").load("/cart/update", data, function(cart){
+    $.post("/cart/update", data, function(cart){
+        $("#order-popup").html(cart.html.popup_cart);
+        $("#minicart").html(cart.html.minicart);
         var order_cart_content = $('#order_cart_content');
         if(order_cart_content.length > 0){
-            order_cart_content.load("/cart/update", {type: "order_cart"});
+            order_cart_content.html(cart.html.order_cart);
         }
 
         update_cart_quantity();
-    });
+    }, 'json');
+
+    // $("#order-popup").load("/cart/update", data, function(cart){
+    //     var order_cart_content = $('#order_cart_content');
+    //     if(order_cart_content.length > 0){
+    //         order_cart_content.load("/cart/update", {type: "order_cart"});
+    //     }
+    //
+    //     update_cart_quantity();
+    // });
 }
 
 function update_cart_quantity() {
@@ -693,6 +737,12 @@ function update_cart_quantity() {
         }
     }else{
         $('.login-inner .cart-wrapper i').remove();
+    }
+    var sum = $('.order-popup__sum').text();
+    if(typeof sum !== 'undefined'){
+        $('.cart-wrapper__sum').text(sum);
+    }else{
+        $('.order-popup__sum').text('');
     }
 }
 

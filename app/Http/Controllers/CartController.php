@@ -52,22 +52,34 @@ class CartController extends Controller
         return $this->getCart($request);
     }
 
-    /**
-     * Корзина пользователя
-     *
-     * @param Request $request
-     * @return $this
-     */
+	/**
+	 * Корзина пользователя
+	 *
+	 * @param Request $request
+	 *
+	 * @return $this|array
+	 */
     public function getCart(Request $request)
     {
         $cart = new Cart;
         $current_cart = $cart->current_cart();
 
-        if(isset($request->type) && $request->type == 'order_cart'){
-            return view('public.layouts.order_cart')->with('cart', $current_cart);
-        }else{
-            return view('public.layouts.cart')->with('cart', $current_cart);
-        }
+//        if(isset($request->type) && $request->type == 'order_cart'){
+            return [
+            	'data' => [
+            		'total_qty' => $current_cart->total_quantity,
+            		'total_price' => $current_cart->total_price,
+		            'products' => $current_cart->get_products()
+	            ],
+	            'html' => [
+	            	'order_cart' => view('public.layouts.order_cart')->with('cart', $current_cart)->render(),
+		            'popup_cart' => view('public.layouts.cart')->with('cart', $current_cart)->render(),
+		            'minicart' => view('public.layouts.minicart')->render()
+	            ]
+            ];
+//        }else{
+//            return view('public.layouts.cart')->with('cart', $current_cart);
+//        }
     }
 
     /**
