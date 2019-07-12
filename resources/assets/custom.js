@@ -301,14 +301,25 @@ $(function() {
     });
 
     $('.login-inner .cart-wrapper').click(function(){
-        $("#order-popup").load("/cart/get", {}, function(cart){
+        $.post("/cart/get", {}, function(cart){
+            $("#order-popup").html(cart.html.popup_cart);
+            $("#minicart").html(cart.html.minicart);
             $.magnificPopup.open({
                 items: {
                     src: '#order-popup'
                 },
                 type: 'inline'
             }, 0);
-        });
+        }, 'json');
+
+        // $("#order-popup").load("/cart/get", {}, function(cart){
+        //     $.magnificPopup.open({
+        //         items: {
+        //             src: '#order-popup'
+        //         },
+        //         type: 'inline'
+        //     }, 0);
+        // });
     });
 
     /**

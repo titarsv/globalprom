@@ -32,5 +32,5 @@
         </div>
     </div>
 @else
-    <div class="cart-items__empty">Здесь пусто</div>
+    <div class="cart-items__empty" style="display: flex;">Здесь пусто</div>
 @endif
