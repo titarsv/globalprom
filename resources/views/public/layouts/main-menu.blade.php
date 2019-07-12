@@ -4,7 +4,7 @@
             <ul class="main-menu__list">
                 <li class="main-menu__item main-menu__btn">
                     <i class="main-menu__btn-icon"><span></span></i>
-                    <span>Каталог</span>
+                    <span>Продукция</span>
                 </li>
                 <li class="main-menu__item">
                     <a class="main-menu__link" href="{{env('APP_URL')}}/categories/rasprodazha" style="color: #f55e5e; font-weight: 600;">Распродажа</a>

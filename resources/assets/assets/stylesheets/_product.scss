@@ -481,14 +481,18 @@
 	width: 194px;
 	display: block;
 	height: 44px;
-	line-height: 42px;
+	line-height: 44px;
 	text-align: center;
 	background: transparent;
-	border: 1px solid $grey;
+	border: none;
 	border-radius: 25px;
 	font-size: 11px;
 	font-family: $bold-font;
 	text-transform: uppercase;
+	background: linear-gradient(180deg,#f56868 0,#cf3f3f);
+	&:hover{
+		background: linear-gradient(180deg,#93c025 0,#6ea81b);
+	}
 	@include bp(md){
 		font-size: 9px;
 	}

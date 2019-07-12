@@ -2,7 +2,7 @@
 <html lang="ru">
 @include('public.layouts.header')
 
-<body class="account-body{{ Request::path()=='/' ? ' home' : '' }}">
+<body class="account-body{{ Request::path()=='/' ? ' home' : '' }}" id="top">
     <!-- Google Tag Manager (noscript) -->
     <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PDMLRN8"
                       height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>

@@ -289,6 +289,9 @@
 	bottom: 40px;
 	justify-content: center;
 	align-items: center;
+	&:hover, &:focus{
+		text-decoration: none;
+	}
 	i{
 		width: 10px;
 		height: 10px;
@@ -306,12 +309,48 @@
 
 #reminder{
 	padding: 20px 0;
+    z-index: 200;
 	.row{
 		display: flex;
 		align-items: center;
+        @include bp(lg){
+          justify-content: space-between;
+        }
 	}
+    .logo-wrapper{
+      @include bp(lg){
+        width: auto;
+      }
+	  @include bp(sm){
+		  display: none;
+	  }
+    }
+    .col-sm-offset-4{
+      @include bp(lg){
+        width: auto;
+        margin: 0 10px;
+        text-align: center;
+      }
+	  @include bp(xs){
+		  text-align: left;
+	  }
+    }
+    .col-sm-2{
+      @include bp(lg){
+        width: auto;
+      }
+	  @include bp(xs){
+		  width: 50%;
+	  }
+    }
 	p{
 		margin-bottom: 0;
 		font-style: italic;
 	}
+}
+
+#close_reminder{
+	font-family: $semibold-font;
+	right: 10px !important;
+	top: !important;
 }

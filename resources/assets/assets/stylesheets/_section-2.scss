@@ -212,3 +212,35 @@
 		text-decoration: none;
 	}
 }
+
+.more{
+	display: flex;
+	justify-content: space-between;
+	margin-top: 18px;
+	.item-btn{
+		width: calc(100% - 60px);
+		margin-top: 0;
+	}
+	.add_to_cart_btn{
+		font-size: 0;
+		width: 44px;
+		height: 44px;
+		border-radius: 50%;
+		background: linear-gradient(180deg,#f56868 0,#cf3f3f);
+		position: relative;
+		border: none;
+		&:hover{
+			background: linear-gradient(180deg,#93c025 0,#6ea81b);
+		}
+		&:after{
+			position: absolute;
+			content: '';
+			background: url("../images/cart.png") no-repeat center;
+			width: 23px;
+			height: 24px;
+			left: 50%;
+			top: 50%;
+			transform: translateX(-50%) translateY(-50%);
+		}
+	}
+}

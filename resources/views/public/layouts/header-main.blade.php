@@ -1,4 +1,4 @@
-<header class="header" id="top">
+<header class="header">
     <div class="main-header">
         <div class="container main-header__container">
             <div class="logo-wrapper col-sm-3">
@@ -19,6 +19,23 @@
                 @endif
                 <p>Грузоподъёмное и промышленное оборудование</p>
             </div>
+            <div class="fixed-header__menu col-sm-4">
+                <ul class="main-menu__list">
+                    <li class="main-menu__item main-menu__btn">
+                        <i class="main-menu__btn-icon"><span></span></i>
+                        <span>Продукция</span>
+                    </li>
+                    <li class="main-menu__item">
+                        <a class="main-menu__link" href="{{env('APP_URL')}}/categories/rasprodazha" style="color: #f55e5e; font-weight: 600;">Распродажа</a>
+                    </li>
+                    <li class="main-menu__item">
+                        <a class="main-menu__link" href="{{env('APP_URL')}}/page/o-nas">О компании</a>
+                    </li>
+                    <li class="main-menu__item">
+                        <a class="main-menu__link" href="{{env('APP_URL')}}/page/oplata-i-dostavka">Оплата и доставка</a>
+                    </li>
+                </ul>
+            </div>
             <div class="search-wrapper col-sm-4">
                 {!! Form::open(['route' => 'search', 'class' => 'main-search']) !!}
                 <div class="search-inner">
@@ -31,8 +48,8 @@
             <div class="phones-wrapper col-sm-3">
                 <nav class="header-tabs">
                     <ul class="header-tabs__list">
-                        <li class="header-tabs__item active">Украина</li>
-                        <li class="header-tabs__item">Грузия</li>
+                        <li class="header-tabs__item active">Украина<span>UA</span></li>
+                        <li class="header-tabs__item">Грузия<span>GE</span></li>
                     </ul>
                     <div class="header-tabs__content active">
                         <ul class="header-phones__list">
@@ -119,9 +136,45 @@
 						@if(isset($cart) && $cart->total_quantity)
                             <i>{{ $cart->total_quantity }}</i>
                         @endif
+                        <div class="cart-wrapper__sum">{{ $cart->total_price ? number_format( round($cart->total_price, 2), 0, ',', ' ' ) : '0' }} грн.</div>
 					</span>
                 </div>
                 <!--/noindex-->
+            </div>
+        </div>
+        <div class="container cart-items__container">
+            <div class="cart-items">
+                <span class="cart-items-before"></span>
+                <div class="cart-items__inner">
+                    <ul class="cart-items__list">
+                        <li class="cart-item">
+                            <div class="cart-item__pic-wrapper">
+                                <img class="cart-item__pic" src="../../images/product-slider/1.jpg" alt="">
+                            </div>
+                            <a href="" class="cart-item__title">Таль цепная шестеренная, класс А – 5 тонн</a>
+                            <div class="cart-item__count-wrapper">
+                                <span class="cart-item__counter">x2</span>
+                            </div>
+                            <span class="cart-item__price">6 200 грн.</span>
+                            <span class="cart-item__del"></span>
+                        </li>
+                        <li class="cart-item">
+                            <div class="cart-item__pic-wrapper">
+                                <img class="cart-item__pic" src="../../images/product-slider/1.jpg" alt="">
+                            </div>
+                            <a href="" class="cart-item__title">Таль цепная шестеренная, класс А – 5 тонн</a>
+                            <div class="cart-item__count-wrapper">
+                                <span class="cart-item__counter">x20</span>
+                            </div>
+                            <span class="cart-item__price">6 200 грн.</span>
+                            <span class="cart-item__del"></span>
+                        </li>
+                    </ul>
+                    <div class="cart-items__footer">
+                        <button class="cart-items__btn">Оформить заказ</button>
+                    </div>
+                </div>
+                <div class="cart-items__empty">Здесь пусто</div>
             </div>
         </div>
     </div>

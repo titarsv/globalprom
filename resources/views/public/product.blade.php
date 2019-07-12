@@ -180,11 +180,19 @@
                                     {!! $product->action !!}
                                 </div>
                             @endif
-                            <div class="short-descr__wrapper">
-                                <span class="short-descr__title">Описание:</span>
-                                <p class="short-descr__text">
-                                    {!! $product->excerpt !!}
-                                </p>
+
+                            <div class="product-price__wrapper">
+                                <div class="product-price__inner">
+                                    <span class="product-price__title">Цена:</span>
+                                    <meta itemprop="priceCurrency" content="грн." />
+                                    <meta itemprop="price" content="{{ round($product->price, 2) }}" />
+                                    @if(!empty($product->price))
+                                        <div class="product-price" data-price="{{ round($product->price, 2) . ($max_price > $product->price ? ' - '.$max_price : '') }}"><span>{{ round($product->price, 2) . ($max_price > $product->price ? ' - '.$max_price : '') }}</span> грн.</div>
+                                    @else
+                                        <div class="product-price" data-price="{{ round($product->price, 2) . ($max_price > $product->price ? ' - '.$max_price : '') }}"><span>Цена по запросу</span></div>
+                                    @endif
+                                </div>
+                                <small style="color: #7a7a7a; font-size: 80%">* Цена может меняться в зависимости от выбранных параметров<br>** Цены действуют только на территории Украины</small>
                             </div>
                             {{--@if(count($variations))--}}
                             {{--<form action="#" id="variations">--}}
@@ -231,19 +239,6 @@
                                     @endforeach
                                 </form>
                             @endif
-                            <div class="product-price__wrapper">
-                                <div class="product-price__inner">
-                                    <span class="product-price__title">Цена:</span>
-                                    <meta itemprop="priceCurrency" content="грн." />
-                                    <meta itemprop="price" content="{{ round($product->price, 2) }}" />
-                                    @if(!empty($product->price))
-                                        <div class="product-price" data-price="{{ round($product->price, 2) . ($max_price > $product->price ? ' - '.$max_price : '') }}"><span>{{ round($product->price, 2) . ($max_price > $product->price ? ' - '.$max_price : '') }}</span> грн.</div>
-                                    @else
-                                        <div class="product-price" data-price="{{ round($product->price, 2) . ($max_price > $product->price ? ' - '.$max_price : '') }}"><span>Цена по запросу</span></div>
-                                    @endif
-                                </div>
-                                <small style="color: #7a7a7a; font-size: 80%">* Цена может меняться в зависимости от выбранных параметров<br>** Цены действуют только на территории Украины</small>
-                            </div>
                             @if($product->stock)
                                 <table class="result-price">
                                     <tr>
@@ -278,6 +273,12 @@
                                     <button class="product-calc__btn popup-btn" data-mfp-src="#quick-order-popup">Купить в один клик</button>
                                 </div>
                             @endif
+                            <div class="short-descr__wrapper" style="padding-top: 20px;">
+                                <span class="short-descr__title">Описание:</span>
+                                <p class="short-descr__text">
+                                    {!! $product->excerpt !!}
+                                </p>
+                            </div>
                         </div>
                         <div class="product-adv__wrapper">
                             <ul class="product-adv__list">

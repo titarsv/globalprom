@@ -156,7 +156,7 @@
         </div>
     </div>
     <div class="copyright-footer">
-        <span class="copyright">ООО "НПП "ГлобалПром" © 2013-2018 Политика конфиденциальности</span>
+        <span class="copyright">ООО "НПП "ГлобалПром" © 2013-2019 Политика конфиденциальности</span>
     </div>
 </footer>
 

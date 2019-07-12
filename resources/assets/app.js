@@ -675,12 +675,16 @@ $(function() {
 
     /* корзина */
 
-    $('.cart-wrapper').click(function(e) {
-        $('.cart-items').slideToggle('200');
+    $('.cart-wrapper').on('mouseover', function() {
+        $('.cart-items').show();
+    });
+
+    $(document).on('mouseout', function(e) {
+        e.stopPropagation();
     });
 
     $(document).click(function() {
-        $('.cart-items').slideUp('200');
+        $('.cart-items').hide();
     });
 
     $('.cart-wrapper').click(function(e) {
