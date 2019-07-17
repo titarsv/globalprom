@@ -677,13 +677,19 @@ $(function() {
 
     $('.cart-wrapper').on('mouseover', function() {
         $('.cart-items').show();
+        return false;
     });
 
-    $(document).on('mouseout', function(e) {
+    $('.cart-wrapper').on('mouseout', function() {
+        $('.cart-items').hide();
+        return false;
+    });
+
+    $(document).on('mouseover', '.cart-items', function(e) {
         e.stopPropagation();
     });
 
-    $(document).click(function() {
+/*    $(document).click(function() {
         $('.cart-items').hide();
     });
 
@@ -694,6 +700,14 @@ $(function() {
     $('.cart-items').click(function(e) {
         e.stopPropagation();
     });
+
+    $('.cart-items').on('mouseover', function(e) {
+        e.stopPropagation();
+    });
+
+    $('.cart-wrapper').on('mouseover', '.cart-items', function() {
+        return false;
+    });*/
 
     /* удаление из корзины */
 
