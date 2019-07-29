@@ -1109,7 +1109,7 @@ class ProductsController extends Controller
             $data[] = [
                 'ID' => $product->id,
                 'Item title' => $product->name,
-                'Category title' => !empty($product->categories) ? $product->categories->first()->name : '',
+                'Category title' => !empty($product->categories->first()) ? $product->categories->first()->name : '',
                 'Final URL' => env('APP_URL').'/product/'.$product->url_alias,
                 'Image URL' => empty($product->image) ? env('APP_URL').'/uploads/no_image.jpg' : env('APP_URL').$product->image->url(),
                 'Price' => (!empty($product->old_price) && $product->price < $product->old_price) ? $product->old_price.' UAH' : $product->price.' UAH',
