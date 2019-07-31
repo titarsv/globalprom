@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Session;
 use Cartalyst\Sentinel\Native\Facades\Sentinel;
 use App\Models\Variation;
 use Carbon\Carbon;
+use Cookie;
 
 class Cart extends Model
 {
@@ -36,23 +37,44 @@ class Cart extends Model
      * @return mixed
      */
     public function current_cart($create = true){
-
-        $user = Sentinel::check();
+	    $cart_id = Cookie::get('cart_id');
+	    $user = Sentinel::check();
 
         if($user) {
             $user_id = $user->id;
             $cart = $this->where('user_id', $user_id)->first();
 
+            if(!empty($cart_id) && $cart->id != $cart_id){
+	            $saved_cart = $this->where('id', $cart_id)->where('total_quantity', '>', 0)->first();
+	            if(!empty($saved_cart->total_quantity)){
+		            $products = json_decode($cart->products, true) + json_decode($saved_cart->products, true);
+		            $cart->products = json_encode($products);
+		            $cart->total_quantity += $saved_cart->total_quantity;
+		            $cart->total_price += $saved_cart->total_price;
+		            $cart->updated_at = date('Y-m-d H:i:s');
+		            if($cart->session_id != Session::getId()){
+			            $cart->session_id = Session::getId();
+		            }
+		            $cart->save();
+	            }
+            }
+
             if(!is_null($cart) && $cart->session_id != Session::getId())
                 $cart->update(['session_id' => Session::getId(), 'updated_at' => date('Y-m-d H:i:s')]);
         } else {
-            $user_id = 0;
-            $cart = $this->where('session_id', Session::getId())->first();
+	        $user_id = 0;
+	        if(!empty($cart_id)) {
+		        $cart = $this->where('id', $cart_id)->where('user_id', 0)->first();
+	        }else{
+		        $cart = $this->where('session_id', Session::getId())->first();
+	        }
         }
 
         if(is_null($cart) && $create) {
             $cart = $this->create_cart($user_id);
         }
+
+	    Cookie::queue('cart_id', $cart->id, 2628000, null, null, false, false);
 
         return $cart;
     }

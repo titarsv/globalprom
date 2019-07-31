@@ -207,7 +207,7 @@
     </div>
 </div>
 
-@if(strtotime($cart->updated_at) < time() - 3 * 86400 && strpos('reminder_showed', $cart->user_data) === false)
+@if(strtotime($cart->updated_at) < time() - 720 && strpos('reminder_showed', $cart->user_data) === false && $cart->total_quantity > 0)
     <div id="reminder" style="position: fixed;bottom: 0;background-color: #fff;width: 100%;">
         <div class="container">
             <div class="row">
