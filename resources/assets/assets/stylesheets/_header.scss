@@ -83,7 +83,7 @@
 	}
 	@include bp(xs){
 		bottom: 88px;
-		width: calc(100vw - 30px);
+		width: calc(100vw - 40px);
 		padding: 0;
 		left: 15px;
 	}
@@ -315,7 +315,7 @@
 	}
 	@include bp(xs){
 		position: absolute;
-		right: 0;
+		right: 20px;
 		top: 76px;
 	}
 }
@@ -1175,6 +1175,9 @@
 		}
 		.logo-wrapper{
 			width: 23%;
+			p{
+				margin-top: -5px;
+			}
 			@include bp(md){
 				display: none;
 			}
