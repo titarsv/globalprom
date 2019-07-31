@@ -482,7 +482,7 @@
                     <span class="img-title">Компания GlobalProm</span>
                 </div>
             </div>
-            <a href="{{env('APP_URL')}}/page/o-nas" target="_blank" class="item-btn team-btn">Подробнее</a>
+            <a href="{{env('APP_URL')}}/page/o-nas" target="_blank" class="item-btn team-btn" style="width: 195px; margin: 0 auto 30px;">Подробнее</a>
         </div>
         <div class="section-4">
             <div class="section-title"><span>Цифры в реальном времени</span></div>
