@@ -75,4 +75,6 @@
             'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
         })(window,document,'script','dataLayer','GTM-PDMLRN8');</script>
     <!-- End Google Tag Manager -->
+    <!--NEXTEL - Коллтрекинг и виджеты-->
+    <script async src="https://cstat.nextel.com.ua:8443/tracking/script/631/342"></script>
 </head>

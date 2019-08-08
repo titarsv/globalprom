@@ -44,7 +44,7 @@ class Cart extends Model
             $user_id = $user->id;
             $cart = $this->where('user_id', $user_id)->first();
 
-            if(!empty($cart_id) && $cart->id != $cart_id){
+            if(!empty($cart_id) && !empty($cart) && $cart->id != $cart_id){
 	            $saved_cart = $this->where('id', $cart_id)->where('total_quantity', '>', 0)->first();
 	            if(!empty($saved_cart->total_quantity)){
 		            $products = json_decode($cart->products, true) + json_decode($saved_cart->products, true);
