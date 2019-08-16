@@ -103,6 +103,9 @@
                     <li class="footer-menu__item">
                         <a class="footer-menu__link" href="{{env('APP_URL')}}/page/policy">Политика конфиденциальности</a>
                     </li>
+                    <li class="footer-menu__item">
+                        <a class="footer-menu__link" href="{{env('APP_URL')}}/page/dogovor-oferty">Договор оферты</a>
+                    </li>
                 </ul>
                 <span class="links-footer__sep-line mid"></span>
                 <ul class="footer-menu list3">
