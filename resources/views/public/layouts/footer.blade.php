@@ -159,7 +159,10 @@
         </div>
     </div>
     <div class="copyright-footer">
-        <span class="copyright">ООО "НПП "ГлобалПром" © 2013-2019 Политика конфиденциальности</span>
+        <div class="container">
+            <span class="copyright">ООО "НПП "ГлобалПром" © 2013-2019 Политика конфиденциальности</span>
+            <img class="visa" src="/images/visa.png" alt="visa">
+        </div>
     </div>
 </footer>
 

@@ -257,15 +257,34 @@
 	font-size: 12px;
 	height: 58px;
 	line-height: 58px;
+	@include bp(sm){
+		padding-bottom: 106px;
+	}
+	.container{
+		position: relative;
+	}
 }
 
 .copyright{
 	display: block;
 	text-align: center;
+	@include bp(sm){
+		width: calc(100% - 90px);
+		text-align: left;
+	}
 	@include bp(xs){
 		line-height: 14px;
 		padding: 14px;
 	}
+}
+
+.visa{
+	position: absolute;
+	right: 30px;
+	top: 50%;
+	transform: translateY(-50%);
+	height: 25px;
+	object-fit: contain;
 }
 
 .to-top__wrapper{
