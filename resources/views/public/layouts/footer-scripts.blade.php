@@ -45,5 +45,5 @@
 </div>
 <div id="exit_cont"></div>--}}
 <div class="mobile-fixed-phone">
-    <a href="tel:+380506972161">позвонить</a>
+    <a href="tel:+380660028978">позвонить</a>
 </div>
