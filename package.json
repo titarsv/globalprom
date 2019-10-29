@@ -18,7 +18,7 @@
     "babel-preset-es2015": "6.13.2",
     "backbone": "1.3.3",
     "bootstrap": "^3.3.7",
-    "bower": "^1.8.0",
+    "bower": "^1.8.8",
     "chai": "3.5.0",
     "chosen-js": "^1.6.2",
     "css-loader": "^0.23.1",
