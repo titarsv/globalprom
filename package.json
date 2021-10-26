@@ -37,7 +37,7 @@
     "html-webpack-plugin": "2.22.0",
     "image-webpack-loader": "^3.3.1",
     "jquery": "3.3.1",
-    "jquery-ui": "^1.12.1",
+    "jquery-ui": "^1.13.0",
     "jquery.maskedinput": "^1.4.1",
     "jquery.nicescroll": "^3.7.6",
     "jscrollpane": "^2.0.22",
